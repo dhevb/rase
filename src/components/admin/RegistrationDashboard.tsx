@@ -14,6 +14,7 @@ import dynamic from "next/dynamic";
 import AdminGrowthAnalytics from "@/components/admin/AdminGrowthAnalytics";
 import AdminAnalyticsIntelligence from "@/components/admin/AdminAnalyticsIntelligence";
 import AdminGrowthDashboard from "@/components/admin/AdminGrowthDashboard";
+import { deriveRegistrationAdminStatsFromRows } from "@/lib/analytics/adminMetrics";
 import AdminSystemHealth from "@/components/admin/AdminSystemHealth";
 import AdminDashboardOverview from "@/components/admin/AdminDashboardOverview";
 import AdminRegistrationCategories from "@/components/admin/AdminRegistrationCategories";
@@ -53,6 +54,8 @@ export default function RegistrationDashboard() {
   const { role, permissions } = useAdmin();
   const [registrations, setRegistrations] = useState<RegistrationRow[]>([]);
   const [stats, setStats] = useState<RegistrationAdminStats>(EMPTY_STATS);
+  const [statsLoaded, setStatsLoaded] = useState(false);
+  const [listTotal, setListTotal] = useState(0);
   const [fetching, setFetching] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
   const [page, setPage] = useState(0);
@@ -70,6 +73,7 @@ export default function RegistrationDashboard() {
       );
       setPage(pageIndex);
       setHasMore(result.hasMore);
+      setListTotal(result.total);
     } catch (error) {
       const message =
         error instanceof Error ? error.message : "Failed to load registrations";
@@ -85,12 +89,17 @@ export default function RegistrationDashboard() {
     }
   };
 
-  const loadStats = async () => {
+  const loadStats = async (rowsForFallback: RegistrationRow[] = registrations, total = listTotal) => {
     try {
       const serverStats = await fetchRegistrationAdminStats();
       setStats(serverStats);
+      setStatsLoaded(true);
     } catch (error) {
       console.error("ADMIN_STATS_FAILED", error);
+      setStatsLoaded(false);
+      if (rowsForFallback.length > 0 || total > 0) {
+        setStats(deriveRegistrationAdminStatsFromRows(rowsForFallback, total || rowsForFallback.length));
+      }
       const message =
         error instanceof Error ? error.message : "Failed to load registration statistics";
       toast.error(
@@ -119,8 +128,14 @@ export default function RegistrationDashboard() {
 
   useEffect(() => {
     void loadRegistrations(0, false);
-    void loadStats();
   }, []);
+
+  useEffect(() => {
+    if (listTotal === 0 && registrations.length === 0) return;
+    void loadStats(registrations, listTotal);
+    // Re-fetch stats when the list total is known (initial load / refresh).
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [listTotal]);
 
   const selectedRows = registrations.filter((r) => selected.has(r.id));
 
@@ -147,7 +162,7 @@ export default function RegistrationDashboard() {
       }
       toast.success(`Updated ${selected.size} registrations`);
       void loadRegistrations(0, false);
-      void loadStats();
+      void loadStats(registrations, listTotal);
     } catch (error) {
       console.error(error);
       toast.error(
@@ -167,7 +182,7 @@ export default function RegistrationDashboard() {
           type="button"
           onClick={() => {
             void loadRegistrations(0, false);
-            void loadStats();
+            void loadStats(registrations, listTotal);
           }}
           disabled={fetching}
           className="rounded-lg border px-4 py-2 text-sm font-semibold hover:bg-gray-50"

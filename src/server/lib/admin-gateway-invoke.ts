@@ -54,7 +54,7 @@ const ROUTE_LOADERS: Record<string, () => Promise<unknown>> = {
   "audit-logs": () => import("@/app/api/v2/admin/audit-logs/route"),
 };
 
-async function buildInnerRequest(
+export async function buildInnerAdminRequest(
   request: NextRequest,
   session: AdminSessionPayload,
   segments: string[]
@@ -92,9 +92,16 @@ async function loadHandlerModule(
 
   const staticLoader = ROUTE_LOADERS[pathKey];
   if (staticLoader) {
-    const mod = await staticLoader();
-    const handler = getMethodHandler(mod, m);
-    if (handler) return { handler, params: {} };
+    try {
+      const mod = await staticLoader();
+      const handler = getMethodHandler(mod, m);
+      if (handler) return { handler, params: {} };
+    } catch (error) {
+      console.error("ADMIN_GATEWAY_STATIC_ROUTE_FAILED", {
+        path: pathKey,
+        error: error instanceof Error ? error.message : String(error),
+      });
+    }
   }
 
   if (segments.length === 1) {
@@ -178,7 +185,7 @@ export async function invokeV2AdminInProcess(
     );
   }
 
-  const innerRequest = await buildInnerRequest(request, session, segments);
+  const innerRequest = await buildInnerAdminRequest(request, session, segments);
   return resolved.handler(innerRequest, {
     params: Promise.resolve(resolved.params),
   });

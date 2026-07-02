@@ -1,6 +1,18 @@
+import { YesNo } from "@prisma/client";
 import { prisma } from "@/server/db/prisma";
 import { displayRegistrationType } from "@/server/lib/registration-type-labels";
 import type { RegistrationAdminStats } from "@/types/admin-dashboard";
+
+function decimalToNumber(value: unknown): number {
+  if (value == null) return 0;
+  if (typeof value === "number") return value;
+  if (typeof value === "object" && value !== null && "toNumber" in value) {
+    const n = (value as { toNumber: () => number }).toNumber();
+    return Number.isFinite(n) ? n : 0;
+  }
+  const n = Number(value);
+  return Number.isFinite(n) ? n : 0;
+}
 
 export async function getRegistrationAdminStats(): Promise<RegistrationAdminStats> {
   const baseWhere = { deletedAt: null as null };
@@ -55,7 +67,7 @@ export async function getRegistrationAdminStats(): Promise<RegistrationAdminStat
       where: {
         ...baseWhere,
         OR: [
-          { accommodationRequired: "Yes" },
+          { accommodationRequired: YesNo.Yes },
           { accommodationStatus: "Requested" },
         ],
       },
@@ -89,7 +101,7 @@ export async function getRegistrationAdminStats(): Promise<RegistrationAdminStat
     approved,
     verified,
     pendingAccommodation,
-    revenue: Number(revenueAgg._sum.registrationFee ?? 0),
+    revenue: decimalToNumber(revenueAgg._sum.registrationFee),
   };
 }
 

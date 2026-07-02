@@ -26,8 +26,8 @@ export default function AdminGrowthDashboard({ rows, stats }: Props) {
 
   const m = useMemo(() => computeAdminMetrics(rows), [rows]);
 
-  const totalRegistrations = stats?.total ?? m.total;
-  const paidRegistrations = stats?.completedPayments ?? m.paid;
+  const totalRegistrations = Math.max(stats?.total ?? 0, m.total);
+  const paidRegistrations = Math.max(stats?.completedPayments ?? 0, m.paid);
   const paidRatePct =
     totalRegistrations > 0
       ? Math.round((paidRegistrations / totalRegistrations) * 100)

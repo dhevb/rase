@@ -1,6 +1,10 @@
 import type { NextRequest } from "next/server";
 import { signAdminGatewayContext } from "@/server/lib/admin-gateway-context";
-import { invokeV2AdminInProcess } from "@/server/lib/admin-gateway-invoke";
+import { handleRegistrationAdminStats } from "@/server/lib/admin-gateway-direct";
+import {
+  buildInnerAdminRequest,
+  invokeV2AdminInProcess,
+} from "@/server/lib/admin-gateway-invoke";
 import type { AdminSessionPayload } from "@/server/lib/supabase-admin-auth";
 
 /** Build signed headers for internal v2 admin proxy calls. */
@@ -36,5 +40,10 @@ export async function proxyToV2Admin(
   session: AdminSessionPayload,
   segments: string[]
 ): Promise<Response> {
+  const pathKey = segments.join("/");
+  if (pathKey === "registrations/stats" && request.method.toUpperCase() === "GET") {
+    const innerRequest = await buildInnerAdminRequest(request, session, segments);
+    return handleRegistrationAdminStats(innerRequest);
+  }
   return invokeV2AdminInProcess(request, session, segments);
 }
