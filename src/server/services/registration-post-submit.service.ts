@@ -7,6 +7,7 @@ import {
 } from "@/server/services/email.service";
 import {
   generateRegistrationQrBuffer,
+  generateEmailReceiptPdf,
   receiptDownloadUrl,
   qrStoragePathFor,
 } from "@/server/services/receipt.service";
@@ -102,6 +103,16 @@ export async function sendRegistrationConfirmationEmailFast(
     email: built.receiptPayload.email,
   });
 
+  let receiptPdf: Buffer | undefined;
+  try {
+    receiptPdf = await generateEmailReceiptPdf(built.receiptPayload, qrPng);
+  } catch (error) {
+    console.error("REGISTRATION_EMAIL_RECEIPT_PDF_FAILED", {
+      registrationId: input.result.registrationId,
+      error: error instanceof Error ? error.message : String(error),
+    });
+  }
+
   try {
     const emailLog = await sendRegistrationCompleteEmail({
       registrationId: input.result.registrationId,
@@ -112,6 +123,7 @@ export async function sendRegistrationConfirmationEmailFast(
       amountPaid: input.fee,
       transactionId: input.razorpayPaymentId || undefined,
       receiptUrl: receiptDownloadUrl(input.result.registrationId, lookupToken),
+      receiptPdf,
       qrPng,
       isPaid: built.isPaidOnline,
     });
@@ -123,6 +135,7 @@ export async function sendRegistrationConfirmationEmailFast(
       data: {
         qrGeneratedAt: new Date(),
         qrStoragePath: qrStoragePathFor(input.result.registrationId),
+        receiptGeneratedAt: receiptPdf ? new Date() : undefined,
         emailDeliveryStatus: mapDeliveryStatus(emailLog.status),
         receiptSentAt: emailLog.status === "sent" ? new Date() : undefined,
         qrSentAt: emailLog.status === "sent" ? new Date() : undefined,

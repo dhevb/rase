@@ -53,6 +53,7 @@ export async function recordVerifiedPayment(input: RecordVerifiedPaymentInput) {
 
   let amountPaise = input.amountPaise ?? 0;
   let remoteStatus = "unknown";
+  let remoteFetchFailed = false;
 
   try {
     const remote = await fetchRazorpayPaymentStatus(input.razorpayPaymentId);
@@ -79,15 +80,23 @@ export async function recordVerifiedPayment(input: RecordVerifiedPaymentInput) {
     }
   } catch (error) {
     if (error instanceof ServiceError) throw error;
+    remoteFetchFailed = true;
     paymentLog("remote_fetch_failed", {
       payment_id: input.razorpayPaymentId,
       error: error instanceof Error ? error.message : String(error),
     });
-    throw new ServiceError(
-      "Unable to confirm payment status with Razorpay",
-      503,
-      "PAYMENT_STATUS_UNAVAILABLE"
-    );
+    if (amountPaise < 100) {
+      throw new ServiceError(
+        "Unable to confirm payment status with Razorpay. Please retry in a minute or contact support with your payment ID.",
+        503,
+        "PAYMENT_STATUS_UNAVAILABLE"
+      );
+    }
+    paymentLog("remote_fetch_fallback", {
+      payment_id: input.razorpayPaymentId,
+      amount_paise: amountPaise,
+      note: "Trusting valid signature + client amount after Razorpay API unavailable",
+    });
   }
 
   if (amountPaise < 100) {
@@ -154,6 +163,7 @@ export async function recordVerifiedPayment(input: RecordVerifiedPaymentInput) {
     payment_id: input.razorpayPaymentId,
     amount_paise: amountPaise,
     remote_status: remoteStatus,
+    remote_fetch_failed: remoteFetchFailed,
     verified_payment_id: row.id,
     user_email: (input.metadata as Record<string, unknown>)?.email ?? null,
     category: (input.metadata as Record<string, unknown>)?.registrationType ?? null,

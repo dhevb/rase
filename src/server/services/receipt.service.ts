@@ -19,7 +19,7 @@ export async function generateReceiptPdfBuffer(
   );
 }
 
-async function generateEmailReceiptPdf(
+export async function generateEmailReceiptPdf(
   payload: ReceiptPayload,
   qrPng: Buffer
 ): Promise<Buffer> {

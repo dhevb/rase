@@ -3,7 +3,7 @@ import type { EmailLogStatus } from "@prisma/client";
 import { SITE_URL } from "@/config/site";
 import { prisma } from "@/server/db/prisma";
 import { writeAuditLog } from "@/server/services/audit.service";
-import { REGISTRATION_RECEIPT_THANKS } from "@/lib/receipt/registration-receipt-layout";
+import { REGISTRATION_RECEIPT_THANKS_EMAIL } from "@/lib/receipt/registration-receipt-layout";
 import { EVENT_NAME } from "@/types/registration";
 
 export type EmailTemplate =
@@ -150,8 +150,10 @@ function buildHtml(template: EmailTemplate, data: Record<string, string>) {
           <tr><td style="padding:6px 0;font-weight:600">Amount Paid</td><td>${data.amountPaid ?? "—"}</td></tr>` : ""}
         </table>
         <div style="margin:20px 0;padding:16px 18px;border:1px solid #FF9933;border-left:4px solid #B45309;border-radius:8px;background:#FFFBF5;text-align:center">
-          <p style="margin:0 0 8px;font-size:16px;font-weight:700;color:#0B1F3B">${REGISTRATION_RECEIPT_THANKS.heading}</p>
-          ${REGISTRATION_RECEIPT_THANKS.lines.map((line) => `<p style="margin:0 0 6px;font-size:13px;line-height:1.65">${line}</p>`).join("")}
+          <p style="margin:0 0 4px;font-size:16px;font-weight:700;color:#0B1F3B">${REGISTRATION_RECEIPT_THANKS_EMAIL.headingEn}</p>
+          <p style="margin:0 0 10px;font-size:14px;font-weight:600;color:#0B1F3B;font-family:'Noto Sans Devanagari',Arial,sans-serif">${REGISTRATION_RECEIPT_THANKS_EMAIL.headingHi}</p>
+          ${REGISTRATION_RECEIPT_THANKS_EMAIL.linesEn.map((line) => `<p style="margin:0 0 6px;font-size:13px;line-height:1.65">${line}</p>`).join("")}
+          ${REGISTRATION_RECEIPT_THANKS_EMAIL.linesHi.map((line) => `<p style="margin:8px 0 0;font-size:13px;line-height:1.65;color:#334155;font-family:'Noto Sans Devanagari',Arial,sans-serif">${line}</p>`).join("")}
         </div>
         ${data.receiptUrl ? `<p><a href="${data.receiptUrl}">View confirmation &amp; download receipt</a></p>` : ""}
         ${participantPortalHtml()}

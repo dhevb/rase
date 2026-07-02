@@ -19,6 +19,60 @@ type RazorpayHandlerResponse = {
   razorpay_signature: string;
 };
 
+async function verifyPaymentWithRetry(
+  response: RazorpayHandlerResponse,
+  amountPaise: number,
+  orderNotes?: Record<string, string>
+): Promise<{ ok: true; duplicate?: boolean; registration_id?: string } | { ok: false; error: string }> {
+  const body = {
+    razorpay_payment_id: response.razorpay_payment_id,
+    razorpay_order_id: response.razorpay_order_id,
+    razorpay_signature: response.razorpay_signature,
+    amount_paise: amountPaise,
+    metadata: orderNotes,
+  };
+
+  let lastError = "Payment verification failed";
+
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      const verifyRes = await fetch("/api/payments/verify-payment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const verifyData = (await verifyRes.json()) as {
+        ok?: boolean;
+        duplicate?: boolean;
+        registration_id?: string;
+        error?: string;
+      };
+
+      if (verifyRes.ok && verifyData.ok) {
+        return {
+          ok: true,
+          duplicate: verifyData.duplicate,
+          registration_id: verifyData.registration_id,
+        };
+      }
+
+      lastError = verifyData.error ?? lastError;
+
+      if (verifyRes.status >= 400 && verifyRes.status < 500 && verifyRes.status !== 429) {
+        break;
+      }
+    } catch (err) {
+      lastError = err instanceof Error ? err.message : lastError;
+    }
+
+    if (attempt < 3) {
+      await new Promise((r) => window.setTimeout(r, attempt * 800));
+    }
+  }
+
+  return { ok: false, error: lastError };
+}
+
 type RazorpayInstance = {
   open: () => void;
   on: (event: string, handler: (response: { error?: { description?: string } }) => void) => void;
@@ -171,32 +225,37 @@ export default function RazorpayCheckout({
         order_id: orderData.order_id,
         handler: async (response: RazorpayHandlerResponse) => {
           try {
-            const verifyRes = await fetch("/api/payments/verify-payment", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({
-                razorpay_payment_id: response.razorpay_payment_id,
-                razorpay_order_id: response.razorpay_order_id,
-                razorpay_signature: response.razorpay_signature,
-                amount_paise: amountPaise,
-                metadata: orderNotes,
-              }),
-            });
-            const verifyData = await verifyRes.json();
-            if (!verifyRes.ok || !verifyData.ok) {
+            const verified = await verifyPaymentWithRetry(response, amountPaise, orderNotes);
+
+            if (!verified.ok) {
               console.error("PAYMENT_VERIFY_FAILED", {
                 payment_id: response.razorpay_payment_id,
-                error: verifyData.error ?? null,
+                error: verified.error,
               });
-              toast.error(verifyData.error ?? "Payment verification failed");
+              onSuccess?.({
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_order_id: response.razorpay_order_id,
+                verified: false,
+              });
+              toast.error(
+                `Payment received (ID: ${response.razorpay_payment_id}) but verification is pending. Tap Pay again to retry — do not pay twice — or email academics@shikshamahakumbh.com with this ID.`
+              );
               return;
             }
-            console.info("PAYMENT_VERIFIED", {
-              payment_id: response.razorpay_payment_id,
-              order_id: response.razorpay_order_id,
-            });
+
+            if (verified.duplicate && verified.registration_id) {
+              toast.success(
+                `Payment already linked to registration ${verified.registration_id}. You can submit the form or open your confirmation email.`
+              );
+            } else {
+              console.info("PAYMENT_VERIFIED", {
+                payment_id: response.razorpay_payment_id,
+                order_id: response.razorpay_order_id,
+              });
+              toast.success("Payment successful!");
+            }
+
             setVerified(true);
-            toast.success("Payment successful!");
             onSuccess?.({
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_order_id: response.razorpay_order_id,
@@ -206,7 +265,9 @@ export default function RazorpayCheckout({
             console.error("PAYMENT_VERIFY_FAILED", {
               error: err instanceof Error ? err.message : String(err),
             });
-            toast.error("Payment verification failed. Please contact support.");
+            toast.error(
+              `Payment may have been deducted. Note your Payment ID: ${response.razorpay_payment_id} and contact support.`
+            );
           }
         },
         prefill: {

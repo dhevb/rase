@@ -35,6 +35,14 @@ export const REGISTRATION_RECEIPT_THANKS_PDF = {
   ],
 } as const;
 
+/** Readable in all email clients (Latin script). Devanagari shown below when supported. */
+export const REGISTRATION_RECEIPT_THANKS_EMAIL = {
+  headingEn: "Heartfelt Thanks",
+  headingHi: "हार्दिक धन्यवाद",
+  linesEn: REGISTRATION_RECEIPT_THANKS_PDF.lines,
+  linesHi: REGISTRATION_RECEIPT_THANKS.lines,
+} as const;
+
 export const REGISTRATION_RECEIPT_CSS = `
   @page { size: A4 portrait; margin: 10mm; }
   * { box-sizing: border-box; }
