@@ -2,6 +2,9 @@ import { NextRequest } from "next/server";
 import { createApiHandler } from "@/server/lib/api-handler";
 import { listRegistrations } from "@/server/services/registration.service";
 
+export const runtime = "nodejs";
+export const maxDuration = 60;
+
 export const GET = createApiHandler(
   async (request: NextRequest) => {
     const { searchParams } = new URL(request.url);

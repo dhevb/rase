@@ -6,6 +6,7 @@ import { ServiceError } from "@/server/lib/errors";
 import { assertSameOrigin } from "@/server/lib/same-origin";
 
 export const runtime = "nodejs";
+export const maxDuration = 60;
 
 async function handle(request: NextRequest, context: { params: Promise<{ path: string[] }> }) {
   assertSameOrigin(request);

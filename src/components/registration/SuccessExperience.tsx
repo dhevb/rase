@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState, Suspense, type ReactNode } from "react";
+import { useCallback, useEffect, useMemo, useState, Suspense, type ReactNode } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { EVENT_NAME } from "@/types/registration";
@@ -59,14 +59,21 @@ function buildReceiptData(
 function SuccessInner() {
   const searchParams = useSearchParams();
   const registrationId = searchParams.get("id");
-  const lookupToken = searchParams.get("token");
+  const urlToken = searchParams.get("token");
+  const [storedToken, setStoredToken] = useState<string | null>(null);
+  const lookupToken = urlToken ?? storedToken;
   const [record, setRecord] = useState<PublicRecord | null>(null);
   const [loading, setLoading] = useState(true);
   const [fetchError, setFetchError] = useState<string | null>(null);
   const [registrantEmail, setRegistrantEmail] = useState<string | null>(null);
   const [resendStatus, setResendStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [resendMessage, setResendMessage] = useState<string | null>(null);
-  const autoEmailAttemptedRef = useRef(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const stored = sessionStorage.getItem("smk_lookup_token");
+    if (stored) setStoredToken(stored);
+  }, []);
 
   useEffect(() => {
     if (!registrationId) {
@@ -147,9 +154,18 @@ function SuccessInner() {
           token: lookupToken,
         }),
       });
-      const body = (await res.json().catch(() => ({}))) as { message?: string; error?: string };
+      const body = (await res.json().catch(() => ({}))) as {
+        message?: string;
+        error?: string;
+        code?: string;
+      };
       if (!res.ok) {
-        throw new Error(body.error ?? "Could not send email");
+        throw new Error(
+          body.error ??
+            (body.code === "EMAIL_NOT_CONFIGURED"
+              ? "Email is not configured on the server. Download your receipt below or contact support."
+              : "Could not send email")
+        );
       }
       setResendStatus("sent");
       setResendMessage(
@@ -165,16 +181,6 @@ function SuccessInner() {
       );
     }
   }, [registrationId, lookupToken]);
-
-  useEffect(() => {
-    if (loading || !registrationId || !lookupToken || autoEmailAttemptedRef.current) return;
-    const sessionKey = `smk_auto_confirmation_email_${registrationId}`;
-    if (sessionStorage.getItem(sessionKey)) return;
-
-    autoEmailAttemptedRef.current = true;
-    sessionStorage.setItem(sessionKey, "1");
-    void handleResendEmail();
-  }, [loading, registrationId, lookupToken, handleResendEmail]);
 
   if (loading) {
     return (

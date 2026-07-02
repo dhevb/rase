@@ -11,6 +11,9 @@ import { resendRegistrationConfirmationEmail } from "@/server/services/registrat
 import { displayRegistrationType } from "@/server/lib/registration-type-labels";
 
 /** Resend confirmation email — requires lookup token from the success page. */
+export const runtime = "nodejs";
+export const maxDuration = 60;
+
 export const POST = createApiHandler(
   async (request: NextRequest) => {
     const body = assertBody<{
