@@ -234,11 +234,13 @@ export default function GenericRegistrationForm({
             customerPhone={contactNumber}
             orderNotes={orderNotes}
             onPaymentVerified={(p) => {
-              setPaymentVerified(true);
               setValue("utrNumber", p.razorpay_payment_id);
               setValue("razorpayPaymentId", p.razorpay_payment_id);
               setValue("razorpayOrderId", p.razorpay_order_id);
-              flow?.notifyPaymentVerified();
+              if (p.verified) {
+                setPaymentVerified(true);
+                flow?.notifyPaymentVerified();
+              }
             }}
           />
           {paymentVerified && (

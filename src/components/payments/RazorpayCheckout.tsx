@@ -19,6 +19,50 @@ type RazorpayHandlerResponse = {
   razorpay_signature: string;
 };
 
+type PendingPayment = RazorpayHandlerResponse & { amountPaise: number };
+
+const PENDING_PAYMENT_KEY = "smk_pending_razorpay_payment";
+
+function readPendingPayment(): PendingPayment | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = sessionStorage.getItem(PENDING_PAYMENT_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as PendingPayment;
+    if (
+      parsed.razorpay_payment_id?.startsWith("pay_") &&
+      parsed.razorpay_order_id?.startsWith("order_") &&
+      parsed.razorpay_signature
+    ) {
+      return parsed;
+    }
+  } catch {
+    /* ignore */
+  }
+  return null;
+}
+
+function savePendingPayment(payment: PendingPayment) {
+  sessionStorage.setItem(PENDING_PAYMENT_KEY, JSON.stringify(payment));
+}
+
+function clearPendingPayment() {
+  sessionStorage.removeItem(PENDING_PAYMENT_KEY);
+}
+
+function isWebsiteMismatchError(message: string): boolean {
+  const lower = message.toLowerCase();
+  return (
+    lower.includes("website") ||
+    lower.includes("unregistered") ||
+    lower.includes("domain") ||
+    lower.includes("mismatch")
+  );
+}
+
+const WEBSITE_MISMATCH_HELP =
+  "Razorpay has not approved www.rase.co.in for this merchant account yet. Ask the account owner to add https://www.rase.co.in and https://rase.co.in under Razorpay → Account & Settings → Website. Do not pay again until this is fixed.";
+
 async function verifyPaymentWithRetry(
   response: RazorpayHandlerResponse,
   amountPaise: number,
@@ -119,8 +163,13 @@ export default function RazorpayCheckout({
   const [scriptReady, setScriptReady] = useState(false);
   const [scriptFailed, setScriptFailed] = useState(false);
   const [verified, setVerified] = useState(false);
+  const [pendingPayment, setPendingPayment] = useState<PendingPayment | null>(null);
 
   const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
+
+  useEffect(() => {
+    setPendingPayment(readPendingPayment());
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -142,18 +191,88 @@ export default function RazorpayCheckout({
     };
   }, []);
 
+  const processPaymentResponse = useCallback(
+    async (response: RazorpayHandlerResponse, amountPaise: number) => {
+      const verifiedResult = await verifyPaymentWithRetry(response, amountPaise, orderNotes);
+
+      if (!verifiedResult.ok) {
+        console.error("PAYMENT_VERIFY_FAILED", {
+          payment_id: response.razorpay_payment_id,
+          error: verifiedResult.error,
+        });
+        const pending: PendingPayment = { ...response, amountPaise };
+        savePendingPayment(pending);
+        setPendingPayment(pending);
+        onSuccess?.({
+          razorpay_payment_id: response.razorpay_payment_id,
+          razorpay_order_id: response.razorpay_order_id,
+          verified: false,
+        });
+        toast.error(
+          `Payment ID ${response.razorpay_payment_id} saved. Tap "Verify payment" below — do not pay again.`
+        );
+        return;
+      }
+
+      clearPendingPayment();
+      setPendingPayment(null);
+
+      if (verifiedResult.duplicate && verifiedResult.registration_id) {
+        toast.success(
+          `Payment already linked to registration ${verifiedResult.registration_id}. Submit the form or check your email.`
+        );
+      } else {
+        console.info("PAYMENT_VERIFIED", {
+          payment_id: response.razorpay_payment_id,
+          order_id: response.razorpay_order_id,
+        });
+        toast.success("Payment verified!");
+      }
+
+      setVerified(true);
+      onSuccess?.({
+        razorpay_payment_id: response.razorpay_payment_id,
+        razorpay_order_id: response.razorpay_order_id,
+        verified: true,
+      });
+    },
+    [onSuccess, orderNotes]
+  );
+
+  const handleVerifyPending = useCallback(async () => {
+    const pending = pendingPayment ?? readPendingPayment();
+    if (!pending) {
+      toast.error("No pending payment to verify.");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      await processPaymentResponse(pending, pending.amountPaise);
+    } catch (err) {
+      console.error("PAYMENT_VERIFY_FAILED", {
+        error: err instanceof Error ? err.message : String(err),
+      });
+      toast.error("Could not verify payment. Try again in a minute.");
+    } finally {
+      setLoading(false);
+    }
+  }, [pendingPayment, processPaymentResponse]);
+
   const handlePay = useCallback(async () => {
     if (!keyId) {
       toast.error("Payment gateway is not configured. Please contact support.");
       return;
     }
 
+    const existingPending = pendingPayment ?? readPendingPayment();
+    if (existingPending) {
+      await handleVerifyPending();
+      return;
+    }
+
     try {
       if (!isRazorpayCheckoutReady()) {
-        console.info("RAZORPAY_SCRIPT_LOAD_START", {
-          phase: "pay_click",
-          retry: scriptFailed,
-        });
         await loadRazorpayCheckoutScript({ forceRetry: scriptFailed });
         setScriptReady(true);
         setScriptFailed(false);
@@ -172,7 +291,6 @@ export default function RazorpayCheckout({
     }
 
     if (!window.Razorpay) {
-      console.error("RAZORPAY_OPEN_FAILED", { reason: "window.Razorpay missing" });
       toast.error("Payment gateway is still loading. Please try again.");
       return;
     }
@@ -183,13 +301,9 @@ export default function RazorpayCheckout({
     }
 
     setLoading(true);
-    try {
-      const amountPaise = Math.round(amountInRupees * 100);
-      console.info("RAZORPAY_CREATE_ORDER_START", {
-        amountPaise,
-        receipt: receipt ?? null,
-      });
+    const amountPaise = Math.round(amountInRupees * 100);
 
+    try {
       const orderRes = await fetch("/api/payments/create-order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -203,18 +317,8 @@ export default function RazorpayCheckout({
 
       const orderData = await orderRes.json();
       if (!orderRes.ok) {
-        console.error("RAZORPAY_CREATE_ORDER_FAILED", {
-          status: orderRes.status,
-          error: orderData.error ?? null,
-        });
         throw new Error(orderData.error ?? "Failed to create order");
       }
-
-      console.info("RAZORPAY_CREATE_ORDER_SUCCESS", {
-        order_id: orderData.order_id,
-        amount: orderData.amount,
-        currency: orderData.currency,
-      });
 
       const options: Record<string, unknown> = {
         key: keyId,
@@ -223,52 +327,17 @@ export default function RazorpayCheckout({
         name: "Shiksha Mahakumbh Abhiyan",
         description,
         order_id: orderData.order_id,
-        handler: async (response: RazorpayHandlerResponse) => {
-          try {
-            const verified = await verifyPaymentWithRetry(response, amountPaise, orderNotes);
-
-            if (!verified.ok) {
+        handler: (response: RazorpayHandlerResponse) => {
+          void processPaymentResponse(response, amountPaise)
+            .catch((err) => {
               console.error("PAYMENT_VERIFY_FAILED", {
-                payment_id: response.razorpay_payment_id,
-                error: verified.error,
+                error: err instanceof Error ? err.message : String(err),
               });
-              onSuccess?.({
-                razorpay_payment_id: response.razorpay_payment_id,
-                razorpay_order_id: response.razorpay_order_id,
-                verified: false,
-              });
-              toast.error(
-                `Payment received (ID: ${response.razorpay_payment_id}) but verification is pending. Tap Pay again to retry — do not pay twice — or email academics@shikshamahakumbh.com with this ID.`
-              );
-              return;
-            }
-
-            if (verified.duplicate && verified.registration_id) {
-              toast.success(
-                `Payment already linked to registration ${verified.registration_id}. You can submit the form or open your confirmation email.`
-              );
-            } else {
-              console.info("PAYMENT_VERIFIED", {
-                payment_id: response.razorpay_payment_id,
-                order_id: response.razorpay_order_id,
-              });
-              toast.success("Payment successful!");
-            }
-
-            setVerified(true);
-            onSuccess?.({
-              razorpay_payment_id: response.razorpay_payment_id,
-              razorpay_order_id: response.razorpay_order_id,
-              verified: true,
+              toast.error("Payment verification failed. Use Verify payment — do not pay again.");
+            })
+            .finally(() => {
+              setLoading(false);
             });
-          } catch (err) {
-            console.error("PAYMENT_VERIFY_FAILED", {
-              error: err instanceof Error ? err.message : String(err),
-            });
-            toast.error(
-              `Payment may have been deducted. Note your Payment ID: ${response.razorpay_payment_id} and contact support.`
-            );
-          }
         },
         prefill: {
           name: customerName,
@@ -278,6 +347,7 @@ export default function RazorpayCheckout({
         theme: { color: "#1e3a5f" },
         modal: {
           ondismiss: () => {
+            setLoading(false);
             onDismiss?.();
           },
         },
@@ -285,17 +355,19 @@ export default function RazorpayCheckout({
 
       const rzp = new window.Razorpay(options);
       rzp.on("payment.failed", (response) => {
-        const msg =
-          response.error?.description ?? "Payment failed. Please try again.";
-        toast.error(msg);
+        setLoading(false);
+        const msg = response.error?.description ?? "Payment failed.";
+        if (isWebsiteMismatchError(msg)) {
+          toast.error(WEBSITE_MISMATCH_HELP, { duration: 12000 });
+        } else {
+          toast.error(msg);
+        }
       });
-      console.info("RAZORPAY_OPEN", { order_id: orderData.order_id });
       rzp.open();
     } catch (error) {
       const msg = error instanceof Error ? error.message : "Payment failed";
       console.error("RAZORPAY_OPEN_FAILED", { error: msg });
       toast.error(msg);
-    } finally {
       setLoading(false);
     }
   }, [
@@ -304,10 +376,12 @@ export default function RazorpayCheckout({
     customerName,
     customerPhone,
     description,
+    handleVerifyPending,
     keyId,
     onDismiss,
-    onSuccess,
     orderNotes,
+    pendingPayment,
+    processPaymentResponse,
     receipt,
     scriptFailed,
   ]);
@@ -323,23 +397,50 @@ export default function RazorpayCheckout({
 
   return (
     <div className="space-y-2">
-      <button
-        type="button"
-        onClick={handlePay}
-        disabled={disabled || loading || verified}
-        className={
-          className ??
-          "inline-flex min-h-[44px] items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-60"
-        }
-      >
-        {verified
-          ? "Payment verified ✓"
-          : loading
-            ? "Processing…"
-            : scriptFailed
-              ? `Retry payment · ₹${amountInRupees.toLocaleString("en-IN")}`
-              : `Pay ₹${amountInRupees.toLocaleString("en-IN")}`}
-      </button>
+      {pendingPayment && !verified ? (
+        <div className="rounded-lg border border-amber-300 bg-amber-50 px-3 py-2 text-xs text-amber-950">
+          <p className="font-semibold">Payment ID saved: {pendingPayment.razorpay_payment_id}</p>
+          <p className="mt-1">
+            Your bank may have charged you. Tap <strong>Verify payment</strong> below — do not open
+            Razorpay again.
+          </p>
+        </div>
+      ) : null}
+
+      <div className="flex flex-wrap gap-2">
+        {pendingPayment && !verified ? (
+          <button
+            type="button"
+            onClick={() => void handleVerifyPending()}
+            disabled={disabled || loading}
+            className={
+              className ??
+              "inline-flex min-h-[44px] items-center justify-center rounded-lg bg-emerald-700 px-4 py-2 text-sm font-semibold text-white hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-60"
+            }
+          >
+            {loading ? "Verifying…" : "Verify payment (no new charge)"}
+          </button>
+        ) : null}
+
+        <button
+          type="button"
+          onClick={() => void handlePay()}
+          disabled={disabled || loading || verified || Boolean(pendingPayment)}
+          className={
+            className ??
+            "inline-flex min-h-[44px] items-center justify-center rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-60"
+          }
+        >
+          {verified
+            ? "Payment verified ✓"
+            : loading
+              ? "Processing…"
+              : scriptFailed
+                ? `Retry payment · ₹${amountInRupees.toLocaleString("en-IN")}`
+                : `Pay ₹${amountInRupees.toLocaleString("en-IN")}`}
+        </button>
+      </div>
+
       {!scriptReady && !verified && !loading && (
         <p className="text-xs text-slate-600">
           {scriptFailed

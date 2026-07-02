@@ -227,6 +227,7 @@ export function PaymentBlock({
   onPaymentVerified?: (payment: {
     razorpay_payment_id: string;
     razorpay_order_id: string;
+    verified: boolean;
   }) => void;
   customerName?: string;
   customerEmail?: string;
@@ -259,6 +260,7 @@ export function PaymentBlock({
               onPaymentVerified?.({
                 razorpay_payment_id: result.razorpay_payment_id,
                 razorpay_order_id: result.razorpay_order_id,
+                verified: result.verified,
               });
             }}
           />
