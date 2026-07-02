@@ -91,7 +91,13 @@ export default function RegistrationDashboard() {
       setStats(serverStats);
     } catch (error) {
       console.error("ADMIN_STATS_FAILED", error);
-      toast.error("Failed to load registration statistics");
+      const message =
+        error instanceof Error ? error.message : "Failed to load registration statistics";
+      toast.error(
+        message.startsWith("Failed to load registration stats")
+          ? message
+          : `Failed to load registration statistics: ${message}`
+      );
     }
   };
 
@@ -172,7 +178,7 @@ export default function RegistrationDashboard() {
 
       <AdminSystemHealth />
 
-        <AdminGrowthDashboard rows={registrations} />
+        <AdminGrowthDashboard rows={registrations} stats={stats} />
 
         <AdminDashboardOverview stats={stats} />
 

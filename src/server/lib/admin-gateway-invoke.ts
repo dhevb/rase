@@ -17,6 +17,43 @@ function getMethodHandler(mod: unknown, method: string): RouteHandler | undefine
   return typeof handler === "function" ? (handler as RouteHandler) : undefined;
 }
 
+/** Static imports so Next.js bundles nested admin routes (dynamic template imports miss some paths). */
+const ROUTE_LOADERS: Record<string, () => Promise<unknown>> = {
+  registrations: () => import("@/app/api/v2/admin/registrations/route"),
+  "registrations/stats": () => import("@/app/api/v2/admin/registrations/stats/route"),
+  "registrations/bulk-status": () =>
+    import("@/app/api/v2/admin/registrations/bulk-status/route"),
+  dashboard: () => import("@/app/api/v2/admin/dashboard/route"),
+  "attendees/export": () => import("@/app/api/v2/admin/attendees/export/route"),
+  "payments/analytics": () => import("@/app/api/v2/admin/payments/analytics/route"),
+  "analytics/pages": () => import("@/app/api/v2/admin/analytics/pages/route"),
+  "analytics/visitors": () => import("@/app/api/v2/admin/analytics/visitors/route"),
+  "executive-dashboard": () => import("@/app/api/v2/admin/executive-dashboard/route"),
+  "lifecycle-analytics": () => import("@/app/api/v2/admin/lifecycle-analytics/route"),
+  "payment-recovery": () => import("@/app/api/v2/admin/payment-recovery/route"),
+  "payment-audit": () => import("@/app/api/v2/admin/payment-audit/route"),
+  "email-logs": () => import("@/app/api/v2/admin/email-logs/route"),
+  payments: () => import("@/app/api/v2/admin/payments/route"),
+  checkin: () => import("@/app/api/v2/admin/checkin/route"),
+  attendees: () => import("@/app/api/v2/admin/attendees/route"),
+  documents: () => import("@/app/api/v2/admin/documents/route"),
+  donations: () => import("@/app/api/v2/admin/donations/route"),
+  communications: () => import("@/app/api/v2/admin/communications/route"),
+  webhooks: () => import("@/app/api/v2/admin/webhooks/route"),
+  users: () => import("@/app/api/v2/admin/users/route"),
+  settings: () => import("@/app/api/v2/admin/settings/route"),
+  feedback: () => import("@/app/api/v2/admin/feedback/route"),
+  contact: () => import("@/app/api/v2/admin/contact/route"),
+  events: () => import("@/app/api/v2/admin/events/route"),
+  committees: () => import("@/app/api/v2/admin/committees/route"),
+  notices: () => import("@/app/api/v2/admin/notices/route"),
+  pages: () => import("@/app/api/v2/admin/pages/route"),
+  media: () => import("@/app/api/v2/admin/media/route"),
+  "media-library": () => import("@/app/api/v2/admin/media-library/route"),
+  "ai-insights": () => import("@/app/api/v2/admin/ai-insights/route"),
+  "audit-logs": () => import("@/app/api/v2/admin/audit-logs/route"),
+};
+
 async function buildInnerRequest(
   request: NextRequest,
   session: AdminSessionPayload,
@@ -51,6 +88,14 @@ async function loadHandlerModule(
   method: string
 ): Promise<{ handler: RouteHandler; params: Record<string, string> } | null> {
   const m = method.toUpperCase();
+  const pathKey = segments.join("/");
+
+  const staticLoader = ROUTE_LOADERS[pathKey];
+  if (staticLoader) {
+    const mod = await staticLoader();
+    const handler = getMethodHandler(mod, m);
+    if (handler) return { handler, params: {} };
+  }
 
   if (segments.length === 1) {
     const [resource] = segments;

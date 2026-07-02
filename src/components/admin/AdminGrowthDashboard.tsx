@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { RegistrationRow } from "@/lib/exportRegistrations";
 import { computeAdminMetrics } from "@/lib/analytics/adminMetrics";
-import { ANALYTICS_EVENTS, getLocalFunnelCounts } from "@/lib/analytics/events";
+import type { RegistrationAdminStats } from "@/types/admin-dashboard";
 
 const HUB_VIEWS_KEY = "smk_knowledge_hub_views";
 
@@ -14,32 +14,33 @@ function getKnowledgeHubViews(): number {
 
 interface Props {
   rows: RegistrationRow[];
+  stats?: RegistrationAdminStats;
 }
 
-export default function AdminGrowthDashboard({ rows }: Props) {
-  const [funnel, setFunnel] = useState<Record<string, number>>({});
+export default function AdminGrowthDashboard({ rows, stats }: Props) {
   const [hubViews, setHubViews] = useState(0);
 
   useEffect(() => {
-    setFunnel(getLocalFunnelCounts());
     setHubViews(getKnowledgeHubViews());
   }, []);
 
   const m = useMemo(() => computeAdminMetrics(rows), [rows]);
 
-  const started = funnel[ANALYTICS_EVENTS.registrationStarted] ?? 0;
-  const completed = funnel[ANALYTICS_EVENTS.registrationCompleted] ?? m.completed;
-  const conversionPct =
-    started > 0 ? Math.round((completed / started) * 100) : m.completionRate;
+  const totalRegistrations = stats?.total ?? m.total;
+  const paidRegistrations = stats?.completedPayments ?? m.paid;
+  const paidRatePct =
+    totalRegistrations > 0
+      ? Math.round((paidRegistrations / totalRegistrations) * 100)
+      : m.paidRate;
 
   return (
     <section className="space-y-4" aria-label="Growth dashboard">
       <h2 className="text-lg font-bold text-primary">Growth Dashboard</h2>
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        <Kpi label="Registrations (loaded)" value={m.total} />
-        <Kpi label="Conversion rate" value={`${conversionPct}%`} />
-        <Kpi label="Paid" value={m.paid} />
+        <Kpi label="Registrations (total)" value={totalRegistrations} />
+        <Kpi label="Paid rate" value={`${paidRatePct}%`} />
+        <Kpi label="Paid" value={paidRegistrations} />
         <Kpi label="Knowledge Hub views (browser)" value={hubViews} />
       </div>
 
