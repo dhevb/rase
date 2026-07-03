@@ -14,12 +14,12 @@ export default function HomeEditionCta() {
   const headline = sectionField(
     cta,
     "headline",
-    "NIT Hamirpur · 9–11 Oct 2026"
+    "NIT Hamirpur · Edition 6.0"
   );
   const body = sectionField(
     cta,
     "body",
-    "Multi-track conclaves, olympiads, research, exhibitions, and awards."
+    "Seven thematic conclaves, olympiads, research, exhibitions, and awards."
   );
   const buttonLabel = sectionField(cta, "buttonLabel", "View full programme");
   const buttonUrl = sectionField(cta, "buttonUrl", ROUTES.academicCouncil);

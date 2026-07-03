@@ -70,43 +70,45 @@ const ORGANIZING_LOGOS: TrustStripLogo[] = [
 
 const DEFAULT_WHY_ATTEND: WhyAttendFeature[] = [
   {
-    title: "Policy & NEP 2020",
+    title: "Educators & Faculty",
     description:
-      "Engage with national education policy, implementation frameworks, and institutional roadmaps.",
-    badge: "Impact",
+      "Share classroom innovations, join policy dialogues, and learn implementation models aligned with NEP 2020.",
+    badge: "Faculty",
     href: ROUTES.introduction,
   },
   {
-    title: "Research & Publications",
+    title: "Students & Youth",
     description:
-      "Present abstracts, full papers, and proceedings aligned with Indian and global education research.",
-    badge: "Academic",
+      "Compete in olympiads, present talent, and take part in cultural programmes celebrating student excellence.",
+    badge: "Students",
+    href: ROUTES.registration,
+  },
+  {
+    title: "Researchers & Authors",
+    description:
+      "Present peer-reviewed work through the Multi Track Conference and contribute to national education research.",
+    badge: "Research",
     href: "/publications",
   },
   {
-    title: "Innovation & Startups",
+    title: "Schools & Institutions",
     description:
-      "Showcase projects, exhibitions, and entrepreneurial ideas from schools and higher education.",
-    badge: "Innovation",
-    href: academicCouncilHash("exhibition"),
+      "Register delegations, exhibitions, and best-practice models from your campus on one official portal.",
+    badge: "Institutions",
+    href: ROUTES.registration,
   },
   {
-    title: "Olympiads & Talent",
+    title: "NGOs & Industry",
     description:
-      "Compete in olympiads, talent conclaves, and cultural programmes celebrating student excellence.",
-    href: academicCouncilHash("olympiad"),
-  },
-  {
-    title: "Conclaves & Workshops",
-    description:
-      "Multi-track conclaves on holistic education, best practices, and Bharatiya knowledge systems.",
-    href: academicCouncilHash("conclave"),
-  },
-  {
-    title: "Global Networking",
-    description:
-      "Connect educators, NGOs, industry, and youth on one credible international platform.",
+      "Collaborate on holistic education initiatives and Bharat@2047 goals with national partners.",
+    badge: "Partners",
     href: ROUTES.contact,
+  },
+  {
+    title: "Parents & Community",
+    description:
+      "Support student participation and explore Indian knowledge traditions on a credible global platform.",
+    href: "/education",
   },
 ];
 
@@ -122,31 +124,31 @@ const DEFAULT_DISCOVER: DiscoverInsight[] = [
     external: false,
   },
   {
-    title: "Shiksha Mahakumbh 5.0",
-    date: "Past edition",
-    author: "Archive",
-    href: "/past_event/shiksha-mahakumbh-5.0",
-    tag: "Editions",
+    title: "Edition 6.0 Brochures",
+    date: "Downloads",
+    author: "Resources",
+    href: `${ROUTES.downloads}#edition-brochures`,
+    tag: "Resources",
     accent: "from-brand-saffron/50 to-brand-saffron/15",
     tagBg: "bg-brand-saffron",
     external: false,
   },
   {
-    title: "Multi Track Conference",
-    date: cmtSubmissionDateLabel(),
-    author: "Academic Council",
-    href: academicCouncilHash("conference"),
-    tag: "Research",
+    title: "Shiksha Mahakumbh 7.0",
+    date: "Next edition",
+    author: "IIT Jammu",
+    href: `${ROUTES.upcomingEvents}#smk-7-0`,
+    tag: "Upcoming",
     accent: "from-brand-emerald/50 to-brand-emerald/15",
     tagBg: "bg-brand-emerald",
     external: false,
   },
   {
-    title: "Past Editions & Proceedings",
-    date: "Archive",
-    author: "SMK History",
-    href: "/past-events",
-    tag: "Publications",
+    title: "Organising Committee",
+    date: "Edition 6.0",
+    author: "Leadership",
+    href: "/committee/Shiksha%20Mahakumbh%206.0",
+    tag: "Committee",
     accent: "from-brand-violet/50 to-brand-violet/15",
     tagBg: "bg-brand-violet",
     external: false,
@@ -281,7 +283,7 @@ export function buildWhyAttendContent(
     description: sectionField(
       section,
       "subtitle",
-      "Six reasons educators, researchers, students, and institutions join India's flagship education summit."
+      "Who benefits from India's flagship education summit — educators, students, researchers, and institutions."
     ),
     features: cmsFeatures.length
       ? cmsFeatures.map((f) => ({

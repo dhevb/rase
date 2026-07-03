@@ -1,34 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
-import { CtaButton } from "@/components/ui";import { ROUTES } from "@/constants/routes";
+import { CtaButton } from "@/components/ui";
+import { ROUTES } from "@/constants/routes";
 import { academicCouncilHash } from "@/lib/home/home-link-targets";
-
-const PILLARS = [
-  {
-    title: "NEP 2020",
-    subtitle: "Policy & Implementation",
-    color: "from-brand-blue to-brand-blue-light",
-    href: ROUTES.introduction,
-  },
-  {
-    title: "Research",
-    subtitle: "Papers & Proceedings",
-    color: "from-brand-saffron to-brand-saffron-dark",
-    href: "/publications",
-  },
-  {
-    title: "Olympiads",
-    subtitle: "Talent & Excellence",
-    color: "from-brand-emerald to-emerald-600",
-    href: academicCouncilHash("olympiad"),
-  },
-  {
-    title: "Conclaves",
-    subtitle: "7 Thematic Forums",
-    color: "from-brand-violet to-brand-violet-light",
-    href: academicCouncilHash("conclave"),
-  },
-];
 
 export default function BrandShowcaseSection() {
   return (
@@ -52,8 +25,8 @@ export default function BrandShowcaseSection() {
               reflects energy, tradition, and forward-looking innovation.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <CtaButton href={ROUTES.registration} variant="primary">
-                Join the movement
+              <CtaButton href={academicCouncilHash("conclave")} variant="primary">
+                View programmes
               </CtaButton>
               <CtaButton href="/past-events" variant="ghost">
                 Explore past editions
@@ -72,24 +45,6 @@ export default function BrandShowcaseSection() {
               loading="lazy"
             />
           </div>
-        </div>
-
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {PILLARS.map((p) => (
-            <Link
-              key={p.title}
-              href={p.href}
-              className="group overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-            >
-              <div className={`h-2 bg-gradient-to-r ${p.color}`} />
-              <div className="p-5">
-                <h3 className="text-lg font-bold text-brand-navy group-hover:text-brand-saffron">
-                  {p.title}
-                </h3>
-                <p className="mt-1 text-sm text-slate-500">{p.subtitle}</p>
-              </div>
-            </Link>
-          ))}
         </div>
       </div>
     </section>

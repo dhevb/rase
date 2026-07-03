@@ -1,5 +1,4 @@
 import { CtaButton, SectionHeader } from "@/components/ui";
-import { ROUTES } from "@/constants/routes";
 import Announcement from "./sections/Announcement";
 import NoticeBoard from "./sections/NoticeBoard";
 import HomeEditionCta from "./HomeEditionCta";
@@ -21,8 +20,8 @@ export default function ProgrammesNoticesSection() {
             description="Registration tracks, deadlines, and campus notices."
             className="mb-0"
           />
-          <CtaButton href={ROUTES.registration} variant="ghost" className="shrink-0">
-            All registration types
+          <CtaButton href="#registration-types" variant="ghost" className="shrink-0">
+            Registration types &amp; fees
           </CtaButton>
         </div>
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-12 lg:gap-6">

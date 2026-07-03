@@ -22,12 +22,18 @@ export function resolveHeroStatHref(label: string): string | undefined {
 
 export function resolveWhyAttendHref(title: string): string | undefined {
   const key = title.toLowerCase();
-  if (key.includes("nep") || key.includes("policy")) return CANONICAL_ROUTES.introduction;
-  if (key.includes("research") || key.includes("publication")) return "/publications";
+  if (key.includes("educator") || key.includes("faculty") || key.includes("nep") || key.includes("policy"))
+    return CANONICAL_ROUTES.introduction;
+  if (key.includes("student") || key.includes("youth") || key.includes("school"))
+    return CANONICAL_ROUTES.registration;
+  if (key.includes("research") || key.includes("author") || key.includes("publication"))
+    return "/publications";
+  if (key.includes("institution")) return CANONICAL_ROUTES.registration;
   if (key.includes("innovation") || key.includes("startup")) return academicCouncilHash("exhibition");
   if (key.includes("olympiad") || key.includes("talent")) return academicCouncilHash("olympiad");
-  if (key.includes("conclave")) return academicCouncilHash("conclave");
-  if (key.includes("workshop")) return "/workshops";
-  if (key.includes("network")) return CANONICAL_ROUTES.contact;
+  if (key.includes("conclave") || key.includes("workshop")) return academicCouncilHash("conclave");
+  if (key.includes("ngo") || key.includes("industry") || key.includes("network"))
+    return CANONICAL_ROUTES.contact;
+  if (key.includes("parent") || key.includes("community")) return "/education";
   return undefined;
 }

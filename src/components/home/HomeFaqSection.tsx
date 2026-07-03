@@ -63,7 +63,8 @@ export default function HomeFaqSection() {
                   className="border-t border-slate-100 px-4 pb-4 text-sm leading-relaxed text-slate-600 md:px-5"
                 >
                   {faq.answer}
-                  {faq.question.toLowerCase().includes("register") && (
+                  {faq.question.toLowerCase().includes("register") &&
+                  !faq.question.toLowerCase().includes("access") ? (
                     <>
                       {" "}
                       <Link
@@ -74,9 +75,10 @@ export default function HomeFaqSection() {
                       </Link>
                       .
                     </>
-                  )}
+                  ) : null}
                   {(faq.question.includes("Multi Track Conference") ||
-                    faq.question.includes("research paper")) && (
+                    faq.question.includes("research paper") ||
+                    faq.question.toLowerCase().includes("submit")) && (
                     <>
                       {" "}
                       <a

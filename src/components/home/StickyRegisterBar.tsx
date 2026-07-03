@@ -24,7 +24,7 @@ export default function StickyRegisterBar() {
     >
       <div className="mx-auto flex max-w-lg items-center gap-3">
         <p className="flex-1 text-xs font-semibold text-brand-navy">
-          SMK 6.0 · 9–11 Oct 2026
+          SMK 6.0 registration open
         </p>
         <Link
           href={ROUTES.registration}

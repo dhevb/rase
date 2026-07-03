@@ -87,6 +87,12 @@ export function NetworkIcon() {
 }
 
 const ICON_BY_TITLE: Record<string, () => ReactElement> = {
+  "Educators & Faculty": PolicyIcon,
+  "Students & Youth": OlympiadIcon,
+  "Researchers & Authors": ResearchIcon,
+  "Schools & Institutions": InnovationIcon,
+  "NGOs & Industry": NetworkIcon,
+  "Parents & Community": ConclaveIcon,
   "Policy & NEP 2020": PolicyIcon,
   "Research & Publications": ResearchIcon,
   "Innovation & Startups": InnovationIcon,

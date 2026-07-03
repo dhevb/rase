@@ -20,6 +20,7 @@ const HomeEducationEcosystemNav = dynamic(() => import("./HomeEducationEcosystem
 const PartnersShowcase = dynamic(() => import("./sections/PartnersShowcase"));
 const TrustStrip = dynamic(() => import("./TrustStrip"));
 const WhyAttendSection = dynamic(() => import("./WhyAttendSection"));
+const RegistrationTypesStrip = dynamic(() => import("./RegistrationTypesStrip"));
 const BrandShowcaseSection = dynamic(() => import("./BrandShowcaseSection"));
 const DiscoverStrip = dynamic(() => import("./DiscoverStrip"));
 const EventTracksSection = dynamic(() => import("./EventTracksSection"));
@@ -46,6 +47,10 @@ export default async function HomeBelowFold({ locale = "en", homeSections }: Pro
 
       <LazySection minHeight="24rem" rootMargin="0px 0px 250px 0px" idleFirst fallback={<SectionSkeleton lines={4} />}>
         <WhyAttendSection content={homeSections.whyAttend} />
+      </LazySection>
+
+      <LazySection minHeight="18rem" rootMargin="0px 0px 200px 0px" idleFirst fallback={<SectionSkeleton lines={3} />}>
+        <RegistrationTypesStrip />
       </LazySection>
 
       <LazySection minHeight="22rem" rootMargin="0px 0px 250px 0px" idleFirst fallback={<SectionSkeleton lines={3} />}>

@@ -1,5 +1,5 @@
+import { CANONICAL_ROUTES } from "@/constants/canonical-routes";
 import { CtaButton } from "@/components/ui";
-import { ROUTES } from "@/constants/routes";
 import type { TickerItem } from "@/data/default-announcements";
 import MarqueeTrackDeferred from "./MarqueeTrackDeferred";
 
@@ -25,8 +25,12 @@ export default function AnnouncementsMarquee({ items }: Props) {
               Announcements
             </h2>
           </div>
-          <CtaButton href={ROUTES.registration} variant="primary" className="min-h-[44px] px-3 py-2 text-xs md:text-sm">
-            Register Now
+          <CtaButton
+            href={CANONICAL_ROUTES.departments.academicCouncil}
+            variant="ghost"
+            className="min-h-[44px] px-3 py-2 text-xs md:text-sm"
+          >
+            View programmes
           </CtaButton>
         </div>
 

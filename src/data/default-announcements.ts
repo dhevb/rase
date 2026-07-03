@@ -37,14 +37,14 @@ const DEFAULT_EN: Omit<ResolvedAnnouncementItem, "id">[] = [
     iconKey: "programmes",
   },
   {
-    title: "Registration Open — Shiksha Mahakumbh 6.0",
-    summary: `9–11 Oct 2026 · ${event.venue} · All registration types`,
+    title: "Accommodation — September 2026",
+    summary: "Lodging details on the notice board",
     detail:
-      "Delegates, institutions, volunteers, exhibitors, and accommodation requests — complete unified registration for SMK 6.0.",
-    href: CANONICAL_ROUTES.registration,
+      "Accommodation booking opens in September 2026. Registration does not include lodging yet — official circulars and stay options will be published on the notice board.",
+    href: "/noticeboard",
     external: false,
-    cta: "Register Now",
-    iconKey: "registration",
+    cta: "View notices",
+    iconKey: "notices",
   },
   {
     title: "Multi-Track Conference — Submit Research",
@@ -111,7 +111,7 @@ export const DEFAULT_ANNOUNCEMENT_BARS_EN: CmsAnnouncementBar[] = [
   {
     id: "default-bar-registration",
     title: "SMK 6.0 Registration",
-    message: `Shiksha Mahakumbh 6.0 — 9–11 Oct 2026 at ${event.venue}. Registration open.`,
+    message: "Registration open — delegates, programme tracks, and project displays on one portal.",
     barType: "global",
     colorTheme: "primary",
     ctaLabel: "Register now",
@@ -269,7 +269,10 @@ export function pickWelcomeModalBar(
   return (
     list.find((b) => b.barType === "registration_alert") ??
     list.find((b) => b.barType === "emergency") ??
-    list.find((b) => b.barType === "global") ??
+    list.find((b) => b.id?.includes("programmes")) ??
+    list.find(
+      (b) => b.barType === "global" && !String(b.id ?? "").includes("registration")
+    ) ??
     list.find((b) => b.barType === "deadline_reminder") ??
     null
   );

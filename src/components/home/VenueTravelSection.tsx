@@ -43,7 +43,7 @@ export default function VenueTravelSection() {
           description={sectionField(
             cta,
             "venueDescription",
-            `${event.name} · 9–11 October 2026 at ${event.venue}.`
+            `Plan your visit to ${event.venue} — travel, stay, and campus map.`
           )}
         />
         <div className="grid gap-6 lg:grid-cols-2">
