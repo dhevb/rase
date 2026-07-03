@@ -16,9 +16,10 @@ import {
   displayAccommodationStatus,
   displayPaymentStatus,
 } from "@/lib/admin/registration-labels";
+import { flattenRegistrationAttribution } from "@/lib/analytics/registration-attribution";
 
 function mapItemToRow(item: Record<string, unknown>): RegistrationRow {
-  return {
+  const base = {
     id: String(item.id ?? item.registrationId ?? ""),
     registrationId: String(item.registrationId ?? ""),
     registrationType: String(item.registrationType ?? ""),
@@ -37,6 +38,11 @@ function mapItemToRow(item: Record<string, unknown>): RegistrationRow {
     metadata: item.metadata,
     ...item,
   } as RegistrationRow;
+
+  return {
+    ...base,
+    ...flattenRegistrationAttribution(base),
+  };
 }
 
 export async function fetchRegistrationsPage(

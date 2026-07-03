@@ -29,6 +29,17 @@ function screenClass(): string {
   return "lg";
 }
 
+function readStoredAttribution(): AttributionBundle | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const raw = sessionStorage.getItem(STORAGE_KEY);
+    if (raw) return JSON.parse(raw) as AttributionBundle;
+  } catch {
+    /* ignore */
+  }
+  return null;
+}
+
 export function captureAttribution(): AttributionBundle {
   if (typeof window === "undefined") {
     return {
@@ -46,17 +57,27 @@ export function captureAttribution(): AttributionBundle {
   }
 
   const params = new URLSearchParams(window.location.search);
+  const stored = readStoredAttribution();
+  const referrer = document.referrer ?? stored?.referrer ?? "";
+  const utmSource = params.get("utm_source") ?? stored?.utmSource ?? "";
+  const utmMedium = params.get("utm_medium") ?? stored?.utmMedium ?? "";
+  const utmCampaign = params.get("utm_campaign") ?? stored?.utmCampaign ?? "";
+  const utmTerm = params.get("utm_term") ?? stored?.utmTerm ?? "";
+  const utmContent = params.get("utm_content") ?? stored?.utmContent ?? "";
+  const refTag = params.get("ref") ?? "";
+
   const bundle: AttributionBundle = {
-    utmSource: params.get("utm_source") ?? "",
-    utmMedium: params.get("utm_medium") ?? "",
-    utmCampaign: params.get("utm_campaign") ?? "",
-    utmTerm: params.get("utm_term") ?? "",
-    utmContent: params.get("utm_content") ?? "",
-    referrer: document.referrer ?? "",
+    utmSource,
+    utmMedium,
+    utmCampaign,
+    utmTerm,
+    utmContent,
+    referrer,
     trafficSource:
-      params.get("utm_source") ??
-      params.get("ref") ??
-      document.referrer?.split("/")[2] ??
+      utmSource ||
+      refTag ||
+      (referrer ? referrer.split("/")[2] ?? "" : "") ||
+      stored?.trafficSource ||
       "direct",
     deviceType: deviceType(),
     browserLanguage: navigator.language ?? "en",

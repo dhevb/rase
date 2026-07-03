@@ -9,7 +9,10 @@ import {
   getTrafficSource,
   trackEvent,
 } from "@/lib/analytics/events";
-import { attributionForSubmission } from "@/lib/analytics/attribution";
+import {
+  attributionForSubmission,
+  captureAttribution,
+} from "@/lib/analytics/attribution";
 import {
   PaymentStatus,
   RegistrationType,
@@ -133,6 +136,8 @@ export function useRegistrationSubmit() {
         isPaidCapableType(registrationType) && (fee ?? 0) > 0
           ? buildPaymentPayload(data, uploaded, resolvedPaymentStatus)
           : undefined;
+
+      captureAttribution();
 
       const payload = {
         ...data,

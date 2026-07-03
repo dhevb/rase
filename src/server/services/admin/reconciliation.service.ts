@@ -1,6 +1,8 @@
 import { prisma } from "@/server/db/prisma";
 import { writeAuditLog } from "@/server/services/audit.service";
 import { ServiceError } from "@/server/lib/errors";
+import { getRazorpayClient } from "@/lib/razorpay/client.server";
+import { isRazorpayConfigured } from "@/lib/razorpay/config";
 import {
   getRegistrationByPublicId,
   resendPaymentEmail,
@@ -268,6 +270,85 @@ export async function manualLinkPayment(input: {
   return { success: true, registrationId: input.registrationId };
 }
 
+export async function refundOrphanPayment(input: {
+  razorpayPaymentId: string;
+  actorUserId?: string;
+  reason?: string;
+}) {
+  if (!isRazorpayConfigured()) {
+    throw new ServiceError("Razorpay not configured", 503, "RAZORPAY_NOT_CONFIGURED");
+  }
+
+  const verified = await prisma.razorpayVerifiedPayment.findUnique({
+    where: { razorpayPaymentId: input.razorpayPaymentId },
+  });
+
+  if (!verified) {
+    throw new ServiceError("Verified payment not found", 404, "NOT_FOUND");
+  }
+
+  const meta = (verified.metadata ?? {}) as Record<string, unknown>;
+  if (meta.refundedAt) {
+    throw new ServiceError("Payment already refunded", 409, "ALREADY_REFUNDED");
+  }
+
+  if (verified.consumedAt && verified.registrationUuid) {
+    throw new ServiceError(
+      "Payment is linked to a registration — use the registration refund flow",
+      409,
+      "PAYMENT_LINKED"
+    );
+  }
+
+  const razorpay = getRazorpayClient();
+  const amountPaise = verified.amountPaise > 0 ? verified.amountPaise : Math.round(Number(verified.amount) * 100);
+
+  const refund = await razorpay.payments.refund(input.razorpayPaymentId, {
+    amount: amountPaise,
+    notes: {
+      reason: input.reason ?? "orphan_no_registration",
+      source: "admin_payment_recovery",
+    },
+  });
+
+  const refundId = String((refund as { id?: string }).id ?? "");
+  const refundedAt = new Date().toISOString();
+
+  await prisma.razorpayVerifiedPayment.update({
+    where: { id: verified.id },
+    data: {
+      consumedAt: new Date(),
+      metadata: {
+        ...meta,
+        refundId,
+        refundedAt,
+        refundReason: input.reason ?? "orphan_no_registration",
+        refundedBy: input.actorUserId ?? null,
+      },
+    },
+  });
+
+  await writeAuditLog({
+    action: "payment_refunded",
+    actorUserId: input.actorUserId,
+    payload: {
+      payment_id: input.razorpayPaymentId,
+      order_id: verified.razorpayOrderId,
+      refund_id: refundId,
+      amount_paise: amountPaise,
+      reason: input.reason ?? "orphan_no_registration",
+    },
+  });
+
+  console.info("ORPHAN_PAYMENT_REFUNDED", {
+    paymentId: input.razorpayPaymentId,
+    refundId,
+    amountPaise,
+  });
+
+  return { success: true, refundId, razorpayPaymentId: input.razorpayPaymentId };
+}
+
 export async function runRecoveryAction(
   action: string,
   body: Record<string, unknown>,
@@ -297,6 +378,16 @@ export async function runRecoveryAction(
         registrationId,
         razorpayPaymentId: paymentId,
         actorUserId,
+      });
+
+    case "refund-orphan":
+      if (!paymentId) {
+        throw new ServiceError("razorpayPaymentId required", 400);
+      }
+      return refundOrphanPayment({
+        razorpayPaymentId: paymentId,
+        actorUserId,
+        reason: typeof body.reason === "string" ? body.reason : undefined,
       });
 
     case "send-receipt":

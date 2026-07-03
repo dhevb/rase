@@ -19,7 +19,10 @@ const DEFAULT_TRAVEL = [
   },
   {
     title: "Stay",
-    items: ["Request accommodation via registration", "Hotels in Hamirpur & nearby towns"],
+    items: [
+      "Accommodation booking opens September 2026 — announced on site and by email",
+      "Hotels in Hamirpur & nearby towns",
+    ],
   },
 ];
 

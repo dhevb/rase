@@ -99,6 +99,23 @@ export default function PaymentRecoveryPage() {
     setLinkRegistrationId("");
   };
 
+  const refundOrphan = async (paymentId: string, amount: number | null) => {
+    const amountLabel = amount != null ? formatInr(amount) : "this payment";
+    if (
+      !window.confirm(
+        `Refund ${amountLabel} (${paymentId}) via Razorpay? This cannot be undone. Only use when registration cannot be recovered.`
+      )
+    ) {
+      return;
+    }
+    await act("refund-orphan", { razorpayPaymentId: paymentId }, "Refund orphan payment");
+  };
+
+  const prefillLink = (paymentId: string | null) => {
+    if (paymentId) setLinkPaymentId(paymentId);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div>
       <AdminPageHeader
@@ -174,6 +191,28 @@ export default function PaymentRecoveryPage() {
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-2">
+                  {row.issueType === "verified_no_registration" && row.razorpayPaymentId && (
+                    <>
+                      <AdminButton
+                        size="sm"
+                        variant="secondary"
+                        disabled={busy !== null}
+                        onClick={() => prefillLink(row.razorpayPaymentId)}
+                      >
+                        Link to registration
+                      </AdminButton>
+                      <AdminButton
+                        size="sm"
+                        variant="secondary"
+                        disabled={busy !== null}
+                        onClick={() =>
+                          void refundOrphan(row.razorpayPaymentId!, row.amount)
+                        }
+                      >
+                        Refund via Razorpay
+                      </AdminButton>
+                    </>
+                  )}
                   {row.registrationId && (
                     <>
                       <AdminButton

@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { RegistrationRow } from "@/lib/exportRegistrations";
+import { registrationAttributionValue } from "@/lib/analytics/registration-attribution";
 import { ANALYTICS_EVENTS, getLocalFunnelCounts } from "@/lib/analytics/events";
 
 interface AdminGrowthAnalyticsProps {
@@ -56,7 +57,10 @@ export default function AdminGrowthAnalytics({ rows }: AdminGrowthAnalyticsProps
 
     const sources = new Map<string, number>();
     rows.forEach((r) => {
-      const src = String(r.trafficSource ?? r.utmSource ?? "unknown");
+      const src =
+        registrationAttributionValue(r, "trafficSource") ||
+        registrationAttributionValue(r, "utmSource") ||
+        "unknown";
       sources.set(src, (sources.get(src) ?? 0) + 1);
     });
 

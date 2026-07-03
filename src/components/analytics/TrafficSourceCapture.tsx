@@ -11,18 +11,21 @@ import {
 
 export default function TrafficSourceCapture() {
   useEffect(() => {
-    const run = () => {
+    // First-party attribution for registration ops — not gated on marketing consent.
+    captureAttribution();
+
+    const runMarketing = () => {
       if (!hasAnalyticsConsent()) return;
       captureTrafficSource();
       captureAttribution();
     };
 
-    run();
-    window.addEventListener(COOKIE_ACCEPTED_EVENT, run);
-    window.addEventListener(COOKIE_WITHDRAWN_EVENT, run);
+    runMarketing();
+    window.addEventListener(COOKIE_ACCEPTED_EVENT, runMarketing);
+    window.addEventListener(COOKIE_WITHDRAWN_EVENT, runMarketing);
     return () => {
-      window.removeEventListener(COOKIE_ACCEPTED_EVENT, run);
-      window.removeEventListener(COOKIE_WITHDRAWN_EVENT, run);
+      window.removeEventListener(COOKIE_ACCEPTED_EVENT, runMarketing);
+      window.removeEventListener(COOKIE_WITHDRAWN_EVENT, runMarketing);
     };
   }, []);
   return null;
