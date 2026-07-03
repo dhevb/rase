@@ -1,0 +1,1273 @@
+/**
+ * One-off generator: Students project.pdf → student-projects-expo data files.
+ * Run: node scripts/generate-student-projects-expo.mjs
+ */
+import fs from "node:fs";
+import path from "node:path";
+
+const root = path.resolve(import.meta.dirname ?? path.dirname(new URL(import.meta.url).pathname), "..");
+const themesPath = path.join(root, "src/data/student-projects-expo-themes.ts");
+const expoPath = path.join(root, "src/data/student-projects-expo.ts");
+
+/** @type {Record<string, { name: string; focusArea: string; expectations: string; problemStatements: string[] }>} */
+const THEMES = {
+  A1: {
+    name: "Water Conservation, Pollution and Sanitation",
+    focusArea: "Water conservation, clean water and hygiene awareness",
+    expectations: "Awareness models, low-cost demonstrations and community-focused activities",
+    problemStatements: [
+      "Rainwater harvesting model",
+      "Simple water filtration system",
+      "Handwashing station using waste materials",
+      "Safe drinking water awareness",
+      "Water-saving techniques at home",
+      "School water conservation campaign",
+      "Water pollution awareness model",
+      "Smart water storage methods",
+      "Reuse of wastewater for gardening",
+      "Clean village and sanitation awareness",
+    ],
+  },
+  A2: {
+    name: "Land Pollution, Waste Management and Recycling",
+    focusArea: "Waste segregation, recycling and environmental cleanliness",
+    expectations: "Best-out-of-waste projects, awareness models and eco-friendly innovations",
+    problemStatements: [
+      "Wet and dry waste segregation system",
+      "Compost preparation from kitchen waste",
+      "Plastic bottle reuse ideas",
+      "Paper recycling methods",
+      "Eco-friendly bag preparation",
+      "Plastic-free school campaign",
+      "Classroom waste management system",
+      "Recycling awareness activities",
+      "Best out of waste-decorative items",
+      "Clean surroundings and waste reduction awareness",
+    ],
+  },
+  A3: {
+    name: "Energy Conservation and Renewable Energy",
+    focusArea: "Saving electricity and using renewable energy",
+    expectations: "Simple working models and awareness activities",
+    problemStatements: [
+      "Solar cooker model",
+      "Windmill model",
+      "Save electricity at home",
+      "Bicycle-powered light",
+      "Solar-powered light",
+      "Energy-saving habits",
+      "Natural light in classroom",
+      "Green home ideas",
+      "Renewable energy awareness",
+      "Switch-off unused lights campaign",
+    ],
+  },
+  A4: {
+    name: "Environment Conservation",
+    focusArea: "Environmental protection and nature awareness",
+    expectations: "Awareness campaigns, charts and simple eco-models",
+    problemStatements: [
+      "Tree plantation awareness",
+      "Save birds campaign",
+      "Air pollution awareness",
+      "Plastic pollution effects",
+      "Green school campus ideas",
+      "Importance of clean surroundings",
+      "Save forests awareness",
+      "Protect animals and plants",
+      "Eco-friendly lifestyle habits",
+      "Importance of clean air and water",
+    ],
+  },
+  A5: {
+    name: "Road Safety and Public Safety",
+    focusArea: "Traffic rules and public safety awareness",
+    expectations: "Safety awareness models, charts and demonstrations",
+    problemStatements: [
+      "Traffic signal model",
+      "Importance of wearing helmets",
+      "Zebra crossing awareness",
+      "Safe road crossing methods",
+      "Road safety signs awareness",
+      "School bus safety rules",
+      "Pedestrian safety awareness",
+      "Emergency contact awareness",
+      "Safety rules for children",
+      "Traffic awareness campaign",
+    ],
+  },
+  A6: {
+    name: "Science in Daily Life",
+    focusArea: "Basic science and everyday applications",
+    expectations: "Simple experiments and demonstration models",
+    problemStatements: [
+      "Volcano model",
+      "Water cycle model",
+      "Electric circuit model",
+      "Magnet experiment",
+      "Hydraulic lift model",
+      "Air pressure experiment",
+      "Solar system model",
+      "Gravity experiment",
+      "Weather station model",
+      "Simple machine models",
+    ],
+  },
+  A7: {
+    name: "Science in Health, Nutrition and Hygiene Life",
+    focusArea: "Healthy lifestyle awareness",
+    expectations: "Charts, awareness activities and simple demonstration models",
+    problemStatements: [
+      "Importance of handwashing",
+      "Healthy eating habits",
+      "Balanced diet chart",
+      "Clean drinking water awareness",
+      "Personal hygiene practices",
+      "Exercise and fitness awareness",
+      "School cleanliness campaign",
+      "Safe food storage methods",
+      "Junk food awareness",
+      "Daily hygiene routine awareness",
+    ],
+  },
+  A8: {
+    name: "Bhartiya Knowledge Systems, Culture and Traditional Practices",
+    focusArea: "Indian culture, traditions, rituals and sustainable lifestyle practices",
+    expectations: "Cultural demonstrations, awareness models and activity-based projects",
+    problemStatements: [
+      "Traditional festivals of India and their importance",
+      "Indian rituals and traditions",
+      "Traditional Indian food systems",
+      "Yoga and meditation awareness",
+      "Indian classical dance and music",
+      "Traditional clothing and handloom awareness",
+      "Folk arts and crafts",
+      "Importance of family values",
+      "Eco-friendly village traditions",
+      "Indian temple architecture and culture",
+    ],
+  },
+  B1: {
+    name: "Agriculture and Horticulture Innovations",
+    focusArea: "Agriculture, horticulture and sustainable farming",
+    expectations: "Practical models, surveys and low-cost farming innovations",
+    problemStatements: [
+      "Smart irrigation system",
+      "Apple storage and preservation methods",
+      "Greenhouse farming model",
+      "Organic farming practices",
+      "Pest control in crops",
+      "Rainwater use in farming",
+      "Soil conservation methods",
+      "Kitchen garden development",
+      "Sustainable hill farming ideas",
+      "Reducing food wastage after harvesting",
+    ],
+  },
+  B2: {
+    name: "Disaster Preparedness and Early Warning Systems",
+    focusArea: "Disaster awareness, safety and emergency preparedness",
+    expectations: "Awareness systems, safety models and community preparedness projects",
+    problemStatements: [
+      "Landslide warning model",
+      "Flood safety awareness system",
+      "Earthquake-safe house model",
+      "Forest fire awareness",
+      "Emergency rescue kit preparation",
+      "School evacuation planning",
+      "Cloudburst awareness system",
+      "Emergency communication ideas",
+      "Disaster management awareness campaign",
+      "Community safety preparedness model",
+    ],
+  },
+  B3: {
+    name: "Climate Change and Sustainable Environment",
+    focusArea: "Climate awareness and environmental sustainability",
+    expectations: "Environmental projects, surveys and awareness activities",
+    problemStatements: [
+      "Climate change awareness campaign",
+      "Water conservation methods",
+      "Pollution reduction ideas",
+      "Biodiversity protection awareness",
+      "Green village concepts",
+      "Glacier awareness projects",
+      "Waste reduction methods",
+      "Eco-friendly lifestyle practices",
+      "Tree plantation campaigns",
+      "Sustainable environment models",
+    ],
+  },
+  B4: {
+    name: "Health, Hygiene and Community Well-being",
+    focusArea: "Public health, hygiene and sanitation awareness",
+    expectations: "Community health projects, awareness systems and practical models",
+    problemStatements: [
+      "Menstrual hygiene awareness",
+      "Rural sanitation improvement",
+      "Clean drinking water awareness",
+      "Water purification methods",
+      "Disease prevention awareness",
+      "Nutrition and balanced diet awareness",
+      "Personal hygiene practices",
+      "Community health survey",
+      "School cleanliness campaign",
+      "Low-cost handwashing system",
+    ],
+  },
+  B5: {
+    name: "Digital Education and Skill Development",
+    focusArea: "Smart learning, digital literacy and student skill development",
+    expectations: "Educational tools, digital learning systems and awareness projects",
+    problemStatements: [
+      "Smart learning kits",
+      "Digital literacy awareness",
+      "Educational mobile applications",
+      "Career guidance systems",
+      "Online learning support tools",
+      "Inclusive learning methods",
+      "Educational games for students",
+      "Rural digital education support",
+      "Technology-based classroom learning",
+      "Student skill development platforms",
+    ],
+  },
+  B6: {
+    name: "Renewable Energy and Green Technology",
+    focusArea: "Renewable energy and energy conservation",
+    expectations: "Simple working models and awareness activities",
+    problemStatements: [
+      "Solar-powered light system",
+      "Windmill model",
+      "Energy-saving home ideas",
+      "Solar street light model",
+      "Save electricity awareness campaign",
+      "Renewable energy use in schools",
+      "Natural lighting in classrooms",
+      "Smart electricity-saving system",
+      "Green energy for villages",
+      "Bicycle-powered electricity model",
+    ],
+  },
+  B7: {
+    name: "Water Conservation and Spring Rejuvenation",
+    focusArea: "Water conservation and water management",
+    expectations: "Water conservation projects, surveys and practical models",
+    problemStatements: [
+      "Rainwater harvesting model",
+      "Groundwater recharge methods",
+      "Water-saving techniques in homes",
+      "Greywater reuse system",
+      "Water conservation awareness campaign",
+      "Smart irrigation methods",
+      "Preventing water wastage",
+      "Village water management ideas",
+      "Spring rejuvenation awareness",
+      "Sustainable water use practices",
+    ],
+  },
+  B8: {
+    name: "Traditional Knowledge and Modern Science",
+    focusArea: "Indian traditional knowledge and sustainable practices",
+    expectations: "Awareness projects, simple models and community-based activities",
+    problemStatements: [
+      "Herbal plants and their uses",
+      "Traditional farming methods",
+      "Ayurveda awareness",
+      "Traditional water conservation methods",
+      "Eco-friendly village practices",
+      "Traditional Indian houses",
+      "Millets and healthy food awareness",
+      "Traditional food preservation methods",
+      "Indian culture and sustainable lifestyle",
+      "Local handicrafts and village traditions",
+    ],
+  },
+  B9: {
+    name: "Smart Technology and Automation",
+    focusArea: "Smart systems and basic automation",
+    expectations: "Simple working models and beginner technology projects",
+    problemStatements: [
+      "Smart home model",
+      "Automatic street light system",
+      "Smart attendance system",
+      "Water level indicator",
+      "Automatic door system",
+      "Smart dustbin model",
+      "Traffic signal automation model",
+      "Automatic classroom bell system",
+      "Smart parking model",
+      "Basic robotics model",
+    ],
+  },
+  B10: {
+    name: "Entrepreneurship and Social Innovation",
+    focusArea: "Himachal-based startup ideas, local livelihood and community innovation",
+    expectations: "Business models, local product development and community-focused solutions",
+    problemStatements: [
+      "Apple-based product business ideas",
+      "Himachali handicraft promotion",
+      "Eco-tourism ideas for villages",
+      "Local food and café startup concepts",
+      "Wool and handloom product innovations",
+      "Herbal product business ideas",
+      "Sustainable tourism promotion in Himachal",
+      "Women self-help group business models",
+      "Organic farming-based entrepreneurship",
+      "Local market promotion",
+    ],
+  },
+  C1: {
+    name: "AI, Smart Devices and Intelligent Systems",
+    focusArea: "Artificial intelligence, automation and smart technologies",
+    expectations: "Functional prototypes, software systems and intelligent applications",
+    problemStatements: [
+      "Smart accident detection system",
+      "Driver drowsiness detection system",
+      "AI-based waste segregation",
+      "Smart village monitoring dashboard",
+      "Smart traffic management system",
+      "AI-based attendance system",
+      "Intelligent classroom automation",
+      "AI healthcare assistant",
+      "Smart energy monitoring system",
+      "AI-based security and surveillance system",
+    ],
+  },
+  C2: {
+    name: "Disaster Management and Mountain Safety",
+    focusArea: "Disaster resilience, mountain safety and emergency response systems",
+    expectations: "Deployable prototypes, monitoring systems and predictive solutions",
+    problemStatements: [
+      "Landslide monitoring system",
+      "Cloudburst prediction system",
+      "Glacier monitoring platform",
+      "Hazard mapping system",
+      "Flood early warning system",
+      "Forest fire detection system",
+      "Emergency communication network",
+      "Mountain road safety monitoring",
+      "Real-time weather alert system",
+      "Disaster response coordination platform",
+    ],
+  },
+  C3: {
+    name: "Smart Agriculture and Precision Farming",
+    focusArea: "AgriTech, smart farming and sustainable agriculture",
+    expectations: "Functional prototypes, monitoring systems and scalable agricultural solutions",
+    problemStatements: [
+      "Smart irrigation system",
+      "Crop disease detection system",
+      "Soil health monitoring platform",
+      "Smart greenhouse model",
+      "Weather-based farming advisory system",
+      "Automated pest detection system",
+      "Water-saving agriculture techniques",
+      "Smart crop monitoring dashboard",
+      "Post-harvest storage management system",
+      "Precision farming using sensors and AI",
+    ],
+  },
+  C4: {
+    name: "Digital Governance and Citizen Services",
+    focusArea: "E-governance, public services and digital citizen support",
+    expectations: "Software platforms, governance applications and digital service solutions",
+    problemStatements: [
+      "Public grievance redressal portal",
+      "Village administration management system",
+      "Digital transparency dashboard",
+      "Online document verification system",
+      "Smart citizen service platform",
+      "Rural digital access system",
+      "Government scheme awareness application",
+      "Smart complaint tracking system",
+      "Digital attendance and record management",
+      "Community information and alert platform",
+    ],
+  },
+  C5: {
+    name: "Sustainable Energy and Waste-to-Wealth",
+    focusArea: "Sustainability, renewable energy and waste management",
+    expectations: "Functional prototypes, recycling systems and sustainable technology solutions",
+    problemStatements: [
+      "Waste-to-energy system",
+      "Biochar production model",
+      "Plastic recycling system",
+      "Organic waste management platform",
+      "Green transportation solutions",
+      "Energy-saving smart systems",
+      "Sustainable fuel alternatives",
+      "Waste segregation and monitoring system",
+      "Circular economy innovation platform",
+      "Eco-friendly product development system",
+    ],
+  },
+  C6: {
+    name: "Healthcare Technology and Rural Well-being",
+    focusArea: "HealthTech, rural healthcare and medical innovation",
+    expectations: "Practical healthcare applications, monitoring systems and assistive technologies",
+    problemStatements: [
+      "Telemedicine platform for rural areas",
+      "Wearable health monitoring system",
+      "AI-based disease diagnosis system",
+      "Emergency medical response system",
+      "Medicine reminder application",
+      "Smart patient monitoring dashboard",
+      "Rural healthcare accessibility platform",
+      "Health awareness mobile application",
+      "Low-cost assistive healthcare device",
+      "Digital health record management system",
+    ],
+  },
+  C7: {
+    name: "Geospatial Technology and Remote Sensing",
+    focusArea: "GIS, satellite applications and environmental monitoring",
+    expectations: "Geospatial analytics platforms, mapping systems and monitoring solutions",
+    problemStatements: [
+      "Flood mapping system",
+      "Forest monitoring platform",
+      "Glacier observation system",
+      "Climate monitoring dashboard",
+      "Land-use mapping application",
+      "Disaster-prone area mapping",
+      "Smart terrain analysis system",
+      "Water resource mapping platform",
+      "Environmental change monitoring",
+      "GIS-based village planning system",
+    ],
+  },
+  C8: {
+    name: "Startup Innovation and Entrepreneurship",
+    focusArea: "Entrepreneurship, startup development and innovation",
+    expectations: "Startup-ready business models, scalable platforms and innovative solutions",
+    problemStatements: [
+      "Agri-business platform",
+      "Smart tourism management system",
+      "Local artisan marketplace",
+      "Eco-friendly product startup",
+      "Rural logistics and delivery platform",
+      "Sustainable packaging business idea",
+      "Digital platform for local products",
+      "Healthcare startup for rural areas",
+      "Community service-based startup",
+      "Himachal local product promotion platform",
+    ],
+  },
+  C9: {
+    name: "Cybersecurity and Digital Safety",
+    focusArea: "Cybersecurity, data protection and digital safety",
+    expectations: "Security applications, monitoring systems and awareness solutions",
+    problemStatements: [
+      "Anti-phishing detection system",
+      "Cyber awareness platform",
+      "Secure digital payment system",
+      "Malware detection application",
+      "Secure login and authentication system",
+      "Network security monitoring platform",
+      "Data privacy protection system",
+      "Secure online examination system",
+      "Smart surveillance and alert system",
+      "Cybercrime reporting and awareness portal",
+    ],
+  },
+  C10: {
+    name: "Smart Transportation and Mobility Systems",
+    focusArea: "Intelligent transportation and smart mobility",
+    expectations: "Functional prototypes, monitoring systems and mobility solutions",
+    problemStatements: [
+      "Smart parking management system",
+      "EV charging monitoring system",
+      "Traffic analytics dashboard",
+      "Emergency vehicle priority system",
+      "Smart traffic signal control",
+      "Public transport tracking system",
+      "Road safety monitoring platform",
+      "Smart navigation and route optimization",
+      "Sustainable transportation solutions",
+      "Vehicle monitoring and alert system",
+    ],
+  },
+  C11: {
+    name: "Drone Technology and Autonomous Systems",
+    focusArea: "UAV systems, aerial monitoring and drone applications",
+    expectations: "Functional drone prototypes, aerial monitoring systems and deployable UAV solutions",
+    problemStatements: [
+      "Agricultural monitoring drone",
+      "Disaster surveillance drone",
+      "Drone-based mapping system",
+      "Medical supply delivery drone",
+      "Search-and-rescue UAV",
+      "Forest fire monitoring drone",
+      "Traffic monitoring drone system",
+      "Environmental monitoring UAV",
+      "Smart drone navigation system",
+      "Drone-based emergency response system",
+    ],
+  },
+  C12: {
+    name: "Business Innovation and Entrepreneurship in Himachal",
+    focusArea: "Himachal entrepreneurship, local business and startup innovation",
+    expectations: "Business models, startup ideas and local product innovations",
+    problemStatements: [
+      "Apple-based startup ideas",
+      "Himachali handicraft business models",
+      "Herbal and organic product startups",
+      "Eco-friendly packaging for local products",
+      "Tourism-based entrepreneurship in Himachal",
+      "Women-led business initiatives",
+      "Local café and food startup ideas",
+      "Rural delivery and logistics solutions",
+      "Marketing of Himachali products through digital platforms",
+      "Sustainable livelihood business models",
+    ],
+  },
+  C13: {
+    name: "Digital Marketing and E-Commerce for Himachal Products",
+    focusArea: "Digital commerce and online marketing for local products",
+    expectations: "Digital platforms, branding systems and e-commerce solutions",
+    problemStatements: [
+      "E-commerce platform for Himachali products",
+      "Digital marketing for apple and fruit farmers",
+      "Online handicraft marketplace",
+      "Tourism promotion through social media",
+      "Branding of Himachali local products",
+      "Online booking platform for homestays",
+      "Digital promotion for local festivals",
+      "Customer engagement platform for local businesses",
+      "Rural e-commerce support systems",
+      "Digital sales platform for women self-help groups",
+    ],
+  },
+  C14: {
+    name: "Innovation in Himachal",
+    focusArea: "Rural livelihood, sustainable villages and community innovation",
+    expectations: "Survey-based projects, awareness systems and rural development solutions",
+    problemStatements: [
+      "Smart village development for Himachal",
+      "Rural employment generation systems",
+      "Eco-tourism development in villages",
+      "Waste management solutions for hill areas",
+      "Digital literacy in remote villages",
+      "",
+      "Sustainable water management in hilly regions",
+      "Local resource management systems",
+      "Community-based organic farming initiatives",
+      "Rural healthcare awareness platforms",
+    ],
+  },
+  C15: {
+    name: "Media, Tourism and Cultural Promotion of Himachal",
+    focusArea: "Media communication, tourism and cultural heritage",
+    expectations: "Awareness campaigns, communication systems and cultural promotion projects",
+    problemStatements: [
+      "Digital promotion of Himachali tourism",
+      "Social media campaign for local culture",
+      "Promotion of folk music and dance",
+      "Himachali language and heritage awareness",
+      "Community radio for rural communication",
+      "Tourism awareness campaigns",
+      "Digital storytelling of Himachal traditions",
+      "Promotion of local festivals and fairs",
+      "Media platform for local artisans",
+      "Communication strategies for sustainable tourism",
+    ],
+  },
+  D1: {
+    name: "Advanced AI/ML, Robotics and Automation",
+    focusArea: "Artificial intelligence, robotics and autonomous systems",
+    expectations: "Research-grade prototypes, intelligent frameworks and deployment-ready systems",
+    problemStatements: [
+      "Swarm robotics for disaster response",
+      "Autonomous rescue and surveillance systems",
+      "Explainable AI for governance and healthcare",
+      "AI-driven infrastructure monitoring",
+      "Intelligent traffic optimization platform",
+      "Autonomous industrial automation systems",
+      "Multi-agent emergency response intelligence",
+      "AI-powered predictive maintenance system",
+      "Smart robotic assistance platform",
+      "Generative AI for real-time decision support",
+    ],
+  },
+  D2: {
+    name: "Climate Resilience and Disaster Risk Reduction",
+    focusArea: "Climate intelligence, disaster prediction and resilience systems",
+    expectations: "Advanced predictive models, analytics platforms and research-based solutions",
+    problemStatements: [
+      "Glacier melt prediction system",
+      "AI-based flood forecasting platform",
+      "Climate vulnerability indexing system",
+      "Landslide susceptibility prediction model",
+      "Cloudburst prediction framework",
+      "Heatwave and drought monitoring system",
+      "Watershed risk assessment platform",
+      "Satellite-based climate monitoring system",
+      "Disaster recovery and resilience analytics",
+      "Climate adaptation decision-support platform",
+    ],
+  },
+  D3: {
+    name: "Remote Sensing, GIS and Digital Twin Applications",
+    focusArea: "Geospatial intelligence, GIS and digital simulation systems",
+    expectations: "Advanced analytics platforms, simulation models and geospatial intelligence systems",
+    problemStatements: [
+      "Smart city digital twin platform",
+      "Predictive terrain analytics system",
+      "GIS-based disaster intelligence platform",
+      "Satellite-based environmental monitoring",
+      "Infrastructure monitoring using GIS",
+      "Urban climate simulation system",
+      "Watershed management analytics platform",
+      "Real-time geospatial monitoring dashboard",
+      "Land-use change detection system",
+      "Digital twin for mountain ecosystem monitoring",
+    ],
+  },
+  D4: {
+    name: "Sustainable Infrastructure and Smart Cities",
+    focusArea: "Smart urban systems, sustainable infrastructure and urban resilience",
+    expectations: "Research-based infrastructure systems, analytics platforms and smart city solutions",
+    problemStatements: [
+      "Urban heat island analytics system",
+      "Smart water infrastructure monitoring",
+      "Net-zero city planning framework",
+      "Intelligent transportation infrastructure",
+      "Smart waste management infrastructure",
+      "Energy-efficient building systems",
+      "Urban resilience and disaster planning platform",
+      "Smart drainage and flood management system",
+      "Sustainable mobility planning system",
+      "AI-based infrastructure health monitoring",
+    ],
+  },
+  D5: {
+    name: "Public Health, Telemedicine and Biomedical Systems",
+    focusArea: "Health intelligence, biomedical systems and digital healthcare",
+    expectations: "Research-based healthcare technologies, predictive analytics and medical innovation systems",
+    problemStatements: [
+      "Predictive epidemiology system",
+      "Biomedical signal analytics platform",
+      "AI-based disease diagnosis system",
+      "Rural telemedicine optimization platform",
+      "Smart patient monitoring system",
+      "Public health forecasting dashboard",
+      "Personalized healthcare recommendation system",
+      "Digital healthcare record intelligence",
+      "AI-powered emergency healthcare support system",
+      "Healthcare supply-chain monitoring platform",
+    ],
+  },
+  D6: {
+    name: "Circular Economy and Environmental Accounting",
+    focusArea: "Sustainability analytics, environmental intelligence and resource optimization",
+    expectations: "Research-driven sustainability platforms, analytics systems and environmental monitoring frameworks",
+    problemStatements: [
+      "Carbon accounting and monitoring system",
+      "ESG analytics dashboard",
+      "Industrial decarbonization framework",
+      "Circular manufacturing system",
+      "Waste valorization and recycling platform",
+      "Sustainable supply-chain analytics",
+      "Lifecycle sustainability assessment system",
+      "Resource optimization intelligence platform",
+      "Environmental impact forecasting model",
+      "Green finance and sustainability analytics system",
+    ],
+  },
+  D7: {
+    name: "Deep-Tech Solutions for Viksit Bharat 2047",
+    focusArea: "Strategic innovation, indigenous technologies and national-scale systems",
+    expectations: "Patent-oriented prototypes, research-driven platforms and deployment-ready deep-tech solutions",
+    problemStatements: [
+      "Sovereign AI ecosystem for India",
+      "Indigenous semiconductor innovation system",
+      "National cyber resilience platform",
+      "Autonomous public infrastructure intelligence",
+      "Defence and strategic monitoring system",
+      "Advanced sensing and surveillance technologies",
+      "Smart governance architecture platform",
+      "National-scale digital infrastructure framework",
+      "Intelligent manufacturing ecosystem",
+      "AI-powered strategic decision-support system",
+    ],
+  },
+  D8: {
+    name: "Quantum Computing and Advanced Computing Systems",
+    focusArea: "Frontier computing, high-performance systems and advanced computational intelligence",
+    expectations: "Research-grade computational frameworks, simulation systems and next-generation computing platforms",
+    problemStatements: [
+      "Quantum optimization framework",
+      "Neuromorphic computing system",
+      "Edge-AI computing platform",
+      "Quantum cybersecurity model",
+      "High-performance scientific computing system",
+      "Distributed intelligent computing framework",
+      "Real-time large-scale data analytics platform",
+      "Quantum-inspired AI system",
+      "Advanced semiconductor simulation framework",
+      "Energy-efficient computing architecture",
+    ],
+  },
+  D9: {
+    name: "Advanced Drone Systems and Autonomous Mobility",
+    focusArea: "UAV intelligence, autonomous systems and aerial analytics",
+    expectations: "Research-grade drone systems, autonomous mobility platforms and deployable aerial solutions",
+    problemStatements: [
+      "Swarm drone coordination system",
+      "Autonomous logistics and delivery drones",
+      "Drone-based infrastructure inspection platform",
+      "AI-powered surveillance UAV system",
+      "Disaster response and rescue drones",
+      "Precision agriculture drone analytics",
+      "Environmental monitoring drone network",
+      "Smart drone traffic management system",
+      "High-altitude monitoring UAV platform",
+      "Autonomous aerial mapping and analytics system",
+    ],
+  },
+  D10: {
+    name: "Climate-Tech, Sustainability and Carbon Intelligence",
+    focusArea: "Climate analytics, sustainability systems and environmental intelligence",
+    expectations: "Research-based climate technologies, predictive analytics platforms and sustainability intelligence systems",
+    problemStatements: [
+      "Climate digital twin platform",
+      "Carbon intelligence and monitoring system",
+      "Sustainable mountain ecosystem modelling",
+      "AI-based environmental forecasting system",
+      "Urban climate resilience analytics",
+      "Glacier-climate interaction modelling",
+      "Smart climate adaptation platform",
+      "Green infrastructure intelligence system",
+      "Net-zero transition analytics framework",
+      "Climate finance and sustainability intelligence platform",
+    ],
+  },
+  D11: {
+    name: "Strategic Management and Business Intelligence for Himachal Development",
+    focusArea: "Strategic planning, analytics and regional economic development",
+    expectations: "Research-based business frameworks, analytical systems and policy-driven innovation",
+    problemStatements: [
+      "Business intelligence for Himachali MSMEs",
+      "Sustainable tourism business strategies",
+      "Market analytics for apple and horticulture sectors",
+      "Rural entrepreneurship ecosystem modelling",
+      "Digital transformation for local businesses",
+      "Startup ecosystem development in Himachal",
+      "Supply-chain optimization for hill products",
+      "Consumer behaviour analytics for tourism",
+      "Sustainable livelihood planning systems",
+      "Strategic growth frameworks for mountain economies",
+    ],
+  },
+  D12: {
+    name: "Digital Economy, Finance and FinTech for Rural and Mountain Regions",
+    focusArea: "Financial innovation, rural banking and digital economy systems",
+    expectations: "Research-based financial frameworks and inclusive digital finance systems",
+    problemStatements: [
+      "FinTech solutions for remote villages",
+      "Digital payment systems for rural markets",
+      "Financial inclusion platform for self-help groups",
+      "AI-based cooperative banking analytics",
+      "Smart taxation systems for local businesses",
+      "Blockchain-based supply-chain tracking for horticulture",
+      "Fraud detection in rural digital banking",
+      "Digital economy forecasting for Himachal",
+      "Sustainable finance analytics for eco-tourism",
+      "Digital lending platforms for farmers and startups",
+    ],
+  },
+  D13: {
+    name: "Public Policy, Governance and Sustainable Mountain Development",
+    focusArea: "Governance systems, rural policy and sustainable development",
+    expectations: "Policy research frameworks, analytical studies and governance intelligence systems",
+    problemStatements: [
+      "Smart governance framework for hill districts",
+      "Policy analytics for rural development",
+      "Sustainable tourism governance systems",
+      "Disaster governance for mountain regions",
+      "Public health governance in remote areas",
+      "Digital governance for Panchayats",
+      "Education policy assessment for hilly regions",
+      "Community participation models for development",
+      "Urban-rural migration analytics in Himachal",
+      "Sustainable mountain ecosystem policy framework",
+    ],
+  },
+  D14: {
+    name: "Media, Communication and Cultural Heritage of Himachal",
+    focusArea: "Media studies, communication systems and cultural analytics",
+    expectations: "Research studies, digital preservation systems and communication intelligence frameworks",
+    problemStatements: [
+      "Digital preservation of Himachali folk culture",
+      "AI-based tourism communication platform",
+      "Social media analytics for tourism promotion",
+      "Documentation of Himachali traditions and rituals",
+      "Media literacy in rural mountain communities",
+      "Community communication systems for disaster awareness",
+      "Digital storytelling of local heritage",
+      "Preservation of local dialects through digital platforms",
+      "Communication strategies for eco-tourism",
+      "Cultural intelligence and heritage mapping systems",
+    ],
+  },
+  D15: {
+    name: "Indigenous Knowledge Systems, Himalayan Culture and Future Civilizations",
+    focusArea: "Himalayan knowledge systems, cultural intelligence and sustainable future living",
+    expectations: "Research-based cultural analytics, indigenous innovation frameworks and sustainable civilization models",
+    problemStatements: [
+      "Digital preservation of Himachali tribal knowledge systems",
+      "Scientific validation of traditional Himalayan practices",
+      "Indigenous climate adaptation systems in mountain villages",
+      "Himalayan food systems and nutritional intelligence",
+      "Traditional architecture for climate-resilient living",
+      "AI-based documentation of folk culture and oral histories",
+      "Sustainable lifestyle models from Himalayan communities",
+      "Traditional medicine and herbal intelligence systems",
+      "Cultural mapping and heritage analytics for Himachal",
+      "Future sustainable civilization models inspired by Himalayan ecosystems",
+    ],
+  },
+};
+
+function validateThemes() {
+  for (const [code, theme] of Object.entries(THEMES)) {
+    if (theme.problemStatements.length !== 10) {
+      throw new Error(`${code} has ${theme.problemStatements.length} problem statements`);
+    }
+  }
+}
+
+function esc(value) {
+  return JSON.stringify(value);
+}
+
+function renderThemeArray(codes) {
+  const items = codes.map((code) => {
+    const t = THEMES[code];
+    return `  {
+    code: ${esc(code)},
+    name: ${esc(t.name)},
+    focusArea: ${esc(t.focusArea)},
+    expectations: ${esc(t.expectations)},
+    problemStatements: [
+${t.problemStatements.map((p) => `      ${esc(p)},`).join("\n")}
+    ],
+  }`;
+  });
+  return `[\n${items.join(",\n")}\n]`;
+}
+
+function writeThemesFile() {
+  const content = `/** Shiksha Mahakumbh 2026 Project Expo — theme catalogue (Division A–D). Source: Students project.pdf */
+
+import type { ProjectExpoTheme } from "./student-projects-expo";
+
+export const DIVISION_A_THEMES: ProjectExpoTheme[] = ${renderThemeArray([
+    "A1",
+    "A2",
+    "A3",
+    "A4",
+    "A5",
+    "A6",
+    "A7",
+    "A8",
+  ])};
+
+export const DIVISION_B_THEMES: ProjectExpoTheme[] = ${renderThemeArray([
+    "B1",
+    "B2",
+    "B3",
+    "B4",
+    "B5",
+    "B6",
+    "B7",
+    "B8",
+    "B9",
+    "B10",
+  ])};
+
+export const DIVISION_C_THEMES: ProjectExpoTheme[] = ${renderThemeArray([
+    "C1",
+    "C2",
+    "C3",
+    "C4",
+    "C5",
+    "C6",
+    "C7",
+    "C8",
+    "C9",
+    "C10",
+    "C11",
+    "C12",
+    "C13",
+    "C14",
+    "C15",
+  ])};
+
+export const DIVISION_D_THEMES: ProjectExpoTheme[] = ${renderThemeArray([
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6",
+    "D7",
+    "D8",
+    "D9",
+    "D10",
+    "D11",
+    "D12",
+    "D13",
+    "D14",
+    "D15",
+  ])};
+`;
+  fs.writeFileSync(themesPath, content, "utf8");
+}
+
+function writeExpoFile() {
+  const content = `/** Shiksha Mahakumbh 2026 Project Expo — programme data (Students project.pdf). */
+
+import {
+  DIVISION_A_THEMES,
+  DIVISION_B_THEMES,
+  DIVISION_C_THEMES,
+  DIVISION_D_THEMES,
+} from "./student-projects-expo-themes";
+
+export type ProjectExpoDivisionId = "A" | "B" | "C" | "D";
+
+export type ProjectExpoTheme = {
+  code: string;
+  name: string;
+  focusArea: string;
+  expectations: string;
+  problemStatements: readonly [string, string, string, string, string, string, string, string, string, string];
+};
+
+export type ProjectExpoDivision = {
+  id: ProjectExpoDivisionId;
+  title: string;
+  eligibility: string;
+  scope: string;
+  themes: ProjectExpoTheme[];
+};
+
+export type EvaluationCriterion = {
+  criterion: string;
+  weightage: string;
+};
+
+export type SubmissionRequirement = {
+  material: string;
+  description: string;
+};
+
+export type CompetitionStage = {
+  stage: string;
+  level: string;
+  description: string;
+};
+
+export const PROJECT_EXPO_TITLE = "Shiksha Mahakumbh 2026 – Project Expo";
+
+export const PROJECT_EXPO_SUBTITLE =
+  "A Himachal-centric innovation and research platform for school students, undergraduates, and postgraduate scholars — district pre-events culminating at NIT Hamirpur (9–11 October 2026).";
+
+export const PROJECT_EXPO_VISION = [
+  "The Shiksha Mahakumbh 2026 – Project Expo is envisioned as a large-scale innovation, research and educational engagement platform aimed at nurturing creativity, problem-solving and youth-driven development aligned with the vision of Viksit Bharat 2047. The initiative creates a strong ecosystem where school students, undergraduate learners, postgraduate scholars, researchers, faculty members and local communities collectively participate in building innovative solutions for regional and national challenges.",
+  "The Project Expo adopts a strong Himachal-centric approach by encouraging participants to focus on mountain sustainability, climate resilience, disaster management, rural livelihoods, indigenous knowledge systems, sustainable agriculture, water conservation, digital inclusion and community-based innovation. Through carefully curated themes and problem statements, the expo motivates participants to develop practical, research-oriented and socially impactful solutions addressing the unique geographical and developmental challenges of Himachal Pradesh.",
+  "The initiative aligns with National Education Policy 2020 by promoting experiential learning, multidisciplinary education, innovation culture and skill-based development. A structured mentorship ecosystem — undergraduate mentors for school students and faculty mentors for higher-education teams — together with district-level pre-events and a state-level grand finale at NIT Hamirpur, ensures inclusive participation from remote, tribal and rural regions while connecting innovation with community development and the visions of Sabka Saath Sabka Vikas, Ek District Ek Product and Har Ghar Vikas.",
+] as const;
+
+export const PROJECT_EXPO_PDF = "/projects/shiksha-mahakumbh-2026-project-expo.pdf";
+
+export const TEAM_COMPOSITION: Readonly<
+  Record<ProjectExpoDivisionId, { division: string; teamSize: string }>
+> = {
+  A: { division: "Division A", teamSize: "1–3 Students" },
+  B: { division: "Division B", teamSize: "1–3 Students" },
+  C: { division: "Division C", teamSize: "1–3 Students" },
+  D: { division: "Division D", teamSize: "1–3 Participants" },
+};
+
+export const MENTORSHIP_STRUCTURE: Readonly<
+  { participantCategory: string; assignedMentors: string }[]
+> = [
+  {
+    participantCategory: "Division A & B School Students",
+    assignedMentors: "Undergraduate/Postgraduate Student Mentors",
+  },
+  {
+    participantCategory: "Division C Undergraduate Teams",
+    assignedMentors: "Faculty Mentors / Research Mentors",
+  },
+  {
+    participantCategory: "Division D Postgraduate & Ph.D. Teams",
+    assignedMentors: "Faculty Mentors / Subject Experts / Research Supervisors",
+  },
+];
+
+export const COMPETITION_STAGES: CompetitionStage[] = [
+  {
+    stage: "Stage 1",
+    level: "Pre Event Level Innovation Competitions",
+    description:
+      "Pre-events at school, college or district level across Himachal Pradesh. Projects evaluated division-wise and theme-wise by expert screening committees.",
+  },
+  {
+    stage: "Stage 2",
+    level: "Shortlisting & Selection",
+    description:
+      "Top-performing projects under each theme are shortlisted for the state-level grand finale based on innovation, relevance, creativity, feasibility, presentation and impact.",
+  },
+  {
+    stage: "Stage 3",
+    level: "State-Level Grand Finale",
+    description:
+      "Selected teams from all pre-events participate in the Main Event at National Institute of Technology Hamirpur.",
+  },
+];
+
+export const PRE_EVENT_SELECTION = {
+  themeWiseSelection: "Top 5–10 projects from each theme may be shortlisted",
+  evaluationBasis:
+    "Innovation, relevance, creativity, feasibility, presentation and impact",
+  screeningCommittee:
+    "Faculty members, domain experts, industry professionals and innovation mentors",
+  qualification: "Shortlisted teams will qualify for the Main Event at NIT Hamirpur",
+  generalCriteria: [
+    { criterion: "Creativity and Ideas", weightage: "30%" },
+    { criterion: "Understanding of Topic", weightage: "25%" },
+    { criterion: "Presentation and Explanation", weightage: "25%" },
+    { criterion: "Cleanliness and Effort", weightage: "10%" },
+    { criterion: "Awareness and Social Message", weightage: "10%" },
+  ] satisfies EvaluationCriterion[],
+} as const;
+
+export const EVALUATION_CRITERIA: Readonly<
+  Record<ProjectExpoDivisionId, EvaluationCriterion[]>
+> = {
+  A: [
+    { criterion: "Innovation and Ideas", weightage: "25%" },
+    { criterion: "Understanding of Concept", weightage: "25%" },
+    { criterion: "Presentation and Communication", weightage: "20%" },
+    { criterion: "Practical Relevance", weightage: "15%" },
+    { criterion: "Creativity and Design", weightage: "10%" },
+    { criterion: "Social Awareness and Impact", weightage: "5%" },
+  ],
+  B: [
+    { criterion: "Technical Innovation", weightage: "25%" },
+    { criterion: "Prototype Functionality", weightage: "20%" },
+    { criterion: "Problem Relevance and Impact", weightage: "15%" },
+    { criterion: "Feasibility and Scalability", weightage: "15%" },
+    { criterion: "Presentation and Documentation", weightage: "10%" },
+    { criterion: "Sustainability and Social Impact", weightage: "10%" },
+    { criterion: "Startup/Commercial Potential", weightage: "5%" },
+  ],
+  C: [
+    { criterion: "Research Depth and Novelty", weightage: "25%" },
+    { criterion: "Technical and Analytical Excellence", weightage: "20%" },
+    { criterion: "Innovation and Original Contribution", weightage: "15%" },
+    { criterion: "Practical Applicability and Deployment Potential", weightage: "15%" },
+    { criterion: "Presentation and Research Documentation", weightage: "10%" },
+    { criterion: "Policy/Societal/Environmental Impact", weightage: "10%" },
+    { criterion: "Patent/Publications/Scalability Potential", weightage: "5%" },
+  ],
+  D: [],
+};
+
+export const SUBMISSION_REQUIREMENTS: Readonly<
+  Record<ProjectExpoDivisionId, SubmissionRequirement[]>
+> = {
+  A: [
+    { material: "Project Title", description: "Name of the project/activity" },
+    {
+      material: "Short Description",
+      description: "Simple explanation of the idea (100–200 words)",
+    },
+    {
+      material: "Chart / Poster / Model",
+      description: "Any chart, drawing, craft, poster or simple activity display",
+    },
+    {
+      material: "Student Details",
+      description: "Name, class, school and teacher details",
+    },
+    { material: "Abstract", description: "Brief summary of project (200–300 words)" },
+    {
+      material: "Project Report",
+      description: "Problem statement, objectives and outcomes",
+    },
+    { material: "PPT / Poster", description: "Presentation material for evaluation" },
+    { material: "Survey / Activity / Model", description: "If applicable" },
+    {
+      material: "Student & School Details",
+      description: "Participant and institution information",
+    },
+  ],
+  B: [
+    {
+      material: "Project Abstract",
+      description:
+        "250–500 word summary covering problem statement, objectives and proposed solution",
+    },
+    {
+      material: "Project Synopsis",
+      description:
+        "Detailed document including introduction, methodology, workflow, innovation aspect, expected outcomes and future scope",
+    },
+    {
+      material: "PPT / Poster Presentation",
+      description: "Presentation material for project demonstration and evaluation",
+    },
+    {
+      material: "Prototype / Software / Model",
+      description:
+        "Functional prototype, application, dashboard, model or demonstration material (if applicable)",
+    },
+    {
+      material: "Technical Documentation",
+      description:
+        "Architecture diagrams, workflow charts, implementation details, survey data, analytics or design process",
+    },
+    {
+      material: "Research / Survey Data",
+      description:
+        "Field survey, case study, questionnaires or data analysis supporting the project (if applicable)",
+    },
+    {
+      material: "Innovation Impact Note",
+      description:
+        "Brief note explaining uniqueness of the project, real-world usefulness, target beneficiaries and future implementation possibilities",
+    },
+  ],
+  C: [
+    {
+      material: "Extended Research Abstract",
+      description:
+        "300–500 word research summary including objectives, methodology, innovation and expected contribution",
+    },
+    {
+      material: "Research Paper / Concept Note",
+      description:
+        "Detailed research document containing literature review, research gap, methodology, analytical framework, implementation strategy and expected outcomes",
+    },
+    {
+      material: "PPT / Research Poster",
+      description: "Presentation material for technical and research evaluation",
+    },
+    {
+      material: "Prototype / Framework Model / Simulation / Analytical System",
+      description:
+        "Research prototype, software platform, simulation system, analytical framework or deployable solution (if applicable)",
+    },
+    {
+      material: "Technical & Research Documentation",
+      description:
+        "System design, architecture diagrams, algorithms, datasets, validation methods, analytics and implementation details",
+    },
+    {
+      material: "Research Data / Field Study",
+      description:
+        "Experimental data, field surveys, datasets, simulations or case-study analysis supporting the work",
+    },
+    {
+      material: "Publication / Patent Details",
+      description:
+        "Published papers, conference papers, patents, copyrights or IPR details (if available)",
+    },
+    {
+      material: "Impact & Scalability Note",
+      description:
+        "Explanation of policy relevance, deployment potential, scalability and societal/environmental impact",
+    },
+  ],
+  D: [
+    {
+      material: "Extended Research Abstract",
+      description:
+        "300–500 word research summary including objectives, methodology, innovation and expected contribution",
+    },
+    {
+      material: "Research Paper / Concept Note",
+      description:
+        "Detailed research document containing literature review, research gap, methodology, analytical framework, implementation strategy and expected outcomes",
+    },
+    {
+      material: "PPT / Research Poster",
+      description: "Presentation material for technical and research evaluation",
+    },
+    {
+      material: "Prototype / Framework Model / Simulation / Analytical System",
+      description:
+        "Research prototype, software platform, simulation system, analytical framework or deployable solution (if applicable)",
+    },
+    {
+      material: "Technical & Research Documentation",
+      description:
+        "System design, architecture diagrams, algorithms, datasets, validation methods, analytics and implementation details",
+    },
+    {
+      material: "Research Data / Field Study",
+      description:
+        "Experimental data, field surveys, datasets, simulations or case-study analysis supporting the work",
+    },
+    {
+      material: "Publication / Patent Details",
+      description:
+        "Published papers, conference papers, patents, copyrights or IPR details (if available)",
+    },
+    {
+      material: "Impact & Scalability Note",
+      description:
+        "Explanation of policy relevance, deployment potential, scalability and societal/environmental impact",
+    },
+  ],
+};
+
+export const PROJECT_EXPO_DIVISIONS: ProjectExpoDivision[] = [
+  {
+    id: "A",
+    title: "Division A — School Level (Classes VI–VIII)",
+    eligibility: "School Students (Classes VI–VIII)",
+    scope:
+      "Simple working models, charts, awareness activities, eco-friendly demonstrations, and low-cost innovations based on daily life and community problems.",
+    themes: DIVISION_A_THEMES,
+  },
+  {
+    id: "B",
+    title: "Division B — School Level (Classes IX–XII)",
+    eligibility: "School Students (Classes IX–XII)",
+    scope:
+      "Problem-solving projects, practical demonstrations, experimental models, surveys, field studies, and community-focused innovations.",
+    themes: DIVISION_B_THEMES,
+  },
+  {
+    id: "C",
+    title: "Division C — Undergraduate Level",
+    eligibility:
+      "Undergraduate Students (B.Tech / B.Sc / BBA / B.Com / BA / BCA / Equivalent)",
+    scope:
+      "Functional prototypes, software applications, technical models, field-based studies, startup ideas and scalable technology-enabled solutions.",
+    themes: DIVISION_C_THEMES,
+  },
+  {
+    id: "D",
+    title: "Division D — Postgraduate / Ph.D. Level",
+    eligibility:
+      "Postgraduate & Research Scholars (M.Tech / MBA / M.Sc / M.Com / MA / MCA / Ph.D. / Equivalent)",
+    scope:
+      "Research-based projects, advanced computational systems, deep-tech innovation, policy-integrated solutions and deployment-ready technologies.",
+    themes: DIVISION_D_THEMES,
+  },
+];
+`;
+  fs.writeFileSync(expoPath, content, "utf8");
+}
+
+validateThemes();
+writeThemesFile();
+writeExpoFile();
+console.log("Wrote", themesPath);
+console.log("Wrote", expoPath);

@@ -219,13 +219,15 @@ export const ACADEMIC_PROGRAMME_HUB: ProgrammeHubSection[] = [
     titleEn: "Student Projects",
     titleHi: "छात्र परियोजनाएँ",
     description:
-      "National platform for school (Classes 6–10) and higher-education students to present innovation-driven working models.",
+      "Shiksha Mahakumbh 2026 Project Expo — Himachal-centric innovation platform with district pre-events and state finale at NIT Hamirpur (9–11 Oct 2026).",
     accent: "saffron",
     items: [
-      { titleEn: "School Level — Classes 6–10: Models & problem-solving ideas", titleHi: "विद्यालय स्तर — कक्षा 6–10" },
-      { titleEn: "College Level — UG/PG: Research-based solutions & prototypes", titleHi: "महाविद्यालय स्तर — स्नातक/स्नातकोत्तर" },
+      { titleEn: "Division A — Classes VI–VIII: Models, charts & community ideas", titleHi: "खंड A — कक्षा VI–VIII" },
+      { titleEn: "Division B — Classes IX–XII: Prototypes & problem-solving projects", titleHi: "खंड B — कक्षा IX–XII" },
+      { titleEn: "Division C — UG: Research-based solutions & deployable prototypes", titleHi: "खंड C — स्नातक" },
+      { titleEn: "Division D — PG/Ph.D.: Advanced research & innovation", titleHi: "खंड D — स्नातकोत्तर / Ph.D." },
     ],
-    footerNote: "Project display registration opens via the unified registration hub.",
+    footerNote: "48 themes with problem statements. Register via the unified registration hub; download the full framework PDF on the Projects tab.",
   },
 ];
 
