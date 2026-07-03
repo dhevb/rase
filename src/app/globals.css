@@ -180,9 +180,10 @@
 }
 
 .gallery-carousel .control-arrow {
-  background: rgba(11, 31, 59, 0.88) !important;
-  border: 1px solid rgba(255, 153, 51, 0.35);
+  background: rgba(11, 31, 59, 0.92) !important;
+  border: 1px solid rgba(255, 153, 51, 0.55);
   border-radius: 9999px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
   height: 2.25rem;
   margin: 0 0.35rem;
   opacity: 1 !important;
@@ -200,7 +201,9 @@
 }
 
 .gallery-carousel .control-arrow:hover {
-  background: rgba(30, 58, 95, 0.95) !important;
+  background: rgba(30, 58, 95, 0.98) !important;
+  border-color: rgba(255, 153, 51, 0.85) !important;
+  box-shadow: 0 4px 18px rgba(255, 153, 51, 0.25);
 }
 
 .gallery-carousel .control-arrow::before {

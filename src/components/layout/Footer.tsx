@@ -175,7 +175,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="border-b border-slate-100 bg-white px-4 py-5 md:px-8 md:py-6">
-          <p className="mb-4 text-center text-[10px] font-bold uppercase tracking-[0.3em] text-brand-blue">
+          <p className="mb-4 text-center text-xs font-bold uppercase tracking-[0.25em] text-brand-saffron-dark">
             Institutional Ecosystem
           </p>
           <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-2 md:gap-3">
@@ -356,27 +356,27 @@ const Footer: React.FC = () => {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="text-white/70 transition-colors hover:text-brand-saffron focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-saffron"
+                  className="text-white/75 transition-colors hover:text-brand-saffron focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-saffron"
                 >
                   {link.name}
                 </Link>
               ))}
             </nav>
-            <p className="text-center text-sm text-white/80">{copyrightLine}</p>
+            <p className="text-center text-sm text-white/85">{copyrightLine}</p>
             <details className="group mx-auto mt-3 max-w-4xl">
-              <summary className="cursor-pointer list-none text-center text-xs text-white/60 transition hover:text-brand-saffron md:hidden [&::-webkit-details-marker]:hidden">
-                <span className="underline decoration-white/30 underline-offset-2">
+              <summary className="cursor-pointer list-none text-center text-xs text-white/65 transition hover:text-brand-saffron md:hidden [&::-webkit-details-marker]:hidden">
+                <span className="underline decoration-white/35 underline-offset-2">
                   Microsoft CMT acknowledgment
                 </span>
               </summary>
-              <p className="mt-2 text-center text-xs leading-relaxed text-white/70 md:mt-3">
+              <p className="mt-2 text-center text-xs leading-relaxed text-white/75 md:mt-3">
                 The Microsoft CMT service was used for managing the peer-reviewing process for this
                 conference. This service was provided for free by Microsoft, and they bore all related
                 expenses, including costs for Azure cloud services as well as software development and
                 support.
               </p>
             </details>
-            <p className="mx-auto mt-3 hidden max-w-4xl text-center text-xs leading-relaxed text-white/70 md:block">
+            <p className="mx-auto mt-3 hidden max-w-4xl text-center text-xs leading-relaxed text-white/75 md:block">
               The Microsoft CMT service was used for managing the peer-reviewing process for this
               conference. This service was provided for free by Microsoft, and they bore all related
               expenses, including costs for Azure cloud services as well as software development and

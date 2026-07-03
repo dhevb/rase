@@ -49,15 +49,15 @@ export default function SlideShow({ slides, badge = "Mahakumbh" }: SlideShowProp
   const currentCaption = currentSlide ? slideCaption(currentSlide) : "";
 
   return (
-    <div className="gallery-carousel relative overflow-hidden rounded-2xl border border-white/15 ring-1 ring-brand-saffron/30 shadow-[0_20px_50px_rgba(0,0,0,0.35)]">
+    <div className="gallery-carousel relative overflow-hidden rounded-2xl border border-white/20 ring-1 ring-brand-saffron/40 shadow-[0_20px_50px_rgba(0,0,0,0.35)]">
       {badge ? (
-        <div className="absolute left-3 top-3 z-20 hidden max-w-[min(100%,14rem)] rounded-full border border-brand-saffron/30 bg-brand-navy/90 px-3 py-1.5 text-[0.65rem] font-semibold uppercase leading-tight tracking-wide text-white backdrop-blur-sm sm:left-4 sm:top-4 sm:block sm:px-4 sm:text-xs">
+        <div className="absolute left-3 top-3 z-20 hidden max-w-[min(100%,14rem)] rounded-full border border-brand-saffron/40 bg-brand-navy/90 px-3 py-1.5 text-[0.65rem] font-semibold uppercase leading-tight tracking-wide text-white backdrop-blur-sm sm:left-4 sm:top-4 sm:block sm:px-4 sm:text-xs">
           {badge}
         </div>
       ) : null}
 
       <div className="absolute right-3 top-3 z-20 sm:right-4 sm:top-4">
-        <div className="flex items-center overflow-hidden rounded-full border border-brand-saffron/25 bg-brand-navy/90 backdrop-blur-sm">
+        <div className="flex items-center overflow-hidden rounded-full border border-brand-saffron/40 bg-brand-navy/90 backdrop-blur-sm">
           <button
             type="button"
             onClick={() => setAutoPlay((playing) => !playing)}
@@ -116,7 +116,7 @@ export default function SlideShow({ slides, badge = "Mahakumbh" }: SlideShowProp
                 />
               </div>
               {caption ? (
-                <div className="border-t border-brand-saffron/20 bg-brand-navy px-4 py-3 sm:px-6 sm:py-4">
+                <div className="border-t border-brand-saffron/30 bg-brand-navy px-4 py-3 sm:px-6 sm:py-4">
                   <p className="text-center text-sm font-semibold leading-snug text-white sm:text-base">
                     {caption}
                   </p>

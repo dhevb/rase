@@ -42,10 +42,19 @@ function StatGrid({ items, loading }: { items: StatItem[]; loading: boolean }) {
   return (
     <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
       {items.map((item) => (
-        <div key={item.label} className={STAT_CARD}>
+        <div
+          key={item.label}
+          className={`${STAT_CARD}${
+            item.emphasize
+              ? " ring-1 ring-brand-saffron/30 border-brand-saffron/35 shadow-md shadow-brand-saffron/10"
+              : ""
+          }`}
+        >
           <p
-            className={`font-extrabold tabular-nums text-brand-saffron ${
-              item.emphasize ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"
+            className={`font-extrabold tabular-nums ${
+              item.emphasize
+                ? "text-2xl text-brand-saffron md:text-3xl"
+                : "text-lg text-brand-navy md:text-xl"
             }`}
           >
             {loading ? <CounterSkeleton /> : item.value}
@@ -123,11 +132,11 @@ export default function FooterVisitorCounter() {
 
   return (
     <section
-      className="mt-4 border-t border-brand-saffron/15 pt-4"
+      className="mt-4 border-t border-brand-saffron/20 pt-4"
       aria-live="polite"
       aria-label="Live visitor statistics"
     >
-      <p className="mb-3 text-center text-[10px] font-bold uppercase tracking-[0.25em] text-brand-blue sm:text-xs">
+      <p className="mb-3 text-center text-xs font-bold uppercase tracking-[0.2em] text-brand-saffron-dark">
         Live Site Traffic
       </p>
       {degraded && !loading && (
