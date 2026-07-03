@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { computeVisitorDisplayTotal } from "@/lib/analytics/visitor-ids";
 
 type VisitorStatsResponse = {
@@ -20,12 +20,42 @@ const FALLBACK: VisitorStatsResponse = {
   activeUsers: 0,
 };
 
+const STAT_CARD =
+  "rounded-xl border border-brand-saffron/20 bg-white px-3 py-3 text-center shadow-sm shadow-brand-saffron/5 md:px-4 md:py-3.5";
+
 function CounterSkeleton() {
   return (
     <span
-      className="inline-block h-6 w-12 animate-pulse rounded bg-white/20"
+      className="inline-block h-7 w-14 animate-pulse rounded bg-brand-saffron/20"
       aria-hidden
     />
+  );
+}
+
+type StatItem = {
+  label: string;
+  value: ReactNode;
+  emphasize?: boolean;
+};
+
+function StatGrid({ items, loading }: { items: StatItem[]; loading: boolean }) {
+  return (
+    <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4">
+      {items.map((item) => (
+        <div key={item.label} className={STAT_CARD}>
+          <p
+            className={`font-extrabold tabular-nums text-brand-saffron ${
+              item.emphasize ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"
+            }`}
+          >
+            {loading ? <CounterSkeleton /> : item.value}
+          </p>
+          <p className="mt-1 text-xs font-medium uppercase tracking-wide text-slate-500">
+            {item.label}
+          </p>
+        </div>
+      ))}
+    </div>
   );
 }
 
@@ -81,50 +111,34 @@ export default function FooterVisitorCounter() {
     };
   }, []);
 
+  const items: StatItem[] = [
+    { label: "Today (IST)", value: dailyVisitors },
+    {
+      label: "All-Time Visitors",
+      value: displayTotal?.toLocaleString("en-IN"),
+      emphasize: true,
+    },
+    { label: "Active Now", value: activeUsers },
+  ];
+
   return (
-    <div
-      className="mt-4 w-full max-w-md rounded-xl border border-white/15 bg-white/10 p-4 text-white"
+    <section
+      className="mt-4 border-t border-brand-saffron/15 pt-4"
       aria-live="polite"
-      aria-label="Visitor statistics"
+      aria-label="Live visitor statistics"
     >
+      <p className="mb-3 text-center text-[10px] font-bold uppercase tracking-[0.25em] text-brand-blue sm:text-xs">
+        Live Site Traffic
+      </p>
       {degraded && !loading && (
-        <p className="mb-2 text-center text-xs text-amber-200/90" role="status">
-          Live counts temporarily unavailable
+        <p className="mb-3 text-center text-xs text-amber-700" role="status">
+          Live counts temporarily unavailable — showing last known values
         </p>
       )}
-      <div className="flex items-center justify-around gap-2">
-        <div className="text-center">
-          <p className="text-[10px] font-bold uppercase tracking-wider text-white/60">
-            Today (IST)
-          </p>
-          <p className="text-lg font-extrabold text-brand-saffron md:text-xl">
-            {loading ? <CounterSkeleton /> : dailyVisitors}
-          </p>
-        </div>
-        <div className="h-8 w-px bg-white/20" aria-hidden />
-        <div className="text-center">
-          <p className="text-[10px] font-bold uppercase tracking-wider text-white/60">
-            All-Time Visitors
-          </p>
-          <p className="text-lg font-extrabold text-brand-saffron md:text-xl">
-            {loading ? <CounterSkeleton /> : displayTotal?.toLocaleString()}
-          </p>
-          {!loading && displayTotal != null && (
-            <p className="mt-0.5 text-[9px] text-white/45">
-              includes historical visits through 2025
-            </p>
-          )}
-        </div>
-        <div className="h-8 w-px bg-white/20" aria-hidden />
-        <div className="text-center">
-          <p className="text-[10px] font-bold uppercase tracking-wider text-white/60">
-            Active Now
-          </p>
-          <p className="text-lg font-extrabold text-brand-saffron md:text-xl">
-            {loading ? <CounterSkeleton /> : activeUsers}
-          </p>
-        </div>
-      </div>
-    </div>
+      <StatGrid items={items} loading={loading} />
+      <p className="mt-3 text-center text-xs leading-relaxed text-slate-500">
+        All-time total includes historical visits through 2025
+      </p>
+    </section>
   );
 }

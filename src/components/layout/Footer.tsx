@@ -40,7 +40,22 @@ const ScrollToTopButton = dynamic(
 
 const FooterVisitorCounter = dynamic(
   () => import("@/components/footer/FooterVisitorCounter"),
-  { ssr: false, loading: () => null }
+  {
+    ssr: false,
+    loading: () => (
+      <div
+        className="mt-4 grid grid-cols-1 gap-3 border-t border-brand-saffron/15 pt-4 sm:grid-cols-3"
+        aria-hidden
+      >
+        {[1, 2, 3].map((i) => (
+          <div
+            key={i}
+            className="h-20 animate-pulse rounded-xl border border-brand-saffron/10 bg-white/80"
+          />
+        ))}
+      </div>
+    ),
+  }
 );
 
 function FooterLinkList({
@@ -137,22 +152,25 @@ const Footer: React.FC = () => {
       <footer className="relative overflow-hidden border-t border-brand-saffron/20">
         <div className="relative bg-gradient-to-r from-brand-surface-warm via-white to-brand-surface-warm px-4 py-6 md:px-8 md:py-8">
           <div className="brand-grid-pattern pointer-events-none absolute inset-0 opacity-30" aria-hidden />
-          <div className="relative mx-auto grid max-w-7xl grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
-            {footerStats.map((stat) => (
-              <div
-                key={stat.label}
-                className="rounded-xl border border-brand-saffron/20 bg-white px-3 py-2.5 text-center shadow-sm md:px-4 md:py-3"
-              >
-                <p className="text-xl font-extrabold text-brand-saffron md:text-3xl">
-                  {stat.prefix}
-                  {stat.value}
-                  {stat.suffix}
-                </p>
-                <p className="mt-1 text-[10px] font-medium uppercase tracking-wide text-slate-500 md:text-xs">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
+          <div className="relative mx-auto max-w-7xl">
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
+              {footerStats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-xl border border-brand-saffron/20 bg-white px-3 py-2.5 text-center shadow-sm shadow-brand-saffron/5 md:px-4 md:py-3"
+                >
+                  <p className="text-xl font-extrabold tabular-nums text-brand-saffron md:text-3xl">
+                    {stat.prefix}
+                    {stat.value}
+                    {stat.suffix}
+                  </p>
+                  <p className="mt-1 text-xs font-medium uppercase tracking-wide text-slate-500">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <FooterVisitorCounter />
           </div>
         </div>
 
@@ -328,7 +346,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-brand-navy px-4 py-6 text-white md:px-8">
+        <div className="bg-brand-navy px-4 py-6 pb-20 text-white md:px-8 md:pb-6">
           <div className="mx-auto max-w-7xl">
             <nav
               className="mb-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm"
@@ -345,15 +363,25 @@ const Footer: React.FC = () => {
               ))}
             </nav>
             <p className="text-center text-sm text-white/80">{copyrightLine}</p>
-            <p className="mx-auto mt-3 max-w-4xl text-center text-xs leading-relaxed text-white/70">
+            <details className="group mx-auto mt-3 max-w-4xl">
+              <summary className="cursor-pointer list-none text-center text-xs text-white/60 transition hover:text-brand-saffron md:hidden [&::-webkit-details-marker]:hidden">
+                <span className="underline decoration-white/30 underline-offset-2">
+                  Microsoft CMT acknowledgment
+                </span>
+              </summary>
+              <p className="mt-2 text-center text-xs leading-relaxed text-white/70 md:mt-3">
+                The Microsoft CMT service was used for managing the peer-reviewing process for this
+                conference. This service was provided for free by Microsoft, and they bore all related
+                expenses, including costs for Azure cloud services as well as software development and
+                support.
+              </p>
+            </details>
+            <p className="mx-auto mt-3 hidden max-w-4xl text-center text-xs leading-relaxed text-white/70 md:block">
               The Microsoft CMT service was used for managing the peer-reviewing process for this
               conference. This service was provided for free by Microsoft, and they bore all related
               expenses, including costs for Azure cloud services as well as software development and
               support.
             </p>
-            <div className="mt-4 flex justify-center">
-              <FooterVisitorCounter />
-            </div>
           </div>
         </div>
       </footer>

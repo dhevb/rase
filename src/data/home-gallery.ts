@@ -2,6 +2,7 @@ export interface HomeSlide {
   src: string;
   alt: string;
   legend: string;
+  fit?: "contain" | "cover";
 }
 
 export const homeSlides: HomeSlide[] = [
@@ -10,6 +11,7 @@ export const homeSlides: HomeSlide[] = [
     alt: "Vyakhanmala lecture series on Panchakosha",
     legend:
       "Vyakhanmala: Lecture Series on Panchakosha & Bharatiya Jnana Parampara",
+    fit: "contain",
   },
   {
     src: "/2024M/Press8.jpg",
@@ -37,5 +39,6 @@ export const homeSlides: HomeSlide[] = [
     src: "/2024K/k12.png",
     alt: "Shri Manoj Sinha Lieutenant Governor J&K",
     legend: "Dignitaries and policymakers at the Mahakumbh platform",
+    fit: "contain",
   },
 ];

@@ -180,13 +180,23 @@
 }
 
 .gallery-carousel .control-arrow {
-  background: rgba(11, 31, 59, 0.82) !important;
+  background: rgba(11, 31, 59, 0.88) !important;
+  border: 1px solid rgba(255, 153, 51, 0.35);
   border-radius: 9999px;
-  height: 2.5rem;
-  margin: 0 0.5rem;
+  height: 2.25rem;
+  margin: 0 0.35rem;
   opacity: 1 !important;
-  top: calc(50% - 1.25rem);
-  width: 2.5rem;
+  top: calc(50% - 1.125rem);
+  width: 2.25rem;
+}
+
+@media (min-width: 640px) {
+  .gallery-carousel .control-arrow {
+    height: 2.5rem;
+    margin: 0 0.5rem;
+    top: calc(50% - 1.25rem);
+    width: 2.5rem;
+  }
 }
 
 .gallery-carousel .control-arrow:hover {
