@@ -1,4 +1,4 @@
-﻿const CACHE = "smk-shell-v1";
+﻿const CACHE = "smk-shell-v2";
 const PRECACHE = ["/offline", "/sLogo.png", "/manifest.webmanifest"];
 
 self.addEventListener("install", (event) => {
@@ -21,12 +21,35 @@ self.addEventListener("activate", (event) => {
   );
 });
 
+async function offlineFallback() {
+  const cached = await caches.match("/offline");
+  if (cached) return cached;
+  return new Response("Offline", {
+    status: 503,
+    headers: { "Content-Type": "text/plain; charset=utf-8" },
+  });
+}
+
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
   if (event.request.mode === "navigate") {
     event.respondWith(
-      fetch(event.request).catch(() => caches.match("/offline"))
+      (async () => {
+        try {
+          const response = await fetch(event.request);
+          return response;
+        } catch {
+          if (!self.navigator.onLine) {
+            return offlineFallback();
+          }
+          try {
+            return await fetch(event.request, { cache: "no-store" });
+          } catch {
+            return offlineFallback();
+          }
+        }
+      })()
     );
     return;
   }
