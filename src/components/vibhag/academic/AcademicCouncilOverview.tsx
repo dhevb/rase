@@ -18,7 +18,8 @@ interface OverviewPageProps {
 }
 
 const FUNCTIONAL_DOMAINS: { label: string; tabId: AcademicCouncilTabId }[] = [
-  { label: "Multi-Track Research Conference", tabId: "ConferencePage" },
+  { label: "Multi-Track Research Conference (SMK 6.0)", tabId: "ConferencePage" },
+  { label: "Conference (University & College Series)", tabId: "UniversityConferencesPage" },
   { label: "National & Thematic Conclaves", tabId: "ConclavePage" },
   { label: "Excellence Awards", tabId: "AwardsPage" },
   { label: "Olympiads (School Outreach Programs)", tabId: "OlympiadPage" },

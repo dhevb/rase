@@ -55,7 +55,8 @@ export const ACADEMIC_COUNCIL_QUICK_LINKS: ReadonlyArray<{
 
 export const ACADEMIC_COUNCIL_TAB_SLUGS: Record<AcademicCouncilTabId, string> = {
   OverviewPage: "overview",
-  ConferencePage: "conference",
+  ConferencePage: "multi-track-conference",
+  UniversityConferencesPage: "conference",
   ConclavePage: "conclave",
   AwardsPage: "awards",
   OlympiadPage: "olympiad",
@@ -72,6 +73,8 @@ const SLUG_TO_TAB_ID = Object.fromEntries(
 
 export function academicCouncilTabFromSlug(slug: string | null | undefined): AcademicCouncilTabId {
   if (!slug || slug === "overview") return "OverviewPage";
+  // Legacy hash — #conference previously opened the NIT Hamirpur multi-track page
+  if (slug === "multi-track-conference" || slug === "mtc") return "ConferencePage";
   return SLUG_TO_TAB_ID[slug] ?? "OverviewPage";
 }
 
@@ -94,13 +97,18 @@ export function academicCouncilProgrammeItemsForSchema(): { name: string; url: s
 
 export const ACADEMIC_COUNCIL_FAQ = [
   {
+    question: "What is the difference between Conference and Multi-Track Conference?",
+    answer:
+      "Multi-Track Conference is the flagship hybrid international research conference at Shiksha Mahakumbh 6.0 (NIT Hamirpur, 9–11 Oct 2026) with 15 peer-reviewed tracks. Conference (under the same Academic Council menu) is a separate year-round series at partner universities and colleges — such as AIST-2026 at SLIET Longowal — organized under the Shiksha Mahakumbh Abhiyan umbrella with DHE between main Mahakumbh editions.",
+  },
+  {
     question: "When and where is Shiksha Mahakumbh 6.0 Academic Council?",
     answer: `The Academic Council programmes run 9–11 October 2026 at ${ACADEMIC_COUNCIL_EVENT.venue}, ${ACADEMIC_COUNCIL_EVENT.location}.`,
   },
   {
     question: "How many conference tracks are there?",
     answer:
-      "The multi-track international conference spans 15 thematic tracks — from fundamental sciences and engineering to education, health, culture, and Indian Knowledge Systems. Each track has dedicated chair, co-chair, and convenor leadership listed on the Conference tab.",
+      "The multi-track international conference spans 15 thematic tracks — from fundamental sciences and engineering to education, health, culture, and Indian Knowledge Systems. Each track has dedicated chair, co-chair, and convenor leadership listed on the Multi-Track Conference tab.",
   },
   {
     question: "How do I submit a research paper?",

@@ -11,6 +11,7 @@ import {
 import { NavChevronIcon } from "@/components/layout/navbar/NavMenuIcons";
 import OverviewPage from "./academic/AcademicCouncilOverview";
 import ConferencePage from "./academic/pages/ConferencePage";
+import UniversityConferencesPage from "./academic/pages/UniversityConferencesPage";
 import ConclavePage from "./academic/pages/ConclavePage";
 import AwardsPage from "./academic/pages/AwardsPage";
 import OlympiadPage from "./academic/pages/OlympiadPage";
@@ -22,7 +23,8 @@ import CulturalPage from "./academic/pages/CulturalPage";
 
 const pages: { id: AcademicCouncilTabId; label: string }[] = [
   { id: "OverviewPage", label: "Overview" },
-  { id: "ConferencePage", label: "Conference" },
+  { id: "ConferencePage", label: "Multi-Track Conference" },
+  { id: "UniversityConferencesPage", label: "Conference" },
   { id: "ConclavePage", label: "Conclave" },
   { id: "AwardsPage", label: "Awards" },
   { id: "OlympiadPage", label: "Olympiad" },
@@ -45,6 +47,8 @@ function renderPage(id: AcademicCouncilTabId, onNavigate: (tabId: AcademicCounci
       return <OverviewPage onNavigate={onNavigate} />;
     case "ConferencePage":
       return <ConferencePage />;
+    case "UniversityConferencesPage":
+      return <UniversityConferencesPage />;
     case "ConclavePage":
       return <ConclavePage />;
     case "AwardsPage":

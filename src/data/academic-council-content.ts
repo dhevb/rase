@@ -8,6 +8,7 @@ import {
 export type AcademicCouncilTabId =
   | "OverviewPage"
   | "ConferencePage"
+  | "UniversityConferencesPage"
   | "ConclavePage"
   | "AwardsPage"
   | "OlympiadPage"
@@ -21,7 +22,7 @@ export const ACADEMIC_COUNCIL_HERO = {
   eyebrow: "Shiksha Mahakumbh 6.0 · Meeting of the Minds · NIT Hamirpur",
   title: "Academic Council",
   subtitle:
-    "Multi-track international conference, thematic conclaves, DHE Olympiads, exhibitions, student projects, best practices, Bal Shodh Patrika, and excellence awards — 9–11 October 2026.",
+    "Multi-track international conference, university conference series, thematic conclaves, DHE Olympiads, exhibitions, student projects, best practices, Bal Shodh Patrika, and excellence awards — 9–11 October 2026.",
   tagline:
     "The Academic Backbone of Shiksha Mahakumbh — Integrating Knowledge, Innovation, and Impact.",
 } as const;
@@ -30,7 +31,7 @@ export const ACADEMIC_COUNCIL_STATS = [
   { label: "Conference Tracks", value: "15", hint: "Hybrid multi-track research" },
   { label: "Thematic Conclaves", value: "7", hint: "Policy & leadership dialogues" },
   { label: "Olympiad Streams", value: "3", hint: "English · Maths · Technology" },
-  { label: "Programme Pillars", value: "10", hint: "Unified academic framework" },
+  { label: "Programme Pillars", value: "11", hint: "Unified academic framework" },
 ] as const;
 
 export const ACADEMIC_COUNCIL_EVENT = {
@@ -91,6 +92,25 @@ export const ACADEMIC_PROGRAMME_HUB: ProgrammeHubSection[] = [
     accent: "saffron",
     footerNote: ACADEMIC_PUBLICATION_NOTE,
     items: conferenceTracksForHub(),
+  },
+  {
+    id: "university-conferences",
+    tabId: "UniversityConferencesPage",
+    icon: "🏛️",
+    titleEn: "Conference",
+    titleHi: "सम्मेलन",
+    description:
+      "Year-round national conferences at partner universities and state colleges — held under the Shiksha Mahakumbh Abhiyan academic umbrella with DHE, on dedicated themes between main Mahakumbh editions.",
+    accent: "navy",
+    items: [
+      {
+        titleEn: "AIST-2026 — AI in Science & Technology (SLIET Longowal)",
+        titleHi: "कृत्रिम बुद्धिमत्ता — विज्ञान एवं प्रौद्योगिकी",
+      },
+      { titleEn: "Additional state university & college conferences — coming soon" },
+    ],
+    footerNote:
+      "Distinct from the Multi-Track Conference at NIT Hamirpur (9–11 Oct 2026). Brochures and registration for each host-institution conference are listed on the Conference tab.",
   },
   {
     id: "olympiad",
