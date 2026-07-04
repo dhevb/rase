@@ -44,6 +44,10 @@ run("Public asset audit", process.execPath, [
   path.join(__dirname, "public-asset-audit.mjs"),
 ]);
 
+run("Prepare IndexNow root key file", process.execPath, [
+  path.join(__dirname, "prepare-indexnow-key.mjs"),
+]);
+
 run("TypeScript check", process.execPath, [
   `--max-old-space-size=${tscHeapMb()}`,
   tscBin,

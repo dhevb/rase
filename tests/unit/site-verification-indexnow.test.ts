@@ -34,12 +34,12 @@ describe("buildSiteVerificationMetadata", () => {
 });
 
 describe("indexNowKeyLocation", () => {
-  it("builds key URL at /api/indexnow", () => {
+  it("builds root key file URL", () => {
     assert.equal(
       indexNowKeyLocation("https://www.rase.co.in", "abc123"),
-      "https://www.rase.co.in/api/indexnow"
+      "https://www.rase.co.in/abc123.txt"
     );
-    assert.equal(indexNowKeyPath(), "/api/indexnow");
+    assert.equal(indexNowKeyPath("abc123"), "/abc123.txt");
   });
 
   it("rewrites sitemap hostnames", () => {

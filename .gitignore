@@ -11,6 +11,8 @@ docs/production-go-live-results.json
 scripts/link-verify-result.json
 scripts/pdf-extract-tmp/
 build-output.txt
+# IndexNow root key files (generated at build from INDEXNOW_API_KEY)
+/public/[0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f][0-9a-f].txt
 reports/
 scripts/301-audit.mjs
 scripts/generate-route-audit-report.mjs

@@ -140,7 +140,7 @@ async function fetchSitemapUrls(origin) {
 }
 
 async function validateKeyFile(origin, key) {
-  const url = `${origin.replace(/\/$/, "")}/api/indexnow`;
+  const url = `${origin.replace(/\/$/, "")}/${key}.txt`;
   const res = await fetch(url, { redirect: "follow" });
   const body = res.ok ? (await res.text()).trim() : "";
   const ok = res.ok && body === key;
@@ -222,7 +222,7 @@ async function main() {
     console.log(`[info] ${canonicalUrls.length} URLs from sitemap`);
 
     for (const { origin, host } of HOSTS) {
-      const keyLocation = `${origin.replace(/\/$/, "")}/api/indexnow`;
+      const keyLocation = `${origin.replace(/\/$/, "")}/${indexNowKey}.txt`;
       const urlList = rewriteUrlsForHost(canonicalUrls, origin);
       await submitIndexNowBatch({
         host,
@@ -235,7 +235,7 @@ async function main() {
 
     console.log("\n--- Bing IndexNow (priority URLs) ---");
     for (const { origin, host } of HOSTS) {
-      const keyLocation = `${origin.replace(/\/$/, "")}/api/indexnow`;
+      const keyLocation = `${origin.replace(/\/$/, "")}/${indexNowKey}.txt`;
       for (const path of PRIORITY_PATHS) {
         const url = path === "/" ? origin : `${origin.replace(/\/$/, "")}${path}`;
         await pingBingIndexNow({ url, key: indexNowKey, keyLocation });
@@ -250,10 +250,11 @@ async function main() {
     cwd: join(process.cwd()),
   });
 
-  console.log("\n--- Optional platform verification (add in Vercel when tokens available) ---");
-  console.log("NEXT_PUBLIC_BING_SITE_VERIFICATION=        # Bing Webmaster HTML tag");
-  console.log("NEXT_PUBLIC_FACEBOOK_DOMAIN_VERIFICATION= # Meta domain verification");
-  console.log("\nThen verify in Bing Webmaster Tools and Meta Business Settings.");
+  console.log("\n--- Bing Webmaster Tools (manual dashboard) ---");
+  console.log("Add both URL-prefix properties and link IndexNow key location:");
+  console.log(`  https://www.rase.co.in/${indexNowKey}.txt`);
+  console.log("Set NEXT_PUBLIC_BING_SITE_VERIFICATION after HTML-tag verify (optional).");
+  console.log("Set NEXT_PUBLIC_FACEBOOK_DOMAIN_VERIFICATION from Meta Business → Domains.");
 
   if (og.status !== 0) process.exit(og.status ?? 1);
   if (!keyReady && !skipSubmit) process.exit(2);
