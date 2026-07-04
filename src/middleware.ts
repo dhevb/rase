@@ -104,8 +104,24 @@ async function isMaintenanceMode(request: NextRequest): Promise<boolean> {
   }
 }
 
+/** IndexNow root key file — must be at /{key}.txt for site-wide URL submission. */
+function indexNowKeyResponse(pathname: string): NextResponse | null {
+  const key = process.env.INDEXNOW_API_KEY?.trim();
+  if (!key || pathname !== `/${key}.txt`) return null;
+  return new NextResponse(key, {
+    status: 200,
+    headers: {
+      "Content-Type": "text/plain; charset=utf-8",
+      "Cache-Control": "public, max-age=3600",
+    },
+  });
+}
+
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  const indexNow = indexNowKeyResponse(pathname);
+  if (indexNow) return indexNow;
 
   if (GONE_COPY_PATH.test(pathname)) {
     return new NextResponse("This URL has been permanently removed.", {
@@ -179,5 +195,8 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
+  matcher: [
+    "/((?!api|_next|_vercel|.*\\..*).*)",
+    "/:file(.*\\.txt)",
+  ],
 };
