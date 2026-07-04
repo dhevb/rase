@@ -1,22 +1,20 @@
-import { indexNowKeyFileName } from "@/lib/seo/indexnow";
-
 export const dynamic = "force-dynamic";
 
 export async function GET(
   _request: Request,
-  context: { params: Promise<{ keyfile: string }> }
+  context: { params: Promise<{ key: string }> }
 ) {
-  const key = process.env.INDEXNOW_API_KEY?.trim();
-  if (!key) {
+  const configuredKey = process.env.INDEXNOW_API_KEY?.trim();
+  if (!configuredKey) {
     return new Response("Not Found", { status: 404 });
   }
 
-  const { keyfile } = await context.params;
-  if (keyfile !== indexNowKeyFileName(key)) {
+  const { key } = await context.params;
+  if (key !== configuredKey) {
     return new Response("Not Found", { status: 404 });
   }
 
-  return new Response(key, {
+  return new Response(configuredKey, {
     status: 200,
     headers: {
       "Content-Type": "text/plain; charset=utf-8",

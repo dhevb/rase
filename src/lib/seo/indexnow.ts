@@ -8,14 +8,14 @@ export const INDEXNOW_HOSTS = [
 export const INDEXNOW_GLOBAL_ENDPOINT = "https://api.indexnow.org/indexnow";
 export const INDEXNOW_BING_ENDPOINT = "https://www.bing.com/indexnow";
 
-/** Public path segment for the hosted key file (see app/indexnow/[keyfile]/route.ts). */
-export function indexNowKeyFileName(key: string): string {
-  return `${key}.txt`;
+/** Public API path for the hosted IndexNow key (see app/api/indexnow/[key]/route.ts). */
+export function indexNowKeyPath(key: string): string {
+  return `/api/indexnow/${key}`;
 }
 
 export function indexNowKeyLocation(origin: string, key: string): string {
   const base = origin.replace(/\/$/, "");
-  return `${base}/indexnow/${indexNowKeyFileName(key)}`;
+  return `${base}${indexNowKeyPath(key)}`;
 }
 
 export function rewriteUrlsForHost(urls: readonly string[], host: string): string[] {

@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import {
-  indexNowKeyFileName,
   indexNowKeyLocation,
+  indexNowKeyPath,
   rewriteUrlsForHost,
 } from "../../src/lib/seo/indexnow";
 import {
@@ -34,12 +34,12 @@ describe("buildSiteVerificationMetadata", () => {
 });
 
 describe("indexNowKeyLocation", () => {
-  it("builds key file URL under /indexnow/", () => {
+  it("builds key URL under /api/indexnow/", () => {
     assert.equal(
       indexNowKeyLocation("https://www.rase.co.in", "abc123"),
-      "https://www.rase.co.in/indexnow/abc123.txt"
+      "https://www.rase.co.in/api/indexnow/abc123"
     );
-    assert.equal(indexNowKeyFileName("abc123"), "abc123.txt");
+    assert.equal(indexNowKeyPath("abc123"), "/api/indexnow/abc123");
   });
 
   it("rewrites sitemap hostnames", () => {

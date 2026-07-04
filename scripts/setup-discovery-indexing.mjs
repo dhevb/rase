@@ -140,7 +140,7 @@ async function fetchSitemapUrls(origin) {
 }
 
 async function validateKeyFile(origin, key) {
-  const url = `${origin.replace(/\/$/, "")}/indexnow/${key}.txt`;
+  const url = `${origin.replace(/\/$/, "")}/api/indexnow/${key}`;
   const res = await fetch(url, { redirect: "follow" });
   const body = res.ok ? (await res.text()).trim() : "";
   const ok = res.ok && body === key;
@@ -222,7 +222,7 @@ async function main() {
     console.log(`[info] ${canonicalUrls.length} URLs from sitemap`);
 
     for (const { origin, host } of HOSTS) {
-      const keyLocation = `${origin.replace(/\/$/, "")}/indexnow/${indexNowKey}.txt`;
+      const keyLocation = `${origin.replace(/\/$/, "")}/api/indexnow/${indexNowKey}`;
       const urlList = rewriteUrlsForHost(canonicalUrls, origin);
       await submitIndexNowBatch({
         host,
@@ -235,7 +235,7 @@ async function main() {
 
     console.log("\n--- Bing IndexNow (priority URLs) ---");
     for (const { origin, host } of HOSTS) {
-      const keyLocation = `${origin.replace(/\/$/, "")}/indexnow/${indexNowKey}.txt`;
+      const keyLocation = `${origin.replace(/\/$/, "")}/api/indexnow/${indexNowKey}`;
       for (const path of PRIORITY_PATHS) {
         const url = path === "/" ? origin : `${origin.replace(/\/$/, "")}${path}`;
         await pingBingIndexNow({ url, key: indexNowKey, keyLocation });

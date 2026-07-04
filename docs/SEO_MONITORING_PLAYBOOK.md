@@ -48,7 +48,7 @@ Add each property’s TXT record at the DNS provider for `rase.co.in` and `shiks
 | Step | Action |
 |------|--------|
 | 1 | Run `npm run setup:discovery-indexing` (generates `INDEXNOW_API_KEY`, submits sitemap to [api.indexnow.org](https://api.indexnow.org/indexnow) and [bing.com/indexnow](https://www.bing.com/indexnow)) |
-| 2 | Key file live at `https://www.rase.co.in/indexnow/{key}.txt` (both domains) |
+| 2 | Key file live at `https://www.rase.co.in/api/indexnow/{key}` (both domains) |
 | 3 | Verify site in **Bing Webmaster Tools** → set `NEXT_PUBLIC_BING_SITE_VERIFICATION` if using HTML tag |
 | 4 | Meta domain verification → set `NEXT_PUBLIC_FACEBOOK_DOMAIN_VERIFICATION` for Open Graph sharing |
 
