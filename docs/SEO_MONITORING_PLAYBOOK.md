@@ -4,12 +4,42 @@ Ongoing operations for Search Console, indexing, structured data, and Core Web V
 
 ---
 
-## 1. Google Search Console setup
+## 1. Google Search Console setup (dual domain)
 
-1. Add property: **URL prefix** `https://www.rase.co.in` (prefer www if canonical).
-2. Verify ownership: DNS TXT (recommended) or HTML file via hosting.
+Production serves the same app on two marketing hosts:
+
+| Host | Role |
+|------|------|
+| `https://www.rase.co.in` | **Primary canonical** — sitemap, JSON-LD, emails |
+| `https://www.shikshamahakumbh.com` | Legacy / marketing alias (same HTML; `<link rel="canonical">` → rase.co.in) |
+
+### Add both URL-prefix properties
+
+In [Google Search Console](https://search.google.com/search-console):
+
+1. **Property A:** `https://www.rase.co.in`
+2. **Property B:** `https://www.shikshamahakumbh.com`
+
+### Verify ownership
+
+**Option A — DNS TXT (recommended per domain)**  
+Add each property’s TXT record at the DNS provider for `rase.co.in` and `shikshamahakumbh.com` respectively. No redeploy needed.
+
+**Option B — HTML meta tag (single deploy, both properties)**  
+1. In each GSC property, choose **HTML tag** and copy the `content="..."` value only.  
+2. Set Vercel **Production** env (comma-separated):
+
+   ```
+   NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=<rase-token>,<shikshamahakumbh-token>
+   ```
+
+3. Redeploy, then click **Verify** in both properties.
+
+### After verification
+
 3. Add users: tech lead, content lead (Restricted or Full as appropriate).
-4. Link to GA4 property (Admin → Product links).
+4. Link to GA4 property (Admin → Product links) on the **rase.co.in** property first.
+5. Submit sitemap on **rase.co.in only** (see §2). Monitor the shikshamahakumbh property for coverage; Google should consolidate via canonical tags.
 
 ---
 
