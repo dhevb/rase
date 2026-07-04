@@ -28,7 +28,7 @@ const HOSTS = [
 const CANONICAL = HOSTS[0].origin;
 
 const dryRun = process.argv.includes("--dry-run");
-const skipVercel = process.argv.includes("--skip-vercel");
+const skipVercelWrite = process.argv.includes("--skip-vercel");
 const skipSubmit = process.argv.includes("--skip-submit");
 
 const AUTH_PATHS = [
@@ -140,7 +140,7 @@ async function fetchSitemapUrls(origin) {
 }
 
 async function validateKeyFile(origin, key) {
-  const url = `${origin.replace(/\/$/, "")}/api/indexnow/${key}`;
+  const url = `${origin.replace(/\/$/, "")}/api/indexnow`;
   const res = await fetch(url, { redirect: "follow" });
   const body = res.ok ? (await res.text()).trim() : "";
   const ok = res.ok && body === key;
@@ -187,7 +187,7 @@ async function main() {
   console.log("=== Discovery indexing setup (IndexNow + Bing + Open Graph) ===\n");
 
   let indexNowKey = process.env.INDEXNOW_API_KEY?.trim() ?? null;
-  const vercelToken = skipVercel ? null : loadVercelToken();
+  const vercelToken = loadVercelToken();
 
   if (!indexNowKey && vercelToken) {
     indexNowKey = await getDecryptedEnv(vercelToken, "INDEXNOW_API_KEY");
@@ -196,7 +196,7 @@ async function main() {
   if (!indexNowKey) {
     indexNowKey = generateIndexNowKey();
     console.log(`[info] Generated new INDEXNOW_API_KEY (${indexNowKey.slice(0, 8)}…)`);
-    if (vercelToken) {
+    if (vercelToken && !skipVercelWrite) {
       await upsertProductionEnv(vercelToken, "INDEXNOW_API_KEY", indexNowKey);
       console.log("[info] Redeploy required before key file is live");
     }
@@ -222,7 +222,7 @@ async function main() {
     console.log(`[info] ${canonicalUrls.length} URLs from sitemap`);
 
     for (const { origin, host } of HOSTS) {
-      const keyLocation = `${origin.replace(/\/$/, "")}/api/indexnow/${indexNowKey}`;
+      const keyLocation = `${origin.replace(/\/$/, "")}/api/indexnow`;
       const urlList = rewriteUrlsForHost(canonicalUrls, origin);
       await submitIndexNowBatch({
         host,
@@ -235,7 +235,7 @@ async function main() {
 
     console.log("\n--- Bing IndexNow (priority URLs) ---");
     for (const { origin, host } of HOSTS) {
-      const keyLocation = `${origin.replace(/\/$/, "")}/api/indexnow/${indexNowKey}`;
+      const keyLocation = `${origin.replace(/\/$/, "")}/api/indexnow`;
       for (const path of PRIORITY_PATHS) {
         const url = path === "/" ? origin : `${origin.replace(/\/$/, "")}${path}`;
         await pingBingIndexNow({ url, key: indexNowKey, keyLocation });
