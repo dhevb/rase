@@ -31,6 +31,7 @@
     "setup:discovery-indexing": "node scripts/setup-discovery-indexing.mjs",
     "setup:search-console": "node scripts/setup-search-console.mjs",
     "validate:gsc-indexing": "node scripts/validate-gsc-indexing.mjs",
+    "validate:gsc-indexing:quick": "node scripts/validate-gsc-indexing.mjs --quick",
     "verify:rollback": "node scripts/verify-rollback-readiness.mjs",
     "verify:monitoring": "node scripts/verify-monitoring-live.mjs",
     "verify:production-ops": "node scripts/verify-production-ops.mjs",
