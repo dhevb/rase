@@ -168,6 +168,13 @@ const LEGACY_REDIRECTS = [
     permanent: true,
   },
   { source: "/sitemap", destination: "/sitemap.xml", permanent: true },
+  // Legacy duplicate content → canonical press articles
+  { source: "/BatonCeremony", destination: "/press/baton-ceremony-smk-4", permanent: true },
+  { source: "/ResidentialCamp", destination: "/press/residential-camp-success", permanent: true },
+  { source: "/Baton", destination: "/press/baton-ceremony-smk-4", permanent: true },
+  { source: "/Residential_Camp", destination: "/press/residential-camp-success", permanent: true },
+  { source: "/about", destination: "/introduction", permanent: true },
+  { source: "/comingsoon", destination: "/merchandise", permanent: true },
   ...PROCEEDINGS_LEGACY_PDF_REDIRECTS,
 ];
 

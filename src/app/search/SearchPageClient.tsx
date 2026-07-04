@@ -6,6 +6,17 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { globalSearch } from "@/lib/ecosystem/search";
 import { kindLabel } from "@/lib/ecosystem/types";
 
+const POPULAR_DESTINATIONS = [
+  { href: "/registration", label: "Registration for SMK 6.0" },
+  { href: "/introduction", label: "About the Abhiyan" },
+  { href: "/departments/academic-council", label: "Academic Council" },
+  { href: "/upcoming-events", label: "Upcoming Events" },
+  { href: "/past-events", label: "Past Editions" },
+  { href: "/downloads", label: "Brochures & Downloads" },
+  { href: "/faq", label: "Frequently Asked Questions" },
+  { href: "/contact-us", label: "Contact DHE" },
+] as const;
+
 export default function SearchPageClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -70,9 +81,26 @@ export default function SearchPageClient() {
           </ul>
         </div>
       ) : (
-        <p className="mt-6 text-sm text-slate-500">
-          Enter at least two characters to search speakers, publications, and programme pages.
-        </p>
+        <div className="mt-8">
+          <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+            Popular pages
+          </h2>
+          <ul className="mt-3 grid gap-2 sm:grid-cols-2">
+            {POPULAR_DESTINATIONS.map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className="block rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-brand-navy transition hover:border-brand-saffron/40 hover:bg-brand-surface"
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 text-sm text-slate-500">
+            Enter at least two characters to search speakers, publications, and programme pages.
+          </p>
+        </div>
       )}
     </div>
   );

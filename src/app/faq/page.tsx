@@ -2,10 +2,12 @@ import PublicPageShell from "@/components/layouts/PublicPageShell";
 import HomeFaqSection from "@/components/home/HomeFaqSection";
 import { createPageMetadata } from "@/lib/seo/metadata";
 import { withHreflang } from "@/lib/seo/hreflang";
-import { loadCmsPageData } from "@/lib/cms/server";
+import { loadCmsFeaturedFaqs, loadPublicChromeCms } from "@/lib/cms/server";
 import { CmsProvider } from "@/lib/cms/context";
 import { buildFaqPageSchema, extractFaqsFromCmsData } from "@/lib/cms/faq";
 import { HOME_DEFAULT_FAQS } from "@/data/home-faqs";
+
+export const revalidate = 3600;
 
 export async function generateMetadata() {
   return withHreflang(
@@ -25,7 +27,11 @@ export async function generateMetadata() {
 }
 
 export default async function FaqPage() {
-  const cmsData = await loadCmsPageData("en");
+  const [chrome, featuredFaqs] = await Promise.all([
+    loadPublicChromeCms("en"),
+    loadCmsFeaturedFaqs("en"),
+  ]);
+  const cmsData = { ...chrome, featuredFaqs };
   const faqs = extractFaqsFromCmsData(cmsData);
   const faqSchema = buildFaqPageSchema(faqs.length ? faqs : HOME_DEFAULT_FAQS);
 

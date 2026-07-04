@@ -1,5 +1,3 @@
-import { redirect } from "next/navigation";
+import { createLegacyRedirect } from "@/lib/routing/legacy-redirect-page";
 
-export default function BatonAliasPage() {
-  redirect("/BatonCeremony");
-}
+export default createLegacyRedirect("/press/baton-ceremony-smk-4");

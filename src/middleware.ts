@@ -11,6 +11,7 @@ import {
 import type { AdminRole } from "@/types/registration";
 import { isRedirectShellPath } from "@/lib/knowledge-graph/site-cleanup";
 import { legacyCaseAliasDestination } from "@/config/legacy-case-aliases";
+import { stripNonContentLocalePrefix } from "@/config/crawler-policy";
 
 const intlMiddleware = createIntlMiddleware(routing);
 const NEXT_INTL_LOCALE_HEADER = "x-next-intl-locale";
@@ -122,6 +123,13 @@ export async function middleware(request: NextRequest) {
 
   const indexNow = indexNowKeyResponse(pathname);
   if (indexNow) return indexNow;
+
+  const localeStrip = stripNonContentLocalePrefix(pathname);
+  if (localeStrip !== null) {
+    const url = request.nextUrl.clone();
+    url.pathname = localeStrip;
+    return withDocumentLang(NextResponse.redirect(url, 308), pathname);
+  }
 
   if (GONE_COPY_PATH.test(pathname)) {
     return new NextResponse("This URL has been permanently removed.", {

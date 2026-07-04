@@ -173,8 +173,8 @@ export const GALLERY_EDITIONS: GalleryEdition[] = [
     status: "available",
     accent: "from-blue-600 to-indigo-800",
     photoLinks: standardPhotoLinks("4.0", [
-      { label: "Baton Ceremony", href: "/BatonCeremony" },
-      { label: "Residential Camp", href: "/ResidentialCamp" },
+      { label: "Baton Ceremony", href: "/press/baton-ceremony-smk-4" },
+      { label: "Residential Camp", href: "/press/residential-camp-success" },
     ]),
     youtubeUrl: EDITION_YOUTUBE_URLS["4.0"],
     videoTitle: "Edition 4.0 documentaries",

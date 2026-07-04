@@ -218,13 +218,21 @@ async function main() {
   console.log("\n--- Sitemap ping ---");
   await pingGoogleSitemap();
 
+  const sitemapFullUrl = `${CANONICAL}/sitemap.xml`;
+  const priorityPaths = ["/", "/registration", "/departments/academic-council", "/introduction"];
+
   console.log("\n--- Manual GSC steps (DNS already configured) ---");
-  console.log("1. https://search.google.com/search-console → Add URL prefix properties:");
+  console.log("1. https://search.google.com/search-console");
+  console.log("2. Domain property rase.co.in → Settings → Ownership → Verify (DNS TXT already live)");
+  console.log(`3. Sitemaps → submit FULL URL (domain properties reject sitemap.xml alone):`);
+  console.log(`   ${sitemapFullUrl}`);
+  console.log("4. URL Inspection → Request indexing for:");
+  for (const p of priorityPaths) {
+    console.log(`   • ${CANONICAL}${p === "/" ? "" : p}`);
+  }
+  console.log("\nOptional URL-prefix properties (submit path only: sitemap.xml):");
   console.log(`   • ${CANONICAL}`);
   console.log("   • https://www.shikshamahakumbh.com");
-  console.log("2. Verify each via DNS TXT (records already live) → click Verify");
-  console.log(`3. On rase.co.in property → Sitemaps → submit: sitemap.xml`);
-  console.log("4. URL Inspection → Request indexing for /, /registration, /departments/academic-council");
 
   if (!seoOk) process.exit(2);
 }

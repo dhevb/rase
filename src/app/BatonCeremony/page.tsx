@@ -1,17 +1,3 @@
-import PublicPageShell from "@/components/layouts/PublicPageShell";
-import BatonCeremony from "@/components/content/Baton";
-import { brandPageHero } from "@/lib/page-heroes";
+import { createLegacyRedirect } from "@/lib/routing/legacy-redirect-page";
 
-export default function BatonCeremonyPage() {
-  return (
-    <PublicPageShell
-      hero={brandPageHero(
-        "Baton Ceremony",
-        "Ceremonial launch of Shiksha Mahakumbh editions.",
-        "Events"
-      )}
-    >
-      <BatonCeremony />
-    </PublicPageShell>
-  );
-}
+export default createLegacyRedirect("/press/baton-ceremony-smk-4");

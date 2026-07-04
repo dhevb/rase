@@ -71,6 +71,7 @@ export const SITEMAP_EXCLUDED_PATHS = new Set([
   "TalkShow",
   "Topics",
   "conclave",
+  "coming-soon",
   "past_event/Innovation_and_Entrepreneurship_Dhe_Workshop",
   ...PILLAR_REGISTRY.filter((p) => THIN_PILLAR_PATHS.has(p.path)).map((p) =>
     p.path.replace(/^\//, "")
@@ -101,6 +102,7 @@ export const REDIRECT_SHELL_PATHS = new Set([
   "keynotespeakers",
   "glimpses",
   "conclave",
+  "coming-soon",
   "past_event/Innovation_and_Entrepreneurship_Dhe_Workshop",
   ...Array.from(THIN_PILLAR_PATHS).map((p) => p.replace(/^\//, "")),
 ]);
@@ -154,7 +156,6 @@ export const SITEMAP_CORE_PATHS: readonly string[] = [
   "refund-policy",
   "cookie-policy",
   "licenses",
-  "coming-soon",
   "abhiyaninphotoframe",
   "search",
   "research/submit",

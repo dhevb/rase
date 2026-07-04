@@ -1,11 +1,3 @@
-import PublicPageShell from "@/components/layouts/PublicPageShell";
-import ComingSoon from "@/components/content/CommingSoon";
-import { PAGE_HEROES } from "@/lib/page-heroes";
+import { createLegacyRedirect } from "@/lib/routing/legacy-redirect-page";
 
-export default function ComingSoonPage() {
-  return (
-    <PublicPageShell hero={PAGE_HEROES.comingSoon}>
-      <ComingSoon />
-    </PublicPageShell>
-  );
-}
+export default createLegacyRedirect("/merchandise");

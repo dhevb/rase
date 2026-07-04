@@ -4,7 +4,7 @@ import { PRESS_CANONICAL_PATHS } from "@/constants/canonical-routes";
 import { MEDIA_ARCHIVE_KEYS } from "@/data/media-archive-keys";
 import { COMMITTEE_LEGACY_SLUGS } from "@/lib/committee/legacy-registry";
 import { committeePathFromSlug } from "@/lib/committee/edition-slugs";
-import { SITEMAP_CORE_PATHS } from "@/lib/knowledge-graph/site-cleanup";
+import { SITEMAP_CORE_PATHS, SITEMAP_EXCLUDED_PATHS } from "@/lib/knowledge-graph/site-cleanup";
 import { generateSitemapIndex } from "@/server/services/seo.service";
 import { prisma } from "@/server/db/prisma";
 
@@ -38,7 +38,7 @@ const SITEMAP_PATHS = Array.from(
     ...MEDIA_ARCHIVE_PATHS,
     ...PRESS_ARTICLE_PATHS,
   ])
-).filter((path) => !path.includes("#"));
+).filter((path) => !path.includes("#") && !SITEMAP_EXCLUDED_PATHS.has(path));
 
 function sitemapPriority(path: string): number {
   if (path === "") return 1;

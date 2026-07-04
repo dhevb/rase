@@ -17,7 +17,6 @@ export const CANONICAL_ROUTES = {
   glimpses: "/gallery",
   merchandise: "/merchandise",
   press: "/press",
-  comingSoon: "/coming-soon",
   downloads: "/downloads",
   speakers: "/speakers/directory",
   donation: "/donation",
