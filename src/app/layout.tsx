@@ -5,11 +5,9 @@ import ClientChrome from "./ClientChrome";
 import DocumentLangSync from "@/components/common/DocumentLangSync";
 import SiteJsonLd from "@/components/seo/SiteJsonLd";
 import { SITE_URL } from "@/config/site";
-import { parseGoogleSiteVerificationTokens } from "@/lib/seo/google-site-verification";
+import { buildSiteVerificationMetadata } from "@/lib/seo/site-verification";
 
-const googleSiteVerification = parseGoogleSiteVerificationTokens(
-  process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
-);
+const siteVerification = buildSiteVerificationMetadata();
 
 const inter = Inter({
   subsets: ["latin"],
@@ -45,16 +43,7 @@ export const metadata: Metadata = {
     capable: true,
     title: "Shiksha Mahakumbh",
   },
-  ...(googleSiteVerification.length
-    ? {
-        verification: {
-          google:
-            googleSiteVerification.length === 1
-              ? googleSiteVerification[0]
-              : googleSiteVerification,
-        },
-      }
-    : {}),
+  ...(siteVerification ? { verification: siteVerification } : {}),
 };
 
 export const viewport: Viewport = {

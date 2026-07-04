@@ -27,6 +27,8 @@
     "test:load": "node scripts/test-load-baseline.mjs",
     "backup:drill": "node scripts/backup-restore-drill.mjs",
     "validate:go-live": "node scripts/validate-go-live.mjs",
+    "validate:open-graph": "node scripts/validate-open-graph.mjs",
+    "setup:discovery-indexing": "node scripts/setup-discovery-indexing.mjs",
     "verify:rollback": "node scripts/verify-rollback-readiness.mjs",
     "verify:monitoring": "node scripts/verify-monitoring-live.mjs",
     "verify:production-ops": "node scripts/verify-production-ops.mjs",

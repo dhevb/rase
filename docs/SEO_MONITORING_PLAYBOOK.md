@@ -43,7 +43,20 @@ Add each property’s TXT record at the DNS provider for `rase.co.in` and `shiks
 
 ---
 
-## 2. Sitemap submission
+## 2. IndexNow (Bing, Yandex, Naver, and partners)
+
+| Step | Action |
+|------|--------|
+| 1 | Run `npm run setup:discovery-indexing` (generates `INDEXNOW_API_KEY`, submits sitemap to [api.indexnow.org](https://api.indexnow.org/indexnow) and [bing.com/indexnow](https://www.bing.com/indexnow)) |
+| 2 | Key file live at `https://www.rase.co.in/indexnow/{key}.txt` (both domains) |
+| 3 | Verify site in **Bing Webmaster Tools** → set `NEXT_PUBLIC_BING_SITE_VERIFICATION` if using HTML tag |
+| 4 | Meta domain verification → set `NEXT_PUBLIC_FACEBOOK_DOMAIN_VERIFICATION` for Open Graph sharing |
+
+**Open Graph beta pass:** `npm run validate:open-graph`
+
+---
+
+## 3. Sitemap submission (Google Search Console)
 
 | Step | Action |
 |------|--------|
@@ -56,7 +69,7 @@ Add each property’s TXT record at the DNS provider for `rase.co.in` and `shiks
 
 ---
 
-## 3. Index coverage review (weekly)
+## 4. Index coverage review (weekly)
 
 Search Console → **Pages** (Indexing):
 
@@ -72,7 +85,7 @@ Search Console → **Pages** (Indexing):
 
 ---
 
-## 4. Structured data validation
+## 5. Structured data validation
 
 | Type | Where | Tool |
 |------|-------|------|
@@ -84,7 +97,7 @@ Search Console → **Pages** (Indexing):
 
 ---
 
-## 5. Broken link audits (monthly)
+## 6. Broken link audits (monthly)
 
 1. **Screaming Frog** or **Sitebulb** crawl (≤ 500 URLs on free tier).
 2. Fix 404s in nav/footer first (`Footer.tsx`, `NavBar.tsx`).
@@ -93,7 +106,7 @@ Search Console → **Pages** (Indexing):
 
 ---
 
-## 6. Core Web Vitals monitoring
+## 7. Core Web Vitals monitoring
 
 | Source | Frequency | Threshold |
 |--------|-----------|-----------|
@@ -107,7 +120,7 @@ Search Console → **Pages** (Indexing):
 
 ---
 
-## 7. UTM & campaign tracking (SEO + analytics)
+## 8. UTM & campaign tracking (SEO + analytics)
 
 - National campaigns: consistent `utm_source`, `utm_medium`, `utm_campaign` on registration CTAs.
 - Verify persistence: Firestore registration docs + GA4 events (`lib/analytics/events.ts`).
@@ -115,7 +128,7 @@ Search Console → **Pages** (Indexing):
 
 ---
 
-## 8. International SEO (when ready)
+## 9. International SEO (when ready)
 
 - `hreflang` for `[locale]` routes once sitemap includes locales.
 - Hindi (`/hi/`) first — align with `i18n/messages/hi.json` marketing copy.
@@ -123,7 +136,7 @@ Search Console → **Pages** (Indexing):
 
 ---
 
-## 9. Reporting cadence
+## 10. Reporting cadence
 
 | Report | Owner | Cadence |
 |--------|-------|---------|
