@@ -12,6 +12,7 @@ import type { AdminRole } from "@/types/registration";
 import { isRedirectShellPath } from "@/lib/knowledge-graph/site-cleanup";
 import { legacyCaseAliasDestination } from "@/config/legacy-case-aliases";
 import { stripNonContentLocalePrefix } from "@/config/crawler-policy";
+import { normalizeCanonicalPath } from "@/lib/seo/canonical-path";
 
 const intlMiddleware = createIntlMiddleware(routing);
 const NEXT_INTL_LOCALE_HEADER = "x-next-intl-locale";
@@ -128,6 +129,13 @@ export async function middleware(request: NextRequest) {
   if (localeStrip !== null) {
     const url = request.nextUrl.clone();
     url.pathname = localeStrip;
+    return withDocumentLang(NextResponse.redirect(url, 308), pathname);
+  }
+
+  const legacyCanonical = normalizeCanonicalPath(pathname);
+  if (legacyCanonical !== pathname) {
+    const url = request.nextUrl.clone();
+    url.pathname = legacyCanonical;
     return withDocumentLang(NextResponse.redirect(url, 308), pathname);
   }
 
