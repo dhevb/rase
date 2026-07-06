@@ -5,6 +5,13 @@ import { setRequestLocale } from "next-intl/server";
 
 export const revalidate = 3600;
 
+/** Only real locales — unknown segments (e.g. /vitt) must not render this page. */
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return [{ locale: "en" }];
+}
+
 export async function generateMetadata({
   params,
 }: {

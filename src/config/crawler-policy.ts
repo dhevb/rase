@@ -43,7 +43,6 @@ export const LOCALE_PREFIX_ALLOWED = new Set([
   "/en",
   "/en/introduction",
   "/en/registration",
-  "/en/ContactUs",
   "/fr/contact-us",
   "/es/contact-us",
   "/ar/contact-us",
@@ -55,8 +54,5 @@ export function stripNonContentLocalePrefix(pathname: string): string | null {
   if (!match) return null;
   if (LOCALE_PREFIX_ALLOWED.has(pathname)) return null;
   const rest = match[2] ?? "";
-  if (match[1] === "en" && rest === "/ContactUs") {
-    return "/contact-us";
-  }
   return rest || "/";
 }

@@ -1,6 +1,15 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
+  "redirects": [
+    { "source": "/vitt", "destination": "/departments/vitt", "permanent": true },
+    { "source": "/sampark", "destination": "/departments/sampark", "permanent": true },
+    { "source": "/prachar", "destination": "/departments/prachar", "permanent": true },
+    { "source": "/prabandhan", "destination": "/departments/prabandhan", "permanent": true },
+    { "source": "/academic-council", "destination": "/departments/academic-council", "permanent": true },
+    { "source": "/home", "destination": "/", "permanent": true },
+    { "source": "/en/ContactUs", "destination": "/contact-us", "permanent": true }
+  ],
   "functions": {
     "src/app/api/registration/submit/route.ts": { "memory": 1024 },
     "src/app/api/registration/receipt/route.ts": { "memory": 1024 },
