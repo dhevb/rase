@@ -16,11 +16,11 @@
 
 Website B’s registration and contact flows are broken in production. It has no `robots.txt`, no sitemap, no canonical tags, no Open Graph, and no JSON-LD on any page. Legal pages are absent. Accessibility landmarks (`<main>`, skip links) are missing on every page.
 
-Website A is a full-stack production platform with working Razorpay registration, 86-URL sitemap, Hindi locale, structured data, legal pages, and admin CMS. Remediation work on 6 July 2026 addressed legacy URL 504s, canonical normalization, hub-page H1 semantics, and gallery alt text. **One deploy step remains** before legacy redirects are live in production (see §3).
+Website A is a full-stack production platform with working Razorpay registration, Hindi locale, structured data, legal pages, and admin CMS. Remediation on 6 July 2026 fixed legacy URL 504s, canonical normalization, hub-page H1 semantics, and gallery alt text — **deployed and validated (13/13 GSC checks)**.
 
 | Dimension | Website A | Website B |
 |-----------|-----------|-----------|
-| **Overall** | **8.4 / 10** (post-fix, pre-final deploy) | **4.7 / 10** |
+| **Overall** | **8.6 / 10** (post-fix, validated in production) | **4.7 / 10** |
 | Functionality | 9.0 | 2.5 |
 | SEO / Discoverability | 8.5 | 1.0 |
 | Accessibility | 8.0 | 3.5 |
@@ -106,29 +106,24 @@ Website A is a full-stack production platform with working Razorpay registration
 
 ### GSC validation (`npm run validate:gsc-indexing:quick`)
 
-**Current production (pre-middleware deploy): 10/13 passed**
+**Production (post-deploy 6 Jul 2026): 13/13 passed**
 
 | Check | Result |
 |-------|--------|
-| sitemap-live (86 URLs) | pass |
-| robots-sitemap | pass |
-| robots-admin / robots-datadekh | pass |
+| sitemap-live (79 URLs) | pass |
+| robots-sitemap / admin / datadekh | pass |
 | locale-strip-en | pass (308) |
 | redirect-/BatonCeremony, /coming-soon, /about | pass (308) |
-| **redirect-/vitt** | **fail — 504** |
-| **redirect-/home** | **fail — 504** |
-| **redirect-/academic-council** | **fail — 504** |
-
-**Root cause:** `/vitt`, `/home`, etc. match `src/app/[locale]/page.tsx` (locale=`vitt`) before `next.config` redirects run → `FUNCTION_INVOCATION_TIMEOUT`. Canonical department URLs (`/departments/vitt`) return **200**.
-
-**Fix committed:** Middleware applies `normalizeCanonicalPath()` at the edge (308) before page handlers. Local `npm run build` succeeds; middleware bundle 107 KB.
-
-**Expected after deploy:** 13/13 passed.
+| **redirect-/vitt** | **pass (308 → /departments/vitt)** |
+| **redirect-/home** | **pass (308 → /)** |
+| **redirect-/academic-council** | **pass (308 → /departments/academic-council)** |
 
 ### Deploy status
-- `npx vercel deploy --prod --yes` — **failed: "Not authorized"** (CLI session)
-- `git push origin main` — **failed: remote repository not found** (`github.com/shiksha-mahakumbh/rase.git`)
-- **Action required:** Deploy from an authorized Vercel account and push to the correct Git remote
+
+- **Vercel project:** `rase-co-in` (serves `www.rase.co.in`) — not `rase`
+- **Git remote:** `https://github.com/dhevb/rase.git` (was incorrectly `shiksha-mahakumbh/rase`)
+- **Production deploy:** `rase-co-3qvvkvcuz` — Ready (git push to `main`)
+- CLI-only deploys were `BLOCKED`; git-triggered deploy succeeded
 
 ---
 
@@ -140,15 +135,15 @@ Website A is a full-stack production platform with working Razorpay registration
 |--------|-----------|-----------|
 | Pages crawled | 86 (sitemap) | 20 (internal links) |
 | HTTP 200 | 79 | 20 |
-| HTTP 504 | 7 (legacy root slugs — fix pending deploy) | 0 |
+| HTTP 504 | 0 (legacy slugs now 308) | 0 |
 | HTTP 404 | 0 (in sitemap) | 3 (register, robots, sitemap, contact-submit) |
 | Pages with canonical | 79 | 0 |
 | Pages with JSON-LD | 79 | 0 |
 | Pages with `<main>` | 79 | 0 |
 | Pages with skip link | 79 | 0 |
 
-### Legacy 504 URLs (Website A — fixed in code, pending deploy)
-- `/vitt`, `/sampark`, `/prachar`, `/prabandhan`, `/academic-council`, `/home` (×2 in crawl)
+### Legacy redirect URLs (Website A — fixed and live)
+- `/vitt`, `/sampark`, `/prachar`, `/prabandhan`, `/academic-council`, `/home` → **308** to canonical paths
 
 Canonical targets (all 200):
 - `/departments/vitt`, `/departments/sampark`, etc.
@@ -171,10 +166,9 @@ Not implemented — explicitly skipped:
 Website B is a static prototype suitable at most for internal design reference. It cannot process registrations, cannot receive contact submissions, cannot be indexed systematically, and fails basic accessibility requirements. Replacing Website A would break payments, CMS workflows, Hindi localization, legal compliance, and ~70 Google-indexed pages.
 
 ### Immediate next steps
-1. **Deploy** commit `c20da20` to Vercel production (authorized account)
-2. **Re-run** `npm run validate:gsc-indexing:quick` — expect 13/13
-3. **Push** commits to the correct GitHub remote
-4. **Request GSC re-crawl** of legacy URLs after 308s are live
+1. ~~Deploy commit to Vercel production~~ **Done** (git push → `rase-co-in`)
+2. ~~Re-run `npm run validate:gsc-indexing:quick`~~ **13/13 passed**
+3. **Request GSC re-crawl** of legacy URLs now returning 308
 
 ---
 
@@ -184,9 +178,9 @@ Website B is a static prototype suitable at most for internal design reference. 
 npm run test:unit                    # 35/35 unit tests
 npm run fix:department-canonicals    # DB canonical normalization
 npm run validate:gsc-indexing:quick  # Production GSC checks
-npx vercel deploy --prod --yes       # Production deploy
+npx vercel deploy --prod --yes --project rase-co-in  # Or: git push origin main
 ```
 
 ---
 
-*Report generated after remediation commits `f981f1c` and `c20da20`. Production redirect validation pending authorized Vercel deploy.*
+*Report updated after production deploy `rase-co-3qvvkvcuz` — GSC validation 13/13 on www.rase.co.in.*
