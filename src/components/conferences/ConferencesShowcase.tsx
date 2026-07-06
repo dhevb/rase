@@ -28,6 +28,7 @@ export default function ConferencesShowcase({ cmsEvents = [] }: Props) {
         title={CONFERENCES_PAGE_HERO.title}
         subtitle={CONFERENCES_PAGE_HERO.subtitle}
         stats={CONFERENCES_STATS}
+        titleAs="h1"
       />
 
       <section className="mt-10" aria-labelledby="primary-programmes">

@@ -168,6 +168,9 @@ async function main() {
     ["/BatonCeremony", "/press/baton-ceremony-smk-4"],
     ["/coming-soon", "/merchandise"],
     ["/about", "/introduction"],
+    ["/vitt", "/departments/vitt"],
+    ["/home", "/"],
+    ["/academic-council", "/departments/academic-council"],
   ]) {
     try {
       const r = await fetchWithRetry(`${BASE}${path}`, { redirect: "manual" });

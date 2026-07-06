@@ -273,11 +273,10 @@ function EditionVideoCard({ edition, index, reduceMotion }: EditionCardProps) {
         <div className="relative h-28 w-full bg-slate-900">
           <Image
             src={edition.imageSrc}
-            alt=""
+            alt={`${edition.title} — video thumbnail`}
             fill
             className="object-cover opacity-80"
             sizes="(max-width: 1024px) 50vw, 33vw"
-            aria-hidden
           />
           <div className="absolute inset-0 flex items-center justify-center bg-black/30">
             <span className="rounded-full bg-red-600 px-3 py-1 text-xs font-bold text-white">

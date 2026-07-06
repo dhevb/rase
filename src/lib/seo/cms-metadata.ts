@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from "@/config/site";
 import type { CmsHomepage } from "@/lib/cms/types";
+import { normalizeCanonicalPath } from "@/lib/seo/canonical-path";
 import { hreflangForPath } from "@/lib/seo/hreflang";
 
 export type CmsSeoFields = {
@@ -24,11 +25,9 @@ export function metadataFromCmsSeo(
 ): Metadata {
   const title = seo?.seoTitle ?? seo?.ogTitle ?? fallback.title;
   const description = seo?.metaDescription ?? seo?.ogDescription ?? fallback.description;
-  const path = seo?.canonicalUrl ?? fallback.path ?? "/";
-  const canonicalPath = path.startsWith("http")
-    ? new URL(path).pathname
-    : path;
-  const url = path.startsWith("http") ? path : `${SITE_URL}${path}`;
+  const rawPath = seo?.canonicalUrl ?? fallback.path ?? "/";
+  const canonicalPath = normalizeCanonicalPath(rawPath);
+  const url = `${SITE_URL}${canonicalPath}`;
   const image = seo?.ogImageUrl ?? fallback.ogImageUrl ?? DEFAULT_OG_IMAGE;
   const hreflang = hreflangForPath(canonicalPath);
   const noIndex = seo?.robots?.includes("noindex") ?? false;

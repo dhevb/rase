@@ -214,13 +214,27 @@ async function upsertPage({ slug, locale, title, excerpt, content, pageType, sec
       locale,
       seoTitle: title,
       metaDescription: excerpt ?? title,
-      canonicalUrl: pageType === "article" ? `/press/${slug}` : `/${slug}`,
+      canonicalUrl:
+        pageType === "article"
+          ? `/press/${slug}`
+          : pageType === "department"
+            ? `/departments/${slug}`
+            : slug === "home"
+              ? "/"
+              : `/${slug}`,
       ogImageUrl: sectionContent?.heroImage ?? null,
     },
     update: {
       seoTitle: title,
       metaDescription: excerpt ?? title,
-      canonicalUrl: pageType === "article" ? `/press/${slug}` : `/${slug}`,
+      canonicalUrl:
+        pageType === "article"
+          ? `/press/${slug}`
+          : pageType === "department"
+            ? `/departments/${slug}`
+            : slug === "home"
+              ? "/"
+              : `/${slug}`,
       ogImageUrl: sectionContent?.heroImage ?? null,
     },
   });

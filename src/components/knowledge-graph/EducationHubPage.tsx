@@ -54,6 +54,7 @@ export default function EducationHubPage() {
           title={EDUCATION_PAGE_HERO.title}
           subtitle={EDUCATION_PAGE_HERO.subtitle}
           stats={EDUCATION_STATS}
+          titleAs="h1"
         />
 
         <ul className="mt-10 grid gap-4 sm:grid-cols-2">

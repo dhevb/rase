@@ -2,6 +2,10 @@ import type { ContentLocale, Prisma } from "@prisma/client";
 import { prisma } from "@/server/db/prisma";
 import { SITE_URL, DEFAULT_OG_IMAGE, toCanonicalSiteUrl } from "@/config/site";
 import { ROBOTS_DISALLOW_PREFIXES } from "@/config/crawler-policy";
+import {
+  LEGACY_DEPARTMENT_ROOT_SLUGS,
+  normalizeCanonicalPath,
+} from "@/lib/seo/canonical-path";
 import { validateSchemaJsonLd } from "@/lib/seo/schema-json-ld";
 import { ServiceError } from "@/server/lib/errors";
 import { purgeCmsContentCaches } from "@/server/lib/cms-cache-purge";
@@ -266,9 +270,7 @@ export async function getSitemapEntries(locale?: ContentLocale) {
 
   return entries.map((e) => ({
     url: toCanonicalSiteUrl(
-      e.canonicalUrl?.startsWith("http")
-        ? e.canonicalUrl
-        : `${SITE_URL}${e.canonicalUrl ?? "/"}`
+      `${SITE_URL}${normalizeCanonicalPath(e.canonicalUrl ?? "/")}`
     ),
     lastModified: e.updatedAt,
     changeFrequency: (e.sitemapChangefreq ?? "weekly") as
@@ -296,6 +298,9 @@ export async function generateSitemapIndex() {
   });
 
   for (const p of pages) {
+    if (LEGACY_DEPARTMENT_ROOT_SLUGS.has(p.slug)) {
+      continue;
+    }
     const hasSeo = merged.some(
       (e) => e.url.includes(`/${p.slug}`) && e.locale === p.locale
     );

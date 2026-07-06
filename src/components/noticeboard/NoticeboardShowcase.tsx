@@ -18,6 +18,7 @@ export default function NoticeboardShowcase({ initialNotices }: Props) {
         title={NOTICEBOARD_PAGE_HERO.title}
         subtitle={NOTICEBOARD_PAGE_HERO.subtitle}
         stats={NOTICEBOARD_STATS}
+        titleAs="h1"
       />
       <div className="mt-10">
         <NoticeboardClient initialNotices={initialNotices} />

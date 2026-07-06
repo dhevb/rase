@@ -30,6 +30,7 @@
     "validate:open-graph": "node scripts/validate-open-graph.mjs",
     "setup:discovery-indexing": "node scripts/setup-discovery-indexing.mjs",
     "setup:search-console": "node scripts/setup-search-console.mjs",
+    "fix:department-canonicals": "node scripts/fix-department-canonicals.mjs",
     "validate:gsc-indexing": "node scripts/validate-gsc-indexing.mjs",
     "validate:gsc-indexing:quick": "node scripts/validate-gsc-indexing.mjs --quick",
     "verify:rollback": "node scripts/verify-rollback-readiness.mjs",

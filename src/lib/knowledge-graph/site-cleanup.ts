@@ -72,6 +72,12 @@ export const SITEMAP_EXCLUDED_PATHS = new Set([
   "Topics",
   "conclave",
   "coming-soon",
+  "home",
+  "academic-council",
+  "prabandhan",
+  "prachar",
+  "sampark",
+  "vitt",
   "past_event/Innovation_and_Entrepreneurship_Dhe_Workshop",
   ...PILLAR_REGISTRY.filter((p) => THIN_PILLAR_PATHS.has(p.path)).map((p) =>
     p.path.replace(/^\//, "")

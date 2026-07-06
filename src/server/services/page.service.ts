@@ -6,6 +6,7 @@ import { ServiceError } from "@/server/lib/errors";
 import { slugify, isPublishedStatus } from "@/server/lib/cms-utils";
 import { sanitizeCmsHtmlField } from "@/server/lib/cms-sanitize";
 import { purgeCmsContentCaches } from "@/server/lib/cms-cache-purge";
+import { defaultPageCanonicalUrl } from "@/lib/seo/canonical-path";
 
 export type CreatePageInput = {
   title: string;
@@ -103,7 +104,9 @@ export async function createPage(input: CreatePageInput) {
       entityId: page.id,
       locale,
       ...input.seo,
-      canonicalUrl: input.seo.canonicalUrl ?? `/${slug}`,
+      canonicalUrl:
+        input.seo.canonicalUrl ??
+        defaultPageCanonicalUrl(slug, input.pageType ?? "static"),
     });
   }
 

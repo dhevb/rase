@@ -51,6 +51,7 @@ export default function WorkshopsHubPage() {
         title={WORKSHOPS_PAGE_HERO.title}
         subtitle={WORKSHOPS_PAGE_HERO.subtitle}
         stats={WORKSHOPS_STATS}
+        titleAs="h1"
       />
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

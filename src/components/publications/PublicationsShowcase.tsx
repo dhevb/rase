@@ -21,6 +21,7 @@ export default function PublicationsShowcase() {
         title={PUBLICATIONS_PAGE_HERO.title}
         subtitle={PUBLICATIONS_PAGE_HERO.subtitle}
         stats={PUBLICATIONS_STATS}
+        titleAs="h1"
       />
 
       <section className="mt-10" aria-labelledby="proceedings-volumes">
