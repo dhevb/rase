@@ -20,6 +20,10 @@ export const CANONICAL_ROUTES = {
   downloads: "/downloads",
   speakers: "/speakers/directory",
   donation: "/donation",
+  about: {
+    nitHamirpur: "/about/nit-hamirpur",
+    unnatBharatAbhiyan: "/about/unnat-bharat-abhiyan",
+  },
   /** Accommodation registration — unified hub only (legacy `/accommodation` redirects here) */
   accommodation: "/registration",
   departments: {

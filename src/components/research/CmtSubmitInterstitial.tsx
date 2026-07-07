@@ -17,9 +17,9 @@ export default function CmtSubmitInterstitial() {
           <p className="text-sm font-bold uppercase tracking-widest text-brand-saffron">
             Research submission
           </p>
-          <h1 className="mt-2 text-2xl font-extrabold md:text-3xl">
+          <h2 className="mt-2 text-2xl font-extrabold md:text-3xl">
             Multi Track Conference — Microsoft CMT
-          </h1>
+          </h2>
           <p className="mt-2 text-sm text-white/85">
             Shiksha Mahakumbh 6.0 · {statusLabel}
           </p>

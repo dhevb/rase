@@ -45,6 +45,17 @@ export const DHE_ORGANIZATION = {
   },
 } as const;
 
+/** SMK 6.0 venue & local coordination — NIT Hamirpur (retain alongside DHE secretariat) */
+export const NIT_VENUE_CONTACT = {
+  label: "Event venue & local coordination",
+  organization: "National Institute of Technology Hamirpur",
+  email: "shikshamahakumbh@nith.ac.in",
+  phones: ["+91 94184 79215"],
+  venue: "NIT Hamirpur, Himachal Pradesh – 177005",
+  eventDates: "9–11 October 2026",
+  mapsQuery: "NIT+Hamirpur+Himachal+Pradesh",
+} as const;
+
 export const DHE_MAP_EMBED_URL = `https://maps.google.com/maps?q=${DHE_ORGANIZATION.address.mapsQuery}&hl=en&z=16&output=embed`;
 
 export const DHE_MAP_LINK = `https://www.google.com/maps/search/?api=1&query=${DHE_ORGANIZATION.address.mapsQuery}`;

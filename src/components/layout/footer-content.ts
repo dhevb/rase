@@ -25,6 +25,7 @@ export const quickLinks: FooterLink[] = [
   { name: "Notice Board", href: "/noticeboard" },
   { name: "Past Editions", href: "/past-events" },
   { name: "Introduction", href: "/introduction" },
+  { name: "About NIT Hamirpur", href: "/about/nit-hamirpur" },
   { name: "Committees", href: "/committees" },
   { name: "Press Releases", href: "/press" },
   { name: "Merchandise", href: "/merchandise" },

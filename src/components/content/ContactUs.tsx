@@ -6,6 +6,8 @@ import { phoneToWhatsAppHref } from "@/data/contact-hub";
 
 const ContactUsForm = dynamic(() => import("@/components/contact/ContactUsForm"));
 const ContactMap = dynamic(() => import("@/components/contact/ContactMap"));
+const ContactVenueSection = dynamic(() => import("@/components/contact/ContactVenueSection"));
+const NitTravelGuide = dynamic(() => import("@/components/contact/NitTravelGuide"));
 
 const contactCards = [
   {
@@ -103,9 +105,13 @@ export default function ContactUs() {
     <div className="bg-white">
       <div className="mx-auto max-w-6xl px-4 py-6 md:px-8 md:py-10">
         <section aria-labelledby="contact-cards-heading" className="mb-12">
-          <h2 id="contact-cards-heading" className="mb-5 text-lg font-bold text-brand-navy md:text-xl">
-            Contact information
+          <h2 id="contact-cards-heading" className="mb-2 text-lg font-bold text-brand-navy md:text-xl">
+            Organising secretariat
           </h2>
+          <p className="mb-5 max-w-3xl text-sm text-slate-600">
+            Department of Holistic Education — for registration support, partnerships, media
+            enquiries, donations, and programme information across Shiksha Mahakumbh 6.0.
+          </p>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {contactCards.map((card) => (
               <div
@@ -124,10 +130,14 @@ export default function ContactUs() {
           </div>
         </section>
 
+        <ContactVenueSection />
+
         <div className="grid gap-10 lg:grid-cols-2">
           <ContactUsForm />
           <ContactMap />
         </div>
+
+        <NitTravelGuide />
 
         <p className="mt-10 text-center text-sm text-gray-500">
           For registration support, visit{" "}

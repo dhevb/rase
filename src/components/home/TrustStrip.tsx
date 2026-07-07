@@ -3,7 +3,8 @@ import { sanitizeExternalUrl } from "@/lib/security/safe-external-url";
 import type { TrustStripContent } from "@/lib/home/build-home-sections";
 
 function LogoTile({ logo }: { logo: TrustStripContent["logos"][number] }) {
-  const safeHref = sanitizeExternalUrl(logo.href);
+  const isInternal = logo.href.startsWith("/");
+  const safeHref = isInternal ? logo.href : sanitizeExternalUrl(logo.href);
   const image = (
     <img
       src={logo.src}
@@ -18,6 +19,18 @@ function LogoTile({ logo }: { logo: TrustStripContent["logos"][number] }) {
 
   if (!safeHref) {
     return <div className="opacity-80">{image}</div>;
+  }
+
+  if (isInternal) {
+    return (
+      <Link
+        href={safeHref}
+        className="opacity-80 transition hover:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-saffron"
+        aria-label={logo.alt}
+      >
+        {image}
+      </Link>
+    );
   }
 
   return (

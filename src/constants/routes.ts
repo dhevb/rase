@@ -19,6 +19,8 @@ export const ROUTES = {
   downloads: CANONICAL_ROUTES.downloads,
   speakers: CANONICAL_ROUTES.speakers,
   donation: CANONICAL_ROUTES.donation,
+  aboutNit: CANONICAL_ROUTES.about.nitHamirpur,
+  aboutUba: CANONICAL_ROUTES.about.unnatBharatAbhiyan,
   privacy: "/privacy-policy",
   faq: "/faq",
   newsletterUnsubscribe: "/newsletter/unsubscribe",

@@ -28,6 +28,8 @@ export const ABOUT_NAV_GROUPS: MenuGroup[] = [
     label: "Overview",
     items: [
       { path: ROUTES.introduction, title: "Introduction" },
+      { path: ROUTES.aboutNit, title: "NIT Hamirpur" },
+      { path: ROUTES.aboutUba, title: "Unnat Bharat Abhiyan" },
       { path: "/introduction#leadership", title: "Leadership" },
       { path: "/past-events", title: "Past Editions" },
       { path: "/abhiyaninphotoframe", title: "Photo Frame" },

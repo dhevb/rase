@@ -1,4 +1,4 @@
-﻿# Cursor indexing exclusions — keeps IDE fast; folders remain on disk for builds.
+﻿# Cursor indexing exclusions — keeps IDE fast
 node_modules/
 .next/
 .vercel/
@@ -8,18 +8,14 @@ coverage/
 .turbo/
 *.log
 tsconfig.tsbuildinfo
-
-# Large static assets (not needed for code intelligence)
 public/
-
-# Generated exports and audit output
 exports/
 reports/
+agent-tools/
 docs/lighthouse/
-docs/launch-audit-results.json
-docs/production-go-live-results.json
-
-# Script temp / probe artifacts
+docs/audit/*.csv
+docs/audit/*.json
+**/*-pages.csv
 scripts/pdf-extract-tmp/
 scripts/link-verify-result.json
 scripts/**/node_modules/

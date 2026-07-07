@@ -1,6 +1,6 @@
 import { CANONICAL_ROUTES } from "@/constants/canonical-routes";
 import { SITE_URL } from "@/config/site";
-import { DHE_ORGANIZATION } from "@/config/organization";
+import { DHE_ORGANIZATION, NIT_VENUE_CONTACT } from "@/config/organization";
 
 export const CONTACT_PATH = CANONICAL_ROUTES.contact;
 
@@ -36,6 +36,10 @@ export const CONTACT_QUICK_LINKS = [
 
 export const CONTACT_SUBJECT_PRESETS = [
   "Registration support",
+  "Conference",
+  "Conclave",
+  "Exhibition",
+  "Project Expo",
   "Partnership / institution",
   "Media enquiry",
   "Donation / sponsorship",
@@ -71,6 +75,10 @@ export const CONTACT_FAQ = [
   {
     question: "How can I reach the team on WhatsApp?",
     answer: `Use the WhatsApp links next to our phone numbers on this page, or call ${DHE_ORGANIZATION.phones.join(" / ")}.`,
+  },
+  {
+    question: "Who do I contact for venue and travel to NIT Hamirpur?",
+    answer: `For campus access and local logistics, email ${NIT_VENUE_CONTACT.email} or call ${NIT_VENUE_CONTACT.phones.join(" / ")}. See the travel guide on this page for railway, bus, and air routes.`,
   },
   {
     question: "How quickly will I receive a reply?",

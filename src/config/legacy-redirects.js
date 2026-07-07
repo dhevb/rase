@@ -157,7 +157,12 @@ const LEGACY_REDIRECTS = [
   { source: "/teacher-development", destination: "/upcoming-events", permanent: true },
   { source: "/student-development", destination: "/upcoming-events", permanent: true },
   { source: "/educational-technology", destination: "/upcoming-events", permanent: true },
-  { source: "/olympiad", destination: "/upcoming-events", permanent: true },
+  { source: "/olympiad", destination: "/departments/academic-council#olympiad", permanent: true },
+  { source: "/exhibition", destination: "/departments/academic-council#exhibition", permanent: true },
+  { source: "/bal-shodh", destination: "/departments/academic-council#bal-shodh-patrika", permanent: true },
+  { source: "/bal-shodh-patrika", destination: "/departments/academic-council#bal-shodh-patrika", permanent: true },
+  { source: "/about/department-of-holistic-education", destination: "/introduction", permanent: true },
+  { source: "/about/vidya-bharati", destination: "/introduction", permanent: true },
   { source: "/awards", destination: "/upcoming-events", permanent: true },
   // Phase 3 — hub consolidation
   { source: "/events", destination: "/conferences", permanent: true },
