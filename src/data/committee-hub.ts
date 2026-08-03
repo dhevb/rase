@@ -84,7 +84,7 @@ export const COMMITTEE_HUB_EDITIONS: CommitteeHubEdition[] = [
     committeeLink: committeePathForEdition(COMMITTEE_EDITION_6_0.edition),
     status: "upcoming",
     description:
-      "National leadership for Shiksha, Prakriti aur Pragati — conclaves, research tracks, olympiads, and whole-of-society programmes at NIT Hamirpur.",
+      "Organising committee for Shiksha, Prakriti aur Pragati — DHE with NIT Hamirpur, IIT Mandi, and CUHP Dharamshala. Conclaves, research tracks, olympiads, and whole-of-society programmes.",
   },
   {
     ...COMMITTEE_EDITION_5_0,

@@ -1,6 +1,12 @@
 import Link from "next/link";
+import BrochureDownloadLink from "@/components/analytics/BrochureDownloadLink";
 import type { CommitteeEditionData } from "@/data/committee-members";
 import { countCommitteeMembers } from "@/data/committee-members";
+import { COMMITTEE_EDITION_6_0_ORGANIZERS } from "@/data/committee-members/edition-6-0";
+import {
+  getBrochureDownloadUrl,
+  getCommitteeBrochure,
+} from "@/data/committee-brochures";
 
 interface CommitteeEditionHeaderProps {
   edition: CommitteeEditionData;
@@ -8,6 +14,8 @@ interface CommitteeEditionHeaderProps {
 
 export default function CommitteeEditionHeader({ edition }: CommitteeEditionHeaderProps) {
   const memberCount = countCommitteeMembers(edition);
+  const brochure = getCommitteeBrochure(edition.edition);
+  const isEdition6 = edition.edition === "6.0";
 
   return (
     <header className="mb-10 overflow-hidden rounded-2xl border border-brand-saffron/20 bg-gradient-to-br from-brand-navy via-brand-navy-light to-brand-navy text-white shadow-lg print:mb-4 print:rounded-none print:border-slate-300 print:shadow-none">
@@ -19,6 +27,11 @@ export default function CommitteeEditionHeader({ edition }: CommitteeEditionHead
         <p className="mt-3 max-w-3xl text-sm leading-relaxed text-white/85 md:text-base">
           {edition.theme}
         </p>
+        {isEdition6 ? (
+          <p className="mt-3 max-w-3xl text-xs leading-relaxed text-white/75 md:text-sm">
+            {COMMITTEE_EDITION_6_0_ORGANIZERS}
+          </p>
+        ) : null}
         <dl className="mt-5 grid gap-3 sm:grid-cols-3">
           <div className="rounded-xl border border-white/15 bg-white/10 px-4 py-3 backdrop-blur-sm">
             <dt className="text-[10px] font-semibold uppercase tracking-wide text-white/70">
@@ -40,9 +53,19 @@ export default function CommitteeEditionHeader({ edition }: CommitteeEditionHead
           </div>
         </dl>
         <div className="mt-5 flex flex-wrap gap-3 print:hidden">
+          {brochure ? (
+            <BrochureDownloadLink
+              href={getBrochureDownloadUrl(brochure)}
+              plan={`committee-header-brochure-${edition.edition}`}
+              className="inline-flex min-h-[44px] items-center rounded-xl bg-brand-saffron px-5 py-2.5 text-sm font-semibold text-brand-navy transition hover:bg-brand-saffron-dark hover:text-white"
+            >
+              Download Brochure
+              <span className="ml-1 text-xs font-normal opacity-80">({brochure.fileSize})</span>
+            </BrochureDownloadLink>
+          ) : null}
           <Link
             href={edition.eventHref}
-            className="inline-flex min-h-[44px] items-center rounded-xl bg-brand-saffron px-5 py-2.5 text-sm font-semibold text-brand-navy transition hover:bg-brand-saffron-dark hover:text-white"
+            className="inline-flex min-h-[44px] items-center rounded-xl border border-white/30 bg-white/10 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-white/20"
           >
             View Edition Details
           </Link>
