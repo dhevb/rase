@@ -60,7 +60,7 @@ export default function CommitteeExportActions({
   if (variant === "compact") {
     return (
       <BrochureDownloadLink
-        href={brochure ? getBrochureViewUrl(brochure.driveFileId) : "#"}
+        href={brochure ? getBrochureViewUrl(brochure) : "#"}
         plan={`committee-brochure-${edition.edition}`}
         className={`${btnBase} border border-brand-saffron/40 bg-brand-saffron/10 text-brand-navy hover:bg-brand-saffron/20 focus-visible:outline-brand-saffron`}
       >
@@ -82,7 +82,7 @@ export default function CommitteeExportActions({
         {brochure ? (
           <>
             <BrochureDownloadLink
-              href={getBrochureDownloadUrl(brochure.driveFileId)}
+              href={getBrochureDownloadUrl(brochure)}
               plan={`committee-brochure-download-${edition.edition}`}
               className={`${btnBase} bg-brand-navy text-white hover:bg-brand-navy-light focus-visible:outline-brand-navy`}
             >
@@ -90,7 +90,7 @@ export default function CommitteeExportActions({
               <span className="text-xs font-normal opacity-80">({brochure.fileSize})</span>
             </BrochureDownloadLink>
             <BrochureDownloadLink
-              href={getBrochureViewUrl(brochure.driveFileId)}
+              href={getBrochureViewUrl(brochure)}
               plan={`committee-brochure-view-${edition.edition}`}
               className={`${btnBase} border border-brand-navy/20 bg-white text-brand-navy hover:bg-brand-navy/5 focus-visible:outline-brand-navy`}
             >

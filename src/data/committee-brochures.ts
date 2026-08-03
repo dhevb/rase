@@ -4,7 +4,9 @@ export const COMMITTEE_BROCHURES_FOLDER_URL =
 
 export type CommitteeBrochureRecord = {
   edition: string;
-  driveFileId: string;
+  driveFileId?: string;
+  /** Site-hosted PDF path (preferred over Google Drive when set). */
+  localPath?: string;
   fileName: string;
   fileSize: string;
 };
@@ -42,7 +44,7 @@ export const COMMITTEE_BROCHURES: CommitteeBrochureRecord[] = [
   },
   {
     edition: "6.0",
-    driveFileId: "1rokyd0hY6w_ekdk3jFvIYwkd-lDh_VYN",
+    localPath: "/brochures/brochure-shiksha-mahakumbh-6.0.pdf",
     fileName: "Brochure Shiksha Mahakumbh 6.0.pdf",
     fileSize: "28.6 MB",
   },
@@ -56,10 +58,12 @@ export function getCommitteeBrochure(edition: string): CommitteeBrochureRecord |
   return COMMITTEE_BROCHURE_BY_EDITION[edition];
 }
 
-export function getBrochureViewUrl(driveFileId: string): string {
-  return `https://drive.google.com/file/d/${driveFileId}/view?usp=sharing`;
+export function getBrochureViewUrl(brochure: CommitteeBrochureRecord): string {
+  if (brochure.localPath) return brochure.localPath;
+  return `https://drive.google.com/file/d/${brochure.driveFileId}/view?usp=sharing`;
 }
 
-export function getBrochureDownloadUrl(driveFileId: string): string {
-  return `https://drive.google.com/uc?export=download&id=${driveFileId}`;
+export function getBrochureDownloadUrl(brochure: CommitteeBrochureRecord): string {
+  if (brochure.localPath) return brochure.localPath;
+  return `https://drive.google.com/uc?export=download&id=${brochure.driveFileId}`;
 }

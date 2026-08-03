@@ -331,7 +331,7 @@ export default function CommitteesShowcase() {
                     </div>
                     {brochure ? (
                       <BrochureDownloadLink
-                        href={getBrochureViewUrl(brochure.driveFileId)}
+                        href={getBrochureViewUrl(brochure)}
                         plan={`committee-hub-brochure-${edition.edition}`}
                         className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm font-semibold text-brand-navy transition hover:border-brand-saffron/40 hover:bg-brand-saffron/10"
                       >
