@@ -99,7 +99,7 @@ export const ACADEMIC_COUNCIL_FAQ = [
   {
     question: "What is the difference between Conference and Multi-Track Conference?",
     answer:
-      "Multi-Track Conference is the flagship hybrid international research conference at Shiksha Mahakumbh 6.0 (NIT Hamirpur, 9–11 Oct 2026) with 15 peer-reviewed tracks. Conference (under the same Academic Council menu) is a separate year-round series at partner universities and colleges — such as AIST-2026 at SLIET Longowal — organized under the Shiksha Mahakumbh Abhiyan umbrella with DHE between main Mahakumbh editions.",
+      "Multi-Track Conference is the flagship hybrid international research conference at Shiksha Mahakumbh 6.0 (NIT Hamirpur, 9–11 Oct 2026) with 15 peer-reviewed tracks. Conference (under the same Academic Council menu) is a separate year-round series at partner universities and colleges — including AIST-2026 at SLIET Longowal (21–22 Aug 2026) and the IKS for Viksit Bharat 2047 conference at Arni University (11–12 Sept 2026) — organized under the Shiksha Mahakumbh Abhiyan umbrella with DHE between main Mahakumbh editions.",
   },
   {
     question: "When and where is Shiksha Mahakumbh 6.0 Academic Council?",

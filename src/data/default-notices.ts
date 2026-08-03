@@ -6,6 +6,47 @@ import { CMT_SUBMISSION_URL } from "@/lib/registration/config";
 /** Published fallback notices when CMS / database has none (English). */
 export const DEFAULT_NOTICES_EN: CmsNotice[] = [
   {
+    id: "default-aist-2026-sliet",
+    title: "AIST-2026 — National Conference on AI in Science & Technology (SLIET Longowal)",
+    slug: "aist-2026-sliet-longowal",
+    description:
+      "National Conference on Artificial Intelligence in Science and Technology (AIST-2026) will be held at SLIET Longowal (Punjab) on 21–22 August 2026 in hybrid mode, under the academic umbrella of Shiksha Mahakumbh Abhiyan with the Department of Holistic Education (DHE). Key dates: abstract submission 15 July 2026; acceptance 25 July 2026; registration 1 August 2026; full paper 10 August 2026. Fees from ₹500 (research scholars). Download the official brochure and register via the Academic Council → Conference tab.",
+    priority: 12,
+    isPinned: true,
+    publishAt: "2026-07-01T00:00:00.000Z",
+    expireAt: null,
+    category: { name: "Programmes", slug: "programmes" },
+    attachments: [
+      {
+        id: "att-aist-2026-pdf",
+        fileName: "AIST-2026-SLIET-Longowal-brochure.pdf",
+        fileUrl: "/conferences/aist-2026-sliet-longowal.pdf",
+        mimeType: "application/pdf",
+      },
+    ],
+  },
+  {
+    id: "default-iks-arni-2026",
+    title:
+      "IKS @2047 — International Conference on Indian Knowledge Systems (Arni University)",
+    slug: "iks-viksit-bharat-2026-arni-university",
+    description:
+      "International Conference on Indian Knowledge Systems for Viksit Bharat 2047 will be held at Arni University, Kathgarh, Indora, Kangra (H.P.) on 11–12 September 2026 in hybrid mode, under the umbrella of Shiksha Mahakumbh Abhiyan with DHE, Central University of Himachal Pradesh, Institute of Civilizational Studies (USA), and Kavya Garima Hindi Sahitya Manch. Theme: Bridging Traditions & Transforming Futures. Tracks cover IKS in science & engineering, arts & humanities, constitution & governance, and business management. Key dates: abstract 27 August 2026; acceptance 1 September 2026; full paper 5 September 2026; registration 8 September 2026. Contact: conference@arniuniversity.edu.in · +91 98053 84555. Brochure PDF attached; full details on Academic Council → Conference.",
+    priority: 11,
+    isPinned: true,
+    publishAt: "2026-08-01T00:00:00.000Z",
+    expireAt: null,
+    category: { name: "Programmes", slug: "programmes" },
+    attachments: [
+      {
+        id: "att-iks-arni-2026-pdf",
+        fileName: "IKS-Viksit-Bharat-2026-Arni-University-brochure.pdf",
+        fileUrl: "/conferences/iks-viksit-bharat-2026-arni-university.pdf",
+        mimeType: "application/pdf",
+      },
+    ],
+  },
+  {
     id: "default-registration-open",
     title: `Registration Open — ${event.name}`,
     slug: "registration-open-smk-6",
@@ -113,6 +154,46 @@ export const DEFAULT_NOTICES_EN: CmsNotice[] = [
 
 /** Hindi fallback notices (used when locale is hi and DB is empty). */
 export const DEFAULT_NOTICES_HI: CmsNotice[] = [
+  {
+    id: "default-aist-2026-sliet-hi",
+    title: "AIST-2026 — कृत्रिम बुद्धिमत्ता सम्मेलन (SLIET लौंगोवाल)",
+    slug: "aist-2026-sliet-longowal-hi",
+    description:
+      "कृत्रिम बुद्धिमत्ता विज्ञान एवं प्रौद्योगिकी राष्ट्रीय सम्मेलन (AIST-2026) SLIET लौंगोवाल में 21–22 अगस्त 2026 (हाइब्रिड) — शिक्षा महाकुंभ अभियान व डीएचई के अंतर्गत। सार-पत्र अंतिम तिथि 15 जुलाई 2026। ब्रॉशर शैक्षिक परिषद → सम्मेलन टैब पर उपलब्ध।",
+    priority: 12,
+    isPinned: true,
+    publishAt: "2026-07-01T00:00:00.000Z",
+    expireAt: null,
+    category: { name: "कार्यक्रम", slug: "programmes" },
+    attachments: [
+      {
+        id: "att-aist-2026-pdf-hi",
+        fileName: "AIST-2026-SLIET-Longowal-brochure.pdf",
+        fileUrl: "/conferences/aist-2026-sliet-longowal.pdf",
+        mimeType: "application/pdf",
+      },
+    ],
+  },
+  {
+    id: "default-iks-arni-2026-hi",
+    title: "IKS @2047 — भारतीय ज्ञान प्रणाली सम्मेलन (अरनी विश्वविद्यालय)",
+    slug: "iks-viksit-bharat-2026-arni-university-hi",
+    description:
+      "अंतरराष्ट्रीय सम्मेलन — भारतीय ज्ञान प्रणालियाँ विकसित भारत 2047 हेतु, अरनी विश्वविद्यालय (काठगढ़, इंदौरा, कांगड़ा) में 11–12 सितंबर 2026 (हाइब्रिड), शिक्षा महाकुंभ अभियान व डीएचई के अंतर्गत। सार-पत्र 27 अगस्त 2026। संपर्क: conference@arniuniversity.edu.in। ब्रॉशर शैक्षिक परिषद → सम्मेलन टैब पर।",
+    priority: 11,
+    isPinned: true,
+    publishAt: "2026-08-01T00:00:00.000Z",
+    expireAt: null,
+    category: { name: "कार्यक्रम", slug: "programmes" },
+    attachments: [
+      {
+        id: "att-iks-arni-2026-pdf-hi",
+        fileName: "IKS-Viksit-Bharat-2026-Arni-University-brochure.pdf",
+        fileUrl: "/conferences/iks-viksit-bharat-2026-arni-university.pdf",
+        mimeType: "application/pdf",
+      },
+    ],
+  },
   {
     id: "default-registration-hi",
     title: "शिक्षा महाकुंभ 6.0 — पंजीकरण खुला",

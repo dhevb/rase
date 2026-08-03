@@ -107,6 +107,11 @@ export const ACADEMIC_PROGRAMME_HUB: ProgrammeHubSection[] = [
         titleEn: "AIST-2026 — AI in Science & Technology (SLIET Longowal)",
         titleHi: "कृत्रिम बुद्धिमत्ता — विज्ञान एवं प्रौद्योगिकी",
       },
+      {
+        titleEn:
+          "IKS @2047 — Indian Knowledge Systems for Viksit Bharat (Arni University)",
+        titleHi: "भारतीय ज्ञान परम्परा — विकसित एवं आत्मनिर्भर भारत @2047",
+      },
       { titleEn: "Additional state university & college conferences — coming soon" },
     ],
     footerNote:

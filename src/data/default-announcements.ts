@@ -27,6 +27,26 @@ export type ResolvedAnnouncementItem = {
 
 const DEFAULT_EN: Omit<ResolvedAnnouncementItem, "id">[] = [
   {
+    title: "AIST-2026 @ SLIET Longowal",
+    summary: "AI in Science & Technology — 21–22 August 2026",
+    detail:
+      "National conference on Artificial Intelligence in Science and Technology at SLIET Longowal, under the Shiksha Mahakumbh Abhiyan umbrella with DHE. Abstract deadline 15 July 2026. Brochure and registration on the Conference tab.",
+    href: `${CANONICAL_ROUTES.departments.academicCouncil}#conference`,
+    external: false,
+    cta: "View AIST-2026",
+    iconKey: "research",
+  },
+  {
+    title: "IKS Conference @ Arni University",
+    summary: "Indian Knowledge Systems for Viksit Bharat 2047 — 11–12 Sept 2026",
+    detail:
+      "International hybrid conference on Indian Knowledge Systems for Viksit Bharat 2047 at Arni University (Kathgarh, Kangra), with DHE and partners. Abstract deadline 27 August 2026. Download brochure and contact details on the Conference tab.",
+    href: `${CANONICAL_ROUTES.departments.academicCouncil}#conference`,
+    external: false,
+    cta: "View IKS conference",
+    iconKey: "research",
+  },
+  {
     title: "Programmes @ Shiksha Mahakumbh 6.0",
     summary: "7 conclaves, olympiads, exhibitions, awards & more",
     detail:
@@ -69,6 +89,26 @@ const DEFAULT_EN: Omit<ResolvedAnnouncementItem, "id">[] = [
 ];
 
 const DEFAULT_HI: Omit<ResolvedAnnouncementItem, "id">[] = [
+  {
+    title: "AIST-2026 — SLIET लौंगोवाल",
+    summary: "कृत्रिम बुद्धिमत्ता — 21–22 अगस्त 2026",
+    detail:
+      "SLIET लौंगोवाल में शिक्षा महाकुंभ अभियान व डीएचई के अंतर्गत राष्ट्रीय सम्मेलन। ब्रॉशर और पंजीकरण शैक्षिक परिषद — सम्मेलन टैब पर।",
+    href: `${CANONICAL_ROUTES.departments.academicCouncil}#conference`,
+    external: false,
+    cta: "AIST-2026 देखें",
+    iconKey: "research",
+  },
+  {
+    title: "IKS सम्मेलन — अरनी विश्वविद्यालय",
+    summary: "भारतीय ज्ञान प्रणाली — 11–12 सितंबर 2026",
+    detail:
+      "Viksit Bharat 2047 हेतु भारतीय ज्ञान प्रणाली पर अंतरराष्ट्रीय सम्मेलन (अरनी विश्वविद्यालय, कांगड़ा)। ब्रॉशर शैक्षिक परिषद — सम्मेलन टैब पर उपलब्ध।",
+    href: `${CANONICAL_ROUTES.departments.academicCouncil}#conference`,
+    external: false,
+    cta: "IKS सम्मेलन देखें",
+    iconKey: "research",
+  },
   {
     title: "शिक्षा महाकुंभ 6.0 — कार्यक्रम",
     summary: "अधिवेशन, ओलंपियाड, प्रदर्शनी एवं पुरस्कार",
