@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import HubGradientBanner from "@/components/ui/HubGradientBanner";
 import {
+  DHE_JOURNAL_LATEST_ISSUE,
   PUBLICATIONS_PAGE_HERO,
   PUBLICATIONS_STATS,
 } from "@/data/publications-hub";
@@ -215,7 +216,17 @@ export default function PublicationsShowcase() {
       </section>
 
       <p className="mt-8 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-600">
-        Official journal platform:{" "}
+        Latest journal issue:{" "}
+        <a
+          href={DHE_JOURNAL_LATEST_ISSUE.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-semibold text-brand-blue hover:underline"
+        >
+          {DHE_JOURNAL_LATEST_ISSUE.label}
+        </a>
+        {" "}
+        ({DHE_JOURNAL_LATEST_ISSUE.published}, {DHE_JOURNAL_LATEST_ISSUE.papers} papers) — open access on{" "}
         <a
           href={DHE_JOURNALS_URL}
           target="_blank"
@@ -224,7 +235,7 @@ export default function PublicationsShowcase() {
         >
           pub.dhe.org.in
         </a>
-        {" "}— open access for researchers and institutions globally.
+        .
       </p>
     </div>
   );
