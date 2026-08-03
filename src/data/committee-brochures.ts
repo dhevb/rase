@@ -45,8 +45,8 @@ export const COMMITTEE_BROCHURES: CommitteeBrochureRecord[] = [
   {
     edition: "6.0",
     localPath: "/brochures/brochure-shiksha-mahakumbh-6.0.pdf",
-    fileName: "Brochure Shiksha Mahakumbh 6.0.pdf",
-    fileSize: "28.6 MB",
+    fileName: "Shiksha Mahakumbh Brochure 6.0.pdf",
+    fileSize: "15.4 MB",
   },
 ];
 
