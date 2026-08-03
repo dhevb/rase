@@ -4,7 +4,7 @@ import { DynamicFooter } from "@/components/layout/SiteDynamicChrome";
 import ShowcaseHero from "@/components/showcase/ShowcaseHero";
 import PageCtaSection from "@/components/layouts/PageCtaSection";
 import PressShareButtons from "./PressShareButtons";
-import RelatedContentSection from "@/components/knowledge-graph/RelatedContentSection";
+import RelatedProgramsSection from "@/components/knowledge-graph/RelatedProgramsSection";
 import { CmsProvider } from "@/lib/cms/context";
 import { loadPublicChromeCms } from "@/lib/cms/server";
 
@@ -49,7 +49,7 @@ export default async function PressArticleShell({
             shareImage={shareImage}
           />
         </main>
-        <RelatedContentSection
+        <RelatedProgramsSection
           path={canonicalPath}
           title="Related programmes & resources"
         />

@@ -12,7 +12,7 @@ import { UPCOMING_EDITION } from "@/data/past-editions";
 import { committeePathForEdition } from "@/lib/committee/edition-slugs";
 import { CANONICAL_ROUTES } from "@/constants/canonical-routes";
 import { SITE_URL } from "@/config/site";
-import { COMMITTEE_BROCHURES_FOLDER_URL } from "@/data/committee-brochures";
+import { SITE_QUICK_LINKS } from "@/data/site-quick-links";
 
 export const COMMITTEES_HERO_IMAGE = "/branding/shiksha-mahakumbh-brand-hero.png";
 
@@ -36,19 +36,7 @@ export const COMMITTEES_BREADCRUMBS = [
   { name: "Organising Committees", path: CANONICAL_ROUTES.committees },
 ] as const;
 
-export const COMMITTEES_QUICK_LINKS: ReadonlyArray<{
-  label: string;
-  href: string;
-  icon: string;
-  external?: boolean;
-}> = [
-  { label: "Register for SMK 6.0", href: "/registration", icon: "✅" },
-  { label: "Past Editions", href: "/past-events", icon: "🗓️" },
-  { label: "Abhiyan Photo Frame", href: "/abhiyaninphotoframe", icon: "📜" },
-  { label: "Academic Council", href: "/departments/academic-council", icon: "🎓" },
-  { label: "Speaker Directory", href: "/speakers/directory", icon: "🎤" },
-  { label: "All Brochures (PDF)", href: COMMITTEE_BROCHURES_FOLDER_URL, icon: "📄", external: true },
-];
+export const COMMITTEES_QUICK_LINKS = SITE_QUICK_LINKS;
 
 export const COMMITTEES_SEO_KEYWORDS = [
   "Shiksha Mahakumbh committee",

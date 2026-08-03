@@ -2,7 +2,7 @@ import ShowcaseHero from "@/components/showcase/ShowcaseHero";
 import NavBarShell, { navMenusFromCms } from "@/components/layout/navbar/NavBarShell";
 import { DynamicFooter } from "@/components/layout/SiteDynamicChrome";
 import PageCtaSection from "./PageCtaSection";
-import RelatedContentSection from "@/components/knowledge-graph/RelatedContentSection";
+import RelatedProgramsSection from "@/components/knowledge-graph/RelatedProgramsSection";
 import BreadcrumbJsonLd from "@/components/seo/BreadcrumbJsonLd";
 import { CmsProvider } from "@/lib/cms/context";
 import { loadPublicChromeCms } from "@/lib/cms/server";
@@ -18,6 +18,7 @@ export default async function PublicPageLayout({
   showCta = true,
   relatedPath,
   relatedTitle = "Related programmes & resources",
+  showSiteQuickLinks = true,
   breadcrumbs,
   children,
   mainClassName = "",
@@ -50,9 +51,10 @@ export default async function PublicPageLayout({
           )}
         </main>
         {relatedPath ? (
-          <RelatedContentSection
+          <RelatedProgramsSection
             path={relatedPath}
             title={relatedTitle}
+            showQuickLinks={showSiteQuickLinks}
             className="mx-auto max-w-5xl px-4 py-8"
           />
         ) : null}

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { InstitutionalAboutPage } from "@/data/institutional-about-pages";
+import SiteQuickLinksSection from "@/components/layout/SiteQuickLinksSection";
 import { CtaButton } from "@/components/ui";
 import { ROUTES } from "@/constants/routes";
 
@@ -32,7 +33,9 @@ export default function InstitutionalAboutView({ page }: Props) {
         </div>
       ) : null}
 
-      <section aria-labelledby="related-about-links" className="mt-12 border-t border-slate-100 pt-8">
+      <SiteQuickLinksSection className="mt-12 border-t border-slate-100 pt-8" />
+
+      <section aria-labelledby="related-about-links" className="mt-8 border-t border-slate-100 pt-8">
         <h2 id="related-about-links" className="text-lg font-bold text-brand-navy">
           Related programmes &amp; resources
         </h2>

@@ -17,6 +17,7 @@ export interface PublicPageShellProps {
   showCta?: boolean;
   relatedPath?: string;
   relatedTitle?: string;
+  showSiteQuickLinks?: boolean;
   breadcrumbs?: { name: string; path: string }[];
   children: ReactNode;
   mainClassName?: string;

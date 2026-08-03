@@ -9,7 +9,6 @@ import BreadcrumbNav from "@/components/ui/BreadcrumbNav";
 import {
   COMMITTEES_BREADCRUMBS,
   COMMITTEES_HERO_IMAGE,
-  COMMITTEES_QUICK_LINKS,
   COMMITTEES_UPCOMING_CTA,
   COMMITTEE_HUB_EDITIONS,
   buildCommitteeHubStats,
@@ -83,35 +82,9 @@ export default function CommitteesShowcase() {
         className="-mt-2 mb-6"
       />
 
-      <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {COMMITTEES_QUICK_LINKS.map((link) =>
-          link.external ? (
-            <a
-              key={link.href}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex min-h-[44px] items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy transition hover:border-brand-saffron/40 hover:shadow-sm"
-            >
-              <span aria-hidden>{link.icon}</span>
-              {link.label}
-            </a>
-          ) : (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="flex min-h-[44px] items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy transition hover:border-brand-saffron/40 hover:shadow-sm"
-            >
-              <span aria-hidden>{link.icon}</span>
-              {link.label}
-            </Link>
-          )
-        )}
-      </section>
-
       <section
         aria-labelledby="committee-hub-banner"
-        className="mt-6 overflow-hidden rounded-2xl border border-brand-saffron/25 bg-gradient-to-br from-brand-navy via-brand-navy-light to-brand-navy p-5 text-white shadow-xl md:rounded-3xl md:p-8"
+        className="overflow-hidden rounded-2xl border border-brand-saffron/25 bg-gradient-to-br from-brand-navy via-brand-navy-light to-brand-navy p-5 text-white shadow-xl md:rounded-3xl md:p-8"
       >
         <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-saffron md:text-xs">
           Governance & Leadership · National Education Movement

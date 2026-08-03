@@ -48,6 +48,7 @@ export default async function InstitutionalAboutPage({ params }: Props) {
           accent: "brand",
         }}
         relatedPath={page.path}
+        showSiteQuickLinks={false}
         showCta={false}
         skipContainer
       >
