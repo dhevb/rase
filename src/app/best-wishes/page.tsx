@@ -6,6 +6,7 @@ import {
   BEST_WISHES_HERO_IMAGE,
   BEST_WISHES_HERO_IMAGE_ALT,
   BEST_WISHES_PAGE_HERO,
+  BEST_WISHES_QUICK_LINKS,
 } from "@/data/best-wishes-hub";
 
 export default function BestWishesPage() {
@@ -23,6 +24,7 @@ export default function BestWishesPage() {
       showCta={false}
       breadcrumbs={[...BEST_WISHES_BREADCRUMBS]}
       relatedPath={CANONICAL_ROUTES.bestWishes}
+      quickLinks={[...BEST_WISHES_QUICK_LINKS]}
       skipContainer
     >
       <BestWishesShowcase />

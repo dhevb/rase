@@ -1,5 +1,6 @@
 import { CANONICAL_ROUTES } from "@/constants/canonical-routes";
 import { SITE_URL } from "@/config/site";
+import type { SiteQuickLink } from "@/data/site-quick-links";
 import { committeePathForEdition } from "@/lib/committee/edition-slugs";
 import { CMT_SUBMISSION_URL } from "@/lib/registration/config";
 import { ACADEMIC_PUBLICATION_NOTE } from "@/data/academic-council-tracks";
@@ -40,17 +41,17 @@ export const ACADEMIC_COUNCIL_BREADCRUMBS = [
   { name: "Academic Council", path: ACADEMIC_COUNCIL_PATH },
 ] as const;
 
-export const ACADEMIC_COUNCIL_QUICK_LINKS: ReadonlyArray<{
-  label: string;
-  href: string;
-  external?: boolean;
-}> = [
-  { label: "Register for SMK 6.0", href: CANONICAL_ROUTES.registration },
-  { label: "Submit Paper (CMT)", href: CMT_SUBMISSION_URL, external: true },
-  { label: "Edition 6.0 Brochure", href: `${CANONICAL_ROUTES.downloads}#edition-brochures` },
-  { label: "Organising Committee", href: committeePathForEdition("6.0") },
-  { label: "Proceedings", href: "/proceedings" },
-  { label: "Workshops", href: "/workshops" },
+export const ACADEMIC_COUNCIL_QUICK_LINKS: readonly SiteQuickLink[] = [
+  { label: "Register for SMK 6.0", href: CANONICAL_ROUTES.registration, icon: "✅" },
+  { label: "Submit Paper (CMT)", href: CMT_SUBMISSION_URL, external: true, icon: "📝" },
+  {
+    label: "Edition 6.0 Brochure",
+    href: `${CANONICAL_ROUTES.downloads}#edition-brochures`,
+    icon: "📄",
+  },
+  { label: "Organising Committee", href: committeePathForEdition("6.0"), icon: "👥" },
+  { label: "Proceedings", href: "/proceedings", icon: "📚" },
+  { label: "Workshops", href: "/workshops", icon: "🛠️" },
 ];
 
 export const ACADEMIC_COUNCIL_TAB_SLUGS: Record<AcademicCouncilTabId, string> = {

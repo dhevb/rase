@@ -9,7 +9,6 @@ import {
   BEST_WISHES_BREADCRUMBS,
   BEST_WISHES_HUB_STATS,
   BEST_WISHES_PAGE_HERO,
-  BEST_WISHES_QUICK_LINKS,
   BEST_WISHES_UPCOMING_CTA,
 } from "@/data/best-wishes-hub";
 import {
@@ -85,20 +84,7 @@ export default function BestWishesShowcase() {
         className="-mt-2 mb-6"
       />
 
-      <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {BEST_WISHES_QUICK_LINKS.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className="flex min-h-[44px] items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy transition hover:border-brand-saffron/40 hover:shadow-sm"
-          >
-            <span aria-hidden>{link.icon}</span>
-            {link.label}
-          </Link>
-        ))}
-      </section>
-
-      <div className="mt-6">
+      <div>
         <HubGradientBanner
           id="best-wishes-hub-banner"
           titleAs="h1"

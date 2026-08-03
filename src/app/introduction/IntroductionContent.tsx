@@ -4,6 +4,7 @@ import {
   INTRODUCTION_HERO,
   INTRODUCTION_HERO_IMAGE,
   INTRODUCTION_HERO_IMAGE_ALT,
+  INTRODUCTION_QUICK_LINKS,
 } from "@/data/introduction-content";
 
 const PAGE_HERO = {
@@ -27,6 +28,7 @@ export default function IntroductionContent() {
       hero={PAGE_HERO}
       breadcrumbs={BREADCRUMBS}
       relatedPath="/introduction"
+      quickLinks={[...INTRODUCTION_QUICK_LINKS]}
       containerClassName="mx-auto max-w-6xl px-4 py-8 md:px-8 md:py-12"
     >
       <Introduction />

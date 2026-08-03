@@ -8,6 +8,7 @@ import {
   ACADEMIC_COUNCIL_HERO_IMAGE_ALT,
   ACADEMIC_COUNCIL_PAGE_HERO,
   ACADEMIC_COUNCIL_PATH,
+  ACADEMIC_COUNCIL_QUICK_LINKS,
 } from "@/data/academic-council-hub";
 
 export default function AcademicCouncilDepartmentPage() {
@@ -23,6 +24,7 @@ export default function AcademicCouncilDepartmentPage() {
       }}
       showHero={false}
       relatedPath={ACADEMIC_COUNCIL_PATH}
+      quickLinks={[...ACADEMIC_COUNCIL_QUICK_LINKS]}
       breadcrumbs={[...ACADEMIC_COUNCIL_BREADCRUMBS]}
       skipContainer
       showCta={false}

@@ -9,6 +9,7 @@ import {
   CONTACT_HERO_IMAGE_ALT,
   CONTACT_PAGE_HERO,
   CONTACT_PATH,
+  CONTACT_QUICK_LINKS,
 } from "@/data/contact-hub";
 
 export default function ContactPageView() {
@@ -25,6 +26,7 @@ export default function ContactPageView() {
       showCta={false}
       breadcrumbs={[...CONTACT_BREADCRUMBS]}
       relatedPath={CONTACT_PATH}
+      quickLinks={[...CONTACT_QUICK_LINKS]}
       skipContainer
     >
       <ContactJsonLd />

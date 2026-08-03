@@ -1,4 +1,5 @@
 import SiteQuickLinksSection from "@/components/layout/SiteQuickLinksSection";
+import { SITE_QUICK_LINKS, type SiteQuickLink } from "@/data/site-quick-links";
 import RelatedContentSection from "./RelatedContentSection";
 
 type Props = {
@@ -8,6 +9,7 @@ type Props = {
   excludePaths?: string[];
   className?: string;
   showQuickLinks?: boolean;
+  quickLinks?: readonly SiteQuickLink[];
   quickLinksClassName?: string;
 };
 
@@ -19,12 +21,15 @@ export default function RelatedProgramsSection({
   excludePaths,
   className,
   showQuickLinks = true,
+  quickLinks,
   quickLinksClassName,
 }: Props) {
+  const linksToShow = quickLinks ?? (showQuickLinks ? SITE_QUICK_LINKS : undefined);
+
   return (
     <>
-      {showQuickLinks ? (
-        <SiteQuickLinksSection className={quickLinksClassName} />
+      {linksToShow?.length ? (
+        <SiteQuickLinksSection links={linksToShow} className={quickLinksClassName} />
       ) : null}
       <RelatedContentSection
         path={path}

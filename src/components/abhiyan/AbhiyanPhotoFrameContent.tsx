@@ -10,7 +10,6 @@ import {
 } from "@/data/abhiyan-photo-frame";
 import {
   PHOTO_FRAME_BREADCRUMBS,
-  PHOTO_FRAME_QUICK_LINKS,
   PHOTO_FRAME_SECTION_NAV,
   PHOTO_FRAME_UPCOMING_CTA,
   buildPhotoFrameStats,
@@ -133,32 +132,6 @@ export default function AbhiyanPhotoFrameContent() {
           <p lang="hi" className="mt-3 text-center text-sm leading-relaxed text-slate-600 md:text-base">
             {taglineHindi}
           </p>
-
-          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {PHOTO_FRAME_QUICK_LINKS.map((link) =>
-              link.external ? (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex min-h-[44px] items-center gap-2 rounded-xl border border-brand-navy/20 bg-brand-navy px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-navy/90"
-                >
-                  <span aria-hidden>{link.icon}</span>
-                  {link.label}
-                </a>
-              ) : (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="flex min-h-[44px] items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy transition hover:border-brand-saffron/40 hover:shadow-sm"
-                >
-                  <span aria-hidden>{link.icon}</span>
-                  {link.label}
-                </Link>
-              )
-            )}
-          </div>
 
           <dl className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
             {stats.map((stat) => (

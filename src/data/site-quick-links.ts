@@ -3,7 +3,7 @@ import { CANONICAL_ROUTES } from "@/constants/canonical-routes";
 export type SiteQuickLink = {
   label: string;
   href: string;
-  icon: string;
+  icon?: string;
   external?: boolean;
 };
 

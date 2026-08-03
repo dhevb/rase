@@ -9,6 +9,7 @@ import {
   REGISTRATION_HERO_IMAGE_ALT,
   REGISTRATION_PAGE_HERO,
   REGISTRATION_PATH,
+  REGISTRATION_QUICK_LINKS,
 } from "@/data/registration-hub";
 
 export default function RegistrationPageView() {
@@ -32,6 +33,7 @@ export default function RegistrationPageView() {
       }}
       breadcrumbs={[...REGISTRATION_BREADCRUMBS]}
       relatedPath={REGISTRATION_PATH}
+      quickLinks={[...REGISTRATION_QUICK_LINKS]}
       showCta={false}
       skipContainer
     >

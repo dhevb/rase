@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import type { SiteQuickLink } from "@/data/site-quick-links";
 
 export interface PublicPageHero {
   eyebrow?: string;
@@ -18,6 +19,7 @@ export interface PublicPageShellProps {
   relatedPath?: string;
   relatedTitle?: string;
   showSiteQuickLinks?: boolean;
+  quickLinks?: readonly SiteQuickLink[];
   breadcrumbs?: { name: string; path: string }[];
   children: ReactNode;
   mainClassName?: string;

@@ -8,7 +8,6 @@ import HubGradientBanner from "@/components/ui/HubGradientBanner";
 import {
   GALLERY_EDITIONS,
   GALLERY_PAGE_HERO,
-  GALLERY_QUICK_LINKS,
   GALLERY_STATS,
   YOUTUBE_CHANNEL_URL,
   type GalleryEdition,
@@ -56,19 +55,6 @@ export default function GalleryShowcase({ activeTab }: Props) {
         stats={GALLERY_STATS}
         titleAs="h1"
       />
-
-      <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {GALLERY_QUICK_LINKS.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className="flex min-h-[44px] items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy transition hover:border-brand-saffron/40 hover:shadow-sm"
-          >
-            <span aria-hidden>{link.icon}</span>
-            {link.label}
-          </Link>
-        ))}
-      </div>
 
       <div
         role="tablist"

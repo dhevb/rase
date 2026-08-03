@@ -1,6 +1,7 @@
 import Link from "next/link";
 import BreadcrumbNav from "@/components/ui/BreadcrumbNav";
 import RelatedProgramsSection from "@/components/knowledge-graph/RelatedProgramsSection";
+import { PAST_EVENTS_QUICK_LINKS } from "@/data/past-events-hub";
 import EditionGallery from "@/components/past-editions/editions/EditionGallery";
 import EditionPrevNext from "@/components/past-editions/editions/EditionPrevNext";
 import type { EditionDetailContent } from "@/data/editions/types";
@@ -273,6 +274,7 @@ export default function PastEditionDetailShowcase({ content, editionPath }: Prop
 
       <RelatedProgramsSection
         path={editionPath}
+        quickLinks={[...PAST_EVENTS_QUICK_LINKS]}
         quickLinksClassName="border-t border-slate-100 pt-8"
         className="pb-2"
       />

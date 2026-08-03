@@ -7,7 +7,6 @@ import BreadcrumbNav from "@/components/ui/BreadcrumbNav";
 import HubGradientBanner from "@/components/ui/HubGradientBanner";
 import {
   PRESS_PAGE_HERO,
-  PRESS_QUICK_LINKS,
   PRESS_STATS,
   filterPressCatalog,
   getFeaturedPressRelease,
@@ -54,19 +53,6 @@ export default function PressShowcase({ catalog }: Props) {
         stats={PRESS_STATS}
         titleAs="h1"
       />
-
-      <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {PRESS_QUICK_LINKS.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className="flex min-h-[44px] items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy transition hover:border-brand-saffron/40 hover:shadow-sm"
-          >
-            <span aria-hidden>{link.icon}</span>
-            {link.label}
-          </Link>
-        ))}
-      </div>
 
       <div
         className="mt-8 flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"

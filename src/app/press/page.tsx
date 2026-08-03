@@ -1,7 +1,7 @@
 import PublicPageShell from "@/components/layouts/PublicPageShell";
 import PressShowcase from "@/components/press/PressShowcase";
 import PressJsonLd from "@/components/press/PressJsonLd";
-import { buildPressCatalog } from "@/data/press-hub";
+import { buildPressCatalog, PRESS_QUICK_LINKS } from "@/data/press-hub";
 import { CANONICAL_ROUTES } from "@/constants/canonical-routes";
 import { loadCmsArticles } from "@/lib/cms/server";
 
@@ -19,6 +19,7 @@ export default async function PressHubPage() {
     <PublicPageShell
       showHero={false}
       relatedPath={CANONICAL_ROUTES.press}
+      quickLinks={[...PRESS_QUICK_LINKS]}
       showCta
       skipContainer
       breadcrumbs={BREADCRUMBS}

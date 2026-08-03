@@ -9,7 +9,6 @@ import {
   INTRODUCTION_MEETING_TAGLINE,
   INTRODUCTION_OBJECTIVES,
   INTRODUCTION_PARAGRAPHS,
-  INTRODUCTION_QUICK_LINKS,
   INTRODUCTION_SECTION_NAV,
   INTRODUCTION_STATS,
 } from "@/data/introduction-content";
@@ -84,19 +83,6 @@ export default function Introduction() {
         ]}
         className="-mt-2 mb-2"
       />
-
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {INTRODUCTION_QUICK_LINKS.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className="flex min-h-[44px] items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy transition hover:border-brand-saffron/40 hover:shadow-sm"
-          >
-            <span aria-hidden>{link.icon}</span>
-            {link.label}
-          </Link>
-        ))}
-      </div>
 
       <section id="overview" className="scroll-mt-24" aria-labelledby="overview-heading">
         <div className="relative overflow-hidden rounded-2xl border border-brand-saffron/25 bg-gradient-to-br from-brand-surface-warm via-white to-brand-blue/5 p-6 shadow-sm md:p-8">

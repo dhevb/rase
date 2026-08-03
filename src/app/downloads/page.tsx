@@ -11,6 +11,7 @@ import {
   DOWNLOADS_HERO_IMAGE_ALT,
   DOWNLOADS_OG_IMAGE,
   DOWNLOADS_PAGE_HERO,
+  DOWNLOADS_QUICK_LINKS,
   DOWNLOADS_SEO_KEYWORDS,
   downloadsMetaDescription,
 } from "@/data/downloads-hub";
@@ -62,6 +63,7 @@ export default async function DownloadsPage() {
       showCta={false}
       breadcrumbs={[...DOWNLOADS_BREADCRUMBS]}
       relatedPath={CANONICAL_ROUTES.downloads}
+      quickLinks={[...DOWNLOADS_QUICK_LINKS]}
       skipContainer
     >
       <DownloadsShowcase initialDownloads={downloads} />

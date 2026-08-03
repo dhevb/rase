@@ -31,7 +31,9 @@ export const MEDIA_CENTER_SEO_KEYWORDS = [
   "NIT Shiksha Mahakumbh photos",
 ];
 
-export const MEDIA_CENTER_CANONICAL_URL = `${SITE_URL}/media-center`;
+import { GALLERY_QUICK_LINKS } from "@/data/gallery-hub";
+
+export const MEDIA_CENTER_PAGE_QUICK_LINKS = GALLERY_QUICK_LINKS;
 
 export type MediaCenterTab = "all" | "editions" | "press" | "gallery";
 

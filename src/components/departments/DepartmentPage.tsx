@@ -40,6 +40,7 @@ export default function DepartmentPage({
         }}
         showHero={false}
         relatedPath={canonicalPath}
+        quickLinks={hub.quickLinks}
         breadcrumbs={[...vibhagHubBreadcrumbs(slug)]}
         skipContainer
         showCta={false}

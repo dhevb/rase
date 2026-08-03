@@ -5,6 +5,7 @@ import {
   PAST_EVENTS_HERO_IMAGE,
   PAST_EVENTS_HERO_IMAGE_ALT,
   PAST_EVENTS_PAGE_HERO,
+  PAST_EVENTS_QUICK_LINKS,
 } from "@/data/past-events-hub";
 import { CANONICAL_ROUTES } from "@/constants/canonical-routes";
 
@@ -28,6 +29,7 @@ export default function PastEventsPage() {
       }}
       breadcrumbs={[...PAST_EVENTS_BREADCRUMBS]}
       relatedPath={CANONICAL_ROUTES.pastEvents}
+      quickLinks={[...PAST_EVENTS_QUICK_LINKS]}
       skipContainer
       showCta
     >

@@ -6,6 +6,7 @@ import {
   SOUVENIR_ABSTRACTS_PAGE_PATH,
   SOUVENIR_OG_IMAGES,
   SOUVENIR_PAGE_SEO,
+  SOUVENIR_RELATED_LINKS,
   SOUVENIR_SEO_KEYWORDS,
 } from "@/data/souvenir-abstracts-hub";
 
@@ -31,6 +32,7 @@ export default function SouvenirAbstractsMtcPage() {
       showCta={false}
       skipContainer
       relatedPath="/publications"
+      quickLinks={[...SOUVENIR_RELATED_LINKS]}
       breadcrumbs={BREADCRUMBS}
     >
       <SouvenirAbstractsJsonLd />

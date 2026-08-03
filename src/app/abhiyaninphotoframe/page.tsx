@@ -5,6 +5,7 @@ import {
   PHOTO_FRAME_HERO_IMAGE,
   PHOTO_FRAME_HERO_IMAGE_ALT,
   PHOTO_FRAME_PAGE_HERO,
+  PHOTO_FRAME_QUICK_LINKS,
 } from "@/data/abhiyan-photo-frame-hub";
 import { ABIYAN_PHOTO_FRAME } from "@/data/abhiyan-photo-frame";
 
@@ -21,6 +22,7 @@ export default function AbhiyanPhotoFramePage() {
       }}
       breadcrumbs={[...PHOTO_FRAME_BREADCRUMBS]}
       relatedPath={ABIYAN_PHOTO_FRAME.pagePath}
+      quickLinks={[...PHOTO_FRAME_QUICK_LINKS]}
       showCta={false}
       containerClassName="mx-auto max-w-6xl px-4 py-8 md:px-8 md:py-10"
     >

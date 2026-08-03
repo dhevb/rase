@@ -6,6 +6,7 @@ import {
   SPEAKERS_DIRECTORY_HERO_IMAGE,
   SPEAKERS_DIRECTORY_HERO_IMAGE_ALT,
   SPEAKERS_DIRECTORY_PATH,
+  SPEAKERS_DIRECTORY_QUICK_LINKS,
 } from "@/data/speakers-directory-content";
 
 export default function SpeakersDirectoryPage() {
@@ -28,6 +29,7 @@ export default function SpeakersDirectoryPage() {
       }}
       breadcrumbs={[...SPEAKERS_DIRECTORY_BREADCRUMBS]}
       relatedPath={SPEAKERS_DIRECTORY_PATH}
+      quickLinks={[...SPEAKERS_DIRECTORY_QUICK_LINKS]}
       showCta={false}
       containerClassName="mx-auto max-w-7xl px-4 py-8 md:px-8 md:py-10"
     >

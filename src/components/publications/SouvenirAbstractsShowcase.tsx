@@ -8,7 +8,6 @@ import HubGradientBanner from "@/components/ui/HubGradientBanner";
 import {
   SOUVENIR_CATALOG,
   SOUVENIR_PAGE_HERO,
-  SOUVENIR_RELATED_LINKS,
   SOUVENIR_STATS,
   SOUVENIR_TRACK_HIGHLIGHTS,
   type SouvenirEditionEntry,
@@ -209,30 +208,6 @@ export default function SouvenirAbstractsShowcase() {
               </div>
             </li>
           ))}
-        </ul>
-      </section>
-
-      <section className="mt-10" aria-labelledby="souvenir-related">
-        <h2 id="souvenir-related" className="text-lg font-bold text-brand-navy md:text-xl">
-          Related resources
-        </h2>
-        <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {SOUVENIR_RELATED_LINKS.map((link) => {
-            const external = "external" in link && link.external;
-            return (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                  className="flex min-h-[44px] items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy transition hover:border-brand-saffron/40 hover:shadow-sm"
-                >
-                  <span aria-hidden>{link.icon}</span>
-                  {link.label}
-                  {external && <span className="ml-auto text-xs text-slate-400">↗</span>}
-                </Link>
-              </li>
-            );
-          })}
         </ul>
       </section>
     </div>

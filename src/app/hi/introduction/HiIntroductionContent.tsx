@@ -3,6 +3,7 @@ import PublicPageShell from "@/components/layouts/PublicPageShell";
 import {
   INTRODUCTION_HERO_IMAGE,
   INTRODUCTION_HERO_IMAGE_ALT,
+  INTRODUCTION_QUICK_LINKS,
 } from "@/data/introduction-content";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
@@ -28,6 +29,7 @@ export default async function HiIntroductionContent() {
         { name: meta("aboutTitle"), path: "/hi/introduction" },
       ]}
       relatedPath="/hi/introduction"
+      quickLinks={[...INTRODUCTION_QUICK_LINKS]}
       containerClassName="mx-auto max-w-6xl px-4 py-8 md:px-8 md:py-12"
     >
       <Introduction />

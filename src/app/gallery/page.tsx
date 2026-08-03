@@ -2,6 +2,7 @@ import GalleryJsonLd from "@/components/gallery/GalleryJsonLd";
 import { GalleryShowcase } from "@/lib/perf/deferred-showcases";
 import PublicPageShell from "@/components/layouts/PublicPageShell";
 import type { GalleryTab } from "@/data/gallery-hub";
+import { GALLERY_QUICK_LINKS } from "@/data/gallery-hub";
 
 const BREADCRUMBS = [
   { name: "Home", path: "/" },
@@ -23,6 +24,7 @@ export default async function GalleryRoutePage({ searchParams }: Props) {
       showCta={false}
       breadcrumbs={BREADCRUMBS}
       relatedPath="/gallery"
+      quickLinks={[...GALLERY_QUICK_LINKS]}
       skipContainer
     >
       <GalleryJsonLd />

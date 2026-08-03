@@ -15,7 +15,6 @@ import {
   SPEAKERS_DIRECTORY_BREADCRUMBS,
   SPEAKERS_DIRECTORY_HERO_IMAGE,
   SPEAKERS_DIRECTORY_INTRO,
-  SPEAKERS_DIRECTORY_QUICK_LINKS,
   SPEAKERS_DIRECTORY_UPCOMING_NOTE,
 } from "@/data/speakers-directory-content";
 import { committeePathForEdition } from "@/lib/committee/edition-slugs";
@@ -115,19 +114,6 @@ export default function MahakumbhAbhiyanSpeakersDirectory() {
         }))}
         className="-mt-2 mb-2 print:hidden"
       />
-
-      <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 print:hidden">
-        {SPEAKERS_DIRECTORY_QUICK_LINKS.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            className="flex min-h-[44px] items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy transition hover:border-brand-saffron/40 hover:shadow-sm"
-          >
-            <span aria-hidden>{link.icon}</span>
-            {link.label}
-          </Link>
-        ))}
-      </section>
 
       <section
         aria-labelledby="speakers-overview-heading"

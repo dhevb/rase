@@ -19,6 +19,7 @@ export default async function PublicPageLayout({
   relatedPath,
   relatedTitle = "Related programmes & resources",
   showSiteQuickLinks = true,
+  quickLinks,
   breadcrumbs,
   children,
   mainClassName = "",
@@ -55,6 +56,7 @@ export default async function PublicPageLayout({
             path={relatedPath}
             title={relatedTitle}
             showQuickLinks={showSiteQuickLinks}
+            quickLinks={quickLinks}
             className="mx-auto max-w-5xl px-4 py-8"
           />
         ) : null}

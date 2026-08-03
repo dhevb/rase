@@ -12,7 +12,6 @@ import {
   DOWNLOADS_BREADCRUMBS,
   DOWNLOADS_HUB_STATS,
   DOWNLOADS_PAGE_HERO,
-  DOWNLOADS_QUICK_LINKS,
   DOWNLOADS_UPCOMING_CTA,
   EDITION_BROCHURES,
   getUpcomingBrochure,
@@ -115,33 +114,7 @@ export default function DownloadsShowcase({ initialDownloads }: Props) {
         className="-mt-2 mb-6"
       />
 
-      <section className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {DOWNLOADS_QUICK_LINKS.map((link) =>
-          link.external ? (
-            <a
-              key={link.href}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex min-h-[44px] items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy transition hover:border-brand-saffron/40 hover:shadow-sm"
-            >
-              <span aria-hidden>{link.icon}</span>
-              {link.label}
-            </a>
-          ) : (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="flex min-h-[44px] items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy transition hover:border-brand-saffron/40 hover:shadow-sm"
-            >
-              <span aria-hidden>{link.icon}</span>
-              {link.label}
-            </Link>
-          )
-        )}
-      </section>
-
-      <div className="mt-6">
+      <div>
         <HubGradientBanner
           id="downloads-hub-banner"
           titleAs="h1"

@@ -6,7 +6,6 @@ import { getSpeakersForEdition } from "@/data/mahakumbh-abhiyan-speakers";
 import {
   editionGalleryLinks,
   PAST_EVENTS_BREADCRUMBS,
-  PAST_EVENTS_QUICK_LINKS,
   PAST_EVENTS_STATS,
   PAST_EVENTS_UPCOMING_CTA,
   souvenirHrefForEdition,
@@ -30,21 +29,6 @@ export default function PastEditionsShowcase() {
           className="mb-2"
         />
       </div>
-
-      <section className="border-b border-brand-saffron/15 bg-gradient-to-r from-brand-surface-warm via-white to-brand-surface-warm px-4 py-6">
-        <div className="mx-auto grid max-w-6xl gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {PAST_EVENTS_QUICK_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="flex min-h-[44px] items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-brand-navy transition hover:border-brand-saffron/40 hover:shadow-sm"
-            >
-              <span aria-hidden>{link.icon}</span>
-              {link.label}
-            </Link>
-          ))}
-        </div>
-      </section>
 
       <section
         aria-label="National reach"
