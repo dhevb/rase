@@ -4,7 +4,11 @@ import {
   mediaArchivePath,
 } from "@/data/past-editions";
 import { SITE_URL } from "@/config/site";
+import { CANONICAL_ROUTES } from "@/constants/canonical-routes";
 import type { CmsMediaCenterItem } from "@/lib/cms/types";
+
+export const MEDIA_CENTER_PATH = CANONICAL_ROUTES.mediaCenter;
+export const MEDIA_CENTER_CANONICAL_URL = `${SITE_URL}${MEDIA_CENTER_PATH}`;
 
 export const MEDIA_CENTER_PAGE_HERO = {
   eyebrow: "Media · Global Reach",

@@ -3,6 +3,14 @@ import { RegistrationType } from "@/types/registration";
 const PREFIX = "smk_registration_draft_";
 const META_KEY = "smk_registration_meta";
 
+const LEGACY_REGISTRATION_TYPE_ALIASES: Record<string, RegistrationType> = {
+  "Bal Shodh Patrika": "Shodhankur",
+};
+
+export function normalizeStoredRegistrationType(type: string): RegistrationType {
+  return LEGACY_REGISTRATION_TYPE_ALIASES[type] ?? (type as RegistrationType);
+}
+
 export interface RegistrationMeta {
   step: number;
   registrationType: RegistrationType;
@@ -47,7 +55,12 @@ export function loadMeta(): RegistrationMeta | null {
   if (typeof window === "undefined") return null;
   try {
     const raw = localStorage.getItem(META_KEY);
-    return raw ? (JSON.parse(raw) as RegistrationMeta) : null;
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as RegistrationMeta;
+    return {
+      ...parsed,
+      registrationType: normalizeStoredRegistrationType(parsed.registrationType),
+    };
   } catch {
     return null;
   }

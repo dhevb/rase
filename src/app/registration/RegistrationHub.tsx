@@ -146,13 +146,9 @@ function RegistrationHubInner() {
     metaLoadedRef.current = true;
     const meta = loadMeta();
     if (meta?.registrationType && !isExternalRedirectType(meta.registrationType)) {
-      const savedType =
-        meta.registrationType === "Bal Shodh Patrika"
-          ? "Shodhankur"
-          : meta.registrationType;
-      setRegistrationType(savedType);
+      setRegistrationType(meta.registrationType);
       if (meta.step >= 2) {
-        const maxStep = usesMultiStepPaymentFlow(savedType, currentFee)
+        const maxStep = usesMultiStepPaymentFlow(meta.registrationType, currentFee)
           ? 3
           : 2;
         setStep(Math.min(meta.step, maxStep));
