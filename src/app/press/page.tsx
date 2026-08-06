@@ -5,6 +5,8 @@ import { buildPressCatalog, PRESS_QUICK_LINKS } from "@/data/press-hub";
 import { CANONICAL_ROUTES } from "@/constants/canonical-routes";
 import { loadCmsArticles } from "@/lib/cms/server";
 
+export const revalidate = 3600;
+
 const BREADCRUMBS = [
   { name: "Home", path: "/" },
   { name: "Media Centre", path: "/media-center" },

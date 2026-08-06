@@ -11,7 +11,7 @@ export type RegistrationType =
   | "Exhibition"
   | "Projects"
   | "Best Practices"
-  | "Bal Shodh Patrika"
+  | "Shodhankur"
   | "Cultural Program"
   | "Accommodation";
 
@@ -205,7 +205,7 @@ export interface GenericRegistrationData extends BaseRegistration {
   registrationType:
     | "Exhibition"
     | "Projects"
-    | "Bal Shodh Patrika"
+    | "Shodhankur"
     | "Cultural Program"
     | "Accommodation"
     | "Multi Track Conference";
@@ -238,7 +238,7 @@ export const REGISTRATION_TYPE_OPTIONS: RegistrationType[] = [
   "Exhibition",
   "Projects",
   "Best Practices",
-  "Bal Shodh Patrika",
+  "Shodhankur",
   "Cultural Program",
 ];
 
@@ -252,7 +252,7 @@ export const TYPE_COLLECTION_MAP: Record<RegistrationType, string> = {
   Accommodation: "accommodation_registrations",
   Exhibition: "registrations",
   Projects: "registrations",
-  "Bal Shodh Patrika": "registrations",
+  Shodhankur: "registrations",
   "Cultural Program": "registrations",
 };
 

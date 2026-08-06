@@ -70,7 +70,7 @@ export function buildRegistrationFaqJsonLd() {
         name: "What registration categories are available?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Delegate, Conclave, Best Practices, Olympiad, Awards, Exhibition, Projects, Bal Shodh Patrika, Cultural Program, and Accommodation.",
+          text: "Delegate, Conclave, Best Practices, Olympiad, Awards, Exhibition, Projects, Shodhankur, Cultural Program, and Accommodation.",
         },
       },
     ],

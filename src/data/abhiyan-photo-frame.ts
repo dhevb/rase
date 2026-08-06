@@ -39,7 +39,7 @@ export const ABIYAN_PHOTO_FRAME = {
     { name: "डॉ. प्रवीण कुमार शर्मा", role: "प्रमुख", organization: "कॉनक्लेव" },
     { name: "श्रीमती सोनू शर्मा", role: "प्रमुख", organization: "ओलंपियाड" },
     { name: "डॉ. कृष्णा पांडे", role: "प्रमुख", organization: "स्टूडेंट प्रोजेक्ट" },
-    { name: "डॉ. शिक्षा शर्मा", role: "प्रमुख", organization: "बाल शोध पत्रिका" },
+    { name: "डॉ. शिक्षा शर्मा", role: "प्रमुख", organization: "शोधांकुर" },
     { name: "श्री संजय सोनी", role: "प्रमुख", organization: "प्रदर्शनी" },
     { name: "श्रीमती मीनू", role: "प्रमुख", organization: "सांस्कृतिक कार्यक्रम" },
     { name: "प्रो. अविनेश वर्मा", role: "प्रमुख", organization: "पैनल डिस्कशन" },

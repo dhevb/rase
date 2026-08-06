@@ -77,11 +77,10 @@ export default function FooterVisitorCounter() {
 
   useEffect(() => {
     let cancelled = false;
-    let intervalId: ReturnType<typeof setInterval> | undefined;
 
     async function loadCounts() {
       try {
-        const res = await fetch("/api/v2/analytics/stats", { cache: "no-store" });
+        const res = await fetch("/api/v2/analytics/stats");
         const data = (await res.json()) as VisitorStatsResponse;
         if (cancelled) return;
 
@@ -111,12 +110,22 @@ export default function FooterVisitorCounter() {
       }
     }
 
-    loadCounts();
-    intervalId = setInterval(loadCounts, 60_000);
+    const run = () => {
+      void loadCounts();
+    };
 
+    if (typeof requestIdleCallback !== "undefined") {
+      const id = requestIdleCallback(run, { timeout: 5000 });
+      return () => {
+        cancelled = true;
+        cancelIdleCallback(id);
+      };
+    }
+
+    const timeoutId = window.setTimeout(run, 2000);
     return () => {
       cancelled = true;
-      if (intervalId) clearInterval(intervalId);
+      window.clearTimeout(timeoutId);
     };
   }, []);
 

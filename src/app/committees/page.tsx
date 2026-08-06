@@ -8,6 +8,8 @@ import {
   COMMITTEES_PAGE_HERO,
 } from "@/data/committee-hub";
 
+export const revalidate = 3600;
+
 export default function CommitteesPage() {
   return (
     <PublicPageShell

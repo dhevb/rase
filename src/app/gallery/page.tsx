@@ -4,6 +4,8 @@ import PublicPageShell from "@/components/layouts/PublicPageShell";
 import type { GalleryTab } from "@/data/gallery-hub";
 import { GALLERY_QUICK_LINKS } from "@/data/gallery-hub";
 
+export const revalidate = 3600;
+
 const BREADCRUMBS = [
   { name: "Home", path: "/" },
   { name: "Media Centre", path: "/media-center" },

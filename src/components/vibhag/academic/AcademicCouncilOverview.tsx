@@ -26,7 +26,7 @@ const FUNCTIONAL_DOMAINS: { label: string; tabId: AcademicCouncilTabId }[] = [
   { label: "Student Projects (School & Higher Education)", tabId: "ProjectsPage" },
   { label: "Best Practices (Grassroots to Global Models)", tabId: "BestPracticesPage" },
   { label: "Exhibitions & Knowledge Showcases", tabId: "ExhibitionPage" },
-  { label: "Publications & Compendiums (Research, Reports, Journals)", tabId: "PatrikaPage" },
+  { label: "Shodhankur (Student Research Journal)", tabId: "PatrikaPage" },
   { label: "Cultural Programmes", tabId: "CulturalPage" },
 ];
 

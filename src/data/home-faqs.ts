@@ -25,7 +25,7 @@ export const HOME_DEFAULT_FAQS: FaqItem[] = [
   },
   {
     question: "Which categories are free vs paid?",
-    answer: `Conclave, Awards, Olympiad, Exhibition, Best Practices, Bal Shodh Patrika, and Cultural Program use free on-site forms. Projects: ₹${PROJECT_SCHOOL_STUDENT_FEE} (school level) · ₹${PROJECT_COLLEGE_STUDENT_FEE} (college/university) via online payment. Delegate fees vary by category.`,
+    answer: `Conclave, Awards, Olympiad, Exhibition, Best Practices, Shodhankur, and Cultural Program use free on-site forms. Projects: ₹${PROJECT_SCHOOL_STUDENT_FEE} (school level) · ₹${PROJECT_COLLEGE_STUDENT_FEE} (college/university) via online payment. Delegate fees vary by category.`,
   },
   {
     question: "How do I submit to the Multi Track Conference?",

@@ -38,8 +38,8 @@ export default function RegistrationPageView() {
       skipContainer
     >
       <RegistrationQuickLinks />
-      <RegistrationIntroBanner />
       <RegistrationHub />
+      <RegistrationIntroBanner />
       <RegistrationFaqSection />
     </PublicPageShell>
   );

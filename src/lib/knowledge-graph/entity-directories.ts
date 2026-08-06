@@ -59,7 +59,7 @@ export const ENTITY_DIRECTORIES: EntityDirectoryConfig[] = [
     path: "/schools",
     label: "Schools",
     description:
-      "Schools engaged in olympiads, exhibitions, Bal Shodh, and national school programmes.",
+      "Schools engaged in olympiads, exhibitions, Shodhankur, and national school programmes.",
     schemaType: "School",
     keywords: ["school education India", "SMK schools"],
   },

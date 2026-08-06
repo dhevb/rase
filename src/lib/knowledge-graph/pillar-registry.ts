@@ -35,10 +35,10 @@ export const PILLAR_REGISTRY: PillarRegistryEntry[] = [
     slug: "school-education",
     path: "/school-education",
     label: "School Education",
-    tagline: "K–12 excellence, school projects, and Bal Shodh",
+    tagline: "K–12 excellence, school projects, and Shodhankur",
     intro:
       "Shiksha Mahakumbh strengthens school education through national summits, olympiads, exhibitions, and NEP 2020–aligned programmes for students and teachers.",
-    keywords: ["school education India", "K-12 NEP 2020", "Bal Shodh"],
+    keywords: ["school education India", "K-12 NEP 2020", "Shodhankur"],
   },
   {
     id: "higher-education",

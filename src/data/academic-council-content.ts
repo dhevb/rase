@@ -22,7 +22,7 @@ export const ACADEMIC_COUNCIL_HERO = {
   eyebrow: "Shiksha Mahakumbh 6.0 · Meeting of the Minds · NIT Hamirpur",
   title: "Academic Council",
   subtitle:
-    "Multi-track international conference, university conference series, thematic conclaves, DHE Olympiads, exhibitions, student projects, best practices, Bal Shodh Patrika, and excellence awards — 9–11 October 2026.",
+    "Multi-track international conference, university conference series, thematic conclaves, DHE Olympiads, exhibitions, student projects, best practices, Shodhankur, and excellence awards — 9–11 October 2026.",
   tagline:
     "The Academic Backbone of Shiksha Mahakumbh — Integrating Knowledge, Innovation, and Impact.",
 } as const;
@@ -188,8 +188,8 @@ export const ACADEMIC_PROGRAMME_HUB: ProgrammeHubSection[] = [
     id: "patrika",
     tabId: "PatrikaPage",
     icon: "📘",
-    titleEn: "Bal Shodh Patrika",
-    titleHi: "बाल शोध पत्रिका",
+    titleEn: "Shodhankur",
+    titleHi: "शोधांकुर",
     description:
       "National student research journal nurturing inquiry and innovation among school learners in Classes 9–12.",
     accent: "navy",
@@ -239,7 +239,7 @@ export const ACADEMIC_PROGRAMME_HUB: ProgrammeHubSection[] = [
 export const ACADEMIC_COUNCIL_SEO = {
   title: "Academic Council — Conference, Conclaves & Olympiads",
   description:
-    "Shiksha Mahakumbh 6.0 Academic Council at NIT Hamirpur (9–11 Oct 2026): 15-track international conference, 7 conclaves, DHE Olympiads, exhibitions, Bal Shodh Patrika, best practices, student projects, and excellence awards. Peer-reviewed publication pathway.",
+    "Shiksha Mahakumbh 6.0 Academic Council at NIT Hamirpur (9–11 Oct 2026): 15-track international conference, 7 conclaves, DHE Olympiads, exhibitions, Shodhankur, best practices, student projects, and excellence awards. Peer-reviewed publication pathway.",
   keywords: [
     "Academic Council Shiksha Mahakumbh",
     "Shiksha Mahakumbh 6.0 conference",
@@ -247,7 +247,7 @@ export const ACADEMIC_COUNCIL_SEO = {
     "multi-track research conference India",
     "NEP 2020 education conclave",
     "DHE Olympiad English Maths Technology",
-    "Bal Shodh Patrika student research",
+    "Shodhankur student research",
     "Department of Holistic Education",
     "Viksit Bharat 2047 education",
     "Indian Knowledge Systems conference",

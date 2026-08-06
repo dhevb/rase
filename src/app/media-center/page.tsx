@@ -4,6 +4,8 @@ import MediaCenterJsonLd from "@/components/media/MediaCenterJsonLd";
 import { loadCmsMediaCenterHub } from "@/lib/cms/organizational";
 import { MEDIA_CENTER_PAGE_QUICK_LINKS } from "@/data/media-center-hub";
 
+export const revalidate = 3600;
+
 const BREADCRUMBS = [
   { name: "Home", path: "/" },
   { name: "Media Centre", path: "/media-center" },

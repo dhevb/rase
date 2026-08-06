@@ -21,7 +21,7 @@ import {
   startOfYear,
 } from "@/server/lib/visitor-analytics-utils";
 
-const STATS_CACHE_TTL_MS = 30_000;
+const STATS_CACHE_TTL_MS = 120_000;
 let statsCache: { data: PublicVisitorStats; expiresAt: number } | null = null;
 
 export type PublicVisitorStats = {
@@ -293,23 +293,26 @@ export async function getPublicVisitorStats(useCache = true): Promise<PublicVisi
     const activeSince = new Date(Date.now() - ACTIVE_WINDOW_MS);
     const nonBot = { isBot: false } as const;
 
-    const [uniqueToday, totalUnique, liveSessions, activeUsers] = await Promise.all([
-      countDistinctVisitors({ ...nonBot, startedAt: { gte: today } }),
-      countDistinctVisitors(nonBot),
+    const [rollup, liveSessions, activeSessions, todaySessions] = await Promise.all([
+      prisma.visitorAnalytics.findUnique({ where: { date: rollupDate } }),
       prisma.visitorSession.count({ where: nonBot }),
-      countDistinctVisitors({ ...nonBot, lastActiveAt: { gte: activeSince } }),
+      prisma.visitorSession.count({
+        where: { ...nonBot, lastActiveAt: { gte: activeSince } },
+      }),
+      prisma.visitorSession.count({
+        where: { ...nonBot, startedAt: { gte: today } },
+      }),
     ]);
 
-    const rollup = await prisma.visitorAnalytics.findUnique({ where: { date: rollupDate } });
-    const daily = Math.max(rollup?.uniqueCount ?? 0, uniqueToday);
+    const daily = Math.max(rollup?.uniqueCount ?? 0, todaySessions);
     const firestoreBaseline = resolveFirestoreVisitorBaseline();
 
     const data: PublicVisitorStats = {
       daily,
-      total: totalUnique,
+      total: liveSessions,
       displayTotal: computeVisitorDisplayTotal(liveSessions),
-      activeUsers,
-      uniqueToday,
+      activeUsers: activeSessions,
+      uniqueToday: daily,
       liveSessions,
       legacyOffset: LEGACY_VISITOR_OFFSET,
       firestoreBaseline,

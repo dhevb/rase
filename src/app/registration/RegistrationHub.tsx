@@ -75,11 +75,11 @@ function RegistrationFormRouter({
             requiresPayment
           />
         );
-      case "Bal Shodh Patrika":
+      case "Shodhankur":
         return (
           <GenericRegistrationForm
-            registrationType="Bal Shodh Patrika"
-            sectionTitle="Bal Shodh Patrika Registration"
+            registrationType="Shodhankur"
+            sectionTitle="Shodhankur Registration"
           />
         );
       case "Cultural Program":
@@ -146,9 +146,13 @@ function RegistrationHubInner() {
     metaLoadedRef.current = true;
     const meta = loadMeta();
     if (meta?.registrationType && !isExternalRedirectType(meta.registrationType)) {
-      setRegistrationType(meta.registrationType);
+      const savedType =
+        meta.registrationType === "Bal Shodh Patrika"
+          ? "Shodhankur"
+          : meta.registrationType;
+      setRegistrationType(savedType);
       if (meta.step >= 2) {
-        const maxStep = usesMultiStepPaymentFlow(meta.registrationType, currentFee)
+        const maxStep = usesMultiStepPaymentFlow(savedType, currentFee)
           ? 3
           : 2;
         setStep(Math.min(meta.step, maxStep));

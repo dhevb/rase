@@ -8,6 +8,8 @@ import {
   registrationMetaDescription,
 } from "@/data/registration-hub";
 
+export const revalidate = 3600;
+
 export const metadata = withHreflang(
   createPageMetadata({
   title: "Register — Shiksha Mahakumbh 6.0",

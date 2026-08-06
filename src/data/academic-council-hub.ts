@@ -64,7 +64,7 @@ export const ACADEMIC_COUNCIL_TAB_SLUGS: Record<AcademicCouncilTabId, string> = 
   ExhibitionPage: "exhibition",
   ProjectsPage: "projects",
   BestPracticesPage: "best-practices",
-  PatrikaPage: "bal-shodh-patrika",
+  PatrikaPage: "shodhankur",
   CulturalPage: "cultural",
 };
 
@@ -76,6 +76,7 @@ export function academicCouncilTabFromSlug(slug: string | null | undefined): Aca
   if (!slug || slug === "overview") return "OverviewPage";
   // Legacy hash — #conference previously opened the NIT Hamirpur multi-track page
   if (slug === "multi-track-conference" || slug === "mtc") return "ConferencePage";
+  if (slug === "bal-shodh-patrika" || slug === "bal-shodh") return "PatrikaPage";
   return SLUG_TO_TAB_ID[slug] ?? "OverviewPage";
 }
 

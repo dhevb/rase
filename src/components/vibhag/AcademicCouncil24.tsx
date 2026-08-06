@@ -31,7 +31,7 @@ const pages: { id: AcademicCouncilTabId; label: string }[] = [
   { id: "ExhibitionPage", label: "Exhibition" },
   { id: "ProjectsPage", label: "Projects" },
   { id: "BestPracticesPage", label: "Best Practices" },
-  { id: "PatrikaPage", label: "Bal Shodh Patrika" },
+  { id: "PatrikaPage", label: "Shodhankur" },
   { id: "CulturalPage", label: "Cultural Program" },
 ];
 

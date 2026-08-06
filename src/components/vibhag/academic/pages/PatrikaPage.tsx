@@ -33,7 +33,7 @@ const REVIEW_STEPS = [
   "Screening for eligibility and originality",
   "Review by subject experts",
   "Selection of best entries",
-  "Final publication in Bal Shodh Patrika",
+  "Final publication in Shodhankur",
 ];
 
 const TIMELINE = [
@@ -53,7 +53,7 @@ export default function PatrikaPage() {
   return (
     <ACPage>
       <ACHero
-        title="Bal Shodh Patrika – Shiksha Mahakumbh 6.0"
+        title="Shodhankur – Shiksha Mahakumbh 6.0"
         subtitle={
           <p>
             A unique academic initiative designed to nurture research, inquiry, innovation, and
@@ -66,7 +66,7 @@ export default function PatrikaPage() {
       <ACSection title="Overview">
         <ACGlassPanel>
           <p className="text-base leading-relaxed text-gray-700 md:text-lg md:leading-8">
-            Bal Shodh Patrika serves as a national platform for young learners to present their
+            Shodhankur serves as a national platform for young learners to present their
             ideas, research work, and project-based learnings in a structured academic format. This
             initiative bridges the gap between school education and research orientation, encouraging
             students to contribute meaningfully to society through innovation and knowledge creation.
@@ -163,12 +163,12 @@ export default function PatrikaPage() {
       </ACSection>
 
       <ACFooterStatement title="Igniting Young Researchers">
-        Bal Shodh Patrika is a step towards building a generation of young thinkers, researchers,
+        Shodhankur is a step towards building a generation of young thinkers, researchers,
         and innovators who will shape the future of the nation.
       </ACFooterStatement>
 
       <SectionCTA
-        title="Submit to Bal Shodh Patrika"
+        title="Submit to Shodhankur"
         buttonText="Register Now"
         href={REG_LINKS.general}
       />

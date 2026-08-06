@@ -50,7 +50,7 @@ const DEFAULT_EN: Omit<ResolvedAnnouncementItem, "id">[] = [
     title: "Programmes @ Shiksha Mahakumbh 6.0",
     summary: "7 conclaves, olympiads, exhibitions, awards & more",
     detail:
-      "Explore the Academic Council schedule — policy conclaves, DHE Olympiads, best practices, student projects, and Bal Shodh Patrika at NIT Hamirpur.",
+      "Explore the Academic Council schedule — policy conclaves, DHE Olympiads, best practices, student projects, and Shodhankur at NIT Hamirpur.",
     href: CANONICAL_ROUTES.departments.academicCouncil,
     external: false,
     cta: "View Programmes",

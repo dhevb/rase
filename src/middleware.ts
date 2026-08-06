@@ -94,13 +94,24 @@ function isMaintenanceExempt(pathname: string): boolean {
   return false;
 }
 
+const MAINTENANCE_CACHE_TTL_MS = 60_000;
+let maintenanceCache: { value: boolean; expiresAt: number } | null = null;
+
 async function isMaintenanceMode(request: NextRequest): Promise<boolean> {
+  if (process.env.MAINTENANCE_MODE === "1") return true;
+
+  if (maintenanceCache && maintenanceCache.expiresAt > Date.now()) {
+    return maintenanceCache.value;
+  }
+
   try {
     const url = new URL("/api/v2/settings/maintenance", request.nextUrl.origin);
     const res = await fetch(url, { next: { revalidate: 60 } });
     if (!res.ok) return false;
     const data = (await res.json()) as { maintenanceMode?: boolean };
-    return Boolean(data.maintenanceMode);
+    const value = Boolean(data.maintenanceMode);
+    maintenanceCache = { value, expiresAt: Date.now() + MAINTENANCE_CACHE_TTL_MS };
+    return value;
   } catch {
     return false;
   }

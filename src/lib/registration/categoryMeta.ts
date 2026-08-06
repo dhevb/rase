@@ -100,8 +100,8 @@ const META: Record<RegistrationType, CategoryMeta> = {
       "Accommodation booking opens separately in September",
     ],
   },
-  "Bal Shodh Patrika": {
-    description: "Register for Bal Shodh Patrika contributions.",
+  Shodhankur: {
+    description: "Register for Shodhankur student research contributions.",
     instructions: ["Provide title and description", "Submit — no payment required"],
     eligibility: ["Students", "Teachers", "Contributors"],
     fee: "Free",
@@ -144,7 +144,7 @@ const FEE_BADGES: Record<RegistrationType, { label: string; tone: FeeBadgeTone }
   Awards: { label: "Free", tone: "free" },
   Exhibition: { label: "Free", tone: "free" },
   Projects: { label: "₹200–₹500", tone: "paid" },
-  "Bal Shodh Patrika": { label: "Free", tone: "free" },
+  Shodhankur: { label: "Free", tone: "free" },
   "Cultural Program": { label: "Free", tone: "free" },
   Accommodation: { label: "Opens Sep", tone: "free" },
 };

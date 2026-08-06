@@ -21,6 +21,7 @@ const TYPE_HINTS: Partial<Record<RegistrationType, string>> = {
   "Best Practices": "Share institutional best practices (500+ words)",
   Exhibition: "Innovation and project exhibitions",
   Projects: "School / college / university project displays (₹200–₹500)",
+  Shodhankur: "Student research journal for Classes 9–12",
 };
 
 const BADGE_STYLES: Record<FeeBadgeTone, string> = {

@@ -13,7 +13,7 @@ export const VIBHAG_PAGES: VibhagPage[] = [
     title: "Academic Council",
     titleHindi: "शैक्षिक विभाग",
     description:
-      "Multi-track conference, conclaves, DHE Olympiads, exhibitions, Bal Shodh Patrika, best practices, and student projects — NIT Hamirpur, 9–11 Oct 2026",
+      "Multi-track conference, conclaves, DHE Olympiads, exhibitions, Shodhankur, best practices, and student projects — NIT Hamirpur, 9–11 Oct 2026",
   },
   {
     path: "/departments/prabandhan",

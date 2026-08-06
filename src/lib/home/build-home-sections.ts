@@ -211,7 +211,7 @@ const DEFAULT_TRACKS: EventTrack[] = [
     title: "Best Practices & Patrika",
     date: "Open call",
     venue: "Academic Council",
-    description: "Grassroots models and Bal Shodh Patrika student research journal.",
+    description: "Grassroots models and Shodhankur student research journal.",
     href: academicCouncilHash("best-practices"),
     badge: "Practice",
   },

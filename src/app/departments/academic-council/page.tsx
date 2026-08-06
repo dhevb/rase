@@ -11,6 +11,8 @@ import {
   ACADEMIC_COUNCIL_QUICK_LINKS,
 } from "@/data/academic-council-hub";
 
+export const revalidate = 3600;
+
 export default function AcademicCouncilDepartmentPage() {
   return (
     <PublicPageShell

@@ -53,7 +53,7 @@ export const researchOutput: ResearchOutputItem[] = [
     href: "https://pub.dhe.org.in",
   },
   {
-    title: "Bal Shodh Patrika",
+    title: "Shodhankur",
     type: "Patrika",
     description: "Student research journal integrated with Academic Council.",
     href: "/departments/academic-council",

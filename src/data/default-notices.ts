@@ -90,7 +90,7 @@ export const DEFAULT_NOTICES_EN: CmsNotice[] = [
     title: "DHE Olympiads & Talent Programmes — Dates TBA",
     slug: "dhe-olympiads-2026",
     description:
-      "DHE Olympiads (Classes 3–10), talent conclave (90%+ achievers), and Bal Shodh Patrika participation will open via the registration hub. Registration and exam dates to be announced; top achievers felicitated at Shiksha Mahakumbh 6.0.",
+      "DHE Olympiads (Classes 3–10), talent conclave (90%+ achievers), and Shodhankur participation will open via the registration hub. Registration and exam dates to be announced; top achievers felicitated at Shiksha Mahakumbh 6.0.",
     priority: 6,
     isPinned: false,
     publishAt: "2026-05-20T00:00:00.000Z",
@@ -264,7 +264,7 @@ export const DEFAULT_NOTICES_HI: CmsNotice[] = [
     title: "डीएचई ओलंपियाड एवं प्रतिभा कार्यक्रम — तिथि घोषित होगी",
     slug: "dhe-olympiads-hi",
     description:
-      "कक्षा 3–10 के लिए DHE ओलंपियाड, प्रतिभा अधिवेशन और बाल शोध पत्रिका — पंजीकरण व परीक्षा तिथियाँ घोषित की जाएंगी। पंजीकरण हब के माध्यम से आवेदन करें।",
+      "कक्षा 3–10 के लिए DHE ओलंपियाड, प्रतिभा अधिवेशन और शोधांकुर — पंजीकरण व परीक्षा तिथियाँ घोषित की जाएंगी। पंजीकरण हब के माध्यम से आवेदन करें।",
     priority: 6,
     isPinned: false,
     publishAt: "2026-05-20T00:00:00.000Z",

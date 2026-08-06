@@ -35,7 +35,7 @@ export const EDUCATION_PILLAR_ENTITIES: EducationEntityDefinition[] = [
   {
     id: "school-education",
     label: "School Education",
-    description: "K–12 programmes, school projects, and Bal Shodh initiatives.",
+    description: "K–12 programmes, school projects, and Shodhankur initiatives.",
     routes: ["/departments/academic-council", "/registration"],
     schemaTypes: ["EducationEvent", "Course"],
   },

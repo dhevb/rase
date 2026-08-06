@@ -24,7 +24,7 @@ export const SUPPORTED_V2_TYPES = [
   "NGO",
   "Projects",
   "Organiser",
-  "Bal Shodh Patrika",
+  "Shodhankur",
   "Cultural Program",
   "Multi Track Conference",
 ] as const;
@@ -47,6 +47,7 @@ const TYPE_MAP: Record<string, PrismaRegistrationType> = {
   Projects: "Exhibition",
   Organiser: "Legacy_Other",
   "Multi Track Conference": "Legacy_Other",
+  Shodhankur: "Legacy_Other",
   "Bal Shodh Patrika": "Legacy_Other",
   "Cultural Program": "Legacy_Other",
 };
