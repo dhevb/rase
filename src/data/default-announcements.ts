@@ -47,6 +47,16 @@ const DEFAULT_EN: Omit<ResolvedAnnouncementItem, "id">[] = [
     iconKey: "research",
   },
   {
+    title: "ICESED-2026 @ Sri Sai University, Palampur",
+    summary: "Society, Education and Social Development — 26–27 Sept 2026",
+    detail:
+      "International hybrid conference on Society, Education and Social Development: Emerging Issues and Alternatives at Sri Sai University, Palampur, jointly with CBLU Bhiwani, under DHE / Shiksha Mahakumbh Abhiyan. Registration deadline 22 September 2026. Brochure and registration on the Conference tab.",
+    href: `${CANONICAL_ROUTES.departments.academicCouncil}#conference`,
+    external: false,
+    cta: "View ICESED-2026",
+    iconKey: "research",
+  },
+  {
     title: "Programmes @ Shiksha Mahakumbh 6.0",
     summary: "8 conclaves, olympiads, exhibitions, awards & more",
     detail:
@@ -107,6 +117,16 @@ const DEFAULT_HI: Omit<ResolvedAnnouncementItem, "id">[] = [
     href: `${CANONICAL_ROUTES.departments.academicCouncil}#conference`,
     external: false,
     cta: "IKS सम्मेलन देखें",
+    iconKey: "research",
+  },
+  {
+    title: "ICESED-2026 — श्री साई विश्वविद्यालय, पालमपुर",
+    summary: "समाज, शिक्षा एवं सामाजिक विकास — 26–27 सितंबर 2026",
+    detail:
+      "श्री साई विश्वविद्यालय, पालमपुर व CBLU भिवानी के संयुक्त तत्वावधान में अंतरराष्ट्रीय सम्मेलन, शिक्षा महाकुंभ अभियान व DHE के अंतर्गत। पंजीकरण अंतिम तिथि 22 सितंबर 2026। ब्रॉशर एवं पंजीकरण शैक्षिक परिषद → सम्मेलन टैब पर।",
+    href: `${CANONICAL_ROUTES.departments.academicCouncil}#conference`,
+    external: false,
+    cta: "ICESED-2026 देखें",
     iconKey: "research",
   },
   {

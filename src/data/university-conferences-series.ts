@@ -32,7 +32,7 @@ export const UNIVERSITY_CONFERENCES_INTRO = {
   subtitle:
     "National and state-level conferences at partner universities and colleges — held throughout the year under the academic umbrella of Shiksha Mahakumbh Abhiyan, in collaboration with the Department of Holistic Education (DHE).",
   note:
-    "The official 6.0 brochure proposes 16 multi-track conferences at leading institutions. Two are confirmed on these dates and are not held at NIT Hamirpur: AIST-2026 (SLIET Longowal, 21–22 August 2026, hybrid) and the International Conference on Indian Knowledge System (Arni University, 11–12 September 2026, hybrid). These remain distinct from the Multi-Track Conference at Shiksha Mahakumbh 6.0 (NIT Hamirpur, 9–11 October 2026).",
+    "The official 6.0 brochure proposes 16 multi-track conferences at leading institutions. Three are confirmed on these dates and are not held at NIT Hamirpur: AIST-2026 (SLIET Longowal, 21–22 August 2026, hybrid), the International Conference on Indian Knowledge Systems (Arni University, 11–12 September 2026, hybrid), and ICESED-2026 (Sri Sai University, Palampur, 26–27 September 2026, hybrid). These remain distinct from the Multi-Track Conference at Shiksha Mahakumbh 6.0 (NIT Hamirpur, 9–11 October 2026).",
 } as const;
 
 export const UNIVERSITY_CONFERENCES: UniversityConferenceEntry[] = [
@@ -136,6 +136,67 @@ export const UNIVERSITY_CONFERENCES: UniversityConferenceEntry[] = [
       "Coordinator: Dr. Shamsher Singh (Manager, DHE)",
       "Coordinator: Dr. Pawan Sharma (NIT Hamirpur)",
       "Organizing Secretary: Dr. Jatinder Garg (Central University of Himachal Pradesh)",
+    ],
+  },
+  {
+    id: "icesed-2026-sri-sai",
+    title:
+      "International Conference on Society, Education and Social Development: Emerging Issues and Alternatives",
+    acronym: "ICESED-2026",
+    hostInstitution:
+      "Sri Sai University, Palampur (H.P.) — NAAC Accredited, established under Act No. 3 of 2011 of the Himachal Pradesh State Legislature, UGC notified under Section 22 — in collaboration with Chaudhary Bansi Lal University (CBLU), Bhiwani, Haryana and the Department of Holistic Education (DHE)",
+    location: "Sri Sai University, Palampur, Himachal Pradesh",
+    dates: "26–27 September 2026",
+    mode: "Hybrid",
+    status: "open",
+    description:
+      "International conference under the academic umbrella of Shiksha Mahakumbh 6.0 and DHE, jointly organised by Sri Sai University Palampur and Chaudhary Bansi Lal University (CBLU) Bhiwani. The conference brings together researchers, educators, policymakers, and practitioners to examine contemporary challenges linking society, education, and social development — exploring emerging educational policies, inclusive and equitable education, the role of technology and AI, and interdisciplinary dialogue on sustainable development and social justice. Accepted and peer-reviewed papers will be published in Viksit India / Viksit Bharat Journal (ISSN 2278-1757) and IHRDI Journal of Sustainable Development (ISSN 3049-2750).",
+    topics: [
+      "Education, Social Transformation and Inclusive Development",
+      "Educational Reforms, Governance and Future Ready Learning",
+      "Digital Transformation, Innovation and the Future of Work",
+      "Sustainable Communities, Urban-Rural Development and Human Well-being",
+      "Public Policy, Governance and Research for Social Development",
+      "NEP 2020 and Higher Education",
+      "Sustainable Development Goals and Universities",
+      "Women Empowerment and Inclusive Development",
+      "Youth, Innovation and Entrepreneurship",
+      "Digital Inclusion",
+      "Indigenous Knowledge Systems",
+      "International Perspectives on Educational Reforms",
+      "AI and Nanotechnology in Education",
+      "Climate Change, Environment and Social Justice",
+      "Disaster Management, Rehabilitation and Adaptability",
+    ],
+    brochureHref: "/conferences/sri-sai-university-palampur-icesed-2026.pdf",
+    registrationHref: "https://forms.gle/LULLCtMPQUPT1ogJ7",
+    websiteHref: "https://www.srisaiuniversity.org",
+    contactEmail: "journalsformahakumbh2026@gmail.com",
+    contactPhone: "82838 25534 / 9418447541 / 8219393854",
+    deadlines: [
+      { label: "Last date for abstract submission", date: "15 September 2026" },
+      { label: "Notification of acceptance", date: "20 September 2026" },
+      { label: "Last date for full paper submission", date: "22 September 2026" },
+      { label: "Last date for registration", date: "22 September 2026" },
+    ],
+    fees: [
+      { category: "UG/PG Students", amount: "₹500 (₹1,500 with stay)" },
+      { category: "Research Scholars", amount: "₹700 (₹2,100 with stay)" },
+      { category: "Faculty / Academicians", amount: "₹1,000 (₹3,000 with stay)" },
+      { category: "Industry Professionals", amount: "₹1,500 (₹4,500 with stay)" },
+      { category: "Attendees (without paper)", amount: "₹700 (₹2,100 with stay)" },
+      { category: "International Delegates", amount: "USD 25 (USD 75 with stay)" },
+    ],
+    organizers: [
+      "Chief Patron: Er. S K Punj (Chancellor, Sri Sai University, Palampur)",
+      "Chief Co-Patron: Dr. SKR Thakur (Department of Holistic Education, VB Institute of Training and Research)",
+      "Patron: Er. Kanwar Tushar Punj (Vice President, Sri Sai University, Palampur)",
+      "Co-Patron: Mrs. Tripta Punj (MD, SSGI); Shri Vijay Nadda (Kshetriya Sangathan Mantri, Vidya Bharati)",
+      "Co-Patron: Prof. V.P. Patial (Dean Academics, SSU Palampur)",
+      "Coordinator: Mrs. Riya Punj (Coordinator, Shiksha Mahakumbha, DHE)",
+      "Convener: Dr. Manoj Kumar Teotia (Chairperson, Dept of Sociology and Social Work, CBLU; President, NWISA)",
+      "Convener: Dr. Neempiya Nag",
+      "Convener: Er. Adit Rana (HOD, Mechanical Engineering, SSU Palampur)",
     ],
   },
   {

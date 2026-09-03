@@ -47,12 +47,33 @@ export const DEFAULT_NOTICES_EN: CmsNotice[] = [
     ],
   },
   {
+    id: "default-icesed-sri-sai-2026",
+    title:
+      "ICESED-2026 — International Conference on Society, Education and Social Development (Sri Sai University, Palampur)",
+    slug: "icesed-2026-sri-sai-university-palampur",
+    description:
+      "International Conference on Society, Education and Social Development: Emerging Issues and Alternatives will be held at Sri Sai University, Palampur (H.P.) on 26–27 September 2026 in hybrid mode, jointly organised with Chaudhary Bansi Lal University (CBLU), Bhiwani, under the academic umbrella of Shiksha Mahakumbh 6.0 with the Department of Holistic Education (DHE). Key dates: abstract submission 15 September 2026; acceptance 20 September 2026; full paper & registration 22 September 2026. Registration via official Google Form. Accepted papers will be published in Viksit India / Viksit Bharat Journal (ISSN 2278-1757). Contact: journalsformahakumbh2026@gmail.com | 82838 25534. Download brochure and register via the Academic Council → Conference tab.",
+    priority: 10,
+    isPinned: true,
+    publishAt: "2026-08-15T00:00:00.000Z",
+    expireAt: null,
+    category: { name: "Programmes", slug: "programmes" },
+    attachments: [
+      {
+        id: "att-icesed-sri-sai-2026-pdf",
+        fileName: "sri-sai-university-palampur-icesed-2026.pdf",
+        fileUrl: "/conferences/sri-sai-university-palampur-icesed-2026.pdf",
+        mimeType: "application/pdf",
+      },
+    ],
+  },
+  {
     id: "default-registration-open",
     title: `Registration Open — ${event.name}`,
     slug: "registration-open-smk-6",
     description:
       `Unified registration is open for delegates, academic conclaves, exhibitions, project displays, and accommodation requests. DHE Olympiad exam dates are to be announced — apply via the registration hub when open. The summit runs 9–11 October 2026 at ${event.venue}, ${event.location}.`,
-    priority: 10,
+    priority: 9,
     isPinned: true,
     publishAt: "2026-05-01T00:00:00.000Z",
     expireAt: null,
@@ -195,12 +216,33 @@ export const DEFAULT_NOTICES_HI: CmsNotice[] = [
     ],
   },
   {
+    id: "default-icesed-sri-sai-2026-hi",
+    title:
+      "ICESED-2026 — अंतरराष्ट्रीय सम्मेलन: समाज, शिक्षा एवं सामाजिक विकास (श्री साई विश्वविद्यालय, पालमपुर)",
+    slug: "icesed-2026-sri-sai-university-palampur-hi",
+    description:
+      "श्री साई विश्वविद्यालय, पालमपुर (हि.प्र.) व चौधरी बंसी लाल विश्वविद्यालय (CBLU) भिवानी के संयुक्त तत्वावधान में अंतरराष्ट्रीय सम्मेलन — 26–27 सितंबर 2026 (हाइब्रिड), शिक्षा महाकुंभ 6.0 व डीएचई के अंतर्गत। सार-पत्र अंतिम तिथि 15 सितंबर 2026; पंजीकरण 22 सितंबर 2026। संपर्क: journalsformahakumbh2026@gmail.com | 82838 25534। ब्रॉशर शैक्षिक परिषद → सम्मेलन टैब पर।",
+    priority: 10,
+    isPinned: true,
+    publishAt: "2026-08-15T00:00:00.000Z",
+    expireAt: null,
+    category: { name: "कार्यक्रम", slug: "programmes" },
+    attachments: [
+      {
+        id: "att-icesed-sri-sai-2026-pdf-hi",
+        fileName: "sri-sai-university-palampur-icesed-2026.pdf",
+        fileUrl: "/conferences/sri-sai-university-palampur-icesed-2026.pdf",
+        mimeType: "application/pdf",
+      },
+    ],
+  },
+  {
     id: "default-registration-hi",
     title: "शिक्षा महाकुंभ 6.0 — पंजीकरण खुला",
     slug: "smk-6-registration-hi",
     description:
       "9–11 अक्टूबर 2026, एनआईटी हमीरपुर। प्रतिनिधि, अधिवेशन, ओलंपियाड, प्रदर्शनी और आवास के लिए एकीकृत पंजीकरण प्रारंभ।",
-    priority: 10,
+    priority: 9,
     isPinned: true,
     publishAt: "2026-05-01T00:00:00.000Z",
     expireAt: null,

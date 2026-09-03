@@ -113,6 +113,11 @@ export const ACADEMIC_PROGRAMME_HUB: ProgrammeHubSection[] = [
           "IKS @2047 — Indian Knowledge Systems for Viksit Bharat (Arni University)",
         titleHi: "भारतीय ज्ञान परम्परा — विकसित एवं आत्मनिर्भर भारत @2047",
       },
+      {
+          titleEn:
+            "ICESED-2026 — Society, Education and Social Development (Sri Sai University, Palampur)",
+          titleHi: "समाज, शिक्षा एवं सामाजिक विकास — श्री साई विश्वविद्यालय, पालमपुर",
+        },
       { titleEn: "Additional state university & college conferences — coming soon" },
     ],
     footerNote:
