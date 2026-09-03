@@ -1,5 +1,6 @@
 import { PaymentStatus, RegistrationType } from "@/types/registration";
 import { requiresPaymentForFee } from "@/lib/registration/fees";
+import { isSmk6GoogleFormRegistrationType } from "@/data/smk-6-external-registrations";
 
 /** Official Microsoft CMT portal for Shiksha Mahakumbh 6.0 multi-track conference. */
 export const CMT_SUBMISSION_URL = "https://cmt3.research.microsoft.com/SMK2026/";
@@ -51,12 +52,12 @@ export function requiresPaymentStep(
   return requiresPaymentForFee(fee);
 }
 
-/** Projects always use the 3-step pay flow when fee > 0. */
+/** Projects currently use the official 6.0 Google Form, not the on-site Razorpay flow. */
 export function usesMultiStepPaymentFlow(
   type: RegistrationType,
   fee = 0
 ): boolean {
-  if (type === "Projects") return true;
+  if (isSmk6GoogleFormRegistrationType(type)) return false;
   return requiresPaymentStep(type, fee);
 }
 

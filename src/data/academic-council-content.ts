@@ -190,7 +190,7 @@ export const ACADEMIC_PROGRAMME_HUB: ProgrammeHubSection[] = [
     id: "patrika",
     tabId: "PatrikaPage",
     icon: "📘",
-    titleEn: "Shodhankur",
+    titleEn: "Shodhankur – छात्र शोध पत्रिका",
     titleHi: "शोधांकुर",
     description:
       "National student research journal nurturing inquiry and innovation among school learners in Classes 9–12.",
@@ -200,7 +200,7 @@ export const ACADEMIC_PROGRAMME_HUB: ProgrammeHubSection[] = [
       { titleEn: "Section 2 — Classes 11–12: Advanced research & analytical studies", titleHi: "खंड 2 — कक्षा 11–12" },
     ],
     footerNote:
-      "Submission timelines to be announced. School entries via the registration hub under relevant student research categories.",
+      "Apply through the official Shodhankur Google Form. This programme is separate from Student Projects.",
   },
   {
     id: "best-practices",
@@ -234,7 +234,8 @@ export const ACADEMIC_PROGRAMME_HUB: ProgrammeHubSection[] = [
       { titleEn: "Division C — UG: Research-based solutions & deployable prototypes", titleHi: "खंड C — स्नातक" },
       { titleEn: "Division D — PG/Ph.D.: Advanced research & innovation", titleHi: "खंड D — स्नातकोत्तर / Ph.D." },
     ],
-    footerNote: "48 themes with problem statements. Register via the unified registration hub; download the full framework PDF on the Projects tab.",
+    footerNote:
+      "Register through the official Student Projects Google Form. This programme is separate from Shodhankur. Download the full framework PDF on the Projects tab.",
   },
 ];
 

@@ -10,7 +10,6 @@ import { NIT_HAMIRPUR_MAP_LINK } from "@/config/venue-maps";
 import { UPCOMING_EVENTS_FAQ } from "@/data/upcoming-events-hub";
 import { getBrochureViewUrl, getCommitteeBrochure } from "@/data/committee-brochures";
 import { getCategoryFeeBadge, getCategoryMeta } from "@/lib/registration/categoryMeta";
-import { CMT_SUBMIT_PATH } from "@/lib/registration/config";
 import type { CmsSpeakerCard } from "@/lib/cms/types";
 import {
   ABOUT_6TH_EDITION_HASH,
@@ -28,6 +27,14 @@ import {
   smk6ProgrammeCards,
   smk6RelatedConferences,
 } from "@/data/smk-6-edition-hub";
+import {
+  SMK_6_CONCLAVE_REGISTRATION_HREF,
+  SMK_6_EXTERNAL_REGISTRATIONS,
+  conclaveFormAnalyticsEvent,
+  conclaveFormByProgrammeTitle,
+  smk6RegistrationEntryForType,
+} from "@/data/smk-6-external-registrations";
+import { Smk6ExternalFormButton } from "@/components/registration/Smk6ExternalRegistrationPanels";
 import { committeePathForEdition } from "@/lib/committee/edition-slugs";
 
 const cardClass =
@@ -166,6 +173,28 @@ export default function Smk6EditionDetail({ speakers }: Props) {
                 >
                   For More Details
                 </Smk6TrackedLink>
+                {programme.id === "projects" ? (
+                  <Smk6TrackedLink
+                    href={SMK_6_EXTERNAL_REGISTRATIONS.studentProjects.url}
+                    className={`${detailsClass} mt-2`}
+                    eventName={ANALYTICS_EVENTS.smk6StudentProjectsRegistrationClicked}
+                    programme="projects"
+                    external
+                  >
+                    Register Now
+                  </Smk6TrackedLink>
+                ) : null}
+                {programme.id === "patrika" ? (
+                  <Smk6TrackedLink
+                    href={SMK_6_EXTERNAL_REGISTRATIONS.shodhankur.url}
+                    className={`${detailsClass} mt-2`}
+                    eventName={ANALYTICS_EVENTS.smk6ShodhankurRegistrationClicked}
+                    programme="patrika"
+                    external
+                  >
+                    Register Now
+                  </Smk6TrackedLink>
+                ) : null}
               </article>
             ))}
           </div>
@@ -212,6 +241,32 @@ export default function Smk6EditionDetail({ speakers }: Props) {
                 >
                   For More Details
                 </Smk6TrackedLink>
+                {(() => {
+                  const form = conclaveFormByProgrammeTitle(conclave.title);
+                  if (form) {
+                    return (
+                      <div className="mt-2">
+                        <Smk6ExternalFormButton
+                          href={form.url}
+                          eventName={conclaveFormAnalyticsEvent(form.id)}
+                          className={detailsClass}
+                        >
+                          Register Now
+                        </Smk6ExternalFormButton>
+                      </div>
+                    );
+                  }
+                  return (
+                    <Smk6TrackedLink
+                      href={SMK_6_CONCLAVE_REGISTRATION_HREF}
+                      className={`${detailsClass} mt-2 self-start`}
+                      eventName={ANALYTICS_EVENTS.smk6ConclaveRegistrationClicked}
+                      programme="conclave"
+                    >
+                      Conclave registration
+                    </Smk6TrackedLink>
+                  );
+                })()}
               </article>
             ))}
           </div>
@@ -385,24 +440,38 @@ export default function Smk6EditionDetail({ speakers }: Props) {
             align="left"
             eyebrow="Participate"
             title="Registration"
-            description="All categories use the existing unified registration portal. Fees below are the live category badges from the registration system."
+            description="The registration hub remains the gateway. Conclave, Student Projects, and Shodhankur use official Google Forms from that hub."
           />
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {SMK_6_REGISTRATION_TYPES.map((type) => {
               const badge = getCategoryFeeBadge(type);
               const meta = getCategoryMeta(type);
-              const href =
-                type === "Multi Track Conference" ? CMT_SUBMIT_PATH : registerHref;
+              const entry = smk6RegistrationEntryForType(type);
+              const label =
+                type === "Shodhankur"
+                  ? "Shodhankur – छात्र शोध पत्रिका"
+                  : type === "Projects"
+                    ? "Student Projects"
+                    : type;
               return (
                 <Smk6TrackedLink
                   key={type}
-                  href={href}
+                  href={entry.href}
                   className={cardClass}
-                  eventName={ANALYTICS_EVENTS.registrationStarted}
+                  eventName={
+                    type === "Conclave"
+                      ? ANALYTICS_EVENTS.smk6ConclaveRegistrationClicked
+                      : type === "Projects"
+                        ? ANALYTICS_EVENTS.smk6StudentProjectsRegistrationClicked
+                        : type === "Shodhankur"
+                          ? ANALYTICS_EVENTS.smk6ShodhankurRegistrationClicked
+                          : ANALYTICS_EVENTS.registrationStarted
+                  }
                   programme={type}
+                  external={entry.external}
                 >
                   <span className="flex items-start justify-between gap-2">
-                    <span className="text-sm font-bold text-brand-navy">{type}</span>
+                    <span className="text-sm font-bold text-brand-navy">{label}</span>
                     <span className="shrink-0 rounded-full bg-brand-saffron/15 px-2 py-0.5 text-[10px] font-bold text-brand-saffron-dark">
                       {badge.label}
                     </span>

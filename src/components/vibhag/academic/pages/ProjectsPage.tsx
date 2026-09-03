@@ -80,7 +80,9 @@ export default function ProjectsPage() {
               Download full framework (PDF)
             </a>
             <a
-              href={REG_LINKS.general}
+              href={REG_LINKS.studentProjects}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex min-h-[44px] items-center rounded-xl bg-brand-saffron px-5 py-2.5 text-sm font-bold text-brand-navy transition hover:bg-brand-saffron-dark hover:text-white"
             >
               Register for Projects
@@ -262,7 +264,7 @@ export default function ProjectsPage() {
       <SectionCTA
         title="Register your project team"
         buttonText="Register & Submit"
-        href={REG_LINKS.general}
+        href={REG_LINKS.studentProjects}
       />
     </ACPage>
   );

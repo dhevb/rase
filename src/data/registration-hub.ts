@@ -46,7 +46,7 @@ export const REGISTRATION_CATEGORY_GROUPS: {
   },
   {
     title: "Programme tracks",
-    hint: "Free on-site forms — conclaves, awards, olympiad, exhibitions, and more",
+    hint: "Conclaves, awards, olympiad, exhibitions, and more — some open official Google Forms",
     types: [
       "Shodhankur",
       "Conclave",
@@ -58,8 +58,8 @@ export const REGISTRATION_CATEGORY_GROUPS: {
     ],
   },
   {
-    title: "Project displays",
-    hint: "School, college, and university level projects (paid registration)",
+    title: "Student Projects",
+    hint: "Official Google Form for school, college, and university student projects",
     types: ["Projects"],
   },
   {
@@ -119,7 +119,7 @@ export const REGISTRATION_FAQ = [
   {
     question: "What registration categories are available?",
     answer:
-      "Delegate, Conclave, Best Practices, Olympiad, Awards, Exhibition, Projects, Shodhankur, and Cultural Program. Multi Track Conference papers are submitted via Microsoft CMT. Accommodation booking opens in September 2026.",
+      "Delegate, Conclave, Best Practices, Olympiad, Awards, Exhibition, Student Projects, Shodhankur – छात्र शोध पत्रिका, and Cultural Program. Four 6.0 conclaves, Student Projects, and Shodhankur use official Google Forms. Multi Track Conference papers are submitted via Microsoft CMT. Accommodation booking opens in September 2026.",
   },
   {
     question: "How do I submit a research paper?",
@@ -132,6 +132,6 @@ export const REGISTRATION_FAQ = [
   {
     question: "Which categories require payment?",
     answer:
-      "Delegate registration may require payment depending on category and fee. Projects use the paid registration flow (₹200 school level · ₹500 college/university level). Conclave, Olympiad, Awards, Exhibition, Best Practices, Shodhankur, and Cultural Program are free on-site forms unless otherwise noted. Accommodation is not open for booking yet — details in September.",
+      "Delegate registration may require payment depending on category and fee. Olympiad is ₹200 per student on this portal. Conclave (four published 6.0 forms), Student Projects, and Shodhankur use official Google Forms. Awards, Exhibition, Best Practices, and Cultural Program remain free on-site forms unless otherwise noted. Accommodation is not open for booking yet — details in September.",
   },
 ] as const;

@@ -15,7 +15,7 @@ export default function RegistrationTypesStrip() {
         <SectionHeader
           eyebrow="Start here"
           title="Who should register — and what does it cost?"
-          description="One portal for all SMK 6.0 categories. Free programme forms and paid project displays — choose your track on the registration hub."
+          description="One portal for all SMK 6.0 categories. Delegate and olympiad fees stay on the hub; Conclave, Student Projects, and Shodhankur use official Google Forms."
           align="left"
         />
         <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

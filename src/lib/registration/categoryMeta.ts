@@ -1,9 +1,4 @@
 import { RegistrationType } from "@/types/registration";
-import {
-  PROJECT_COLLEGE_STUDENT_FEE,
-  PROJECT_SCHOOL_STUDENT_FEE,
-  PROJECT_UNIVERSITY_STUDENT_FEE,
-} from "@/lib/registration/fees";
 import { DELEGATE_FEES } from "@/lib/registration/delegate-categories";
 import { CMT_SUBMISSION_URL } from "@/lib/registration/config";
 
@@ -42,12 +37,15 @@ const META: Record<RegistrationType, CategoryMeta> = {
     importantNotes: [`Portal: ${CMT_SUBMISSION_URL}`],
   },
   Conclave: {
-    description: "Participate in thematic conclaves with leaders and practitioners.",
-    instructions: ["Choose conclave track and participation type", "Submit form — no payment on this portal"],
-    eligibility: ["Speakers", "Delegates", "Invitees", "Observers"],
-    fee: "Free on this portal",
-    documentsRequired: ["None unless requested by organisers"],
-    importantNotes: ["Confirmation subject to review"],
+    description: "Participate in thematic 6.0 conclaves. Each listed conclave has its own official Google Form.",
+    instructions: [
+      "Select Conclave, then choose the specific conclave.",
+      "Register on the official Google Form (opens in a new tab).",
+    ],
+    eligibility: ["Principals and outstanding teachers", "Scientists and research scholars", "Startup leaders and entrepreneurs", "Talent Conclave participants"],
+    fee: "Official Google Form — no payment on this portal",
+    documentsRequired: ["As requested on the official form"],
+    importantNotes: ["Only four 6.0 conclaves currently have published Google Forms"],
   },
   "Best Practices": {
     description: "Share institutional best practices (500+ words).",
@@ -82,31 +80,26 @@ const META: Record<RegistrationType, CategoryMeta> = {
     importantNotes: ["Space allocation subject to availability"],
   },
   Projects: {
-    description: "Register school, college, or university project displays at SMK 6.0.",
+    description: "Register school, college, or university student projects for Shiksha Mahakumbh 6.0 via the official Google Form.",
     instructions: [
-      "Select the correct project level — fees differ by level.",
-      "School Level Project: ₹200 · College / University Level: ₹500 each.",
-      "Pay via Razorpay before final submit; keep your SMK registration ID.",
+      "Open the official Student Projects Google Form.",
+      "Complete the form in a new tab — responses are not collected on this website.",
     ],
     eligibility: ["School students", "College students", "University students"],
-    fee: `School Level: ₹${PROJECT_SCHOOL_STUDENT_FEE} · College Level: ₹${PROJECT_COLLEGE_STUDENT_FEE} · University Level: ₹${PROJECT_UNIVERSITY_STUDENT_FEE}`,
-    documentsRequired: [
-      "Razorpay payment confirmation or uploaded receipt",
-      "PAN if fee ≥ ₹2000",
-      "Project summary in the description field",
-    ],
-    importantNotes: [
-      "Payment proof is mandatory before submission",
-      "Accommodation booking opens separately in September",
-    ],
+    fee: "As specified on the official Google Form",
+    documentsRequired: ["As requested on the official form"],
+    importantNotes: ["Student Projects is separate from Shodhankur"],
   },
   Shodhankur: {
-    description: "Register for Shodhankur student research contributions.",
-    instructions: ["Provide title and description", "Submit — no payment required"],
-    eligibility: ["Students", "Teachers", "Contributors"],
-    fee: "Free",
-    documentsRequired: ["None"],
-    importantNotes: ["Submissions reviewed editorially"],
+    description: "Shodhankur – छात्र शोध पत्रिका. Apply through the official Google Form.",
+    instructions: [
+      "Open the official Shodhankur Google Form.",
+      "Complete the form in a new tab — responses are not collected on this website.",
+    ],
+    eligibility: ["School students (Classes 9–12)", "Teachers guiding submissions"],
+    fee: "Official Google Form — no payment on this portal",
+    documentsRequired: ["As requested on the official form"],
+    importantNotes: ["Shodhankur is separate from Student Projects"],
   },
   "Cultural Program": {
     description: "Register for cultural programme participation.",
@@ -138,13 +131,13 @@ export type FeeBadgeTone = "free" | "paid" | "external" | "variable";
 const FEE_BADGES: Record<RegistrationType, { label: string; tone: FeeBadgeTone }> = {
   "Delegate Registration": { label: "₹0–₹5100", tone: "variable" },
   "Multi Track Conference": { label: "External · CMT", tone: "external" },
-  Conclave: { label: "Free", tone: "free" },
+  Conclave: { label: "External form", tone: "external" },
   "Best Practices": { label: "Free", tone: "free" },
   Olympiad: { label: "₹200 / student", tone: "paid" },
   Awards: { label: "Free", tone: "free" },
   Exhibition: { label: "Free", tone: "free" },
-  Projects: { label: "₹200–₹500", tone: "paid" },
-  Shodhankur: { label: "Free", tone: "free" },
+  Projects: { label: "External form", tone: "external" },
+  Shodhankur: { label: "External form", tone: "external" },
   "Cultural Program": { label: "Free", tone: "free" },
   Accommodation: { label: "Opens Sep", tone: "free" },
 };

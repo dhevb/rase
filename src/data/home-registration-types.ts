@@ -1,9 +1,6 @@
 import { CANONICAL_ROUTES } from "@/constants/canonical-routes";
 import { CMT_SUBMISSION_URL } from "@/lib/registration/config";
-import {
-  PROJECT_COLLEGE_STUDENT_FEE,
-  PROJECT_SCHOOL_STUDENT_FEE,
-} from "@/lib/registration/fees";
+import { SMK_6_CONCLAVE_REGISTRATION_HREF, SMK_6_EXTERNAL_REGISTRATIONS } from "@/data/smk-6-external-registrations";
 
 export type HomeRegistrationTypeCard = {
   label: string;
@@ -16,8 +13,14 @@ export type HomeRegistrationTypeCard = {
 /** Homepage registration overview — links to the unified hub. */
 export const HOME_REGISTRATION_TYPES: HomeRegistrationTypeCard[] = [
   {
-    label: "Conclave · Awards · Olympiad",
-    fee: "Free",
+    label: "Conclave",
+    fee: "Google Form",
+    hint: "Choose one of four official 6.0 conclave forms",
+    href: SMK_6_CONCLAVE_REGISTRATION_HREF,
+  },
+  {
+    label: "Awards · Olympiad",
+    fee: "See hub",
     hint: "On-site programme forms at the summit",
     href: CANONICAL_ROUTES.registration,
   },
@@ -28,16 +31,18 @@ export const HOME_REGISTRATION_TYPES: HomeRegistrationTypeCard[] = [
     href: CANONICAL_ROUTES.registration,
   },
   {
-    label: "Projects (School)",
-    fee: `₹${PROJECT_SCHOOL_STUDENT_FEE}`,
-    hint: "School level project display — online payment",
-    href: CANONICAL_ROUTES.registration,
+    label: "Student Projects",
+    fee: "Google Form",
+    hint: "Official Student Projects registration form",
+    href: SMK_6_EXTERNAL_REGISTRATIONS.studentProjects.url,
+    external: true,
   },
   {
-    label: "Projects (College / University)",
-    fee: `₹${PROJECT_COLLEGE_STUDENT_FEE}`,
-    hint: "Higher-ed project display — online payment",
-    href: CANONICAL_ROUTES.registration,
+    label: "Shodhankur – छात्र शोध पत्रिका",
+    fee: "Google Form",
+    hint: "Official Shodhankur student research journal form",
+    href: SMK_6_EXTERNAL_REGISTRATIONS.shodhankur.url,
+    external: true,
   },
   {
     label: "Delegate registration",

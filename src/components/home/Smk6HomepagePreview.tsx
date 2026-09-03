@@ -10,6 +10,10 @@ import {
   SMK_6_OVERVIEW,
   smk6HomepageProgrammeHighlights,
 } from "@/data/smk-6-edition-hub";
+import {
+  SMK_6_CONCLAVE_REGISTRATION_HREF,
+  SMK_6_EXTERNAL_REGISTRATIONS,
+} from "@/data/smk-6-external-registrations";
 
 export default function Smk6HomepagePreview() {
   const highlights = smk6HomepageProgrammeHighlights();
@@ -46,6 +50,27 @@ export default function Smk6HomepagePreview() {
               >
                 For More Details
               </Smk6TrackedLink>
+              {item.id === "conclaves" ? (
+                <Smk6TrackedLink
+                  href={SMK_6_CONCLAVE_REGISTRATION_HREF}
+                  className="mt-2 text-xs font-bold text-brand-navy underline decoration-brand-saffron/40 underline-offset-2"
+                  eventName={ANALYTICS_EVENTS.smk6ConclaveRegistrationClicked}
+                  programme="conclave"
+                >
+                  Register for a conclave
+                </Smk6TrackedLink>
+              ) : null}
+              {item.id === "projects" ? (
+                <Smk6TrackedLink
+                  href={SMK_6_EXTERNAL_REGISTRATIONS.studentProjects.url}
+                  className="mt-2 text-xs font-bold text-brand-navy underline decoration-brand-saffron/40 underline-offset-2"
+                  eventName={ANALYTICS_EVENTS.smk6StudentProjectsRegistrationClicked}
+                  programme="projects"
+                  external
+                >
+                  Register Now
+                </Smk6TrackedLink>
+              ) : null}
             </article>
           ))}
         </div>

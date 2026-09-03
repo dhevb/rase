@@ -2,6 +2,10 @@
 
 import React, { ReactNode } from "react";
 import Link from "next/link";
+import {
+  SMK_6_CONCLAVE_REGISTRATION_HREF,
+  SMK_6_EXTERNAL_REGISTRATIONS,
+} from "@/data/smk-6-external-registrations";
 import "./academic-council.css";
 
 export interface SectionCTAProps {
@@ -250,25 +254,35 @@ export const ACContactBlock: React.FC = () => (
   </ACGlassPanel>
 );
 
+const ctaClassName =
+  "inline-flex min-h-[44px] items-center justify-center rounded-xl bg-brand-saffron px-8 py-3.5 text-base font-bold text-brand-navy shadow-lg transition hover:bg-brand-saffron-dark hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy";
+
 export const SectionCTA: React.FC<SectionCTAProps> = ({
   buttonText,
   href,
   title = "Ready to participate?",
-}) => (
-  <section className="px-4 pb-12 pt-4 md:px-8">
-    <div className="animate-fade-in mx-auto max-w-5xl overflow-hidden rounded-3xl border border-brand-saffron/30 bg-gradient-to-br from-brand-surface-warm via-white to-orange-50/80 p-6 text-center shadow-xl md:p-10">
-      <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-brand-saffron-dark">
-        {title}
-      </p>
-      <Link
-        href={href}
-        className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-brand-saffron px-8 py-3.5 text-base font-bold text-brand-navy shadow-lg transition hover:bg-brand-saffron-dark hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy"
-      >
-        {buttonText}
-      </Link>
-    </div>
-  </section>
-);
+}) => {
+  const external = href.startsWith("http://") || href.startsWith("https://");
+  return (
+    <section className="px-4 pb-12 pt-4 md:px-8">
+      <div className="animate-fade-in mx-auto max-w-5xl overflow-hidden rounded-3xl border border-brand-saffron/30 bg-gradient-to-br from-brand-surface-warm via-white to-orange-50/80 p-6 text-center shadow-xl md:p-10">
+        <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-brand-saffron-dark">
+          {title}
+        </p>
+        {external ? (
+          <a href={href} target="_blank" rel="noopener noreferrer" className={ctaClassName}>
+            {buttonText}
+            <span className="sr-only"> (opens in a new tab)</span>
+          </a>
+        ) : (
+          <Link href={href} className={ctaClassName}>
+            {buttonText}
+          </Link>
+        )}
+      </div>
+    </section>
+  );
+};
 
 export const ACFooterStatement: React.FC<{
   title: ReactNode;
@@ -284,6 +298,8 @@ export const ACFooterStatement: React.FC<{
 
 export const REG_LINKS = {
   general: "/registration",
-  conclave: "/registration",
+  conclave: SMK_6_CONCLAVE_REGISTRATION_HREF,
   participant: "/registration",
+  studentProjects: SMK_6_EXTERNAL_REGISTRATIONS.studentProjects.url,
+  shodhankur: SMK_6_EXTERNAL_REGISTRATIONS.shodhankur.url,
 } as const;

@@ -53,7 +53,7 @@ export default function PatrikaPage() {
   return (
     <ACPage>
       <ACHero
-        title="Shodhankur – Shiksha Mahakumbh 6.0"
+        title="Shodhankur – छात्र शोध पत्रिका"
         subtitle={
           <p>
             A unique academic initiative designed to nurture research, inquiry, innovation, and
@@ -177,7 +177,7 @@ export default function PatrikaPage() {
       <SectionCTA
         title="Submit to Shodhankur"
         buttonText="Register Now"
-        href={REG_LINKS.general}
+        href={REG_LINKS.shodhankur}
       />
     </ACPage>
   );

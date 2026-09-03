@@ -1,13 +1,18 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, Suspense } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import RegistrationShell from "@/components/registration/RegistrationShell";
 import { EVENT_NAME, RegistrationType } from "@/types/registration";
 import RegistrationProgress from "@/components/registration/RegistrationProgress";
 import CategoryStep from "@/components/registration/CategoryStep";
 import CategoryInstructionsPanel from "@/components/registration/CategoryInstructionsPanel";
+import {
+  ConclaveExternalSelector,
+  GoogleFormRegistrationPanel,
+} from "@/components/registration/Smk6ExternalRegistrationPanels";
 import { loadMeta, saveMeta, switchRegistrationCategory, clearRegistrationMeta, clearDraft } from "@/lib/registration/draftStorage";
 import { RegistrationFlowProvider } from "@/components/registration/RegistrationFlowContext";
 import RegistrationHoneypot from "@/components/registration/RegistrationHoneypot";
@@ -17,8 +22,38 @@ import {
   isExternalRedirectType,
   usesMultiStepPaymentFlow,
 } from "@/lib/registration/config";
+import {
+  isSmk6ConclaveSelectorType,
+  isSmk6GoogleFormRegistrationType,
+} from "@/data/smk-6-external-registrations";
 import { useRegistrationFlow } from "@/components/registration/RegistrationFlowContext";
 import { loadRazorpayCheckoutScript } from "@/lib/razorpay/load-checkout-script";
+
+const VALID_TYPES = [
+  "Delegate Registration",
+  "Multi Track Conference",
+  "Conclave",
+  "Best Practices",
+  "Olympiad",
+  "Awards",
+  "Exhibition",
+  "Projects",
+  "Shodhankur",
+  "Cultural Program",
+  "Accommodation",
+] as const satisfies readonly RegistrationType[];
+
+function isRegistrationType(value: string | null): value is RegistrationType {
+  return Boolean(value && (VALID_TYPES as readonly string[]).includes(value));
+}
+
+function usesOnSiteForm(type: RegistrationType): boolean {
+  return (
+    !isExternalRedirectType(type) &&
+    !isSmk6ConclaveSelectorType(type) &&
+    !isSmk6GoogleFormRegistrationType(type)
+  );
+}
 
 const DelegateForm = dynamic(() => import("@/components/forms/DelegateForm"));
 const ConclaveForm = dynamic(() => import("@/components/forms/ConclaveForm"));
@@ -67,21 +102,6 @@ function RegistrationFormRouter({
             sectionTitle="Exhibition Registration"
           />
         );
-      case "Projects":
-        return (
-          <GenericRegistrationForm
-            registrationType="Projects"
-            sectionTitle="Projects Registration"
-            requiresPayment
-          />
-        );
-      case "Shodhankur":
-        return (
-          <GenericRegistrationForm
-            registrationType="Shodhankur"
-            sectionTitle="Shodhankur Registration"
-          />
-        );
       case "Cultural Program":
         return (
           <GenericRegistrationForm
@@ -113,7 +133,9 @@ function RegistrationFormRouter({
 export default function RegistrationHub() {
   return (
     <RegistrationFlowProvider>
-      <RegistrationHubInner />
+      <Suspense fallback={<p className="px-4 py-6 text-sm text-slate-600">Loading registration…</p>}>
+        <RegistrationHubInner />
+      </Suspense>
     </RegistrationFlowProvider>
   );
 }
@@ -125,8 +147,10 @@ function RegistrationHubInner() {
   const flow = useRegistrationFlow();
   const currentFee = flow?.currentFee ?? 0;
   const metaLoadedRef = useRef(false);
+  const searchParams = useSearchParams();
 
   const showPaymentStep = usesMultiStepPaymentFlow(registrationType, currentFee);
+  const showOnSiteForm = usesOnSiteForm(registrationType);
 
   useEffect(() => {
     if (!flow) return;
@@ -144,6 +168,20 @@ function RegistrationHubInner() {
   useEffect(() => {
     if (metaLoadedRef.current) return;
     metaLoadedRef.current = true;
+    const requested = searchParams.get("category");
+    if (isRegistrationType(requested) && !isExternalRedirectType(requested)) {
+      setRegistrationType(requested);
+      if (isSmk6ConclaveSelectorType(requested) || isSmk6GoogleFormRegistrationType(requested)) {
+        setStep(2);
+        if (isSmk6ConclaveSelectorType(requested)) {
+          trackEvent(ANALYTICS_EVENTS.smk6ConclaveRegistrationClicked, {
+            source: "smk-6",
+            step: 2,
+          });
+        }
+      }
+      return;
+    }
     const meta = loadMeta();
     if (meta?.registrationType && !isExternalRedirectType(meta.registrationType)) {
       setRegistrationType(meta.registrationType);
@@ -154,7 +192,7 @@ function RegistrationHubInner() {
         setStep(Math.min(meta.step, maxStep));
       }
     }
-  }, [currentFee]);
+  }, [currentFee, searchParams]);
 
   useEffect(() => {
     if (step > 1 && !isExternalRedirectType(registrationType)) {
@@ -231,6 +269,12 @@ function RegistrationHubInner() {
                 registrationType,
                 step: 2,
               });
+              if (isSmk6ConclaveSelectorType(registrationType)) {
+                trackEvent(ANALYTICS_EVENTS.smk6ConclaveRegistrationClicked, {
+                  source: "smk-6",
+                  step: 2,
+                });
+              }
               setStep(2);
             }}
           />
@@ -240,9 +284,18 @@ function RegistrationHubInner() {
           <div className="space-y-4" aria-live="polite">
             <div className="flex flex-wrap items-center justify-between gap-2 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm">
               <span>
-                <strong className="text-brand-navy">{registrationType}</strong>
+                <strong className="text-brand-navy">
+                  {registrationType === "Shodhankur"
+                    ? "Shodhankur – छात्र शोध पत्रिका"
+                    : registrationType === "Projects"
+                      ? "Student Projects"
+                      : registrationType}
+                </strong>
                 {showPaymentStep ? (
                   <span className="ml-2 text-xs text-amber-700">(Paid registration)</span>
+                ) : isSmk6GoogleFormRegistrationType(registrationType) ||
+                  isSmk6ConclaveSelectorType(registrationType) ? (
+                  <span className="ml-2 text-xs text-violet-800">(Official Google Form)</span>
                 ) : (
                   <span className="ml-2 text-xs text-emerald-700">(Free registration)</span>
                 )}
@@ -262,7 +315,7 @@ function RegistrationHubInner() {
               </button>
             </div>
 
-            {step === 2 && (
+            {step === 2 && showOnSiteForm && (
               <p className="text-sm text-slate-600">
                 {showPaymentStep
                   ? "Fill your details below. Progress is saved automatically if you leave this page."
@@ -280,13 +333,19 @@ function RegistrationHubInner() {
               </p>
             )}
 
-            <RegistrationFormRouter
-              key={registrationType}
-              type={registrationType}
-              step={step}
-              onContinueToPayment={goToPayment}
-              showPaymentStep={showPaymentStep}
-            />
+            {isSmk6ConclaveSelectorType(registrationType) ? (
+              <ConclaveExternalSelector />
+            ) : isSmk6GoogleFormRegistrationType(registrationType) ? (
+              <GoogleFormRegistrationPanel type={registrationType} />
+            ) : (
+              <RegistrationFormRouter
+                key={registrationType}
+                type={registrationType}
+                step={step}
+                onContinueToPayment={goToPayment}
+                showPaymentStep={showPaymentStep}
+              />
+            )}
 
             {showPaymentStep && step === 3 && (
               <button

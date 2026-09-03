@@ -6,6 +6,10 @@ import {
   isExternalRedirectType,
   redirectToExternalSubmission,
 } from "@/lib/registration/config";
+import {
+  isSmk6ConclaveSelectorType,
+  isSmk6GoogleFormRegistrationType,
+} from "@/data/smk-6-external-registrations";
 import { REGISTRATION_CATEGORY_GROUPS } from "@/data/registration-hub";
 import {
   getCategoryFeeBadge,
@@ -15,13 +19,13 @@ import {
 const TYPE_HINTS: Partial<Record<RegistrationType, string>> = {
   "Delegate Registration": "Faculty, researchers, and institutional delegates",
   "Multi Track Conference": "Opens Microsoft CMT submission portal",
-  Conclave: "Multi-track holistic education sessions",
+  Conclave: "Choose a 6.0 conclave, then open its official Google Form",
   Olympiad: "School and student competitive programmes",
   Awards: "Recognition and excellence categories",
   "Best Practices": "Share institutional best practices (500+ words)",
   Exhibition: "Innovation and project exhibitions",
-  Projects: "School / college / university project displays (₹200–₹500)",
-  Shodhankur: "Student research journal for Classes 9–12",
+  Projects: "School / college / university student projects — official Google Form",
+  Shodhankur: "Shodhankur – छात्र शोध पत्रिका — official Google Form",
 };
 
 const BADGE_STYLES: Record<FeeBadgeTone, string> = {
@@ -61,7 +65,9 @@ function CategoryCard({
       aria-pressed={selected}
     >
       <div className="flex flex-wrap items-start justify-between gap-2">
-        <span className="text-sm font-bold text-brand-navy">{type}</span>
+        <span className="text-sm font-bold text-brand-navy">
+          {type === "Shodhankur" ? "Shodhankur – छात्र शोध पत्रिका" : type === "Projects" ? "Student Projects" : type}
+        </span>
         <span
           className={`inline-flex shrink-0 rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide ring-1 ${BADGE_STYLES[badge.tone]}`}
         >
@@ -92,6 +98,12 @@ export default function CategoryStep({
     }
     onChange(type);
   };
+
+  const continueLabel = isSmk6ConclaveSelectorType(value)
+    ? "Continue to conclave selection →"
+    : isSmk6GoogleFormRegistrationType(value)
+      ? "Continue to official form →"
+      : "Continue to details →";
 
   const canContinue = !isExternalRedirectType(value);
 
@@ -142,7 +154,7 @@ export default function CategoryStep({
           onClick={onContinue}
           className="w-full min-h-[48px] rounded-xl bg-brand-saffron font-bold text-brand-navy shadow-lg transition hover:bg-brand-saffron-dark hover:text-white sm:w-auto sm:px-10"
         >
-          Continue to details →
+          {continueLabel}
         </button>
       ) : (
         <p className="text-sm text-slate-500">

@@ -11,6 +11,8 @@ import {
   REG_LINKS,
 } from "../AcademicCouncilUI";
 import { CONCLAVE_OVERALL_LEADERSHIP, conclaves } from "../academic-content-data";
+import { conclaveFormAnalyticsEvent, conclaveFormByProgrammeTitle } from "@/data/smk-6-external-registrations";
+import { Smk6ExternalFormButton } from "@/components/registration/Smk6ExternalRegistrationPanels";
 
 export default function ConclavePage() {
   return (
@@ -54,6 +56,20 @@ export default function ConclavePage() {
                   <span className="font-semibold">Coordinators:</span>{" "}
                   {conclave.coordinators}
                 </p>
+                {(() => {
+                  const form = conclaveFormByProgrammeTitle(conclave.title);
+                  if (!form) return null;
+                  return (
+                    <div className="pt-2">
+                      <Smk6ExternalFormButton
+                        href={form.url}
+                        eventName={conclaveFormAnalyticsEvent(form.id)}
+                      >
+                        Register Now
+                      </Smk6ExternalFormButton>
+                    </div>
+                  );
+                })()}
               </div>
             </ACCard>
           ))}

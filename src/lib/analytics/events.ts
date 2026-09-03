@@ -17,6 +17,13 @@ export const ANALYTICS_EVENTS = {
   academicCouncilClicked: "academic_council_clicked",
   committeeClicked: "committee_clicked",
   programmeDetailsClicked: "programme_details_clicked",
+  smk6ConclaveRegistrationClicked: "smk6_conclave_registration_clicked",
+  smk6PrincipalsTeachersRegistrationClicked: "smk6_principals_teachers_registration_clicked",
+  smk6ScientistsResearchRegistrationClicked: "smk6_scientists_research_registration_clicked",
+  smk6StartupEntrepreneursRegistrationClicked: "smk6_startup_entrepreneurs_registration_clicked",
+  smk6TalentConclaveRegistrationClicked: "smk6_talent_conclave_registration_clicked",
+  smk6StudentProjectsRegistrationClicked: "smk6_student_projects_registration_clicked",
+  smk6ShodhankurRegistrationClicked: "smk6_shodhankur_registration_clicked",
 } as const;
 
 export type AnalyticsEventName =
