@@ -15,7 +15,7 @@ import { academicCouncilProgrammeUrl } from "@/data/academic-council-hub";
 import { UNIVERSITY_CONFERENCES } from "@/data/university-conferences-series";
 import { COMMITTEE_EDITION_6_0 } from "@/data/committee-members/edition-6-0";
 import { committeePathForEdition } from "@/lib/committee/edition-slugs";
-import { conclaves } from "@/components/vibhag/academic/academic-content-data";
+import { conclaves, SMK_6_PROGRAMME_LEADERSHIP } from "@/components/vibhag/academic/academic-content-data";
 import { CMT_SUBMIT_PATH } from "@/lib/registration/config";
 import type { CmsSpeakerCard } from "@/lib/cms/types";
 import type { RegistrationType } from "@/types/registration";
@@ -26,12 +26,13 @@ export const ABOUT_6TH_EDITION_HREF = `${CANONICAL_ROUTES.upcomingEvents}#${ABOU
 
 export const SMK_6_ANALYTICS_SOURCE = "smk-6";
 
-/** Event-wide theme is not confirmed in UPCOMING_EDITION (placeholder) vs exhibition/committee wording. */
+/** Event-wide theme from the official Shiksha Mahakumbh 6.0 brochure cover. */
 export const SMK_6_EVENT_THEME = {
-  status: "unconfirmed" as const,
-  heading: "Theme — To be confirmed",
+  status: "confirmed" as const,
+  heading: "शिक्षा, प्रकृति और प्रगति",
+  english: "Education for Development and Harmony with Nature",
   note:
-    "Programme-specific themes (for example conclaves or the exhibition) are listed with those programmes. They are not shown here as the overall Shiksha Mahakumbh 6.0 theme until officially confirmed.",
+    "Official event-wide theme of Shiksha Mahakumbh 6.0. Programme-specific themes (conclaves, exhibition, and cultural programme) remain listed with those programmes.",
 } as const;
 
 export const SMK_6_OVERVIEW = {
@@ -98,11 +99,27 @@ export function smk6ConferenceTracks() {
   return ACADEMIC_CONFERENCE_TRACKS.map((track) => ({
     title: track.titleEn,
     description: track.details,
-    chair: track.chair,
-    coChair: track.coChair,
-    convenor: track.convenor,
+    coordinators: track.coordinators,
     href: academicCouncilProgrammeUrl("ConferencePage"),
   }));
+}
+
+export function smk6BrochureInitiatives() {
+  const other = SMK_6_PROGRAMME_LEADERSHIP.otherProgrammes;
+  return [
+    {
+      id: "panel",
+      title: "Panel Discussion",
+      detail: SMK_6_PROGRAMME_LEADERSHIP.panelDiscussion.focus,
+      leadership: `Chair: ${SMK_6_PROGRAMME_LEADERSHIP.panelDiscussion.chair}`,
+    },
+    {
+      id: "other",
+      title: "Other programmes",
+      detail: other.items.join(" · "),
+      leadership: `Chair: ${other.chair}. Co-Chair: ${other.coChair}.`,
+    },
+  ];
 }
 
 export function smk6RelatedConferences() {

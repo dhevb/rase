@@ -26,7 +26,7 @@ export default function Smk6HomepagePreview() {
           align="left"
           eyebrow="Shiksha Mahakumbh 6.0"
           title={`${UPCOMING_EDITION.title}`}
-          description={`${UPCOMING_EDITION.dates} · ${UPCOMING_EDITION.venueFull}. ${SMK_6_OVERVIEW.tagline} bringing together education, research, innovation, entrepreneurship, Indian Knowledge Systems, and society.`}
+          description={`${UPCOMING_EDITION.dates} · ${UPCOMING_EDITION.venueFull}. Theme: ${UPCOMING_EDITION.theme}. ${SMK_6_OVERVIEW.tagline} bringing together education, research, innovation, entrepreneurship, Indian Knowledge Systems, and society.`}
         />
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {highlights.map((item) => (

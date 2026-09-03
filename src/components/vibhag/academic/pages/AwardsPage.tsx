@@ -65,6 +65,14 @@ export default function AwardsPage() {
             entrepreneurship. These awards honour both faculty members and students who have
             demonstrated excellence and impact in their respective domains.
           </p>
+          <p className="mt-4 text-sm text-gray-700 md:text-base">
+            <span className="font-semibold text-brand-navy">Chair:</span> Prof. Vishal Sharma,
+            Punjab University, Chandigarh
+          </p>
+          <p className="mt-1 text-sm text-gray-700 md:text-base">
+            <span className="font-semibold text-brand-navy">Co-Chair:</span> Prof. Ravi Prakash,
+            CBLU, Bhiwani
+          </p>
         </ACGlassPanel>
       </ACSection>
 
@@ -72,7 +80,7 @@ export default function AwardsPage() {
         <div className="grid gap-4 md:grid-cols-2">
           <ACCard className="border-l-4 border-l-brand-saffron">
             <h3 className="mb-3 text-lg font-bold text-brand-navy md:text-xl">
-              Faculty Excellence Award
+              Faculty Excellence Awards
             </h3>
             <p className="text-sm leading-relaxed text-gray-700 md:text-base">
               Recognizing outstanding academic and research contributions by faculty members.
@@ -80,7 +88,7 @@ export default function AwardsPage() {
           </ACCard>
           <ACCard className="border-l-4 border-l-brand-navy">
             <h3 className="mb-3 text-lg font-bold text-brand-navy md:text-xl">
-              Student Excellence Award
+              Student Excellence Awards
             </h3>
             <p className="text-sm leading-relaxed text-gray-700 md:text-base">
               Honouring talented students for innovation, research, and creative achievements.

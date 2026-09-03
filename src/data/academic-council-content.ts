@@ -28,8 +28,8 @@ export const ACADEMIC_COUNCIL_HERO = {
 } as const;
 
 export const ACADEMIC_COUNCIL_STATS = [
-  { label: "Conference Tracks", value: "15", hint: "Hybrid multi-track research" },
-  { label: "Thematic Conclaves", value: "7", hint: "Policy & leadership dialogues" },
+  { label: "Conference Tracks", value: "16", hint: "Hybrid multi-track research" },
+  { label: "Thematic Conclaves", value: "8", hint: "Policy & leadership dialogues" },
   { label: "Olympiad Streams", value: "3", hint: "English · Maths · Technology" },
   { label: "Programme Pillars", value: "11", hint: "Unified academic framework" },
 ] as const;
@@ -69,7 +69,7 @@ export const ACADEMIC_PROGRAMME_HUB: ProgrammeHubSection[] = [
     titleEn: "Academic Conclaves",
     titleHi: "शैक्षणिक अधिवेशन",
     description:
-      "High-impact dialogue platforms for vice-chancellors, educators, scientists, entrepreneurs, CSR leaders, media, and meritorious students.",
+      "High-impact dialogue platforms for vice-chancellors, educators, scientists, entrepreneurs, CSR leaders, media, meritorious students, and defence & security professionals.",
     accent: "navy",
     items: [
       { titleEn: "Vice-Chancellor, Director, NEP Implementers Conclave", titleHi: "कुलपति / निदेशक, एनईपी कार्यान्वयनकर्ता अधिवेशन" },
@@ -79,6 +79,7 @@ export const ACADEMIC_PROGRAMME_HUB: ProgrammeHubSection[] = [
       { titleEn: "CSR & NGO Conclave", titleHi: "सीएसआर एवं एनजीओ अधिवेशन" },
       { titleEn: "Media Conclave", titleHi: "मीडिया अधिवेशन" },
       { titleEn: "Talent Conclave (90%+ Achievers)", titleHi: "प्रतिभा अधिवेशन" },
+      { titleEn: "Defence and Security Conclave", titleHi: "रक्षा एवं सुरक्षा अधिवेशन" },
     ],
   },
   {
@@ -88,7 +89,7 @@ export const ACADEMIC_PROGRAMME_HUB: ProgrammeHubSection[] = [
     titleEn: "Multi-Track Conference",
     titleHi: "बहु-विषयक सम्मेलन",
     description:
-      "Hybrid international research conference with peer-reviewed publication pathways across sciences, engineering, education, health, culture, and Indian Knowledge Systems.",
+      "Hybrid international research conference with 16 tracks and peer-reviewed publication pathways across sciences, engineering, education, health, culture, Indian Knowledge Systems, and defence & security.",
     accent: "saffron",
     footerNote: ACADEMIC_PUBLICATION_NOTE,
     items: conferenceTracksForHub(),
@@ -144,9 +145,10 @@ export const ACADEMIC_PROGRAMME_HUB: ProgrammeHubSection[] = [
       "Faculty and student excellence across research publications, books, patents, startups, and funded projects.",
     accent: "saffron",
     items: [
-      { titleEn: "Faculty Excellence Award", titleHi: "संकाय उत्कृष्टता पुरस्कार" },
-      { titleEn: "School Level Recognition", titleHi: "विद्यालय स्तर" },
-      { titleEn: "College / University Level Recognition", titleHi: "महाविद्यालय / विश्वविद्यालय स्तर" },
+      { titleEn: "Faculty Excellence Awards", titleHi: "संकाय उत्कृष्टता पुरस्कार" },
+      { titleEn: "Student Excellence Awards", titleHi: "छात्र उत्कृष्टता पुरस्कार" },
+      { titleEn: "School Level", titleHi: "विद्यालय स्तर" },
+      { titleEn: "College / University Level", titleHi: "महाविद्यालय / विश्वविद्यालय स्तर" },
     ],
     footerNote:
       "Nominations and applications via the registration hub. Timeline to be announced; awards presented at Shiksha Mahakumbh 6.0.",
@@ -158,7 +160,7 @@ export const ACADEMIC_PROGRAMME_HUB: ProgrammeHubSection[] = [
     titleEn: "Exhibition",
     titleHi: "प्रदर्शनी",
     description:
-      "Theme: Shiksha, Prakriti aur Pragati — educating for development and harmony with nature. 9–11 October 2026 at NIT Hamirpur.",
+      "Theme: शिक्षा, प्रकृति और प्रगति — Education for Development and Harmony with Nature. 9–11 October 2026 at NIT Hamirpur.",
     accent: "navy",
     items: [
       { titleEn: "Innovation & Research Exhibition", titleHi: "नवाचार एवं अनुसंधान प्रदर्शनी" },
@@ -239,7 +241,7 @@ export const ACADEMIC_PROGRAMME_HUB: ProgrammeHubSection[] = [
 export const ACADEMIC_COUNCIL_SEO = {
   title: "Academic Council — Conference, Conclaves & Olympiads",
   description:
-    "Shiksha Mahakumbh 6.0 Academic Council at NIT Hamirpur (9–11 Oct 2026): 15-track international conference, 7 conclaves, DHE Olympiads, exhibitions, Shodhankur, best practices, student projects, and excellence awards. Peer-reviewed publication pathway.",
+    "Shiksha Mahakumbh 6.0 Academic Council at NIT Hamirpur (9–11 Oct 2026): 16-track international conference, 8 conclaves, DHE Olympiads, exhibitions, Shodhankur, best practices, student projects, and excellence awards. Peer-reviewed publication pathway.",
   keywords: [
     "Academic Council Shiksha Mahakumbh",
     "Shiksha Mahakumbh 6.0 conference",

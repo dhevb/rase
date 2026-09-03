@@ -81,6 +81,20 @@ export default function ContactVenueSection() {
               );
             })}
           </ul>
+          <ul className="mt-3 space-y-1 border-t border-slate-100 pt-3 text-xs text-slate-600">
+            {NIT_VENUE_CONTACT.brochureContacts.map((person) => (
+              <li key={`${person.name}-${person.phone}`}>
+                <span className="font-semibold text-brand-navy">{person.name}</span>
+                {" · "}
+                <a
+                  href={`tel:${person.phone.replace(/\s/g, "")}`}
+                  className="font-medium text-brand-navy hover:underline"
+                >
+                  {person.phone}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 

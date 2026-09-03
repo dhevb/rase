@@ -13,6 +13,7 @@ import {
   REG_LINKS,
 } from "../AcademicCouncilUI";
 import {
+  brochureExhibitionAreas,
   exhibitionSegments,
   exhibitionParticipants,
   exhibitionObjectives,
@@ -29,7 +30,7 @@ function ThemeBanner() {
         &ldquo;Shiksha, Prakriti aur Pragati&rdquo;
       </p>
       <p className="mt-2 text-sm text-slate-600 md:text-base">
-        Educating for Development and Harmony with Nature
+        Education for Development and Harmony with Nature
       </p>
     </ACGlassPanel>
   );
@@ -57,11 +58,28 @@ export default function ExhibitionPage() {
             ideas, research, working models, and transformative initiatives aligned with the vision
             of Viksit Bharat 2047.
           </p>
+          <p className="mt-4 text-sm text-gray-700 md:text-base">
+            <span className="font-semibold text-brand-navy">Chair:</span> Sh. Sanjay Soni, Vidya
+            Bharti Haryana
+          </p>
+          <p className="mt-1 text-sm text-gray-700 md:text-base">
+            <span className="font-semibold text-brand-navy">Co-Chair:</span> Dr. Shiksha Sharma, DHE
+          </p>
         </ACGlassPanel>
       </ACSection>
 
       <ACSection title="Theme">
         <ThemeBanner />
+      </ACSection>
+
+      <ACSection title="Official exhibition areas">
+        <div className="grid gap-3 sm:grid-cols-2">
+          {brochureExhibitionAreas.map((area) => (
+            <ACCard key={area}>
+              <p className="font-semibold text-brand-navy">{area}</p>
+            </ACCard>
+          ))}
+        </div>
       </ACSection>
 
       <ACSection title="Key Exhibition Segments">

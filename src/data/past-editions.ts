@@ -234,7 +234,7 @@ export const UPCOMING_EDITION = {
   venue: "NIT Hamirpur",
   venueFull: "National Institute of Technology, Hamirpur",
   dates: "9–11 October 2026",
-  theme: "Current National Edition",
+  theme: "शिक्षा, प्रकृति और प्रगति — Education for Development and Harmony with Nature",
   coreEssence: "Registration open for delegates, researchers, institutions, and volunteers",
   href: "/upcoming-events",
   registrationHref: "/registration",

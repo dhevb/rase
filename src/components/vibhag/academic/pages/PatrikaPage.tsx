@@ -71,6 +71,13 @@ export default function PatrikaPage() {
             initiative bridges the gap between school education and research orientation, encouraging
             students to contribute meaningfully to society through innovation and knowledge creation.
           </p>
+          <p className="mt-4 text-sm text-gray-700 md:text-base">
+            Official brochure title: Sodhankur (Vidyalayeen Chhatra Shodh Patrika).
+          </p>
+          <p className="mt-2 text-sm text-gray-700 md:text-base">
+            <span className="font-semibold text-brand-navy">Chair:</span> Dr. Shiksha Sharma, Member
+            DHE
+          </p>
         </ACGlassPanel>
       </ACSection>
 

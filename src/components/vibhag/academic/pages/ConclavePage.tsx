@@ -10,7 +10,7 @@ import {
   SectionCTA,
   REG_LINKS,
 } from "../AcademicCouncilUI";
-import { conclaves } from "../academic-content-data";
+import { CONCLAVE_OVERALL_LEADERSHIP, conclaves } from "../academic-content-data";
 
 export default function ConclavePage() {
   return (
@@ -68,9 +68,7 @@ export default function ConclavePage() {
                 Chair
               </h3>
               <p className="text-gray-700 md:text-lg">
-                Dr. Praveen Kumar Sharma
-                <br />
-                Plaksha University, Mohali
+                {CONCLAVE_OVERALL_LEADERSHIP.chair}
               </p>
             </div>
 
@@ -79,10 +77,9 @@ export default function ConclavePage() {
                 Co-Chairs
               </h3>
               <ul className="list-disc space-y-2 pl-6 text-gray-700">
-                <li>Dr. Sujeet Thakur, IIT Delhi</li>
-                <li>Prof. Y. D. Sharma, NIT Hamirpur</li>
-                <li>Dr. Rajeshwar Banshtu, NIT Hamirpur</li>
-                <li>Dr. Jatinder Garg, Central University of Himachal Pradesh</li>
+                {CONCLAVE_OVERALL_LEADERSHIP.coChairs.map((name) => (
+                  <li key={name}>{name}</li>
+                ))}
               </ul>
             </div>
 

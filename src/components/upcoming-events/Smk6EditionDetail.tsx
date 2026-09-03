@@ -21,6 +21,7 @@ import {
   SMK_6_RESEARCH_HREF,
   SMK_6_VENUE_PAGE_HREF,
   groupSmk6Dignitaries,
+  smk6BrochureInitiatives,
   smk6CommitteePreview,
   smk6ConclaveCards,
   smk6ConferenceTracks,
@@ -44,6 +45,7 @@ export default function Smk6EditionDetail({ speakers }: Props) {
   const conclaveCards = smk6ConclaveCards();
   const tracks = smk6ConferenceTracks();
   const related = smk6RelatedConferences();
+  const brochureInitiatives = smk6BrochureInitiatives();
   const committee = smk6CommitteePreview();
   const dignitaries = groupSmk6Dignitaries(speakers);
   const brochure = getCommitteeBrochure("6.0");
@@ -128,7 +130,7 @@ export default function Smk6EditionDetail({ speakers }: Props) {
             align="left"
             eyebrow="Edition theme"
             title={SMK_6_EVENT_THEME.heading}
-            description={SMK_6_EVENT_THEME.note}
+            description={`${SMK_6_EVENT_THEME.english}. ${SMK_6_EVENT_THEME.note}`}
           />
         </section>
 
@@ -220,22 +222,19 @@ export default function Smk6EditionDetail({ speakers }: Props) {
             align="left"
             eyebrow="Research"
             title="Multi-Track Conference"
-            description="The live Academic Council roster lists 15 peer-reviewed tracks at NIT Hamirpur. Paper submission uses the existing CMT pathway."
+            description="The live Academic Council roster lists 16 peer-reviewed tracks at NIT Hamirpur. Paper submission continues through the existing CMT pathway."
           />
           <div className="grid gap-4 sm:grid-cols-2">
             {tracks.map((track) => (
               <article key={track.title} className={cardClass}>
                 <h3 className="text-base font-bold text-brand-navy">{track.title}</h3>
                 <p className="mt-2 text-sm text-slate-600">{track.description}</p>
-                <p className="mt-3 text-xs text-slate-600">
-                  <span className="font-semibold text-brand-navy">Chair:</span> {track.chair}
-                </p>
-                <p className="text-xs text-slate-600">
-                  <span className="font-semibold text-brand-navy">Co-chair:</span> {track.coChair}
-                </p>
-                <p className="text-xs text-slate-600">
-                  <span className="font-semibold text-brand-navy">Convenor:</span> {track.convenor}
-                </p>
+                <p className="mt-3 text-xs font-semibold text-brand-navy">Track Coordinators</p>
+                <ul className="mt-1 list-disc space-y-0.5 pl-5 text-xs text-slate-600">
+                  {track.coordinators.map((name, coordIndex) => (
+                    <li key={`${track.title}-${coordIndex}`}>{name}</li>
+                  ))}
+                </ul>
                 <Smk6TrackedLink
                   href={track.href}
                   className={`${detailsClass} mt-4`}
@@ -291,6 +290,25 @@ export default function Smk6EditionDetail({ speakers }: Props) {
                 >
                   For More Details
                 </Smk6TrackedLink>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-12" aria-labelledby="smk6-initiatives-heading">
+          <SectionHeader
+            headingId="smk6-initiatives-heading"
+            align="left"
+            eyebrow="Brochure programmes"
+            title="Panel discussion and other programmes"
+            description="Listed in the official 6.0 brochure. Best practices already has an Academic Council page; MOUs and pitching are not separate registration products."
+          />
+          <div className="grid gap-4 md:grid-cols-2">
+            {brochureInitiatives.map((item) => (
+              <article key={item.id} className={cardClass}>
+                <h3 className="text-base font-bold text-brand-navy">{item.title}</h3>
+                <p className="mt-2 text-sm text-slate-600">{item.detail}</p>
+                <p className="mt-3 text-xs text-slate-700">{item.leadership}</p>
               </article>
             ))}
           </div>

@@ -101,7 +101,7 @@ export const ACADEMIC_COUNCIL_FAQ = [
   {
     question: "What is the difference between Conference and Multi-Track Conference?",
     answer:
-      "Multi-Track Conference is the flagship hybrid international research conference at Shiksha Mahakumbh 6.0 (NIT Hamirpur, 9–11 Oct 2026) with 15 peer-reviewed tracks. Conference (under the same Academic Council menu) is a separate year-round series at partner universities and colleges — including AIST-2026 at SLIET Longowal (21–22 Aug 2026) and the IKS for Viksit Bharat 2047 conference at Arni University (11–12 Sept 2026) — organized under the Shiksha Mahakumbh Abhiyan umbrella with DHE between main Mahakumbh editions.",
+      "Multi-Track Conference is the flagship hybrid international research conference at Shiksha Mahakumbh 6.0 (NIT Hamirpur, 9–11 Oct 2026) with 16 peer-reviewed tracks. Conference (under the same Academic Council menu) is a separate year-round series at partner universities and colleges — including AIST-2026 at SLIET Longowal (21–22 Aug 2026) and the IKS for Viksit Bharat 2047 conference at Arni University (11–12 Sept 2026) — organized under the Shiksha Mahakumbh Abhiyan umbrella with DHE between main Mahakumbh editions.",
   },
   {
     question: "When and where is Shiksha Mahakumbh 6.0 Academic Council?",
@@ -110,7 +110,7 @@ export const ACADEMIC_COUNCIL_FAQ = [
   {
     question: "How many conference tracks are there?",
     answer:
-      "The multi-track international conference spans 15 thematic tracks — from fundamental sciences and engineering to education, health, culture, and Indian Knowledge Systems. Each track has dedicated chair, co-chair, and convenor leadership listed on the Multi-Track Conference tab.",
+      "The multi-track international conference spans 16 thematic tracks — from fundamental sciences and engineering to education, health, culture, Indian Knowledge Systems, and defence and security. Each track has dedicated Track Coordinators listed on the Multi-Track Conference tab.",
   },
   {
     question: "How do I submit a research paper?",

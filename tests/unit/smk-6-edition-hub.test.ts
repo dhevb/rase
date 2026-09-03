@@ -6,6 +6,7 @@ import {
   SMK_6_EVENT_THEME,
   groupSmk6Dignitaries,
   smk6ConferenceTracks,
+  smk6ConclaveCards,
   smk6HomepageProgrammeHighlights,
   smk6ProgrammeCards,
 } from "../../src/data/smk-6-edition-hub";
@@ -16,8 +17,9 @@ describe("SMK 6.0 edition hub composition", () => {
     assert.equal(ABOUT_6TH_EDITION_HREF, "/upcoming-events#about-6th-edition");
   });
 
-  it("event-wide theme is marked unconfirmed", () => {
-    assert.equal(SMK_6_EVENT_THEME.status, "unconfirmed");
+  it("event-wide theme is confirmed from the official brochure", () => {
+    assert.equal(SMK_6_EVENT_THEME.status, "confirmed");
+    assert.match(SMK_6_EVENT_THEME.english, /Education for Development/);
   });
 
   it("programme cards link into Academic Council hashes", () => {
@@ -37,8 +39,15 @@ describe("SMK 6.0 edition hub composition", () => {
     assert.equal(highlights.length, 6);
   });
 
-  it("multi-track roster stays at the existing 15 tracks", () => {
-    assert.equal(smk6ConferenceTracks().length, 15);
+  it("multi-track roster matches the official 16-track brochure list", () => {
+    assert.equal(smk6ConferenceTracks().length, 16);
+    assert.ok(smk6ConferenceTracks().some((track) => track.title === "Defence and Security"));
+  });
+
+  it("conclave roster includes Defence and Security as the eighth conclave", () => {
+    const cards = smk6ConclaveCards();
+    assert.equal(cards.length, 8);
+    assert.ok(cards.some((card) => card.title === "Defence and Security"));
   });
 
   it("dignitary grouping ignores speakers without edition 6.0", () => {

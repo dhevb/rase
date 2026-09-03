@@ -62,6 +62,14 @@ export default function ProjectsPage() {
               {paragraph}
             </p>
           ))}
+          <p className="mt-4 text-sm text-gray-700 md:text-base">
+            <span className="font-semibold text-brand-navy">Chair:</span> Dr. Narinder Singh Jassal,
+            CSIR-CSIO, Chandigarh
+          </p>
+          <p className="mt-1 text-sm text-gray-700 md:text-base">
+            <span className="font-semibold text-brand-navy">Co-Chairs:</span> Dr. Krishna Pandey,
+            Kurukshetra University; Sh. Bikash Kumar, COO, SavantX Technology
+          </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <a
               href={PROJECT_EXPO_PDF}

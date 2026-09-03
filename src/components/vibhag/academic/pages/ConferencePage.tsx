@@ -10,7 +10,7 @@ import {
   ACFooterStatement,
   REG_LINKS,
 } from "../AcademicCouncilUI";
-import { ACADEMIC_PUBLICATION_NOTE } from "@/data/academic-council-tracks";
+import { ACADEMIC_CONFERENCE_LEADERSHIP, ACADEMIC_PUBLICATION_NOTE } from "@/data/academic-council-tracks";
 import { CMT_SUBMISSION_URL, cmtSubmissionDateLabel } from "@/lib/registration/config";
 import { tracks } from "../tracks-data";
 
@@ -33,26 +33,29 @@ export default function ConferencePage() {
       <ACSection title="Overall Conference Coordination">
         <ACGlassPanel>
           <p className="mb-4 text-sm leading-relaxed text-gray-600 md:text-base">
-            The leadership below coordinates the conference as a whole. Each of the 15 tracks has
-            its own chair, co-chair, and convenor — listed in the Conference Tracks section.
+            The leadership below coordinates the conference as a whole. Each of the 16 tracks has
+            its own Track Coordinators — listed in the Conference Tracks section.
           </p>
           <div className="space-y-6 text-sm text-gray-700 md:text-base">
             <div>
               <h3 className="mb-2 text-lg font-bold text-brand-navy md:text-xl">Chair</h3>
-              <p>Prof. Brahmjit Singh, NIT Kurukshetra</p>
+              <p>{ACADEMIC_CONFERENCE_LEADERSHIP.chair}</p>
             </div>
             <div>
               <h3 className="mb-2 text-lg font-bold text-brand-navy md:text-xl">Co-Chairs</h3>
-              <p>
-                Dr. Vikash Kumar Garg, Prof. R. K. Sehgal, Prof. Raman Parti, Prof. Sushil Chauhan,
-                Prof. Ravi Ranade, Dr. Chander Prakash
-              </p>
+              <ul className="list-disc space-y-1 pl-5">
+                {ACADEMIC_CONFERENCE_LEADERSHIP.coChairs.map((name) => (
+                  <li key={name}>{name}</li>
+                ))}
+              </ul>
             </div>
             <div>
               <h3 className="mb-2 text-lg font-bold text-brand-navy md:text-xl">Conveners</h3>
-              <p>
-                Dr. Pankaj Verma, Dr. Gaurav, Dr. Tarun, Dr. T. P. Sharma, Dr. Ramesh Vats
-              </p>
+              <ul className="list-disc space-y-1 pl-5">
+                {ACADEMIC_CONFERENCE_LEADERSHIP.conveners.map((name) => (
+                  <li key={name}>{name}</li>
+                ))}
+              </ul>
             </div>
           </div>
         </ACGlassPanel>
@@ -107,15 +110,12 @@ export default function ConferencePage() {
                 {track.details}
               </p>
               <div className="space-y-1 text-sm text-gray-700 md:text-base">
-                <p>
-                  <span className="font-semibold">Chair:</span> {track.chair}
-                </p>
-                <p>
-                  <span className="font-semibold">Co-Chair:</span> {track.coChair}
-                </p>
-                <p>
-                  <span className="font-semibold">Convenor:</span> {track.convenor}
-                </p>
+                <p className="font-semibold">Track Coordinators</p>
+                <ul className="list-disc space-y-1 pl-5">
+                  {track.coordinators.map((name, coordIndex) => (
+                    <li key={`${track.title}-${coordIndex}`}>{name}</li>
+                  ))}
+                </ul>
               </div>
             </ACCard>
           ))}

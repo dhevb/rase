@@ -32,7 +32,7 @@ export const UNIVERSITY_CONFERENCES_INTRO = {
   subtitle:
     "National and state-level conferences at partner universities and colleges — held throughout the year under the academic umbrella of Shiksha Mahakumbh Abhiyan, in collaboration with the Department of Holistic Education (DHE).",
   note:
-    "These are distinct from the Multi-Track Conference at Shiksha Mahakumbh 6.0 (NIT Hamirpur, 9–11 October 2026). Each entry below is an independent conference at a host institution on a dedicated theme.",
+    "The official 6.0 brochure proposes 16 multi-track conferences at leading institutions. Two are confirmed on these dates and are not held at NIT Hamirpur: AIST-2026 (SLIET Longowal, 21–22 August 2026, hybrid) and the International Conference on Indian Knowledge System (Arni University, 11–12 September 2026, hybrid). These remain distinct from the Multi-Track Conference at Shiksha Mahakumbh 6.0 (NIT Hamirpur, 9–11 October 2026).",
 } as const;
 
 export const UNIVERSITY_CONFERENCES: UniversityConferenceEntry[] = [

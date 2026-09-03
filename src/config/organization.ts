@@ -50,7 +50,11 @@ export const NIT_VENUE_CONTACT = {
   label: "Event venue & local coordination",
   organization: "National Institute of Technology Hamirpur",
   email: "shikshamahakumbh@nith.ac.in",
-  phones: ["+91 94184 79215"],
+  phones: ["+91 94184 79215", "+91 8219218715"],
+  brochureContacts: [
+    { name: "Dr. Shamsher Singh", phone: "+91 94632 31250" },
+    { name: "Dr. Pawan Kumar Sharma", phone: "+91 8219218715" },
+  ],
   venue: "NIT Hamirpur, Himachal Pradesh – 177005",
   eventDates: "9–11 October 2026",
   mapsQuery: "NIT+Hamirpur+Himachal+Pradesh",

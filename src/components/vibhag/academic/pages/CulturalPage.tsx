@@ -29,7 +29,7 @@ function ThemeBanner() {
         &ldquo;Shiksha, Prakriti aur Pragati&rdquo;
       </p>
       <p className="mt-2 text-sm text-slate-600 md:text-base">
-        Educating for Development and Harmony with Nature
+        Education for Development and Harmony with Nature
       </p>
     </ACGlassPanel>
   );
@@ -55,6 +55,13 @@ export default function CulturalPage() {
             traditions and artistic expression. The event will showcase local Himachali culture along
             with theme-based performances that reflect the harmony between education, nature, and
             sustainable development.
+          </p>
+          <p className="mt-4 text-sm text-gray-700 md:text-base">
+            <span className="font-semibold text-brand-navy">Chair:</span> Smt. Meenu, Treasurer, DHE
+          </p>
+          <p className="mt-1 text-sm text-gray-700 md:text-base">
+            <span className="font-semibold text-brand-navy">Co-Chair:</span> Dr. Rajeev Kumar, NIT
+            Hamirpur
           </p>
         </ACGlassPanel>
       </ACSection>

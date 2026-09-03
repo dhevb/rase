@@ -108,6 +108,64 @@ export const bestPracticeCategories = [
   },
 ];
 
+export const CONCLAVE_OVERALL_LEADERSHIP = {
+  chair: "Dr. Praveen Kumar Sharma, Plaksha University, Mohali",
+  coChairs: [
+    "Prof. Y. D. Sharma, NIT Hamirpur",
+    "Dr. Sujeet Thakur, IIT Delhi",
+    "Dr. Nitya Sharma, IKGPTU, Jalandhar",
+  ],
+} as const;
+
+export const SMK_6_PROGRAMME_LEADERSHIP = {
+  sodhankur: {
+    chair: "Dr. Shiksha Sharma, Member DHE",
+  },
+  studentProject: {
+    chair: "Dr. Narinder Singh Jassal, CSIR-CSIO, Chandigarh",
+    coChairs: [
+      "Dr. Krishna Pandey, Kurukshetra University",
+      "Sh. Bikash Kumar, COO, SavantX Technology",
+    ],
+  },
+  panelDiscussion: {
+    chair: "Prof. Avnesh Verma, Kurukshetra University",
+    focus:
+      "An interactive forum for academics, policymakers, and industry leaders to deliberate on educational, technological, and societal issues.",
+  },
+  awards: {
+    chair: "Prof. Vishal Sharma, Punjab University, Chandigarh",
+    coChair: "Prof. Ravi Prakash, CBLU, Bhiwani",
+  },
+  cultural: {
+    chair: "Smt. Meenu, Treasurer, DHE",
+    coChair: "Dr. Rajeev Kumar, NIT Hamirpur",
+  },
+  exhibitions: {
+    chair: "Sh. Sanjay Soni, Vidya Bharti Haryana",
+    coChair: "Dr. Shiksha Sharma, DHE",
+  },
+  otherProgrammes: {
+    chair: "Dr. Jitesh Pandey, Govt. of Punjab",
+    coChair: "Dr. Pardeep Kumar, NIT Hamirpur",
+    items: [
+      "Sharing of Best Practices",
+      "Pitching Sessions",
+      "Brand Promotion",
+      "PR Opportunities",
+      "Signing of MOUs",
+      "International Conference",
+    ],
+  },
+} as const;
+
+export const brochureExhibitionAreas = [
+  "Innovation & Research Exhibition",
+  "EdTech & Skill Development Exhibition",
+  "Student Innovation Pavilion",
+  "Community Development Models",
+] as const;
+
 export const conclaves = [
   {
     title: "VC / Directors Conclave",
@@ -121,7 +179,7 @@ export const conclaves = [
     theme:
       "Practical Innovation in Education System",
     coordinators:
-      "Dr. Chander Prakash, NIT Hamirpur",
+      "Dr. Vipin Jain, CBLU, Bhiwani",
   },
   {
     title: "Principals & Outstanding Teachers Conclave",
@@ -135,7 +193,7 @@ export const conclaves = [
     theme:
       "Transformative Ethical Learning with Innovations",
     coordinators:
-      "Dr. Siddarath Chauhan, NIT Hamirpur | Dr. Kuldeep Kumar, NIT Hamirpur",
+      "Dr. Raman Sharma, HPU, Shimla | Prof. Gaurav Tejpal, AGC Amritsar | Dr. Siddarath Chauhan, NIT Hamirpur | Dr. Kuldeep Kumar, NIT Hamirpur",
   },
   {
     title: "Scientists & Research Scholars Conclave",
@@ -149,7 +207,7 @@ export const conclaves = [
     theme:
       "Lab to the Last Mile",
     coordinators:
-      "Prof. Ravi Kumar, NIT Hamirpur | Dr. Pooja, CSIR–CSIO Chandigarh",
+      "Dr. Pooja, CSIR-CSIO, Chandigarh | Dr. Chaman Chandel, DRDO, Chandigarh | Dr. Neeraj Marwaha, Sri Sai University, Palampur",
   },
   {
     title: "Startup Leaders / Entrepreneurs Conclave",
@@ -163,13 +221,13 @@ export const conclaves = [
     theme:
       "Mitigation of Unemployment through Entrepreneurship",
     coordinators:
-      "Er. Pankaj Kumar, NIT Hamirpur",
+      "Dr. Mirgender Bedi, IKGPTU, Jalandhar | Er. Pankaj Kumar, NIT Hamirpur | Sh. Bikash Kumar, COO, SavantX Technologies",
   },
   {
     title: "CSR & NGO Conclave",
     icon: "🤝",
     participants:
-      "CSR Leaders, NGOs, Philanthropic Foundations, Social Activists",
+      "CSR leaders, NGOs, philanthropic foundations, tribal education activists",
     focus:
       "Equitable access, girls’ education, underserved communities",
     output:
@@ -177,7 +235,7 @@ export const conclaves = [
     theme:
       "Society of Knowledge, Obedience with Practical Responsibility",
     coordinators:
-      "Dr. Somesh Kumar, NIT Hamirpur",
+      "Prof. Kulbhushan Chandel, HPU, Shimla | Dr. Suneel Dubey, IUNC | Dr. Somesh Kumar, NIT Hamirpur | Dr. Mrityunjay Singh, IIIT Una | Sh. Robin, Environment Activist | Sh. Sumit Gupta, Entrepreneur | Sh. Mandeep Tiwari, Entrepreneur",
   },
   {
     title: "Media Conclave",
@@ -205,7 +263,21 @@ export const conclaves = [
     theme:
       "Nurturing Excellence for Viksit Bharat",
     coordinators:
-      "Dr. Arvind Kumar, NIT Hamirpur",
+      "Dr. Arvind Kumar, NIT Hamirpur | Dr. Shamsher Singh, AB College, Pathankot | Dr. Anju Sehgal, NSCBM Govt College, Hamirpur",
+  },
+  {
+    title: "Defence and Security",
+    icon: "🛡️",
+    participants:
+      "Defence Personnel, Defence Scientists, Strategic Experts, NCC, Defence Industry & Security Professionals",
+    focus:
+      "National Security, Defence Innovation, Cyber Security, Strategic Leadership & Indigenous Technologies",
+    output:
+      "National Framework for Defence Awareness & Strategic Leadership",
+    theme:
+      "Nation First: Strengthening Security through Innovation & Strategic Leadership",
+    coordinators:
+      "Major General Suresh Kumar Khajuria (Retd.), President, Vidya Bharti, Punjab",
   },
 ];
 
