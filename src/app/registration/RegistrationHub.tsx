@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import RegistrationShell from "@/components/registration/RegistrationShell";
-import { EVENT_NAME, RegistrationType } from "@/types/registration";
+import { RegistrationType } from "@/types/registration";
 import RegistrationProgress from "@/components/registration/RegistrationProgress";
 import CategoryStep from "@/components/registration/CategoryStep";
 import CategoryInstructionsPanel from "@/components/registration/CategoryInstructionsPanel";
@@ -144,6 +144,7 @@ function RegistrationHubInner() {
   const [step, setStep] = useState(1);
   const [registrationType, setRegistrationType] =
     useState<RegistrationType>("Delegate Registration");
+  const [detailsSelected, setDetailsSelected] = useState(false);
   const flow = useRegistrationFlow();
   const currentFee = flow?.currentFee ?? 0;
   const metaLoadedRef = useRef(false);
@@ -170,21 +171,38 @@ function RegistrationHubInner() {
     metaLoadedRef.current = true;
     const requested = searchParams.get("category");
     if (isRegistrationType(requested) && !isExternalRedirectType(requested)) {
-      setRegistrationType(requested);
       if (isSmk6ConclaveSelectorType(requested) || isSmk6GoogleFormRegistrationType(requested)) {
-        setStep(2);
+        setStep(1);
+        setDetailsSelected(false);
         if (isSmk6ConclaveSelectorType(requested)) {
-          trackEvent(ANALYTICS_EVENTS.smk6ConclaveRegistrationClicked, {
-            source: "smk-6",
-            step: 2,
+          window.requestAnimationFrame(() => {
+            document.getElementById("conclave-registration")?.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
           });
         }
+        return;
       }
+      setRegistrationType(requested);
+      setDetailsSelected(true);
+      switchRegistrationCategory(requested);
+      setStep(2);
       return;
     }
     const meta = loadMeta();
     if (meta?.registrationType && !isExternalRedirectType(meta.registrationType)) {
+      if (
+        isSmk6ConclaveSelectorType(meta.registrationType) ||
+        isSmk6GoogleFormRegistrationType(meta.registrationType)
+      ) {
+        setRegistrationType("Delegate Registration");
+        setDetailsSelected(false);
+        setStep(1);
+        return;
+      }
       setRegistrationType(meta.registrationType);
+      setDetailsSelected(true);
       if (meta.step >= 2) {
         const maxStep = usesMultiStepPaymentFlow(meta.registrationType, currentFee)
           ? 3
@@ -234,47 +252,35 @@ function RegistrationHubInner() {
         onChange={(value) => flow?.setHoneypotValue(value)}
       />
       <RegistrationShell
-        title={EVENT_NAME}
-        subtitle="Official registration — national education movement & global summit"
+        title="Shiksha Mahakumbh 6.0 Registration"
+        subtitle="Official registration — choose a category below"
         sidebar={
           step >= 2 && !isExternalRedirectType(registrationType) ? (
             <CategoryInstructionsPanel registrationType={registrationType} />
           ) : undefined
         }
       >
-        <RegistrationProgress
-          currentStep={step}
-          requiresPayment={showPaymentStep}
-        />
+        {step >= 2 ? (
+          <RegistrationProgress
+            currentStep={step}
+            requiresPayment={showPaymentStep}
+          />
+        ) : null}
         <RegistrationTrustBar />
 
         {step === 1 && (
           <CategoryStep
             value={registrationType}
-            onChange={(t) => {
-              if (!isExternalRedirectType(t)) {
-                if (t !== registrationType) {
-                  clearDraft(registrationType);
-                }
-                setRegistrationType(t);
-                setStep(1);
-                flow?.setCurrentFee(0);
-                switchRegistrationCategory(t);
-                console.info("CATEGORY_SELECTED", { registrationType: t });
-              }
-            }}
+            detailsSelected={detailsSelected}
             onContinue={() => {
               if (isExternalRedirectType(registrationType)) return;
+              if (isSmk6ConclaveSelectorType(registrationType) || isSmk6GoogleFormRegistrationType(registrationType)) {
+                return;
+              }
               trackEvent(ANALYTICS_EVENTS.registrationStarted, {
                 registrationType,
                 step: 2,
               });
-              if (isSmk6ConclaveSelectorType(registrationType)) {
-                trackEvent(ANALYTICS_EVENTS.smk6ConclaveRegistrationClicked, {
-                  source: "smk-6",
-                  step: 2,
-                });
-              }
               setStep(2);
             }}
           />
@@ -307,6 +313,7 @@ function RegistrationHubInner() {
                   clearDraft(registrationType);
                   clearRegistrationMeta();
                   setRegistrationType("Delegate Registration");
+                  setDetailsSelected(false);
                   setStep(1);
                   flow?.setCurrentFee(0);
                 }}

@@ -39,8 +39,8 @@ const META: Record<RegistrationType, CategoryMeta> = {
   Conclave: {
     description: "Participate in thematic 6.0 conclaves. Each listed conclave has its own official Google Form.",
     instructions: [
-      "Select Conclave, then choose the specific conclave.",
-      "Register on the official Google Form (opens in a new tab).",
+      "Choose the conclave on this page.",
+      "Register Now opens the official Google Form in a new tab.",
     ],
     eligibility: ["Principals and outstanding teachers", "Scientists and research scholars", "Startup leaders and entrepreneurs", "Talent Conclave participants"],
     fee: "Official Google Form — no payment on this portal",

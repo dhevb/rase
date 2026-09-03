@@ -36,7 +36,9 @@ describe("SMK 6.0 edition hub composition", () => {
 
   it("homepage highlights are a subset of Academic Council programmes", () => {
     const highlights = smk6HomepageProgrammeHighlights();
-    assert.equal(highlights.length, 6);
+    assert.equal(highlights.length, 7);
+    assert.ok(highlights.some((item) => item.id === "patrika"));
+    assert.ok(highlights.some((item) => item.id === "projects"));
   });
 
   it("multi-track roster matches the official 16-track brochure list", () => {

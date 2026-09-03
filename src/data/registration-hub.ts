@@ -31,7 +31,10 @@ export const REGISTRATION_BREADCRUMBS = [
   { name: "Register", path: REGISTRATION_PATH },
 ] as const;
 
-/** Step-1 category groupings — reduces choice paralysis on the registration hub. */
+/**
+ * Historical grouping of every registration type (including on-site forms no longer
+ * shown on the public 6.0 hub). Public order lives in SMK_6_PUBLIC_REGISTRATION_CARDS.
+ */
 export const REGISTRATION_CATEGORY_GROUPS: {
   title: string;
   hint: string;
@@ -39,23 +42,14 @@ export const REGISTRATION_CATEGORY_GROUPS: {
   recommended?: boolean;
 }[] = [
   {
-    title: "Most participants",
-    hint: "Faculty, students, and institutional delegates attending SMK 6.0",
-    types: ["Delegate Registration"],
-    recommended: true,
+    title: "Research papers",
+    hint: "Secure on-site page before Microsoft CMT (opens 30 June 2026)",
+    types: ["Multi Track Conference"],
   },
   {
-    title: "Programme tracks",
-    hint: "Conclaves, awards, olympiad, exhibitions, and more — some open official Google Forms",
-    types: [
-      "Shodhankur",
-      "Conclave",
-      "Awards",
-      "Olympiad",
-      "Exhibition",
-      "Best Practices",
-      "Cultural Program",
-    ],
+    title: "Shodhankur",
+    hint: "Official Google Form for Shodhankur – छात्र शोध पत्रिका",
+    types: ["Shodhankur"],
   },
   {
     title: "Student Projects",
@@ -63,9 +57,15 @@ export const REGISTRATION_CATEGORY_GROUPS: {
     types: ["Projects"],
   },
   {
-    title: "Research papers",
-    hint: "Secure on-site page before Microsoft CMT (opens 30 June 2026)",
-    types: ["Multi Track Conference"],
+    title: "Conclaves",
+    hint: "Four published 6.0 conclave Google Forms",
+    types: ["Conclave"],
+  },
+  {
+    title: "Delegate registration",
+    hint: "Faculty, students, and institutional delegates attending SMK 6.0",
+    types: ["Delegate Registration"],
+    recommended: true,
   },
 ];
 
@@ -94,13 +94,13 @@ export const REGISTRATION_SEO_KEYWORDS = [
   "NIT Hamirpur conference registration",
   "education summit India registration",
   "Shiksha Mahakumbh 6.0 delegate",
-  "DHE olympiad registration",
+  "Shodhankur registration",
   "NEP 2020 conference register",
   "Department of Holistic Education registration",
 ] as const;
 
 export function registrationMetaDescription(): string {
-  return `Official registration for ${event.name} at ${event.venue}, 9–11 October 2026. Delegate, conclave, olympiad, awards, exhibitions, research tracks, and project displays. Accommodation opens September 2026. Deadline ${REGISTRATION_DEADLINE}.`;
+  return `Official registration for ${event.name} at ${event.venue}, 9–11 October 2026. Multi Track Conference (CMT), Academic Council programme tracks, Shodhankur, Student Projects, four conclaves, and delegate registration. Accommodation opens September 2026. Deadline ${REGISTRATION_DEADLINE}.`;
 }
 
 export const REGISTRATION_FAQ = [
@@ -119,7 +119,7 @@ export const REGISTRATION_FAQ = [
   {
     question: "What registration categories are available?",
     answer:
-      "Delegate, Conclave, Best Practices, Olympiad, Awards, Exhibition, Student Projects, Shodhankur – छात्र शोध पत्रिका, and Cultural Program. Four 6.0 conclaves, Student Projects, and Shodhankur use official Google Forms. Multi Track Conference papers are submitted via Microsoft CMT. Accommodation booking opens in September 2026.",
+      "Multi Track Conference (Microsoft CMT), Programme tracks (Academic Council), Shodhankur – छात्र शोध पत्रिका, Student Projects, Conclaves (four official Google Forms), and Delegate Registration. Accommodation booking opens in September 2026.",
   },
   {
     question: "How do I submit a research paper?",
@@ -132,6 +132,6 @@ export const REGISTRATION_FAQ = [
   {
     question: "Which categories require payment?",
     answer:
-      "Delegate registration may require payment depending on category and fee. Olympiad is ₹200 per student on this portal. Conclave (four published 6.0 forms), Student Projects, and Shodhankur use official Google Forms. Awards, Exhibition, Best Practices, and Cultural Program remain free on-site forms unless otherwise noted. Accommodation is not open for booking yet — details in September.",
+      "Delegate registration may require payment depending on category and fee. Conclave, Student Projects, and Shodhankur use official Google Forms. Research papers go through the on-site CMT notice, then Microsoft CMT. Accommodation is not open for booking yet — details in September.",
   },
 ] as const;

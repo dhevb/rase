@@ -60,6 +60,17 @@ export default function Smk6HomepagePreview() {
                   Register for a conclave
                 </Smk6TrackedLink>
               ) : null}
+              {item.id === "patrika" ? (
+                <Smk6TrackedLink
+                  href={SMK_6_EXTERNAL_REGISTRATIONS.shodhankur.url}
+                  className="mt-2 text-xs font-bold text-brand-navy underline decoration-brand-saffron/40 underline-offset-2"
+                  eventName={ANALYTICS_EVENTS.smk6ShodhankurRegistrationClicked}
+                  programme="patrika"
+                  external
+                >
+                  Register Now
+                </Smk6TrackedLink>
+              ) : null}
               {item.id === "projects" ? (
                 <Smk6TrackedLink
                   href={SMK_6_EXTERNAL_REGISTRATIONS.studentProjects.url}

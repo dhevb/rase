@@ -51,11 +51,11 @@ export function ConclaveExternalSelector() {
     <div className="space-y-5">
       <div>
         <h2 className="text-lg font-bold text-brand-navy md:text-xl">
-          Shiksha Mahakumbh 6.0 — Conclave Registration
+          Conclave Registration
         </h2>
         <p className="mt-2 text-sm text-slate-600">
-          Select the conclave you wish to participate in. Each conclave has a separate official
-          registration form.
+          Select the conclave you wish to participate in. Each Register Now button
+          opens that conclave&apos;s official Google Form in a new tab.
         </p>
       </div>
       <div className="grid gap-4">

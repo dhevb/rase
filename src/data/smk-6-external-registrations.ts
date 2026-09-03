@@ -32,12 +32,12 @@ export const SMK_6_EXTERNAL_REGISTRATIONS = {
   },
   shodhankur: {
     title: "Shodhankur – छात्र शोध पत्रिका",
-    url: "https://forms.gle/VJvWjT9kDkxtniv48",
+    url: "https://forms.gle/octRMFkzfrZt9dAF9",
     analyticsEvent: "smk6_shodhankur_registration_clicked",
   },
   studentProjects: {
     title: "Student Projects",
-    url: "https://forms.gle/octRMFkzfrZt9dAF9",
+    url: "https://forms.gle/VJvWjT9kDkxtniv48",
     analyticsEvent: "smk6_student_projects_registration_clicked",
   },
 } as const;
@@ -51,11 +51,78 @@ export const SMK_6_CONCLAVE_FORMS = [
   SMK_6_EXTERNAL_REGISTRATIONS.conclaves.talent,
 ] as const;
 
-export const SMK_6_CONCLAVE_REGISTRATION_HREF = `${CANONICAL_ROUTES.registration}?category=Conclave`;
+/** Academic Council / programme architecture — not CMT and not conclave forms. */
+export const SMK_6_PROGRAMME_TRACKS_HREF = CANONICAL_ROUTES.departments.academicCouncil;
 
-export const SMK_6_PROJECTS_REGISTRATION_HREF = `${CANONICAL_ROUTES.registration}?category=Projects`;
+/** Public hub section with four direct conclave Google Forms. */
+export const SMK_6_CONCLAVE_REGISTRATION_HREF = `${CANONICAL_ROUTES.registration}#conclave-registration`;
 
-export const SMK_6_SHODHANKUR_REGISTRATION_HREF = `${CANONICAL_ROUTES.registration}?category=Shodhankur`;
+export const SMK_6_PROJECTS_REGISTRATION_HREF =
+  SMK_6_EXTERNAL_REGISTRATIONS.studentProjects.url;
+
+export const SMK_6_SHODHANKUR_REGISTRATION_HREF =
+  SMK_6_EXTERNAL_REGISTRATIONS.shodhankur.url;
+
+export type Smk6PublicRegistrationCard = {
+  id: string;
+  label: string;
+  hint: string;
+  href: string;
+  external: boolean;
+  badge: string;
+};
+
+/** Public 6.0 registration order — used by the hub, homepage, and About 6th Edition. */
+export const SMK_6_PUBLIC_REGISTRATION_CARDS: Smk6PublicRegistrationCard[] = [
+  {
+    id: "multi-track-conference",
+    label: "Multi Track Conference",
+    hint: "Opens Microsoft CMT submission portal (on-site notice first)",
+    href: "/research/submit",
+    external: false,
+    badge: "External · CMT",
+  },
+  {
+    id: "programme-tracks",
+    label: "Programme tracks",
+    hint: "Explore Academic Council programmes for Shiksha Mahakumbh 6.0",
+    href: SMK_6_PROGRAMME_TRACKS_HREF,
+    external: false,
+    badge: "Academic Council",
+  },
+  {
+    id: "shodhankur",
+    label: SMK_6_EXTERNAL_REGISTRATIONS.shodhankur.title,
+    hint: "Official Shodhankur student research journal form",
+    href: SMK_6_EXTERNAL_REGISTRATIONS.shodhankur.url,
+    external: true,
+    badge: "External form",
+  },
+  {
+    id: "student-projects",
+    label: SMK_6_EXTERNAL_REGISTRATIONS.studentProjects.title,
+    hint: "Official Google Form for school, college, and university student projects",
+    href: SMK_6_EXTERNAL_REGISTRATIONS.studentProjects.url,
+    external: true,
+    badge: "External form",
+  },
+  {
+    id: "conclaves",
+    label: "Conclaves",
+    hint: "Select a 6.0 conclave and open its official Google Form",
+    href: SMK_6_CONCLAVE_REGISTRATION_HREF,
+    external: false,
+    badge: "External form",
+  },
+  {
+    id: "delegate",
+    label: "Delegate Registration",
+    hint: "Faculty, researchers, and institutional delegates",
+    href: `${CANONICAL_ROUTES.registration}#delegate-registration`,
+    external: false,
+    badge: "₹0–₹5100",
+  },
+];
 
 export function isSmk6GoogleFormRegistrationType(
   type: RegistrationType
@@ -88,10 +155,13 @@ export function smk6RegistrationEntryForType(type: RegistrationType): {
     return { href: SMK_6_CONCLAVE_REGISTRATION_HREF, external: false };
   }
   if (type === "Projects") {
-    return { href: SMK_6_EXTERNAL_REGISTRATIONS.studentProjects.url, external: true };
+    return { href: SMK_6_PROJECTS_REGISTRATION_HREF, external: true };
   }
   if (type === "Shodhankur") {
-    return { href: SMK_6_EXTERNAL_REGISTRATIONS.shodhankur.url, external: true };
+    return { href: SMK_6_SHODHANKUR_REGISTRATION_HREF, external: true };
+  }
+  if (type === "Delegate Registration") {
+    return { href: `${CANONICAL_ROUTES.registration}#delegate-registration`, external: false };
   }
   return { href: CANONICAL_ROUTES.registration, external: false };
 }

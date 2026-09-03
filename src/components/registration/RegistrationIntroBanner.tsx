@@ -6,13 +6,13 @@ export default function RegistrationIntroBanner() {
     <div className="mx-auto max-w-5xl px-4 pb-4 md:px-8">
       <div className="rounded-2xl border border-brand-saffron/30 bg-gradient-to-br from-brand-saffron/5 to-white p-4 md:p-5">
         <p className="text-sm font-bold text-brand-navy">
-          Recommended path: Delegate Registration
+          Direct registration paths
         </p>
         <p className="mt-2 text-sm text-slate-600">
-          Most faculty, students, and institutional participants register as delegates
-          (₹0 for students · up to ₹5100 for industry). Programme tracks such as
-          Conclave, Awards, and Olympiad use separate free or paid forms below.
-          Project displays: School Level ₹200 · College/University Level ₹500.
+          Research papers use the on-site CMT notice. Programme tracks open the Academic
+          Council. Shodhankur, Student Projects, and each conclave open an official Google
+          Form immediately. Delegate Registration (last on this page) remains the on-site
+          form with existing fees.
         </p>
         <p className="mt-2 rounded-lg border border-sky-200 bg-sky-50 px-3 py-2 text-sm text-slate-700">
           <strong className="text-brand-navy">Accommodation:</strong> registration opens

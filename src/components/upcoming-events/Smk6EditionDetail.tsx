@@ -9,14 +9,12 @@ import { NIT_VENUE_CONTACT } from "@/config/organization";
 import { NIT_HAMIRPUR_MAP_LINK } from "@/config/venue-maps";
 import { UPCOMING_EVENTS_FAQ } from "@/data/upcoming-events-hub";
 import { getBrochureViewUrl, getCommitteeBrochure } from "@/data/committee-brochures";
-import { getCategoryFeeBadge, getCategoryMeta } from "@/lib/registration/categoryMeta";
 import type { CmsSpeakerCard } from "@/lib/cms/types";
 import {
   ABOUT_6TH_EDITION_HASH,
   SMK_6_ANALYTICS_SOURCE,
   SMK_6_EVENT_THEME,
   SMK_6_OVERVIEW,
-  SMK_6_REGISTRATION_TYPES,
   SMK_6_RESEARCH_HREF,
   SMK_6_VENUE_PAGE_HREF,
   groupSmk6Dignitaries,
@@ -28,11 +26,11 @@ import {
   smk6RelatedConferences,
 } from "@/data/smk-6-edition-hub";
 import {
+  SMK_6_PUBLIC_REGISTRATION_CARDS,
   SMK_6_CONCLAVE_REGISTRATION_HREF,
   SMK_6_EXTERNAL_REGISTRATIONS,
   conclaveFormAnalyticsEvent,
   conclaveFormByProgrammeTitle,
-  smk6RegistrationEntryForType,
 } from "@/data/smk-6-external-registrations";
 import { Smk6ExternalFormButton } from "@/components/registration/Smk6ExternalRegistrationPanels";
 import { committeePathForEdition } from "@/lib/committee/edition-slugs";
@@ -440,44 +438,35 @@ export default function Smk6EditionDetail({ speakers }: Props) {
             align="left"
             eyebrow="Participate"
             title="Registration"
-            description="The registration hub remains the gateway. Conclave, Student Projects, and Shodhankur use official Google Forms from that hub."
+            description="Research papers use CMT. Programme tracks open the Academic Council. Shodhankur, Student Projects, and each conclave open official Google Forms. Delegate registration remains on this site."
           />
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {SMK_6_REGISTRATION_TYPES.map((type) => {
-              const badge = getCategoryFeeBadge(type);
-              const meta = getCategoryMeta(type);
-              const entry = smk6RegistrationEntryForType(type);
-              const label =
-                type === "Shodhankur"
-                  ? "Shodhankur – छात्र शोध पत्रिका"
-                  : type === "Projects"
-                    ? "Student Projects"
-                    : type;
+            {SMK_6_PUBLIC_REGISTRATION_CARDS.map((card) => {
+              const eventName =
+                card.id === "conclaves"
+                  ? ANALYTICS_EVENTS.smk6ConclaveRegistrationClicked
+                  : card.id === "student-projects"
+                    ? ANALYTICS_EVENTS.smk6StudentProjectsRegistrationClicked
+                    : card.id === "shodhankur"
+                      ? ANALYTICS_EVENTS.smk6ShodhankurRegistrationClicked
+                      : ANALYTICS_EVENTS.registrationStarted;
               return (
                 <Smk6TrackedLink
-                  key={type}
-                  href={entry.href}
+                  key={card.id}
+                  href={card.href}
                   className={cardClass}
-                  eventName={
-                    type === "Conclave"
-                      ? ANALYTICS_EVENTS.smk6ConclaveRegistrationClicked
-                      : type === "Projects"
-                        ? ANALYTICS_EVENTS.smk6StudentProjectsRegistrationClicked
-                        : type === "Shodhankur"
-                          ? ANALYTICS_EVENTS.smk6ShodhankurRegistrationClicked
-                          : ANALYTICS_EVENTS.registrationStarted
-                  }
-                  programme={type}
-                  external={entry.external}
+                  eventName={eventName}
+                  programme={card.id}
+                  external={card.external}
                 >
                   <span className="flex items-start justify-between gap-2">
-                    <span className="text-sm font-bold text-brand-navy">{label}</span>
+                    <span className="text-sm font-bold text-brand-navy">{card.label}</span>
                     <span className="shrink-0 rounded-full bg-brand-saffron/15 px-2 py-0.5 text-[10px] font-bold text-brand-saffron-dark">
-                      {badge.label}
+                      {card.badge}
                     </span>
                   </span>
                   <span className="mt-2 text-xs leading-relaxed text-slate-600">
-                    {meta.description}
+                    {card.hint}
                   </span>
                 </Smk6TrackedLink>
               );

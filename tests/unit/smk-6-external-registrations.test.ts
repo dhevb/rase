@@ -4,6 +4,8 @@ import {
   SMK_6_CONCLAVE_FORMS,
   SMK_6_CONCLAVE_REGISTRATION_HREF,
   SMK_6_EXTERNAL_REGISTRATIONS,
+  SMK_6_PROGRAMME_TRACKS_HREF,
+  SMK_6_PUBLIC_REGISTRATION_CARDS,
   conclaveFormByProgrammeTitle,
   smk6RegistrationEntryForType,
 } from "../../src/data/smk-6-external-registrations";
@@ -30,10 +32,10 @@ describe("SMK 6.0 official Google Form mapping", () => {
   });
 
   it("maps Shodhankur and Student Projects to the supplied forms.gle URLs", () => {
-    assert.equal(SMK_6_EXTERNAL_REGISTRATIONS.shodhankur.url, "https://forms.gle/VJvWjT9kDkxtniv48");
+    assert.equal(SMK_6_EXTERNAL_REGISTRATIONS.shodhankur.url, "https://forms.gle/octRMFkzfrZt9dAF9");
     assert.equal(
       SMK_6_EXTERNAL_REGISTRATIONS.studentProjects.url,
-      "https://forms.gle/octRMFkzfrZt9dAF9"
+      "https://forms.gle/VJvWjT9kDkxtniv48"
     );
   });
 
@@ -44,12 +46,30 @@ describe("SMK 6.0 official Google Form mapping", () => {
     );
   });
 
-  it("routes Conclave through the registration hub selector", () => {
-    assert.equal(SMK_6_CONCLAVE_REGISTRATION_HREF, "/registration?category=Conclave");
+  it("routes Conclave to the public hub selector with four forms", () => {
+    assert.equal(SMK_6_CONCLAVE_REGISTRATION_HREF, "/registration#conclave-registration");
     assert.deepEqual(smk6RegistrationEntryForType("Conclave"), {
-      href: "/registration?category=Conclave",
+      href: "/registration#conclave-registration",
       external: false,
     });
+  });
+
+  it("keeps Programme tracks on the Academic Council route", () => {
+    assert.equal(SMK_6_PROGRAMME_TRACKS_HREF, "/departments/academic-council");
+  });
+
+  it("publishes the six public registration options in the required order", () => {
+    assert.deepEqual(
+      SMK_6_PUBLIC_REGISTRATION_CARDS.map((card) => card.id),
+      [
+        "multi-track-conference",
+        "programme-tracks",
+        "shodhankur",
+        "student-projects",
+        "conclaves",
+        "delegate",
+      ]
+    );
   });
 
   it("matches published conclave titles to the correct form", () => {

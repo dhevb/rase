@@ -50,10 +50,11 @@ export const SMK_6_OVERVIEW = {
 export const SMK_6_HOMEPAGE_PREVIEW_IDS = [
   "conference",
   "conclaves",
+  "patrika",
+  "projects",
   "olympiad",
   "awards",
   "exhibition",
-  "projects",
 ] as const;
 
 export function smk6ProgrammeCards() {
