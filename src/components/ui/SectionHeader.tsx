@@ -8,6 +8,7 @@ interface SectionHeaderProps {
   theme?: "light" | "dark";
   className?: string;
   action?: ReactNode;
+  headingId?: string;
 }
 
 export default function SectionHeader({
@@ -18,6 +19,7 @@ export default function SectionHeader({
   theme = "light",
   className = "",
   action,
+  headingId,
 }: SectionHeaderProps) {
   const alignClass = align === "center" ? "text-center mx-auto" : "text-left";
   const isDark = theme === "dark";
@@ -34,6 +36,7 @@ export default function SectionHeader({
         </p>
       ) : null}
       <h2
+        id={headingId}
         className={`text-2xl font-extrabold tracking-tight sm:text-3xl md:text-4xl ${
           isDark ? "text-white" : "text-brand-navy"
         }`}

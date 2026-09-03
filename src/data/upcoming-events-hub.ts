@@ -3,6 +3,8 @@ import { SITE_URL } from "@/config/site";
 import { UPCOMING_EDITION } from "@/data/past-editions";
 import { committeePathForEdition } from "@/lib/committee/edition-slugs";
 import { CMT_SUBMISSION_URL } from "@/lib/registration/config";
+import { ABOUT_6TH_EDITION_HREF } from "@/data/smk-6-edition-hub";
+import { event } from "@/design/tokens";
 
 export const UPCOMING_EVENTS_PATH = CANONICAL_ROUTES.upcomingEvents;
 
@@ -62,6 +64,7 @@ export const UPCOMING_EVENTS: UpcomingEventCard[] = [
 ];
 
 export const SMK_6_RESOURCE_LINKS = [
+  { label: "About 6th Edition", href: ABOUT_6TH_EDITION_HREF },
   { label: "Edition 6.0 brochure", href: `${CANONICAL_ROUTES.downloads}#edition-brochures` },
   { label: "Organising committee", href: committeePathForEdition("6.0") },
   { label: "Academic Council", href: CANONICAL_ROUTES.departments.academicCouncil },
@@ -94,6 +97,7 @@ export const UPCOMING_EVENTS_BREADCRUMBS = [
 ] as const;
 
 export const UPCOMING_EVENTS_QUICK_LINKS = [
+  { label: "About 6th Edition", href: ABOUT_6TH_EDITION_HREF, icon: "📘" },
   { label: "Register for 6.0", href: CANONICAL_ROUTES.registration, icon: "✅" },
   { label: "Edition Brochures", href: `${CANONICAL_ROUTES.downloads}#edition-brochures`, icon: "📄" },
   { label: "Organising Committee", href: committeePathForEdition("6.0"), icon: "👥" },
@@ -114,7 +118,7 @@ export const UPCOMING_EVENTS_KEYWORDS = [
 ] as const;
 
 export function upcomingEventsMetaDescription(): string {
-  return "Register for Shiksha Mahakumbh 6.0 at NIT Hamirpur (9–11 October 2026). Shiksha Mahakumbh 7.0 at IIT Jammu — coming soon. National multidisciplinary education summit aligned with NEP 2020.";
+  return "About Shiksha Mahakumbh 6.0 at NIT Hamirpur, 9–11 October 2026 — programmes, conclaves, registration, organising committee, and brochure. Edition 7.0 at IIT Jammu will be announced here.";
 }
 
 export const UPCOMING_EVENTS_FAQ = [
@@ -140,10 +144,10 @@ export const UPCOMING_EVENTS_FAQ = [
   },
 ] as const;
 
-/** ISO dates for JSON-LD (edition 6.0) */
+/** ISO dates for JSON-LD (edition 6.0) — from global event tokens */
 export const SMK_6_EVENT_DATES = {
-  startDate: "2026-10-09",
-  endDate: "2026-10-11",
+  startDate: event.startDate,
+  endDate: event.endDate,
 } as const;
 
 export const UPCOMING_EVENTS_CTA = {

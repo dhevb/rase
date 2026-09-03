@@ -214,3 +214,19 @@ export async function listPublicSpeakers(locale: ContentLocale = "en", featuredO
   });
   return items.filter((s) => isPublishedStatus(s.status, s.publishAt));
 }
+
+export async function listPublicSpeakersByEdition(
+  edition: string,
+  locale: ContentLocale = "en"
+) {
+  const items = await prisma.speakerProfile.findMany({
+    where: {
+      deletedAt: null,
+      locale,
+      status: "published",
+      edition,
+    },
+    orderBy: [{ isFeatured: "desc" }, { sortOrder: "asc" }],
+  });
+  return items.filter((s) => isPublishedStatus(s.status, s.publishAt));
+}

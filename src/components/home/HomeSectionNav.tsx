@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ROUTES } from "@/constants/routes";
 
 const LINKS = [
+  { href: "#about-6th-edition-preview", label: "6th Edition" },
   { href: "#why-attend", label: "Why Attend" },
   { href: "#registration-types", label: "Register" },
   { href: "#programmes", label: "Programme" },

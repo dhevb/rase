@@ -213,6 +213,9 @@ export type CmsSpeakerCard = {
   photoUrl: string | null;
   isFeatured: boolean;
   href: string;
+  edition?: string | null;
+  category?: string | null;
+  tags?: string[];
 };
 
 export type CmsLoadedSpeaker = {

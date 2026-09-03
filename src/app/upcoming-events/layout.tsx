@@ -8,7 +8,7 @@ import {
 } from "@/data/upcoming-events-hub";
 
 export const metadata = createPageMetadata({
-  title: `Upcoming Events — Shiksha Mahakumbh 6.0 & 7.0 | National Education Summit`,
+  title: `Shiksha Mahakumbh 6.0 — About the 6th Edition & Upcoming Events`,
   description: upcomingEventsMetaDescription(),
   path: UPCOMING_EVENTS_PATH,
   keywords: [...UPCOMING_EVENTS_KEYWORDS],

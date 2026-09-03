@@ -13,6 +13,10 @@ export const ANALYTICS_EVENTS = {
   brochureDownload: "brochure_download",
   knowledgeHubView: "knowledge_hub_view",
   globalSearch: "global_search",
+  about6thEditionClicked: "about_6th_edition_clicked",
+  academicCouncilClicked: "academic_council_clicked",
+  committeeClicked: "committee_clicked",
+  programmeDetailsClicked: "programme_details_clicked",
 } as const;
 
 export type AnalyticsEventName =

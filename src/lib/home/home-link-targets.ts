@@ -10,7 +10,7 @@ export function academicCouncilHash(slug: string): string {
 export function resolveHeroStatHref(label: string): string | undefined {
   const key = label.toLowerCase();
   if (key.includes("completed") && key.includes("edition")) return CANONICAL_ROUTES.pastEvents;
-  if (key.includes("current edition")) return ACADEMIC_COUNCIL_PATH;
+  if (key.includes("current edition")) return `${CANONICAL_ROUTES.upcomingEvents}#about-6th-edition`;
   if (key.includes("institution")) return "/#conference-support";
   if (key.includes("research paper")) return "/publications";
   if (key.includes("states") || key.includes("ut")) return "/abhiyaninphotoframe";

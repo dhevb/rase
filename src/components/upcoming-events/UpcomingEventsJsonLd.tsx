@@ -43,7 +43,7 @@ export default function UpcomingEventsJsonLd() {
         "@type": "EducationEvent",
         name: smk6.title,
         description: smk6.description,
-        url: `${UPCOMING_EVENTS_CANONICAL_URL}#smk-6-0`,
+        url: `${UPCOMING_EVENTS_CANONICAL_URL}#about-6th-edition`,
         startDate: SMK_6_EVENT_DATES.startDate,
         endDate: SMK_6_EVENT_DATES.endDate,
         eventAttendanceMode: "https://schema.org/MixedEventAttendanceMode",

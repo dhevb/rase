@@ -3,8 +3,10 @@
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import HubGradientBanner from "@/components/ui/HubGradientBanner";
+import Smk6ResourceNav from "@/components/upcoming-events/Smk6ResourceNav";
+import Smk6TrackedLink from "@/components/upcoming-events/Smk6TrackedLink";
+import { ANALYTICS_EVENTS } from "@/lib/analytics/events";
 import {
-  SMK_6_RESOURCE_LINKS,
   UPCOMING_EVENTS,
   UPCOMING_EVENTS_CTA,
   UPCOMING_EVENTS_PAGE_HERO,
@@ -32,6 +34,7 @@ export default function UpcomingEventsShowcase() {
         <div className="grid gap-5 sm:grid-cols-2">
           {UPCOMING_EVENTS.map((event, index) => {
             const isOpen = event.status === "registration_open";
+            const resourcesId = `${event.id}-resources`;
             return (
               <motion.article
                 key={event.id}
@@ -91,32 +94,29 @@ export default function UpcomingEventsShowcase() {
                   </dl>
 
                   {isOpen && (
-                    <nav
-                      aria-label={`${event.title} resources`}
-                      className="mt-4 flex flex-wrap gap-2"
-                    >
-                      {SMK_6_RESOURCE_LINKS.map((link) => (
-                        <Link
-                          key={link.href}
-                          href={link.href}
-                          className="rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-brand-navy transition hover:border-brand-saffron/40 hover:bg-brand-surface"
-                        >
-                          {link.label}
-                        </Link>
-                      ))}
-                    </nav>
+                    <>
+                      <p id={resourcesId} className="sr-only">
+                        {event.title} resources
+                      </p>
+                      <Smk6ResourceNav labelledBy={resourcesId} />
+                    </>
                   )}
 
-                  <Link
+                  <Smk6TrackedLink
                     href={event.registrationHref}
                     className={`mt-5 inline-flex min-h-[48px] w-full items-center justify-center rounded-xl px-4 py-3 text-sm font-bold shadow-md transition hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${
                       isOpen
                         ? "bg-gradient-to-r from-brand-navy to-[#7a4343] text-white focus-visible:outline-brand-saffron"
                         : "border-2 border-brand-navy/20 bg-white text-brand-navy hover:border-brand-navy/40 focus-visible:outline-brand-navy"
                     }`}
+                    eventName={
+                      isOpen
+                        ? ANALYTICS_EVENTS.registrationStarted
+                        : ANALYTICS_EVENTS.knowledgeHubView
+                    }
                   >
                     {event.ctaLabel}
-                  </Link>
+                  </Smk6TrackedLink>
                 </div>
               </motion.article>
             );

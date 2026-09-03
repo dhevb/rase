@@ -1,6 +1,10 @@
 import type { ContentLocale } from "@prisma/client";
 import { getCommitteeBySlug, listPublicCommittees } from "@/server/services/committee.service";
-import { getSpeakerBySlug, listPublicSpeakers } from "@/server/services/speaker.service";
+import {
+  getSpeakerBySlug,
+  listPublicSpeakers,
+  listPublicSpeakersByEdition,
+} from "@/server/services/speaker.service";
 import { listPublicPartners } from "@/server/services/partner.service";
 import { getEventBySlug, listPublicEvents } from "@/server/services/event-cms.service";
 import {
@@ -120,35 +124,55 @@ export async function loadCmsCommitteeBySlug(
   }
 }
 
+function mapSpeakerCard(raw: unknown): CmsSpeakerCard {
+  const s = asLoose<{
+    id: string;
+    fullName: string;
+    slug: string;
+    title?: string | null;
+    designation?: string | null;
+    institution?: string | null;
+    photoUrl?: string | null;
+    isFeatured?: boolean;
+    edition?: string | null;
+    category?: string | null;
+    tags?: string[];
+  }>(raw);
+  return {
+    id: s.id,
+    fullName: s.fullName,
+    slug: s.slug,
+    title: s.title ?? null,
+    designation: s.designation ?? null,
+    institution: s.institution ?? null,
+    photoUrl: s.photoUrl ?? null,
+    isFeatured: s.isFeatured ?? false,
+    href: `/speakers/${s.slug}`,
+    edition: s.edition ?? null,
+    category: s.category ?? null,
+    tags: Array.isArray(s.tags) ? s.tags : [],
+  };
+}
+
 export async function loadCmsSpeakers(
   locale: ContentLocale = "en",
   featuredOnly = false
 ): Promise<CmsSpeakerCard[]> {
   try {
     const items = await listPublicSpeakers(locale, featuredOnly);
-    return items.map((raw) => {
-      const s = asLoose<{
-        id: string;
-        fullName: string;
-        slug: string;
-        title?: string | null;
-        designation?: string | null;
-        institution?: string | null;
-        photoUrl?: string | null;
-        isFeatured?: boolean;
-      }>(raw);
-      return {
-        id: s.id,
-        fullName: s.fullName,
-        slug: s.slug,
-        title: s.title ?? null,
-        designation: s.designation ?? null,
-        institution: s.institution ?? null,
-        photoUrl: s.photoUrl ?? null,
-        isFeatured: s.isFeatured ?? false,
-        href: `/speakers/${s.slug}`,
-      };
-    });
+    return items.map(mapSpeakerCard);
+  } catch {
+    return [];
+  }
+}
+
+export async function loadCmsSpeakersForEdition(
+  edition: string,
+  locale: ContentLocale = "en"
+): Promise<CmsSpeakerCard[]> {
+  try {
+    const items = await listPublicSpeakersByEdition(edition, locale);
+    return items.map(mapSpeakerCard);
   } catch {
     return [];
   }

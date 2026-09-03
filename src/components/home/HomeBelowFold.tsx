@@ -11,6 +11,7 @@ import { CmsProvider } from "@/lib/cms/context";
 const Footer = dynamic(() => import("@/components/layout/Footer"));
 const GlassCard = dynamic(() => import("@/components/ui/GlassCard"));
 const UpcomingEvent = dynamic(() => import("@/components/home/sections/UpcomingEvent"));
+const Smk6HomepagePreview = dynamic(() => import("@/components/home/Smk6HomepagePreview"));
 const GallerySection = dynamic(() => import("./GallerySection"));
 const TestimonialsStrip = dynamic(() => import("./TestimonialsStrip"));
 const HomeFaqSection = dynamic(() => import("./HomeFaqSection"));
@@ -80,6 +81,10 @@ export default async function HomeBelowFold({ locale = "en", homeSections }: Pro
         }
       >
         <PartnersShowcase cmsPartners={cmsPartners} cmsSpeakers={featuredSpeakers} />
+      </LazySection>
+
+      <LazySection minHeight="22rem" rootMargin="0px 0px 200px 0px" idleFirst fallback={<SectionSkeleton lines={4} />}>
+        <Smk6HomepagePreview />
       </LazySection>
 
       <LazySection
