@@ -8,13 +8,13 @@ export const SMK_6_EXTERNAL_REGISTRATIONS = {
     principalsTeachers: {
       id: "principalsTeachers",
       title: "Principals & Outstanding Teachers Conclave",
-      url: "https://docs.google.com/forms/d/e/1FAIpQLSeKk_clbh5fzAQ5AHOH462TRlyGNmn5tN_Cig9Ho6VwGkzelg/viewform?usp=header",
+      url: "https://docs.google.com/forms/d/e/1FAIpQLSfc8_Sur2uf-2wfXwJR9ivXjhB7Es3LGUrEkWpP_soanK9uYQ/viewform?usp=header",
       analyticsEvent: "smk6_principals_teachers_registration_clicked",
     },
     scientistsResearch: {
       id: "scientistsResearch",
       title: "Scientists & Research Scholars Conclave",
-      url: "https://docs.google.com/forms/d/e/1FAIpQLSc474B45I3o3kTfBYt9GjGKN2F5Bkv8XZjWXcO0uDuAbCiy7Q/viewform?usp=header",
+      url: "https://docs.google.com/forms/d/e/1FAIpQLSdfyfl9-gdFBorshxGp1bPixoCmFVgSCoMlH3ACogzltZDt3g/viewform?usp=header",
       analyticsEvent: "smk6_scientists_research_registration_clicked",
     },
     startupEntrepreneurs: {
@@ -26,7 +26,7 @@ export const SMK_6_EXTERNAL_REGISTRATIONS = {
     talent: {
       id: "talent",
       title: "Talent Conclave",
-      url: "https://docs.google.com/forms/d/e/1FAIpQLScxQCWA5rCRMWqUvTM3rqHz_obAduHfUOzHmboP6HByfkaoAg/viewform?usp=header",
+      url: "https://docs.google.com/forms/d/e/1FAIpQLSdIUmfUK9qcTg3U79MhY2X367m8fyolGxyXw9TtEv5Zf8kDVQ/viewform?usp=header",
       analyticsEvent: "smk6_talent_conclave_registration_clicked",
     },
   },

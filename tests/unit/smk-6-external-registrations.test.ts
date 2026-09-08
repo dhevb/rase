@@ -15,11 +15,11 @@ describe("SMK 6.0 official Google Form mapping", () => {
     assert.equal(SMK_6_CONCLAVE_FORMS.length, 4);
     assert.equal(
       SMK_6_EXTERNAL_REGISTRATIONS.conclaves.principalsTeachers.url,
-      "https://docs.google.com/forms/d/e/1FAIpQLSeKk_clbh5fzAQ5AHOH462TRlyGNmn5tN_Cig9Ho6VwGkzelg/viewform?usp=header"
+      "https://docs.google.com/forms/d/e/1FAIpQLSfc8_Sur2uf-2wfXwJR9ivXjhB7Es3LGUrEkWpP_soanK9uYQ/viewform?usp=header"
     );
     assert.equal(
       SMK_6_EXTERNAL_REGISTRATIONS.conclaves.scientistsResearch.url,
-      "https://docs.google.com/forms/d/e/1FAIpQLSc474B45I3o3kTfBYt9GjGKN2F5Bkv8XZjWXcO0uDuAbCiy7Q/viewform?usp=header"
+      "https://docs.google.com/forms/d/e/1FAIpQLSdfyfl9-gdFBorshxGp1bPixoCmFVgSCoMlH3ACogzltZDt3g/viewform?usp=header"
     );
     assert.equal(
       SMK_6_EXTERNAL_REGISTRATIONS.conclaves.startupEntrepreneurs.url,
@@ -27,7 +27,7 @@ describe("SMK 6.0 official Google Form mapping", () => {
     );
     assert.equal(
       SMK_6_EXTERNAL_REGISTRATIONS.conclaves.talent.url,
-      "https://docs.google.com/forms/d/e/1FAIpQLScxQCWA5rCRMWqUvTM3rqHz_obAduHfUOzHmboP6HByfkaoAg/viewform?usp=header"
+      "https://docs.google.com/forms/d/e/1FAIpQLSdIUmfUK9qcTg3U79MhY2X367m8fyolGxyXw9TtEv5Zf8kDVQ/viewform?usp=header"
     );
   });
 
