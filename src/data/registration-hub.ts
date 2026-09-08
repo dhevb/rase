@@ -110,7 +110,8 @@ export const REGISTRATION_FAQ = [
   },
   {
     question: "When is Shiksha Mahakumbh 6.0?",
-    answer: "9–11 October 2026 at NIT Hamirpur, Himachal Pradesh, India.",
+    answer:
+      "9–11 October 2026 at National Institute of Technology Hamirpur (NIT Hamirpur / NITH), Himachal Pradesh, India.",
   },
   {
     question: "What is the registration deadline?",

@@ -72,11 +72,14 @@ export const EVENT_SCHEMA = {
   eventStatus: "https://schema.org/EventScheduled",
   location: {
     "@type": "Place",
-    name: "NIT Hamirpur",
+    name: "National Institute of Technology Hamirpur",
+    alternateName: ["NIT Hamirpur", "NITH", "एनआईटी हमीरपुर"],
     address: {
       "@type": "PostalAddress",
+      streetAddress: "NIT Hamirpur",
       addressLocality: "Hamirpur",
       addressRegion: "Himachal Pradesh",
+      postalCode: "177005",
       addressCountry: "IN",
     },
   },

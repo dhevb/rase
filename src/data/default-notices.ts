@@ -85,7 +85,7 @@ export const DEFAULT_NOTICES_EN: CmsNotice[] = [
     title: `Venue & Dates — ${event.venue}`,
     slug: "venue-dates-smk-6",
     description:
-      `${event.name} will be hosted at ${event.venue}, ${event.location} on 9–11 October 2026. Plan travel via Dharamshala (Gaggal) or Chandigarh airports and Una/Amb Andaura railway stations. Venue maps and local stay guidance will be updated on the notice board.`,
+      `${event.name} will be hosted at National Institute of Technology Hamirpur (NIT Hamirpur / NITH), ${event.location} on 9–11 October 2026. Plan travel via Dharamshala (Gaggal) or Chandigarh airports and Una/Amb Andaura railway stations. Venue maps and local stay guidance will be updated on the notice board.`,
     priority: 9,
     isPinned: true,
     publishAt: "2026-05-01T00:00:00.000Z",

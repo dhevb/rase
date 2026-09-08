@@ -105,7 +105,10 @@ export default function HeroSection({ content }: { content: HeroContent }) {
               <span className="rounded-xl border border-brand-blue/15 bg-white px-4 py-2 font-semibold text-brand-navy shadow-sm">
                 {dates}
               </span>
-              <span className="rounded-xl border border-brand-saffron/25 bg-brand-surface-warm px-4 py-2 font-semibold text-brand-navy shadow-sm">
+              <span
+                className="rounded-xl border border-brand-saffron/25 bg-brand-surface-warm px-4 py-2 font-semibold text-brand-navy shadow-sm"
+                translate="no"
+              >
                 {venue}
               </span>
             </div>

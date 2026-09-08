@@ -34,6 +34,14 @@ export async function generateMetadata(): Promise<Metadata> {
     createPageMetadata({
       ...HI_HOME_META,
       locale: "hi_IN",
+      keywords: [
+        "शिक्षा महाकुंभ 6.0",
+        "एनआईटी हमीरपुर",
+        "NIT Hamirpur",
+        "NITH",
+        "हिमाचल प्रदेश",
+        "9-11 अक्टूबर 2026",
+      ],
     }),
     "/"
   );

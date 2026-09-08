@@ -32,7 +32,9 @@ function documentLangForPath(pathname: string): string {
 }
 
 function withDocumentLang(response: NextResponse, pathname: string): NextResponse {
-  response.headers.set("x-document-lang", documentLangForPath(pathname));
+  const lang = documentLangForPath(pathname);
+  response.headers.set("x-document-lang", lang);
+  response.headers.set("Content-Language", lang);
   response.headers.set("x-pathname", pathname);
   return response;
 }

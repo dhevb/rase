@@ -43,6 +43,7 @@ export function createPageMetadata(options: {
       url,
       siteName: SITE_NAME,
       locale: options.locale ?? "en_IN",
+      ...(options.locale === "hi_IN" ? { alternateLocale: ["en_IN"] } : {}),
       type: "website",
       images: openGraphImages,
     },

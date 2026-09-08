@@ -62,7 +62,7 @@ export function buildRegistrationFaqJsonLd() {
         name: "When is Shiksha Mahakumbh 6.0?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "9–11 October 2026 at NIT Hamirpur, Himachal Pradesh, India.",
+          text: "9–11 October 2026 at National Institute of Technology Hamirpur (NIT Hamirpur / NITH), Himachal Pradesh, India.",
         },
       },
       {
