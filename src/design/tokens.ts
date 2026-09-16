@@ -35,7 +35,7 @@ export const editionSeries = {
   currentName: "Shiksha Mahakumbh 6.0",
   programmeRange: "1.0–6.0",
   speakerArchive: "1.0–5.0",
-  next: "7.0 at IIT Jammu (TBA)",
+  next: "7.0 — TBA (To Be Announced)",
 } as const;
 
 export const impactStats = [

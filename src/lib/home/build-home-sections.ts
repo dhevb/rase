@@ -136,7 +136,7 @@ const DEFAULT_DISCOVER: DiscoverInsight[] = [
   {
     title: "Shiksha Mahakumbh 7.0",
     date: "Next edition",
-    author: "IIT Jammu",
+    author: "TBA",
     href: `${ROUTES.upcomingEvents}#smk-7-0`,
     tag: "Upcoming",
     accent: "from-brand-emerald/50 to-brand-emerald/15",

@@ -70,7 +70,7 @@ export const PUBLIC_PAGE_META = {
   upcomingevent: createEventMetadata({
     title: "Upcoming Events — Shiksha Mahakumbh 6.0 & 7.0",
     description:
-      "Register for Shiksha Mahakumbh 6.0 at NIT Hamirpur (October 2026). Shiksha Mahakumbh 7.0 at IIT Jammu — coming soon. National education summit aligned with NEP 2020.",
+      "Register for Shiksha Mahakumbh 6.0 at NIT Hamirpur (October 2026). Shiksha Mahakumbh 7.0 venue TBA (To Be Announced) — coming soon. National education summit aligned with NEP 2020.",
     path: "/upcoming-events",
   }),
   pastEvents: createEventMetadata({

@@ -54,7 +54,7 @@ const HOMEPAGE_SECTIONS = {
   featured_events: {
     items: [
       { title: "Shiksha Mahakumbh 6.0", date: "09–11 October 2026", venue: "NIT Hamirpur", url: "/registration" },
-      { title: "Shiksha Mahakumbh 7.0", date: "To Be Announced", venue: "IIT Jammu", url: "/upcoming-events" },
+      { title: "Shiksha Mahakumbh 7.0", date: "To Be Announced", venue: "TBA (To Be Announced)", url: "/upcoming-events" },
     ],
   },
   featured_programs: {

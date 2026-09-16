@@ -52,13 +52,13 @@ export const UPCOMING_EVENTS: UpcomingEventCard[] = [
     edition: "7.0",
     title: "Shiksha Mahakumbh 7.0",
     dates: "To Be Announced",
-    venue: "IIT Jammu",
-    venueFull: "Indian Institute of Technology Jammu",
+    venue: "TBA (To Be Announced)",
+    venueFull: "TBA (To Be Announced)",
     status: "announced",
     registrationHref: `${CANONICAL_ROUTES.upcomingEvents}#smk-7-0`,
     ctaLabel: "Details forthcoming",
     description:
-      "The next national edition of Shiksha Mahakumbh Abhiyan at IIT Jammu. Dates and registration will be announced soon.",
+      "The next national edition of Shiksha Mahakumbh Abhiyan. Venue TBA (To Be Announced). Dates and registration will be announced soon.",
     highlight: "Edition 7.0 — programme details forthcoming",
   },
 ];
@@ -86,7 +86,7 @@ export const UPCOMING_EVENTS_PAGE_HERO = {
 
 export const UPCOMING_EVENTS_STATS = [
   { label: "Open registration", value: "6.0", hint: "NIT Hamirpur · Oct 2026" },
-  { label: "Next edition", value: "7.0", hint: "IIT Jammu · TBA" },
+  { label: "Next edition", value: "7.0", hint: "TBA (To Be Announced)" },
   { label: "States & UTs reached", value: "14+", hint: "National footprint across India" },
   { label: "Institutions", value: "500+", hint: "Engaged across editions" },
 ] as const;
@@ -111,14 +111,14 @@ export const UPCOMING_EVENTS_KEYWORDS = [
   "Shiksha Mahakumbh 7.0",
   "upcoming education summit India",
   "NIT Hamirpur conference 2026",
-  "IIT Jammu education summit",
+  "Shiksha Mahakumbh 7.0 TBA",
   "NEP 2020 conference registration",
   "national education summit India",
   "international education conference India",
 ] as const;
 
 export function upcomingEventsMetaDescription(): string {
-  return "About Shiksha Mahakumbh 6.0 at NIT Hamirpur, 9–11 October 2026 — programmes, conclaves, registration, organising committee, and brochure. Edition 7.0 at IIT Jammu will be announced here.";
+  return "About Shiksha Mahakumbh 6.0 at NIT Hamirpur, 9–11 October 2026 — programmes, conclaves, registration, organising committee, and brochure. Edition 7.0 venue is TBA (To Be Announced) and will be announced here.";
 }
 
 export const UPCOMING_EVENTS_FAQ = [
@@ -132,7 +132,7 @@ export const UPCOMING_EVENTS_FAQ = [
   },
   {
     question: "When is Shiksha Mahakumbh 7.0?",
-    answer: "Edition 7.0 will be hosted at IIT Jammu. Dates and registration will be announced on this page.",
+    answer: "Edition 7.0 venue is TBA (To Be Announced). Dates and registration will be announced on this page.",
   },
   {
     question: "Where can I download the edition 6.0 brochure?",
