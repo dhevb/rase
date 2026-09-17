@@ -24,6 +24,7 @@ import {
   SMK_6_SCHEDULE_NOTICE_SLUG_HI,
 } from "@/data/smk-6-official-schedule";
 import { SMK_6_PROGRAMME_CONTACTS_HREF } from "@/data/smk-6-official-contacts";
+import { REGISTRATION_DEADLINE, REGISTRATION_PATH } from "@/data/registration-hub";
 
 function buildOfficialScheduleNotice(locale: "en" | "hi"): CmsNotice {
   const hi = locale === "hi";
@@ -263,6 +264,19 @@ export const DEFAULT_NOTICES_EN: CmsNotice[] = [
   ...buildSmk6PanelDiscussionNotices("en"),
   ...buildSmk6ConclaveNotices("en"),
   {
+    id: "default-registration-deadline-extended",
+    title: "Registration Deadline Extended — 30 September 2026",
+    slug: "registration-deadline-extended-smk-6",
+    description:
+      `Applicable Shiksha Mahakumbh 6.0 registrations have been extended until ${REGISTRATION_DEADLINE}. Participants are requested to complete registration by the revised deadline. Register at ${REGISTRATION_PATH}. Media Conclave uses the official Google Form on the Conclaves section of that page.`,
+    priority: 14,
+    isPinned: true,
+    publishAt: "2026-09-17T00:00:00.000Z",
+    expireAt: null,
+    category: { name: "Registration", slug: "registration" },
+    attachments: [],
+  },
+  {
     id: "default-registration-open",
     title: `Registration Open — ${event.name}`,
     slug: "registration-open-smk-6",
@@ -437,6 +451,19 @@ export const DEFAULT_NOTICES_HI: CmsNotice[] = [
   ...buildSmk6ProgrammePosterNotices("hi"),
   ...buildSmk6PanelDiscussionNotices("hi"),
   ...buildSmk6ConclaveNotices("hi"),
+  {
+    id: "default-registration-deadline-extended-hi",
+    title: "पंजीकरण अंतिम तिथि बढ़ाई गई — 30 सितंबर 2026",
+    slug: "registration-deadline-extended-smk-6-hi",
+    description:
+      `शिक्षा महाकुंभ 6.0 के लागू कार्यक्रमों का पंजीकरण ${REGISTRATION_DEADLINE} तक बढ़ाया गया है। कृपया संशोधित तिथि तक पंजीकरण पूर्ण करें। पंजीकरण: ${REGISTRATION_PATH}`,
+    priority: 14,
+    isPinned: true,
+    publishAt: "2026-09-17T00:00:00.000Z",
+    expireAt: null,
+    category: { name: "पंजीकरण", slug: "registration" },
+    attachments: [],
+  },
   {
     id: "default-registration-hi",
     title: "शिक्षा महाकुंभ 6.0 — पंजीकरण खुला",

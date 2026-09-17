@@ -180,7 +180,7 @@ export const SMK_6_SHODHANKUR_OFFICIAL = {
   venue: "NIT Hamirpur, Himachal Pradesh",
   sessionNote:
     "Shodhankur will commence at 3:00 PM. Participants are requested to attend the Inaugural/Discourse Session scheduled at 11:00 AM as well.",
-  submissionDeadline: "30 September",
+  submissionDeadline: "30 September 2026",
   contact: "डॉ शिक्षा शर्मा – +91 98788 90303",
   eligibility: "कक्षा IX–X एवं XI–XII के विद्यार्थी",
   purpose: [
@@ -544,7 +544,7 @@ export const conclaves = [
     ],
     organizingTeam: "Divyanshu Garg | Devanshi Sharma | Hardik Singla",
     keynote: "Sri K. Vasudeva Rao, President, Bhaktivedanta Institute, Alumni, IIT Kanpur",
-    registrationWindow: "15 September to 25 September",
+    registrationWindow: "30 September 2026",
     date: "10 October 2026",
     time: "2:30 PM to 5:30 PM",
     venue: "NIT Hamirpur, Himachal Pradesh",

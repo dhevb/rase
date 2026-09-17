@@ -24,6 +24,7 @@ import {
   Smk6ExternalFormButton,
 } from "@/components/registration/Smk6ExternalRegistrationPanels";
 import ProgrammeSupportPanel from "@/components/contact/ProgrammeSupportPanel";
+import { REGISTRATION_DEADLINE } from "@/data/registration-hub";
 
 const BADGE_STYLES: Record<FeeBadgeTone, string> = {
   free: "bg-emerald-50 text-emerald-800 ring-emerald-200",
@@ -87,7 +88,7 @@ export default function CategoryStep({
           paper submission (CMT)
         </a>{" "}
         notice. Shodhankur, Student Projects, and each conclave open their official
-        Google Form directly.
+        Google Form directly. Applicable registrations close on {REGISTRATION_DEADLINE}.
       </p>
 
       <section aria-labelledby="reg-group-research">

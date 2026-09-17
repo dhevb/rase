@@ -17,6 +17,7 @@ import {
   SMK_6_EXTERNAL_REGISTRATIONS,
 } from "@/data/smk-6-external-registrations";
 import Smk6OfficialCover from "@/components/upcoming-events/Smk6OfficialCover";
+import { REGISTRATION_DEADLINE } from "@/data/registration-hub";
 
 export default function Smk6HomepagePreview() {
   const highlights = smk6HomepageProgrammeHighlights();
@@ -116,7 +117,10 @@ export default function Smk6HomepagePreview() {
             </article>
           ))}
         </div>
-        <div className="mt-6 flex flex-wrap gap-3">
+        <p className="mt-6 text-sm font-semibold text-brand-saffron-dark">
+          Registration deadline extended: {REGISTRATION_DEADLINE}
+        </p>
+        <div className="mt-4 flex flex-wrap gap-3">
           <Smk6AboutLink
             href={ABOUT_6TH_EDITION_HREF}
             className="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-brand-navy px-5 py-3 text-sm font-bold text-white"

@@ -32,6 +32,11 @@ describe("SMK 6.0 official contact directory", () => {
   it("keeps conclave Google Forms on their own official contacts", () => {
     assert.equal(getOfficialContactByConclaveFormId("principalsTeachers")?.id, "conclave-principals");
     assert.equal(getOfficialContactByConclaveFormId("talent")?.email, "conclaves@shikshamahakumbh.com");
+    assert.equal(getOfficialContactByConclaveFormId("media")?.id, "conclave-media");
+    assert.equal(
+      getOfficialContactById("conclave-media")?.registrationUrl,
+      "https://docs.google.com/forms/d/e/1FAIpQLSc473niVsUiA4vSa7uOs8Jbzz4-3J06BVQWDASYa6JMu9gKhg/viewform?usp=publish-editor"
+    );
   });
 
   it("maps Academic Council conclave pages to dedicated contacts", () => {

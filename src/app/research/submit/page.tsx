@@ -6,7 +6,7 @@ import { brandPageHero } from "@/lib/page-heroes";
 export const metadata = createPageMetadata({
   title: "Paper Submission — Microsoft CMT",
   description:
-    "Submit research papers and abstracts for Shiksha Mahakumbh 6.0 Multi Track Conference via the official Microsoft CMT portal.",
+    "Submit research papers and abstracts for the Shiksha Mahakumbh 6.0 Multi Track Conference (SMK2026) via the official Microsoft CMT portal. Double-blind peer review; conference registration deadline 30 September 2026.",
   path: "/research/submit",
   keywords: [
     "Shiksha Mahakumbh paper submission",

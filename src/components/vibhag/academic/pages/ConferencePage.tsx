@@ -17,6 +17,7 @@ import {
   ACADEMIC_PUBLICATION_NOTE,
 } from "@/data/academic-council-tracks";
 import { CMT_SUBMIT_PATH, CMT_SUBMISSION_URL, cmtSubmissionDateLabel } from "@/lib/registration/config";
+import { REGISTRATION_DEADLINE } from "@/data/registration-hub";
 import { tracks } from "../tracks-data";
 
 export default function ConferencePage() {
@@ -100,7 +101,7 @@ export default function ConferencePage() {
           <ACCard>CMT submissions: {cmtSubmissionDateLabel()}</ACCard>
           <ACCard>Acceptance Notification: 31 July 2026</ACCard>
           <ACCard>Final manuscript deadline: 31 August 2026</ACCard>
-          <ACCard>Registration Deadline: 31 August 2026</ACCard>
+          <ACCard>Registration Deadline: {REGISTRATION_DEADLINE}</ACCard>
         </div>
       </ACSection>
 

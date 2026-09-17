@@ -114,7 +114,7 @@ export default function ConclavePage() {
                 ) : null}
                 {"registrationWindow" in conclave && conclave.registrationWindow ? (
                   <p>
-                    <span className="font-semibold">Registration window (poster):</span>{" "}
+                    <span className="font-semibold">Registration deadline:</span>{" "}
                     {conclave.registrationWindow}
                   </p>
                 ) : null}
@@ -137,7 +137,7 @@ export default function ConclavePage() {
                           href={form.url}
                           eventName={conclaveFormAnalyticsEvent(form.id)}
                         >
-                          Register Now
+                          {`Register for ${form.title}`}
                         </Smk6ExternalFormButton>
                       ) : null}
                       {contact ? (

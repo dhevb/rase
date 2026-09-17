@@ -22,6 +22,7 @@ export const ANALYTICS_EVENTS = {
   smk6ScientistsResearchRegistrationClicked: "smk6_scientists_research_registration_clicked",
   smk6StartupEntrepreneursRegistrationClicked: "smk6_startup_entrepreneurs_registration_clicked",
   smk6TalentConclaveRegistrationClicked: "smk6_talent_conclave_registration_clicked",
+  smk6MediaConclaveRegistrationClicked: "smk6_media_conclave_registration_clicked",
   smk6StudentProjectsRegistrationClicked: "smk6_student_projects_registration_clicked",
   smk6ShodhankurRegistrationClicked: "smk6_shodhankur_registration_clicked",
   scheduleOpened: "schedule_opened",

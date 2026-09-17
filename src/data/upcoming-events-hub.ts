@@ -5,6 +5,7 @@ import { committeePathForEdition } from "@/lib/committee/edition-slugs";
 import { CMT_SUBMISSION_URL } from "@/lib/registration/config";
 import { ABOUT_6TH_EDITION_HREF } from "@/data/smk-6-edition-hub";
 import { event } from "@/design/tokens";
+import { REGISTRATION_DEADLINE } from "@/data/registration-hub";
 
 export const UPCOMING_EVENTS_PATH = CANONICAL_ROUTES.upcomingEvents;
 
@@ -85,7 +86,7 @@ export const UPCOMING_EVENTS_PAGE_HERO = {
 } as const;
 
 export const UPCOMING_EVENTS_STATS = [
-  { label: "Open registration", value: "6.0", hint: "NIT Hamirpur · Oct 2026" },
+  { label: "Open registration", value: "6.0", hint: `Deadline ${REGISTRATION_DEADLINE}` },
   { label: "Next edition", value: "7.0", hint: "TBA (To Be Announced)" },
   { label: "States & UTs reached", value: "14+", hint: "National footprint across India" },
   { label: "Institutions", value: "500+", hint: "Engaged across editions" },
@@ -145,7 +146,7 @@ export const UPCOMING_EVENTS_FAQ = [
   },
   {
     question: "How do I register for Shiksha Mahakumbh 6.0?",
-    answer: `Complete official registration at ${SITE_URL}${CANONICAL_ROUTES.registration} for delegates, conclaves, olympiad, awards, and related programmes.`,
+    answer: `Complete official registration at ${SITE_URL}${CANONICAL_ROUTES.registration} for delegates, conclaves, olympiad, awards, and related programmes. Applicable registrations have been extended until ${REGISTRATION_DEADLINE}.`,
   },
   {
     question: "When is Shiksha Mahakumbh 7.0?",

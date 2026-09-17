@@ -16,7 +16,7 @@ export const REGISTRATION_OG_IMAGE = `${SITE_URL}${REGISTRATION_HERO_IMAGE}`;
 
 export const REGISTRATION_CANONICAL_URL = `${SITE_URL}${REGISTRATION_PATH}`;
 
-export const REGISTRATION_DEADLINE = "31 August 2026";
+export const REGISTRATION_DEADLINE = "30 September 2026";
 
 export const REGISTRATION_PAGE_HERO = {
   eyebrow: "Shiksha Mahakumbh 6.0 · NIT Hamirpur",
@@ -58,7 +58,7 @@ export const REGISTRATION_CATEGORY_GROUPS: {
   },
   {
     title: "Conclaves",
-    hint: "Four published 6.0 conclave Google Forms",
+    hint: "Official 6.0 conclave Google Forms, including Media Conclave",
     types: ["Conclave"],
   },
   {
@@ -115,12 +115,12 @@ export const REGISTRATION_FAQ = [
   },
   {
     question: "What is the registration deadline?",
-    answer: `${REGISTRATION_DEADLINE} for summit registration categories on the official DHE platform.`,
+    answer: `${REGISTRATION_DEADLINE}. Applicable Shiksha Mahakumbh 6.0 registrations have been extended to this date.`,
   },
   {
     question: "What registration categories are available?",
     answer:
-      "Multi Track Conference (Microsoft CMT), Programme tracks (Academic Council), Shodhankur – छात्र शोध पत्रिका, Student Projects, Conclaves (four official Google Forms), and Delegate Registration. Accommodation booking opens in September 2026.",
+      "Multi Track Conference (Microsoft CMT), Programme tracks (Academic Council), Shodhankur – छात्र शोध पत्रिका, Student Projects, Conclaves (official Google Forms, including Media Conclave), and Delegate Registration. Accommodation booking opens in September 2026.",
   },
   {
     question: "How do I submit a research paper?",

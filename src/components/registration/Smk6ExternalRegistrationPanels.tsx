@@ -81,7 +81,7 @@ export function ConclaveExternalSelector() {
                   href={form.url}
                   eventName={conclaveFormAnalyticsEvent(form.id)}
                 >
-                  Register Now
+                  {`Register for ${form.title}`}
                 </Smk6ExternalFormButton>
               </div>
               <div className="mt-4">

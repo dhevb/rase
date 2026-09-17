@@ -11,8 +11,8 @@ import {
 } from "../../src/data/smk-6-external-registrations";
 
 describe("SMK 6.0 official Google Form mapping", () => {
-  it("keeps the four supplied conclave form URLs unchanged", () => {
-    assert.equal(SMK_6_CONCLAVE_FORMS.length, 4);
+  it("keeps the official conclave form URLs unchanged", () => {
+    assert.equal(SMK_6_CONCLAVE_FORMS.length, 5);
     assert.equal(
       SMK_6_EXTERNAL_REGISTRATIONS.conclaves.principalsTeachers.url,
       "https://docs.google.com/forms/d/e/1FAIpQLSfc8_Sur2uf-2wfXwJR9ivXjhB7Es3LGUrEkWpP_soanK9uYQ/viewform?usp=header"
@@ -28,6 +28,10 @@ describe("SMK 6.0 official Google Form mapping", () => {
     assert.equal(
       SMK_6_EXTERNAL_REGISTRATIONS.conclaves.talent.url,
       "https://docs.google.com/forms/d/e/1FAIpQLSdIUmfUK9qcTg3U79MhY2X367m8fyolGxyXw9TtEv5Zf8kDVQ/viewform?usp=header"
+    );
+    assert.equal(
+      SMK_6_EXTERNAL_REGISTRATIONS.conclaves.media.url,
+      "https://docs.google.com/forms/d/e/1FAIpQLSc473niVsUiA4vSa7uOs8Jbzz4-3J06BVQWDASYa6JMu9gKhg/viewform?usp=publish-editor"
     );
   });
 
@@ -46,7 +50,7 @@ describe("SMK 6.0 official Google Form mapping", () => {
     );
   });
 
-  it("routes Conclave to the public hub selector with four forms", () => {
+  it("routes Conclave to the public hub selector with official forms", () => {
     assert.equal(SMK_6_CONCLAVE_REGISTRATION_HREF, "/registration#conclave-registration");
     assert.deepEqual(smk6RegistrationEntryForType("Conclave"), {
       href: "/registration#conclave-registration",
@@ -78,6 +82,7 @@ describe("SMK 6.0 official Google Form mapping", () => {
       conclaveFormByProgrammeTitle("Principal and Outstanding Teacher Conclave")?.id,
       "principalsTeachers"
     );
+    assert.equal(conclaveFormByProgrammeTitle("Media Conclave")?.id, "media");
     assert.equal(conclaveFormByProgrammeTitle("VCs & Directors Conclave"), null);
     assert.equal(conclaveFormByProgrammeTitle("VC/Directors Conclave"), null);
   });

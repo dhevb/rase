@@ -40,6 +40,7 @@ import { SMK_6_PANEL_DISCUSSIONS } from "@/components/vibhag/academic/academic-c
 import { committeePathForEdition } from "@/lib/committee/edition-slugs";
 import Smk6OfficialCover from "@/components/upcoming-events/Smk6OfficialCover";
 import { SMK_6_SCHEDULE_DOWNLOAD_HREF, SMK_6_SCHEDULE_HREF } from "@/data/smk-6-official-schedule";
+import { REGISTRATION_DEADLINE } from "@/data/registration-hub";
 
 const cardClass =
   "flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-4 shadow-sm md:p-5";
@@ -104,6 +105,9 @@ export default function Smk6EditionDetail({ speakers }: Props) {
             </div>
             <Smk6OfficialCover className="lg:sticky lg:top-28" priority />
           </div>
+          <p className="mt-4 text-sm font-semibold text-brand-saffron-dark">
+            Registration deadline extended: {REGISTRATION_DEADLINE}
+          </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Smk6TrackedLink
               href={registerHref}

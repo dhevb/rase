@@ -6,6 +6,12 @@ import {
   cmtSubmissionDateLabel,
 } from "@/lib/registration/config";
 import { CtaButton } from "@/components/ui";
+import { ACADEMIC_PUBLICATION_NOTE } from "@/data/academic-council-tracks";
+import { academicCouncilProgrammeUrl } from "@/data/academic-council-hub";
+import { REGISTRATION_DEADLINE } from "@/data/registration-hub";
+import ProgrammeSupportPanel from "@/components/contact/ProgrammeSupportPanel";
+
+const CONFERENCE_DETAILS_HREF = academicCouncilProgrammeUrl("ConferencePage");
 
 export default function CmtSubmitInterstitial() {
   const statusLabel = cmtSubmissionDateLabel();
@@ -21,7 +27,7 @@ export default function CmtSubmitInterstitial() {
             Multi Track Conference — Microsoft CMT
           </h2>
           <p className="mt-2 text-sm text-white/85">
-            Shiksha Mahakumbh 6.0 · {statusLabel}
+            Shiksha Mahakumbh 6.0 · SMK2026 · {statusLabel}
           </p>
         </div>
 
@@ -33,21 +39,31 @@ export default function CmtSubmitInterstitial() {
             platform operated by Microsoft Research, not on rase.co.in.
           </p>
           <ul className="list-disc space-y-2 pl-5">
+            <li>Abstracts undergo double-blind peer review before acceptance.</li>
+            <li>Submit a PDF through the CMT portal. Similarity index must stay within acceptable limits.</li>
             <li>You will sign in with a Microsoft or CMT account on the next screen.</li>
-            <li>Review track listings and formatting guidelines on the Academic Council page first.</li>
-            <li>Keep your registration number handy if you are also registering as a delegate.</li>
+            <li>Review the 16 tracks and formatting notes on the Academic Council Multi-Track Conference page first.</li>
+            <li>Delegate registration for Shiksha Mahakumbh 6.0 is separate from paper submission.</li>
           </ul>
 
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+            <h3 className="text-sm font-bold text-brand-navy">Important dates</h3>
+            <ul className="mt-2 list-disc space-y-1 pl-5">
+              <li>CMT submissions: {statusLabel}</li>
+              <li>Acceptance notification: 31 July 2026</li>
+              <li>Final manuscript deadline: 31 August 2026</li>
+              <li>Conference registration deadline: {REGISTRATION_DEADLINE}</li>
+            </ul>
+          </div>
+
+          <p>{ACADEMIC_PUBLICATION_NOTE}</p>
+
           <div className="flex flex-wrap gap-3 pt-2">
-            <CtaButton
-              href={CMT_SUBMISSION_URL}
-              variant="primary"
-              external
-            >
+            <CtaButton href={CMT_SUBMISSION_URL} variant="primary" external>
               Continue to Microsoft CMT →
             </CtaButton>
-            <CtaButton href="/departments/academic-council" variant="secondary">
-              Academic Council
+            <CtaButton href={CONFERENCE_DETAILS_HREF} variant="secondary">
+              Conference details
             </CtaButton>
             <Link
               href="/proceedings"
@@ -56,6 +72,11 @@ export default function CmtSubmitInterstitial() {
               Past proceedings
             </Link>
           </div>
+
+          <ProgrammeSupportPanel
+            contactId="multi-track-conference"
+            title="Need help with Multi-Track Conference?"
+          />
 
           <p className="text-xs text-slate-500">
             Destination:{" "}

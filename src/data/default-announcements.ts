@@ -4,6 +4,7 @@ import { CMT_SUBMISSION_URL } from "@/lib/registration/config";
 import { event } from "@/design/tokens";
 import { resolveNavHref } from "@/lib/security/safe-nav-url";
 import { officialScheduleAnnouncementCopy } from "@/data/smk-6-official-schedule";
+import { REGISTRATION_DEADLINE } from "@/data/registration-hub";
 
 export type AnnouncementIconKey = "programmes" | "registration" | "research" | "notices";
 
@@ -28,7 +29,28 @@ export type ResolvedAnnouncementItem = {
 
 const scheduleCopy = officialScheduleAnnouncementCopy();
 
+const DEADLINE_EXTENSION_EN: Omit<ResolvedAnnouncementItem, "id"> = {
+  title: "Registration Deadline Extended",
+  summary: `Applicable SMK 6.0 registrations close on ${REGISTRATION_DEADLINE}`,
+  detail: `Registration for the applicable Shiksha Mahakumbh 6.0 programmes has been extended until ${REGISTRATION_DEADLINE}. Participants are requested to complete their registration by the revised deadline. Media Conclave registration is available on the registration page.`,
+  href: CANONICAL_ROUTES.registration,
+  external: false,
+  cta: "Register Now",
+  iconKey: "registration",
+};
+
+const DEADLINE_EXTENSION_HI: Omit<ResolvedAnnouncementItem, "id"> = {
+  title: "पंजीकरण अंतिम तिथि बढ़ाई गई",
+  summary: `लागू SMK 6.0 पंजीकरण ${REGISTRATION_DEADLINE} तक`,
+  detail: `शिक्षा महाकुंभ 6.0 के लागू कार्यक्रमों का पंजीकरण ${REGISTRATION_DEADLINE} तक बढ़ाया गया है। कृपया संशोधित तिथि तक पंजीकरण पूर्ण करें।`,
+  href: CANONICAL_ROUTES.registration,
+  external: false,
+  cta: "पंजीकरण करें",
+  iconKey: "registration",
+};
+
 const DEFAULT_EN: Omit<ResolvedAnnouncementItem, "id">[] = [
+  DEADLINE_EXTENSION_EN,
   {
     title: scheduleCopy.title,
     summary: "शिक्षा महाकुंभ 6.0 · 9–11 October 2026 · NIT Hamirpur",
@@ -111,6 +133,7 @@ const DEFAULT_EN: Omit<ResolvedAnnouncementItem, "id">[] = [
 ];
 
 const DEFAULT_HI: Omit<ResolvedAnnouncementItem, "id">[] = [
+  DEADLINE_EXTENSION_HI,
   {
     title: scheduleCopy.titleHi,
     summary: "शिक्षा महाकुंभ 6.0 · 9–11 अक्टूबर 2026 · एनआईटी हमीरपुर",
@@ -160,15 +183,6 @@ const DEFAULT_HI: Omit<ResolvedAnnouncementItem, "id">[] = [
     iconKey: "programmes",
   },
   {
-    title: "पंजीकरण खुला — SMK 6.0",
-    summary: "9–11 अक्टूबर 2026 · एनआईटी हमीरपुर",
-    detail: "सभी श्रेणियों के लिए एकीकृत पंजीकरण प्रारंभ।",
-    href: CANONICAL_ROUTES.registration,
-    external: false,
-    cta: "पंजीकरण करें",
-    iconKey: "registration",
-  },
-  {
     title: "बहु-ट्रैक सम्मेलन — सार-पत्र",
     summary: "Microsoft CMT के माध्यम से जमा करें",
     detail: "शोध सार-पत्र और पत्र CMT पोर्टल पर जमा करें।",
@@ -201,9 +215,9 @@ export const DEFAULT_ANNOUNCEMENT_BARS_EN: CmsAnnouncementBar[] = [
   },
   {
     id: "default-bar-registration",
-    title: "SMK 6.0 Registration",
-    message: "Registration open — delegates, programme tracks, and project displays on one portal.",
-    barType: "global",
+    title: "Registration Deadline Extended",
+    message: `Applicable SMK 6.0 registrations have been extended until ${REGISTRATION_DEADLINE}.`,
+    barType: "deadline_reminder",
     colorTheme: "primary",
     ctaLabel: "Register now",
     ctaUrl: CANONICAL_ROUTES.registration,
@@ -244,9 +258,9 @@ export const DEFAULT_ANNOUNCEMENT_BARS_HI: CmsAnnouncementBar[] = [
   },
   {
     id: "default-bar-registration-hi",
-    title: "SMK 6.0 पंजीकरण",
-    message: "9–11 अक्टूबर 2026, एनआईटी हमीरपुर — पंजीकरण खुला।",
-    barType: "global",
+    title: "पंजीकरण अंतिम तिथि बढ़ाई गई",
+    message: `लागू SMK 6.0 पंजीकरण ${REGISTRATION_DEADLINE} तक बढ़ाया गया है।`,
+    barType: "deadline_reminder",
     colorTheme: "primary",
     ctaLabel: "पंजीकरण करें",
     ctaUrl: CANONICAL_ROUTES.registration,
@@ -330,14 +344,18 @@ export function resolveAnnouncementItems(
 ): ResolvedAnnouncementItem[] {
   const defaults = getDefaultAnnouncementItems(locale);
   const scheduleDefault = defaults.find((item) => item.href === CANONICAL_ROUTES.schedule);
+  const deadlineDefault = defaults.find((item) => item.title === DEADLINE_EXTENSION_EN.title || item.title === DEADLINE_EXTENSION_HI.title);
   const valid = filterCmsAnnouncementItems(cmsItems ?? []);
   if (valid.length > 0) {
     const resolved = valid.map(cmsItemToResolved);
     const hasSchedule = resolved.some(
       (item) => item.href === CANONICAL_ROUTES.schedule || /official schedule/i.test(item.title)
     );
-    if (scheduleDefault && !hasSchedule) return [scheduleDefault, ...resolved];
-    return resolved;
+    const hasDeadline = resolved.some((item) => /registration deadline extended|पंजीकरण अंतिम तिथि बढ़ाई/i.test(item.title));
+    const prefixed = [...resolved];
+    if (scheduleDefault && !hasSchedule) prefixed.unshift(scheduleDefault);
+    if (deadlineDefault && !hasDeadline) prefixed.unshift(deadlineDefault);
+    return prefixed;
   }
   return defaults;
 }
@@ -352,6 +370,7 @@ export function resolveAnnouncementBars(
 ): CmsAnnouncementBar[] {
   const defaults = getDefaultAnnouncementBars(locale);
   const scheduleBar = defaults.find((bar) => String(bar.id).includes("schedule"));
+  const deadlineBar = defaults.find((bar) => bar.barType === "deadline_reminder");
   if (bars && bars.length > 0) {
     const hasSchedule = bars.some(
       (bar) =>
@@ -359,8 +378,15 @@ export function resolveAnnouncementBars(
         /official schedule/i.test(`${bar.title} ${bar.message}`) ||
         bar.ctaUrl === CANONICAL_ROUTES.schedule
     );
-    if (scheduleBar && !hasSchedule) return [scheduleBar, ...bars];
-    return bars;
+    const hasDeadline = bars.some(
+      (bar) =>
+        bar.barType === "deadline_reminder" ||
+        /registration deadline extended|पंजीकरण अंतिम तिथि बढ़ाई/i.test(`${bar.title} ${bar.message}`)
+    );
+    const prefixed = [...bars];
+    if (scheduleBar && !hasSchedule) prefixed.unshift(scheduleBar);
+    if (deadlineBar && !hasDeadline) prefixed.unshift(deadlineBar);
+    return prefixed;
   }
   return defaults;
 }

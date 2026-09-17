@@ -29,6 +29,12 @@ export const SMK_6_EXTERNAL_REGISTRATIONS = {
       url: "https://docs.google.com/forms/d/e/1FAIpQLSdIUmfUK9qcTg3U79MhY2X367m8fyolGxyXw9TtEv5Zf8kDVQ/viewform?usp=header",
       analyticsEvent: "smk6_talent_conclave_registration_clicked",
     },
+    media: {
+      id: "media",
+      title: "Media Conclave",
+      url: "https://docs.google.com/forms/d/e/1FAIpQLSc473niVsUiA4vSa7uOs8Jbzz4-3J06BVQWDASYa6JMu9gKhg/viewform?usp=publish-editor",
+      analyticsEvent: "smk6_media_conclave_registration_clicked",
+    },
   },
   shodhankur: {
     title: "Shodhankur – छात्र शोध पत्रिका",
@@ -49,12 +55,13 @@ export const SMK_6_CONCLAVE_FORMS = [
   SMK_6_EXTERNAL_REGISTRATIONS.conclaves.scientistsResearch,
   SMK_6_EXTERNAL_REGISTRATIONS.conclaves.startupEntrepreneurs,
   SMK_6_EXTERNAL_REGISTRATIONS.conclaves.talent,
+  SMK_6_EXTERNAL_REGISTRATIONS.conclaves.media,
 ] as const;
 
 /** Academic Council / programme architecture — not CMT and not conclave forms. */
 export const SMK_6_PROGRAMME_TRACKS_HREF = CANONICAL_ROUTES.departments.academicCouncil;
 
-/** Public hub section with four direct conclave Google Forms. */
+/** Public hub section with official conclave Google Forms. */
 export const SMK_6_CONCLAVE_REGISTRATION_HREF = `${CANONICAL_ROUTES.registration}#conclave-registration`;
 
 export const SMK_6_PROJECTS_REGISTRATION_HREF =
@@ -109,7 +116,7 @@ export const SMK_6_PUBLIC_REGISTRATION_CARDS: Smk6PublicRegistrationCard[] = [
   {
     id: "conclaves",
     label: "Conclaves",
-    hint: "Select a 6.0 conclave and open its official Google Form",
+    hint: "Select a 6.0 conclave — including Media Conclave — and open its official Google Form",
     href: SMK_6_CONCLAVE_REGISTRATION_HREF,
     external: false,
     badge: "External form",
@@ -180,6 +187,9 @@ export function conclaveFormByProgrammeTitle(title: string) {
   if (normalized.includes("talent")) {
     return SMK_6_EXTERNAL_REGISTRATIONS.conclaves.talent;
   }
+  if (normalized.includes("media")) {
+    return SMK_6_EXTERNAL_REGISTRATIONS.conclaves.media;
+  }
   return (
     SMK_6_CONCLAVE_FORMS.find((form) => normalized.startsWith(form.title.toLowerCase())) ?? null
   );
@@ -190,6 +200,7 @@ const CONCLAVE_FORM_EVENTS: Record<Smk6ConclaveFormId, AnalyticsEventName> = {
   scientistsResearch: ANALYTICS_EVENTS.smk6ScientistsResearchRegistrationClicked,
   startupEntrepreneurs: ANALYTICS_EVENTS.smk6StartupEntrepreneursRegistrationClicked,
   talent: ANALYTICS_EVENTS.smk6TalentConclaveRegistrationClicked,
+  media: ANALYTICS_EVENTS.smk6MediaConclaveRegistrationClicked,
 };
 
 export function conclaveFormAnalyticsEvent(id: Smk6ConclaveFormId): AnalyticsEventName {
