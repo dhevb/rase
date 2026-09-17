@@ -73,8 +73,12 @@ describe("SMK 6.0 official Google Form mapping", () => {
   });
 
   it("matches published conclave titles to the correct form", () => {
-    const talent = conclaveFormByProgrammeTitle("Talent Conclave (90%+ Achievers)");
-    assert.equal(talent?.id, "talent");
-    assert.equal(conclaveFormByProgrammeTitle("VC / Directors Conclave"), null);
+    assert.equal(conclaveFormByProgrammeTitle("Talented Students Conclave")?.id, "talent");
+    assert.equal(
+      conclaveFormByProgrammeTitle("Principal and Outstanding Teacher Conclave")?.id,
+      "principalsTeachers"
+    );
+    assert.equal(conclaveFormByProgrammeTitle("VCs & Directors Conclave"), null);
+    assert.equal(conclaveFormByProgrammeTitle("VC/Directors Conclave"), null);
   });
 });

@@ -29,9 +29,9 @@ export { ACADEMIC_COUNCIL_SEO };
 
 export const ACADEMIC_COUNCIL_HUB_STATS = [
   { label: "Dates", value: "9–11 Oct 2026", hint: "NIT Hamirpur summit" },
-  { label: "Conference Tracks", value: "15", hint: ACADEMIC_COUNCIL_STATS[0].hint },
-  { label: "Thematic Conclaves", value: "7", hint: ACADEMIC_COUNCIL_STATS[1].hint },
-  { label: "Olympiad Streams", value: "3", hint: ACADEMIC_COUNCIL_STATS[2].hint },
+  { label: "Conference Tracks", value: ACADEMIC_COUNCIL_STATS[0].value, hint: ACADEMIC_COUNCIL_STATS[0].hint },
+  { label: "Thematic Conclaves", value: ACADEMIC_COUNCIL_STATS[1].value, hint: ACADEMIC_COUNCIL_STATS[1].hint },
+  { label: "Olympiad Streams", value: ACADEMIC_COUNCIL_STATS[2].value, hint: ACADEMIC_COUNCIL_STATS[2].hint },
 ] as const;
 
 /** Introduction is the nearest parent hub for department vibhags (no /departments index). */
@@ -66,6 +66,7 @@ export const ACADEMIC_COUNCIL_TAB_SLUGS: Record<AcademicCouncilTabId, string> = 
   BestPracticesPage: "best-practices",
   PatrikaPage: "shodhankur",
   CulturalPage: "cultural",
+  PanelDiscussionPage: "panel-discussion",
 };
 
 const SLUG_TO_TAB_ID = Object.fromEntries(
@@ -111,6 +112,11 @@ export const ACADEMIC_COUNCIL_FAQ = [
     question: "How many conference tracks are there?",
     answer:
       "The multi-track international conference spans 16 thematic tracks — from fundamental sciences and engineering to education, health, culture, Indian Knowledge Systems, and defence and security. Each track has dedicated Track Coordinators listed on the Multi-Track Conference tab.",
+  },
+  {
+    question: "When are the Shiksha Mahakumbh 6.0 Panel Discussions?",
+    answer:
+      "Three official Panel Discussion sessions are scheduled at NIT Hamirpur, Himachal Pradesh, each प्रातः 9:30 से 10:45: आध्यात्मिक भारत, विकसित भारत (9 October 2026); विज्ञानमय भारत - विकसित भारत (10 October 2026); and सुरक्षित भारत - विकसित भारत (11 October 2026). Coordinator printed on the posters: प्रो. अवनीश वर्मा +919416481652. The posters do not print a separate registration URL.",
   },
   {
     question: "How do I submit a research paper?",

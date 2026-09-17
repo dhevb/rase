@@ -29,12 +29,19 @@ const META: Record<RegistrationType, CategoryMeta> = {
     importantNotes: ["Keep your registration ID for check-in", "Fee varies by category"],
   },
   "Multi Track Conference": {
-    description: "Submit research papers and abstracts via Microsoft CMT.",
-    instructions: ["You will be redirected to the official CMT portal", "Use the same email for CMT and registration"],
+    description:
+      "Submit an abstract and paper for the 16-track Multi-Track Conference through Microsoft CMT. Event registration for Shiksha Mahakumbh 6.0 is a separate step.",
+    instructions: [
+      "You will be redirected to the on-site CMT notice, then the official CMT portal.",
+      "Paper submission is not the same as delegate registration.",
+    ],
     eligibility: ["Researchers", "Faculty", "Doctoral scholars", "Practitioners"],
     fee: "As per CMT submission guidelines",
     documentsRequired: ["Submission materials as per CMT guidelines"],
-    importantNotes: [`Portal: ${CMT_SUBMISSION_URL}`],
+    importantNotes: [
+      `Paper submission portal: ${CMT_SUBMISSION_URL}`,
+      "Similarity index must be within acceptable limits.",
+    ],
   },
   Conclave: {
     description: "Participate in thematic 6.0 conclaves. Each listed conclave has its own official Google Form.",
@@ -42,7 +49,12 @@ const META: Record<RegistrationType, CategoryMeta> = {
       "Choose the conclave on this page.",
       "Register Now opens the official Google Form in a new tab.",
     ],
-    eligibility: ["Principals and outstanding teachers", "Scientists and research scholars", "Startup leaders and entrepreneurs", "Talent Conclave participants"],
+    eligibility: [
+      "Principal and Outstanding Teacher Conclave",
+      "Scientists and research scholars",
+      "Startup leaders and entrepreneurs",
+      "Talented Students Conclave",
+    ],
     fee: "Official Google Form — no payment on this portal",
     documentsRequired: ["As requested on the official form"],
     importantNotes: ["Only four 6.0 conclaves currently have published Google Forms"],

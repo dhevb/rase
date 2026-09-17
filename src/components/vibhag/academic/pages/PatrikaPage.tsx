@@ -14,11 +14,13 @@ import {
   REG_LINKS,
 } from "../AcademicCouncilUI";
 import {
+  SMK_6_SHODHANKUR_OFFICIAL,
   patrikaSections,
   patrikaThemes,
   submissionFormats,
   patrikaBenefits,
 } from "../academic-content-data";
+import ConclavePosterPreview from "../ConclavePosterPreview";
 
 const PATRIKA_OBJECTIVES = [
   "Develop research aptitude among school students",
@@ -38,7 +40,7 @@ const REVIEW_STEPS = [
 
 const TIMELINE = [
   "Call for Submissions: To be announced",
-  "Last Date for Submission: To be announced",
+  `Last Date for Paper/Article Submission: ${SMK_6_SHODHANKUR_OFFICIAL.submissionDeadline}`,
   "Review & Selection: To be announced",
   "Publication & Release: During Shiksha Mahakumbh 6.0",
 ];
@@ -78,6 +80,40 @@ export default function PatrikaPage() {
             <span className="font-semibold text-brand-navy">Chair:</span> Dr. Shiksha Sharma, Member
             DHE
           </p>
+          <p className="mt-2 text-sm text-gray-700 md:text-base">
+            <span className="font-semibold text-brand-navy">Date:</span> {SMK_6_SHODHANKUR_OFFICIAL.date}
+          </p>
+          <p className="mt-1 text-sm text-gray-700 md:text-base">
+            <span className="font-semibold text-brand-navy">Time:</span> {SMK_6_SHODHANKUR_OFFICIAL.time}
+          </p>
+          <p className="mt-1 text-sm text-gray-700 md:text-base">
+            <span className="font-semibold text-brand-navy">Venue:</span> {SMK_6_SHODHANKUR_OFFICIAL.venue}
+          </p>
+          <p className="mt-1 text-sm text-gray-700 md:text-base">
+            <span className="font-semibold text-brand-navy">Who can participate:</span>{" "}
+            {SMK_6_SHODHANKUR_OFFICIAL.eligibility}
+          </p>
+          {SMK_6_SHODHANKUR_OFFICIAL.purpose.map((paragraph) => (
+            <p key={paragraph.slice(0, 48)} className="mt-2 text-sm leading-relaxed text-gray-700 md:text-base">
+              {paragraph}
+            </p>
+          ))}
+          <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-gray-700">
+            {SMK_6_SHODHANKUR_OFFICIAL.specialNotes.map((note) => (
+              <li key={note}>{note}</li>
+            ))}
+          </ul>
+          <p className="mt-1 text-sm text-gray-700 md:text-base">
+            <span className="font-semibold text-brand-navy">समन्वयक:</span>{" "}
+            {SMK_6_SHODHANKUR_OFFICIAL.contact}
+          </p>
+          <p className="mt-3 text-sm leading-relaxed text-gray-700 md:text-base">
+            {SMK_6_SHODHANKUR_OFFICIAL.sessionNote}
+          </p>
+          <ConclavePosterPreview
+            poster={SMK_6_SHODHANKUR_OFFICIAL.poster}
+            title="Shodhankur – छात्र शोध पत्रिका"
+          />
         </ACGlassPanel>
       </ACSection>
 

@@ -19,7 +19,7 @@ export default function HomeEditionCta() {
   const body = sectionField(
     cta,
     "body",
-    "Seven thematic conclaves, olympiads, research, exhibitions, and awards."
+    "Eight thematic conclaves, olympiads, research, exhibitions, and awards."
   );
   const buttonLabel = sectionField(cta, "buttonLabel", "View full programme");
   const buttonUrl = sectionField(cta, "buttonUrl", ROUTES.academicCouncil);

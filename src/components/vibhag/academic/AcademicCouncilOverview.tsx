@@ -28,6 +28,7 @@ const FUNCTIONAL_DOMAINS: { label: string; tabId: AcademicCouncilTabId }[] = [
   { label: "Exhibitions & Knowledge Showcases", tabId: "ExhibitionPage" },
   { label: "Shodhankur (Student Research Journal)", tabId: "PatrikaPage" },
   { label: "Cultural Programmes", tabId: "CulturalPage" },
+  { label: "Panel Discussion", tabId: "PanelDiscussionPage" },
 ];
 
 function OverviewPage({ onNavigate }: OverviewPageProps) {
@@ -47,7 +48,7 @@ function OverviewPage({ onNavigate }: OverviewPageProps) {
             <p className="mt-4 text-base leading-relaxed text-gray-700 md:text-lg md:leading-8">
               It integrates diverse platforms such as Multi-Track Conference,
               Conclaves, Olympiads, Student Projects, Best Practices, Exhibitions,
-              and Knowledge Publications into a unified framework aimed at
+              Knowledge Publications, and Panel Discussion into a unified framework aimed at
               transforming ideas into impact.
             </p>
           </ACGlassPanel>

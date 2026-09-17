@@ -2,6 +2,159 @@ import type { CmsNotice } from "@/lib/cms/types";
 import { event } from "@/design/tokens";
 import { ACADEMIC_PUBLICATION_NOTE } from "@/data/academic-council-tracks";
 import { CMT_SUBMISSION_URL } from "@/lib/registration/config";
+import { academicCouncilProgrammeUrl } from "@/data/academic-council-hub";
+import {
+  conclaveFormByProgrammeTitle,
+  SMK_6_EXTERNAL_REGISTRATIONS,
+} from "@/data/smk-6-external-registrations";
+import {
+  conclaves,
+  SMK_6_PROJECT_EXPO_OFFICIAL,
+  SMK_6_SHODHANKUR_OFFICIAL,
+  SMK_6_PANEL_DISCUSSIONS,
+  SMK_6_PANEL_DISCUSSION_OFFICIAL,
+} from "@/components/vibhag/academic/academic-content-data";
+
+const SMK6_CONCLAVE_DETAILS_HREF = academicCouncilProgrammeUrl("ConclavePage");
+
+function buildSmk6PanelDiscussionNotices(locale: "en" | "hi"): CmsNotice[] {
+  const hi = locale === "hi";
+  const detailsHref = academicCouncilProgrammeUrl("PanelDiscussionPage");
+  const coordinator = `${SMK_6_PANEL_DISCUSSION_OFFICIAL.coordinator.nameHi} ${SMK_6_PANEL_DISCUSSION_OFFICIAL.coordinator.phone}`;
+  return SMK_6_PANEL_DISCUSSIONS.map((session) => {
+    const panelists = session.panelists.map((person) => `${person.name}, ${person.designation}`).join("; ");
+    return {
+      id: hi ? `default-smk6-panel-${session.id}-hi` : `default-smk6-panel-${session.id}`,
+      title: hi
+        ? `शिक्षा महाकुंभ 6.0 — पैनल परिचर्चा: ${session.title}`
+        : `Shiksha Mahakumbh 6.0 — Panel Discussion: ${session.title}`,
+      slug: hi ? `smk-6-panel-discussion-${session.id}-hi` : `smk-6-panel-discussion-${session.id}`,
+      description: hi
+        ? `Panel Discussion, ${session.date} · ${session.time} · ${session.venue}. विषय: ${session.title}. Moderator: ${session.moderator.name}, ${session.moderator.designation}. Esteemed panelists: ${panelists}. समन्वयक: ${coordinator}. विवरण: ${detailsHref}`
+        : `Panel Discussion, ${session.date} · ${session.time} · ${session.venue}. Topic: ${session.title}. Moderator: ${session.moderator.name}, ${session.moderator.designation}. Esteemed panelists: ${panelists}. Coordinator: ${coordinator}. Details: ${detailsHref}`,
+      priority: 8,
+      isPinned: false,
+      publishAt: "2026-09-17T00:00:00.000Z",
+      expireAt: null,
+      category: hi
+        ? { name: "कार्यक्रम", slug: "programmes" }
+        : { name: "Programmes", slug: "programmes" },
+      attachments: [
+        {
+          id: hi ? `att-smk6-panel-${session.id}-hi` : `att-smk6-panel-${session.id}`,
+          fileName: session.poster.src.split("/").pop() ?? `${session.id}.webp`,
+          fileUrl: session.poster.src,
+          mimeType: "image/webp",
+        },
+      ],
+    } satisfies CmsNotice;
+  });
+}
+
+function buildSmk6ProgrammePosterNotices(locale: "en" | "hi"): CmsNotice[] {
+  const hi = locale === "hi";
+  const shodhankurHref = academicCouncilProgrammeUrl("PatrikaPage");
+  const projectsHref = academicCouncilProgrammeUrl("ProjectsPage");
+  const shodhankurForm = SMK_6_EXTERNAL_REGISTRATIONS.shodhankur.url;
+  const projectsForm = SMK_6_EXTERNAL_REGISTRATIONS.studentProjects.url;
+  return [
+    {
+      id: hi ? "default-smk6-shodhankur-hi" : "default-smk6-shodhankur",
+      title: hi
+        ? "शिक्षा महाकुंभ 6.0 — शोधांकुर (छात्र शोध पत्रिका)"
+        : "Shiksha Mahakumbh 6.0 — Shodhankur (Chhatra Shodh Patrika)",
+      slug: hi ? "smk-6-shodhankur-hi" : "smk-6-shodhankur",
+      description: hi
+        ? `शोधांकुर, ${SMK_6_SHODHANKUR_OFFICIAL.date} · ${SMK_6_SHODHANKUR_OFFICIAL.time} · ${SMK_6_SHODHANKUR_OFFICIAL.venue}. पात्रता: ${SMK_6_SHODHANKUR_OFFICIAL.eligibility}. लेख जमा अंतिम तिथि: ${SMK_6_SHODHANKUR_OFFICIAL.submissionDeadline}. ${SMK_6_SHODHANKUR_OFFICIAL.sessionNote} समन्वयक: ${SMK_6_SHODHANKUR_OFFICIAL.contact}. विवरण: ${shodhankurHref}. पंजीकरण: ${shodhankurForm}`
+        : `Shodhankur, ${SMK_6_SHODHANKUR_OFFICIAL.date} · ${SMK_6_SHODHANKUR_OFFICIAL.time} · ${SMK_6_SHODHANKUR_OFFICIAL.venue}. Eligibility: ${SMK_6_SHODHANKUR_OFFICIAL.eligibility}. Paper/article submission deadline: ${SMK_6_SHODHANKUR_OFFICIAL.submissionDeadline}. ${SMK_6_SHODHANKUR_OFFICIAL.sessionNote} Coordinator: ${SMK_6_SHODHANKUR_OFFICIAL.contact}. Details: ${shodhankurHref}. Registration: ${shodhankurForm}`,
+      priority: 8,
+      isPinned: false,
+      publishAt: "2026-09-16T00:00:00.000Z",
+      expireAt: null,
+      category: hi
+        ? { name: "कार्यक्रम", slug: "programmes" }
+        : { name: "Programmes", slug: "programmes" },
+      attachments: [
+        {
+          id: hi ? "att-smk6-shodhankur-hi" : "att-smk6-shodhankur",
+          fileName: "smk-6-shodhankur.webp",
+          fileUrl: SMK_6_SHODHANKUR_OFFICIAL.poster.src,
+          mimeType: "image/webp",
+        },
+      ],
+    },
+    {
+      id: hi ? "default-smk6-project-expo-hi" : "default-smk6-project-expo",
+      title: hi
+        ? "शिक्षा महाकुंभ 6.0 — प्रोजेक्ट एक्सपो 2026"
+        : "Shiksha Mahakumbh 6.0 — Project Expo 2026",
+      slug: hi ? "smk-6-project-expo-hi" : "smk-6-project-expo",
+      description: hi
+        ? `Project Expo 2026, ${SMK_6_PROJECT_EXPO_OFFICIAL.dates} · ${SMK_6_PROJECT_EXPO_OFFICIAL.time} · ${SMK_6_PROJECT_EXPO_OFFICIAL.venue}. ${SMK_6_PROJECT_EXPO_OFFICIAL.tagline}. ${SMK_6_PROJECT_EXPO_OFFICIAL.mentorshipNote} समन्वयक: ${SMK_6_PROJECT_EXPO_OFFICIAL.coordinators.join(" | ")}. विवरण: ${projectsHref}. पंजीकरण: ${projectsForm}`
+        : `Project Expo 2026, ${SMK_6_PROJECT_EXPO_OFFICIAL.dates} · ${SMK_6_PROJECT_EXPO_OFFICIAL.time} · ${SMK_6_PROJECT_EXPO_OFFICIAL.venue}. ${SMK_6_PROJECT_EXPO_OFFICIAL.tagline}. ${SMK_6_PROJECT_EXPO_OFFICIAL.mentorshipNote} Coordinators: ${SMK_6_PROJECT_EXPO_OFFICIAL.coordinators.join(" | ")}. Details: ${projectsHref}. Registration: ${projectsForm}`,
+      priority: 8,
+      isPinned: false,
+      publishAt: "2026-09-16T00:00:00.000Z",
+      expireAt: null,
+      category: hi
+        ? { name: "कार्यक्रम", slug: "programmes" }
+        : { name: "Programmes", slug: "programmes" },
+      attachments: [
+        {
+          id: hi ? "att-smk6-project-expo-hi" : "att-smk6-project-expo",
+          fileName: "smk-6-project-expo.webp",
+          fileUrl: SMK_6_PROJECT_EXPO_OFFICIAL.poster.src,
+          mimeType: "image/webp",
+        },
+      ],
+    },
+  ];
+}
+
+function buildSmk6ConclaveNotices(locale: "en" | "hi"): CmsNotice[] {
+  return conclaves.flatMap((conclave) => {
+    if (!("poster" in conclave) || !conclave.poster) return [];
+    const form = conclaveFormByProgrammeTitle(conclave.title);
+    const hi = locale === "hi";
+    const title = hi
+      ? `शिक्षा महाकुंभ 6.0 — ${"titleHi" in conclave && conclave.titleHi ? conclave.titleHi : conclave.title}`
+      : `Shiksha Mahakumbh 6.0 — ${conclave.title}`;
+    const when = [conclave.date, conclave.time, conclave.venue].filter(Boolean).join(" · ");
+    const registerLine = form
+      ? hi
+        ? `पंजीकरण: ${form.url}`
+        : `Registration: ${form.url}`
+      : hi
+        ? "पोस्टर पर पंजीकरण QR है; पोस्टर पर कोई वेब पता मुद्रित नहीं है।"
+        : "The official poster shows a registration QR code; no registration URL is printed on the poster.";
+    const description = hi
+      ? `${conclave.title}. ${when}. विषय: ${conclave.theme}. विवरण: ${SMK6_CONCLAVE_DETAILS_HREF}. ${registerLine}`
+      : `${conclave.title}. ${when}. Theme: ${conclave.theme}. Details: ${SMK6_CONCLAVE_DETAILS_HREF}. ${registerLine}`;
+    return [
+      {
+        id: hi ? `default-smk6-conclave-${conclave.id}-hi` : `default-smk6-conclave-${conclave.id}`,
+        title,
+        slug: hi ? `smk-6-conclave-${conclave.id}-hi` : `smk-6-conclave-${conclave.id}`,
+        description,
+        priority: 8,
+        isPinned: false,
+        publishAt: "2026-09-16T00:00:00.000Z",
+        expireAt: null,
+        category: hi
+          ? { name: "कार्यक्रम", slug: "programmes" }
+          : { name: "Programmes", slug: "programmes" },
+        attachments: [
+          {
+            id: hi ? `att-smk6-conclave-${conclave.id}-hi` : `att-smk6-conclave-${conclave.id}`,
+            fileName: conclave.poster.src.split("/").pop() ?? `${conclave.id}.webp`,
+            fileUrl: conclave.poster.src,
+            mimeType: "image/webp",
+          },
+        ],
+      } satisfies CmsNotice,
+    ];
+  });
+}
 
 /** Published fallback notices when CMS / database has none (English). */
 export const DEFAULT_NOTICES_EN: CmsNotice[] = [
@@ -67,6 +220,9 @@ export const DEFAULT_NOTICES_EN: CmsNotice[] = [
       },
     ],
   },
+  ...buildSmk6ProgrammePosterNotices("en"),
+  ...buildSmk6PanelDiscussionNotices("en"),
+  ...buildSmk6ConclaveNotices("en"),
   {
     id: "default-registration-open",
     title: `Registration Open — ${event.name}`,
@@ -111,7 +267,7 @@ export const DEFAULT_NOTICES_EN: CmsNotice[] = [
     title: "DHE Olympiads & Talent Programmes — Dates TBA",
     slug: "dhe-olympiads-2026",
     description:
-      "DHE Olympiads (Classes 3–10), talent conclave (90%+ achievers), and Shodhankur participation will open via the registration hub. Registration and exam dates to be announced; top achievers felicitated at Shiksha Mahakumbh 6.0.",
+      "DHE Olympiads (Classes 3–10), Talented Students Conclave, and Shodhankur participation will open via the registration hub. Registration and exam dates to be announced; top achievers felicitated at Shiksha Mahakumbh 6.0.",
     priority: 6,
     isPinned: false,
     publishAt: "2026-05-20T00:00:00.000Z",
@@ -236,6 +392,9 @@ export const DEFAULT_NOTICES_HI: CmsNotice[] = [
       },
     ],
   },
+  ...buildSmk6ProgrammePosterNotices("hi"),
+  ...buildSmk6PanelDiscussionNotices("hi"),
+  ...buildSmk6ConclaveNotices("hi"),
   {
     id: "default-registration-hi",
     title: "शिक्षा महाकुंभ 6.0 — पंजीकरण खुला",
@@ -364,8 +523,20 @@ export function resolvePublicNotices(
   notices: CmsNotice[] | null | undefined,
   locale: string = "en"
 ): CmsNotice[] {
-  if (notices && notices.length > 0) return sortNotices(notices);
-  return sortNotices(getDefaultNotices(locale));
+  const defaults = getDefaultNotices(locale);
+  const posterNotices = defaults.filter(
+    (notice) =>
+      notice.slug.startsWith("smk-6-conclave-") ||
+      notice.slug.startsWith("smk-6-shodhankur") ||
+      notice.slug.startsWith("smk-6-project-expo") ||
+      notice.slug.startsWith("smk-6-panel-discussion")
+  );
+  if (notices && notices.length > 0) {
+    const slugs = new Set(notices.map((notice) => notice.slug));
+    const missingPosters = posterNotices.filter((notice) => !slugs.has(notice.slug));
+    return sortNotices([...notices, ...missingPosters]);
+  }
+  return sortNotices(defaults);
 }
 
 /** Top N for homepage widget. */

@@ -7,13 +7,15 @@ import { CANONICAL_ROUTES } from "@/constants/canonical-routes";
 import { UPCOMING_EDITION } from "@/data/past-editions";
 import {
   ABOUT_6TH_EDITION_HREF,
-  SMK_6_OVERVIEW,
+  SMK_6_EVENT_THEME,
+  SMK_6_ORGANISING_IDENTITY,
   smk6HomepageProgrammeHighlights,
 } from "@/data/smk-6-edition-hub";
 import {
   SMK_6_CONCLAVE_REGISTRATION_HREF,
   SMK_6_EXTERNAL_REGISTRATIONS,
 } from "@/data/smk-6-external-registrations";
+import Smk6OfficialCover from "@/components/upcoming-events/Smk6OfficialCover";
 
 export default function Smk6HomepagePreview() {
   const highlights = smk6HomepageProgrammeHighlights();
@@ -30,8 +32,11 @@ export default function Smk6HomepagePreview() {
           align="left"
           eyebrow="Shiksha Mahakumbh 6.0"
           title={`${UPCOMING_EDITION.title}`}
-          description={`${UPCOMING_EDITION.dates} · ${UPCOMING_EDITION.venueFull}. Theme: ${UPCOMING_EDITION.theme}. ${SMK_6_OVERVIEW.tagline} bringing together education, research, innovation, entrepreneurship, Indian Knowledge Systems, and society.`}
+          description={`${UPCOMING_EDITION.dates} · ${UPCOMING_EDITION.venueFull}. ${SMK_6_EVENT_THEME.heading} — ${SMK_6_EVENT_THEME.english}. ${SMK_6_ORGANISING_IDENTITY.statement}`}
         />
+        <div className="mb-8 max-w-sm">
+          <Smk6OfficialCover />
+        </div>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {highlights.map((item) => (
             <article

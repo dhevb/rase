@@ -23,7 +23,7 @@ export const REGISTRATION_PAGE_HERO = {
   titleEn: "Register",
   titleHi: "आधिकारिक पंजीकरण",
   subtitle:
-    "Official registration for delegates, conclaves, olympiad, awards, exhibitions, research tracks, and project displays — 9–11 October 2026.",
+    "Official registration for delegates, conclaves, olympiad, awards, exhibitions, research tracks, and project displays — 9–11 October 2026 at NIT Hamirpur. Theme: शिक्षा, प्रकृति और प्रगति.",
 } as const;
 
 export const REGISTRATION_BREADCRUMBS = [
@@ -100,7 +100,7 @@ export const REGISTRATION_SEO_KEYWORDS = [
 ] as const;
 
 export function registrationMetaDescription(): string {
-  return `Official registration for ${event.name} at ${event.venue}, 9–11 October 2026. Multi Track Conference (CMT), Academic Council programme tracks, Shodhankur, Student Projects, four conclaves, and delegate registration. Accommodation opens September 2026. Deadline ${REGISTRATION_DEADLINE}.`;
+  return `Official registration for ${event.name} at ${event.venue}, 9–11 October 2026. Multi Track Conference (CMT), Academic Council programme tracks, Shodhankur, Student Projects, thematic conclaves, and delegate registration. Accommodation opens September 2026. Deadline ${REGISTRATION_DEADLINE}.`;
 }
 
 export const REGISTRATION_FAQ = [

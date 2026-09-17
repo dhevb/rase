@@ -232,12 +232,16 @@ export default function DownloadsShowcase({ initialDownloads }: Props) {
               transition={{ delay: index * 0.04 }}
               className="flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-md transition hover:border-brand-saffron/40 hover:shadow-lg"
             >
-              <div className="relative h-36 w-full overflow-hidden bg-brand-navy/10">
+              <div
+                className={`relative w-full overflow-hidden bg-brand-navy/10 ${
+                  brochure.edition === "6.0" ? "h-64 bg-white" : "h-36"
+                }`}
+              >
                 <Image
                   src={brochure.imageSrc}
                   alt={`Shiksha Mahakumbh ${brochure.edition} — ${brochure.venue}`}
                   fill
-                  className="object-cover"
+                  className={brochure.edition === "6.0" ? "object-contain p-2" : "object-cover"}
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/40 to-transparent" />

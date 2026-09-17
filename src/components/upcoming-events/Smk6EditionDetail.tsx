@@ -14,6 +14,8 @@ import {
   ABOUT_6TH_EDITION_HASH,
   SMK_6_ANALYTICS_SOURCE,
   SMK_6_EVENT_THEME,
+  SMK_6_FRONT_PAGE_CAMPUSES,
+  SMK_6_ORGANISING_IDENTITY,
   SMK_6_OVERVIEW,
   SMK_6_RESEARCH_HREF,
   SMK_6_VENUE_PAGE_HREF,
@@ -33,7 +35,10 @@ import {
   conclaveFormByProgrammeTitle,
 } from "@/data/smk-6-external-registrations";
 import { Smk6ExternalFormButton } from "@/components/registration/Smk6ExternalRegistrationPanels";
+import ConclavePosterPreview from "@/components/vibhag/academic/ConclavePosterPreview";
+import { SMK_6_PANEL_DISCUSSIONS } from "@/components/vibhag/academic/academic-content-data";
 import { committeePathForEdition } from "@/lib/committee/edition-slugs";
+import Smk6OfficialCover from "@/components/upcoming-events/Smk6OfficialCover";
 
 const cardClass =
   "flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-4 shadow-sm md:p-5";
@@ -67,19 +72,37 @@ export default function Smk6EditionDetail({ speakers }: Props) {
     >
       <div className="mx-auto max-w-6xl px-4 py-10 md:px-8 md:py-14">
         <header className="rounded-2xl border border-brand-saffron/30 bg-white p-6 shadow-sm md:p-8">
+          <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(12rem,20rem)]">
+            <div>
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-saffron-dark">
-            About 6th Edition
+            About 6th Edition · षष्ठम संस्करण
           </p>
-          <h2 className="mt-2 text-2xl font-extrabold text-brand-navy md:text-4xl">
-            {SMK_6_OVERVIEW.title}
+          <h2 className="mt-2 font-devanagari text-2xl font-extrabold text-brand-navy md:text-4xl">
+            शिक्षा महाकुंभ 2026
           </h2>
+          <p className="mt-1 text-xl font-bold text-brand-navy md:text-2xl">
+            {SMK_6_OVERVIEW.title} · Shiksha Mahakumbh 2026
+          </p>
           <p className="mt-2 text-base font-semibold text-brand-navy md:text-lg">
             {SMK_6_OVERVIEW.dates} · {SMK_6_OVERVIEW.venueFull}
           </p>
           <p className="mt-1 text-sm text-slate-600">{SMK_6_OVERVIEW.location}</p>
+          <p className="mt-4 font-devanagari text-lg font-bold text-brand-navy">
+            {SMK_6_EVENT_THEME.heading}
+          </p>
+          <p className="text-sm font-semibold text-slate-700 md:text-base">
+            {SMK_6_EVENT_THEME.english}
+          </p>
           <p className="mt-4 max-w-3xl text-sm leading-relaxed text-slate-700 md:text-base">
             {SMK_6_OVERVIEW.tagline}. {SMK_6_OVERVIEW.subtitle}
           </p>
+          <p className="mt-4 text-sm leading-relaxed text-slate-700">
+            <span className="font-bold text-brand-navy">{SMK_6_ORGANISING_IDENTITY.heading}: </span>
+            {SMK_6_ORGANISING_IDENTITY.statement}
+          </p>
+            </div>
+            <Smk6OfficialCover className="lg:sticky lg:top-28" priority />
+          </div>
           <div className="mt-6 flex flex-wrap gap-3">
             <Smk6TrackedLink
               href={registerHref}
@@ -139,6 +162,37 @@ export default function Smk6EditionDetail({ speakers }: Props) {
           />
         </section>
 
+        <section className="mt-12" aria-labelledby="smk6-organisers-heading">
+          <SectionHeader
+            headingId="smk6-organisers-heading"
+            align="left"
+            eyebrow={SMK_6_ORGANISING_IDENTITY.heading}
+            title="Host and collaborating institutions"
+            description={SMK_6_ORGANISING_IDENTITY.statement}
+          />
+          <ul className="mb-6 flex flex-wrap gap-2">
+            {SMK_6_ORGANISING_IDENTITY.collaborators.map((name) => (
+              <li
+                key={name}
+                className="rounded-full border border-brand-navy/15 bg-white px-3 py-1.5 text-xs font-semibold text-brand-navy"
+              >
+                {name}
+              </li>
+            ))}
+          </ul>
+          <div className="grid gap-4 md:grid-cols-3">
+            {SMK_6_FRONT_PAGE_CAMPUSES.map((campus) => (
+              <article key={campus.id} className={cardClass}>
+                <p className="text-[10px] font-bold uppercase tracking-wide text-brand-saffron-dark">
+                  {campus.role}
+                </p>
+                <h3 className="mt-1 text-base font-bold text-brand-navy">{campus.label}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">{campus.text}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section className="mt-12" aria-labelledby="smk6-programmes-heading">
           <SectionHeader
             align="left"
@@ -193,6 +247,9 @@ export default function Smk6EditionDetail({ speakers }: Props) {
                     Register Now
                   </Smk6TrackedLink>
                 ) : null}
+                {programme.poster ? (
+                  <ConclavePosterPreview poster={programme.poster} title={programme.title} />
+                ) : null}
               </article>
             ))}
           </div>
@@ -228,9 +285,18 @@ export default function Smk6EditionDetail({ speakers }: Props) {
                   </div>
                   <div>
                     <dt className="font-semibold text-brand-navy">Coordinators</dt>
-                    <dd>{conclave.coordinators}</dd>
+                    <dd>
+                      <ul className="list-disc space-y-1 pl-5 break-words">
+                        {conclave.coordinators.map((name) => (
+                          <li key={name}>{name}</li>
+                        ))}
+                      </ul>
+                    </dd>
                   </div>
                 </dl>
+                {conclave.poster ? (
+                  <ConclavePosterPreview poster={conclave.poster} title={conclave.title} />
+                ) : null}
                 <Smk6TrackedLink
                   href={conclave.href}
                   className={`${detailsClass} mt-4 self-start`}
@@ -283,7 +349,7 @@ export default function Smk6EditionDetail({ speakers }: Props) {
                 <h3 className="text-base font-bold text-brand-navy">{track.title}</h3>
                 <p className="mt-2 text-sm text-slate-600">{track.description}</p>
                 <p className="mt-3 text-xs font-semibold text-brand-navy">Track Coordinators</p>
-                <ul className="mt-1 list-disc space-y-0.5 pl-5 text-xs text-slate-600">
+                <ul className="mt-1 list-disc space-y-0.5 pl-5 text-xs text-slate-600 break-words">
                   {track.coordinators.map((name, coordIndex) => (
                     <li key={`${track.title}-${coordIndex}`}>{name}</li>
                   ))}
@@ -362,6 +428,25 @@ export default function Smk6EditionDetail({ speakers }: Props) {
                 <h3 className="text-base font-bold text-brand-navy">{item.title}</h3>
                 <p className="mt-2 text-sm text-slate-600">{item.detail}</p>
                 <p className="mt-3 text-xs text-slate-700">{item.leadership}</p>
+                {"href" in item && item.href ? (
+                  <Smk6TrackedLink
+                    href={item.href}
+                    className={`${detailsClass} mt-4`}
+                    eventName={ANALYTICS_EVENTS.programmeDetailsClicked}
+                    programme={item.id}
+                  >
+                    For More Details
+                  </Smk6TrackedLink>
+                ) : null}
+                {item.id === "panel"
+                  ? SMK_6_PANEL_DISCUSSIONS.map((session) => (
+                      <ConclavePosterPreview
+                        key={session.id}
+                        poster={session.poster}
+                        title={session.title}
+                      />
+                    ))
+                  : null}
               </article>
             ))}
           </div>

@@ -20,6 +20,7 @@ import ProjectsPage from "./academic/pages/ProjectsPage";
 import BestPracticesPage from "./academic/pages/BestPracticesPage";
 import PatrikaPage from "./academic/pages/PatrikaPage";
 import CulturalPage from "./academic/pages/CulturalPage";
+import PanelDiscussionPage from "./academic/pages/PanelDiscussionPage";
 
 const pages: { id: AcademicCouncilTabId; label: string }[] = [
   { id: "OverviewPage", label: "Overview" },
@@ -33,6 +34,7 @@ const pages: { id: AcademicCouncilTabId; label: string }[] = [
   { id: "BestPracticesPage", label: "Best Practices" },
   { id: "PatrikaPage", label: "Shodhankur" },
   { id: "CulturalPage", label: "Cultural Program" },
+  { id: "PanelDiscussionPage", label: "Panel Discussion" },
 ];
 
 function readTabFromLocation(): AcademicCouncilTabId {
@@ -65,6 +67,8 @@ function renderPage(id: AcademicCouncilTabId, onNavigate: (tabId: AcademicCounci
       return <PatrikaPage />;
     case "CulturalPage":
       return <CulturalPage />;
+    case "PanelDiscussionPage":
+      return <PanelDiscussionPage />;
     default:
       return <OverviewPage onNavigate={onNavigate} />;
   }

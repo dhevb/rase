@@ -56,7 +56,7 @@ export const BEST_WISHES_UPCOMING_CTA = {
   learnMoreHref: UPCOMING_EDITION.href,
   committeeHref: committeePathForEdition("6.0"),
   message:
-    "Share your institution's support for Shiksha, Prakriti aur Pragati — register as a delegate or explore the SMK 6.0 organising committee.",
+    "Share your institution's support for शिक्षा, प्रकृति और प्रगति — Education for Development and Harmony with Nature — register as a delegate or explore the SMK 6.0 organising committee.",
 } as const;
 
 export function bestWishesMetaDescription(): string {

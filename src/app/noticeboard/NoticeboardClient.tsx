@@ -11,6 +11,12 @@ type Props = {
 
 type TabKey = "all" | "pinned";
 
+function noticeAttachmentHref(raw: string): string | undefined {
+  const trimmed = raw.trim();
+  if (trimmed.startsWith("/") && !trimmed.startsWith("//")) return trimmed;
+  return sanitizeExternalUrl(trimmed);
+}
+
 function CategoryBadge({ name }: { name: string }) {
   return (
     <span className="rounded-full bg-brand-saffron/15 px-2.5 py-0.5 text-xs font-semibold text-brand-navy">
@@ -159,20 +165,40 @@ export default function NoticeboardClient({ initialNotices }: Props) {
                     {notice.description}
                   </p>
                   {notice.attachments.length > 0 && (
-                    <ul className="mt-3 space-y-1" aria-label="Attachments">
+                    <ul className="mt-3 space-y-3" aria-label="Attachments">
                       {notice.attachments.map((att) => {
-                        const safeUrl = sanitizeExternalUrl(att.fileUrl);
+                        const safeUrl = noticeAttachmentHref(att.fileUrl);
                         if (!safeUrl) return null;
+                        const isImage = att.mimeType.startsWith("image/");
                         return (
                           <li key={att.id}>
-                            <a
-                              href={safeUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex min-h-[44px] items-center gap-2 text-sm font-semibold text-brand-navy underline hover:text-brand-saffron focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-saffron"
-                            >
-                              📎 {att.fileName}
-                            </a>
+                            {isImage ? (
+                              <a
+                                href={safeUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block max-w-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-saffron"
+                              >
+                                {/* eslint-disable-next-line @next/next/no-img-element */}
+                                <img
+                                  src={safeUrl}
+                                  alt={notice.title}
+                                  className="h-auto w-full rounded-xl border border-slate-200 object-contain"
+                                />
+                                <span className="mt-2 inline-flex min-h-[44px] items-center text-sm font-semibold text-brand-navy underline">
+                                  Open official poster
+                                </span>
+                              </a>
+                            ) : (
+                              <a
+                                href={safeUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex min-h-[44px] items-center gap-2 text-sm font-semibold text-brand-navy underline hover:text-brand-saffron focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-saffron"
+                              >
+                                📎 {att.fileName}
+                              </a>
+                            )}
                           </li>
                         );
                       })}

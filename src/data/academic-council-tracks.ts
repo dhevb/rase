@@ -1,4 +1,4 @@
-/** Canonical 16-track roster for Shiksha Mahakumbh 6.0 multi-track conference (official brochure). */
+/** Canonical 16-track roster for Shiksha Mahakumbh 6.0 multi-track conference (official track sheet). */
 
 export type AcademicConferenceTrack = {
   titleEn: string;
@@ -9,13 +9,14 @@ export type AcademicConferenceTrack = {
 };
 
 export const ACADEMIC_CONFERENCE_LEADERSHIP = {
-  chair: "Prof. Brahmjit Singh, Director, NIT Kurukshetra",
+  chair: "Dr. Vipin Jain, CBLU, Bhiwani",
   coChairs: [
     "Prof. R. K. Sehgal, NIT Hamirpur",
-    "Prof. Sushil Chauhan, NIT Hamirpur",
-    "Prof. Ravi Ranade, NIT Hamirpur",
+    "Prof. Sushi Chauhan, NIT Hamirpur",
+    "Prof. Ravi Ranode, NIT Hamirpur",
     "Prof. Vishal Goyal, PU, Patiala",
     "Prof. R.K. Mishra, SLIET, Longowal",
+    "Dr. Parveen Kumar Sharma, CU, Jammu",
     "Dr. Vikash Kumar Garg, CUP, Bathinda",
   ],
   conveners: [
@@ -29,22 +30,23 @@ export const ACADEMIC_CONFERENCE_LEADERSHIP = {
 } as const;
 
 export const ACADEMIC_PUBLICATION_NOTE =
-  "Accepted papers will be published in a peer-reviewed, open-access journal with ISSN. Selected high-quality papers will be considered for Web of Science / Scopus indexed journals. Authors submit abstracts for double-blind peer review. Similarity index (plagiarism) must be within acceptable limits. Track-wise Best Paper Award.";
+  "The papers accepted and presented at the conference will be published in a peer reviewed, open access journal with ISSN. The selected papers meeting the standard quality requirements will be considered for publication in Web of Science/Scopus indexed journals. The authors are invited to submit an abstract, which will undergo a double-blind peer reviewing process for its acceptance. Similarity index of the manuscript must be within acceptable limits.";
+
+export const ACADEMIC_BEST_PAPER_NOTE = "Track-wise one best paper award.";
+
+export const ACADEMIC_PAPER_SUBMISSION_WEBSITE = "shikshamahakumbh.com";
 
 export const ACADEMIC_CONFERENCE_TRACKS: AcademicConferenceTrack[] = [
   {
-    titleEn: "Fundamental & Applied Sciences",
+    titleEn: "Fundamental and Applied Sciences",
     titleHi: "मौलिक एवं अनुप्रयुक्त विज्ञान",
     topics: [
-      "Physics",
-      "Chemistry",
-      "Biology",
-      "Mathematics",
-      "Earth & Space Sciences",
+      "Physics, Chemistry, Biology, Mathematics",
+      "Earth and Space Sciences",
       "Interdisciplinary Sciences (Biotechnology, Material Science, etc.)",
     ],
     details:
-      "Physics, Chemistry, Biology, Mathematics, Earth and Space Sciences, Interdisciplinary Sciences (Biotechnology, Material Science, etc.)",
+      "Physics, Chemistry, Biology, Mathematics; Earth and Space Sciences; Interdisciplinary Sciences (Biotechnology, Material Science, etc.)",
     coordinators: [
       "Prof. Sunil, NIT Hamirpur",
       "Dr. Pamita Awasthi, NIT Hamirpur",
@@ -56,7 +58,7 @@ export const ACADEMIC_CONFERENCE_TRACKS: AcademicConferenceTrack[] = [
     ],
   },
   {
-    titleEn: "Engineering & Technology",
+    titleEn: "Engineering and Technology",
     titleHi: "अभियंत्रण एवं प्रौद्योगिकी",
     topics: [
       "Core Engineering (Mechanical, Civil, Electrical, etc.)",
@@ -66,12 +68,14 @@ export const ACADEMIC_CONFERENCE_TRACKS: AcademicConferenceTrack[] = [
       "Core Engineering (Mechanical, Civil, Electrical, etc.); Emerging Technologies (AI, Robotics, Data Science, Quantum Tech)",
     coordinators: [
       "Dr. K. S. Pandey, IIT Mandi",
-      "Dr. Kuldeep Kumar, NIT Hamirpur",
+      "Dr. Bharat Bhushan Sharma, NIT Hamirpur",
+      "Dr. Siddhartha Sharma, NIT Hamirpur",
+      "Dr. Nitin Gupta, NIT Hamirpur",
       "Dr. Navneet Goyal, SLIET, Longowal",
       "Dr. Utkarsh, University of Delhi",
       "Dr. Rajiv Chauhan, IKGPTU, Jalandhar",
       "Dr. Sachin Kumar, GNDU, Amritsar",
-      "Dr. Sonu Bala Garg, IKGPTU, Hoshiarpur",
+      "Dr. Sanu Bala Garg, IKGPTU, Hoshiarpur",
       "Dr. Anju Sharma, Punjab State Aeronautical Engineering College, Patiala",
     ],
   },
@@ -83,8 +87,9 @@ export const ACADEMIC_CONFERENCE_TRACKS: AcademicConferenceTrack[] = [
     coordinators: [
       "Prof. Sanjeev Gupta, CUHP, Dharamshala",
       "Prof. Sanjeev Bansal, SLIET, Longowal",
-      "Dr. Shampy Kamboj, NIT Hamirpur",
       "Dr. Suman Kumar, CUHP, Dharamshala",
+      "Dr. Neeraj Dhiman, NIT Hamirpur",
+      "Dr. Sachin Kumar, NIT Hamirpur",
     ],
   },
   {
@@ -93,79 +98,87 @@ export const ACADEMIC_CONFERENCE_TRACKS: AcademicConferenceTrack[] = [
     topics: ["Global Affairs", "Public Policy & Administration", "Legal Studies & Human Rights"],
     details: "Global Affairs, Public Policy & Administration, Legal Studies & Human Rights",
     coordinators: [
+      "Dr. Manoj Sharma, NIT Hamirpur",
       "Prof. Sudershan Kumar, IIT Bombay",
-      "Dr. Rinshu Dwivedi, NIT Hamirpur",
       "Dr. Dakshita Sagwan, G.D. Goenka University",
       "Adv. Poonam Pawar, Advocate, Delhi",
       "Adv. Sahil, PHHC, Chandigarh",
     ],
   },
   {
-    titleEn: "Social Sciences & Humanities",
+    titleEn: "Social Sciences and Humanities",
     titleHi: "सामाजिक विज्ञान एवं मानविकी",
     topics: [
-      "Sociology",
-      "Psychology",
-      "Political Science",
-      "History",
-      "Philosophy",
-      "Ethics",
-      "Cultural Studies",
+      "Sociology, Psychology, Political Science, History",
+      "Philosophy, Ethics, and Cultural Studies",
     ],
     details:
-      "Sociology, Psychology, Political Science, History, Philosophy, Ethics, and Cultural Studies",
+      "Sociology, Psychology, Political Science, History; Philosophy, Ethics, and Cultural Studies",
     coordinators: [
       "Dr. Yogesh Gupta, NIT Hamirpur",
-      "Dr. Atrayee Saha, JNU, New Delhi",
+      "Dr. Sunder Kala Negi, NIT Hamirpur",
+      "Dr. Atraquee Saha, JNU, New Delhi",
       "Dr. Neeraj Marwaha, Sri Sai Uni., Palampur",
-      "Dr. Sarabjeet, Baba Balraj Panjab University Constituent College Balachaur",
+      "Dr. Sarabjeet, Baba Balraj Punjab University Constituent College Balachaur",
     ],
   },
   {
-    titleEn: "Education Systems & Pedagogy",
+    titleEn: "Education Systems and Pedagogy",
     titleHi: "शिक्षा प्रणाली एवं शिक्षण पद्धति",
     topics: [
       "School Education (Foundational, Preparatory, Middle, Secondary)",
       "Higher Education & Research",
-      "Inclusive Education",
+      "Inclusive Education (for Disabled, Marginalized etc.)",
       "Gurukul and Indigenous Knowledge Systems",
       "Lifelong Learning & Adult Education",
     ],
     details:
-      "School Education (Foundational, Preparatory, Middle, Secondary); Higher Education & Research; Inclusive Education; Gurukul and Indigenous Knowledge Systems; Lifelong Learning & Adult Education",
+      "School Education (Foundational, Preparatory, Middle, Secondary); Higher Education & Research; Inclusive Education (for Disabled, Marginalized etc.); Gurukul and Indigenous Knowledge Systems; Lifelong Learning & Adult Education",
     coordinators: [
-      "Dr. Ramesh Vats, NIT Hamirpur",
+      "Dr. Ramesh Kumar Vats, NIT Hamirpur",
+      "Dr. Jeetendra Singh Maan, NIT Hamirpur",
       "Dr. Krishna Pandey, Kurukshetra University, Kurukshetra",
       "Dr. Neena Aneja, Principal, S.D. College Women, Moga",
       "Dr. Naveen Mokta, NCERT Delhi",
     ],
   },
   {
-    titleEn: "EdTech & Digital Education",
+    titleEn: "EdTech and Digital Education",
     titleHi: "एडटेक एवं डिजिटल शिक्षा",
-    topics: ["Education Technology Innovations", "Online & Blended Learning", "AI in Education", "Digital Literacy and Access"],
-    details: "Education Technology Innovations, Online & Blended Learning, AI in Education, Digital Literacy and Access",
+    topics: [
+      "Education Technology Innovations",
+      "Online & Blended Learning",
+      "AI in Education",
+      "Digital Literacy and Access",
+    ],
+    details:
+      "Education Technology Innovations, Online & Blended Learning, AI in Education, Digital Literacy and Access",
     coordinators: [
-      "Prof. Dhirendra Kumar, HPU, Shimla",
-      "Prof. Surinder Singh, SLIET, Longowal",
+      "Prof. Sutinder Singh, SLIET, Longowal",
       "Dr. Siddartha Chauhan, NIT Hamirpur",
+      "Dr. Robin Singh Bhadoria, NIT Hamirpur",
       "Dr. Vishal, SLIET, Longowal",
     ],
   },
   {
-    titleEn: "Health Sciences & Traditional Medicine",
+    titleEn: "Health Sciences and Traditional Medicine",
     titleHi: "स्वास्थ्य विज्ञान एवं पारंपरिक चिकित्सा",
-    topics: ["Modern Medicine", "AYUSH", "Public Health & Preventive Care"],
-    details: "Modern Medicine; AYUSH (Ayurveda, Yoga, Unani, Siddha, Homeopathy, Naturopathy); Public Health & Preventive Care",
+    topics: [
+      "Modern Medicine",
+      "AYUSH (Ayurveda, Yoga, Unani, Siddha, Homeopathy, Naturopathy)",
+      "Public Health & Preventive Care",
+    ],
+    details:
+      "Modern Medicine; AYUSH (Ayurveda, Yoga, Unani, Siddha, Homeopathy, Naturopathy); Public Health & Preventive Care",
     coordinators: [
-      "Dr. Hem Raj, NIT Hamirpur",
+      "Dr. Gaurov, DST, Delhi",
       "Dr. Shweta Chaurasia, PGIMER, Chandigarh",
-      "Dr. Gaurav, DST, Delhi",
+      "Dr. Zareena, NIT Hamirpur",
       "Dr. Vikas, Doctor, Haryana",
     ],
   },
   {
-    titleEn: "Sports, Physical Education & Well-being",
+    titleEn: "Sports, Physical Education and Well-being",
     titleHi: "खेल एवं कल्याण",
     topics: ["Physical Training & Sports Science", "Mental Health and Wellness", "Yoga and Lifestyle Education"],
     details: "Physical Training & Sports Science; Mental Health and Wellness; Yoga and Lifestyle Education",
@@ -183,7 +196,7 @@ export const ACADEMIC_CONFERENCE_TRACKS: AcademicConferenceTrack[] = [
     coordinators: [
       "Prof. Namita Singh, Guru Jamshedpur University, Hisar",
       "Prof. Sanjay Guleria, FBSc, SKUAST, Jammu",
-      "Dr. Som Dev, NIT Hamirpur",
+      "Dr. Som Dev Retd. Dean COHF Neri",
       "Dr. R. S. Sethi, GADVASU, Ludhiana",
     ],
   },
@@ -194,7 +207,7 @@ export const ACADEMIC_CONFERENCE_TRACKS: AcademicConferenceTrack[] = [
     details: "Climate Change; Environmental Education; Water & Natural Resource Management",
     coordinators: [
       "Prof. Deepak Pant, CUHP, Dharamshala",
-      "Dr. Suneel Dubey, IUCN",
+      "Dr. Suneet Dubey, IUCN",
       "Dr. R. S. Banshtu, NIT Hamirpur",
     ],
   },
@@ -205,20 +218,20 @@ export const ACADEMIC_CONFERENCE_TRACKS: AcademicConferenceTrack[] = [
     details: "Performing & Visual Arts; Folk and Tribal Traditions; Cultural Conservation and Promotion",
     coordinators: [
       "Prof. Jagmeet Bawa, CUP, Bathinda",
-      "Dr. Ashwani, NIT Hamirpur",
+      "Dr. Amarjeet Kaur, NIT Hamirpur",
       "Dr. Nand Lal, HPU Shimla",
       "Dr. Sukhjinder Rishi, PU, Chandigarh",
       "Dr. Manu Sharma, AB College, Pathankot",
     ],
   },
   {
-    titleEn: "Languages & Linguistics",
+    titleEn: "Languages and Linguistics",
     titleHi: "भाषाएँ एवं भाषाविज्ञान",
     topics: ["Bharat Classical & Modern Languages", "Foreign Languages", "Translation and Language Technology"],
     details: "Bharat Classical & Modern Languages; Foreign Languages; Translation and Language Technology",
     coordinators: [
       "Prof. Chander Kant, CUHP, Dharamshala",
-      "Prof. Mohini, Sanskrit Uni. Balahar",
+      "Prof. Mohini, Sanskrit Uni. Balohor",
       "Dr. Manoj Yadav, NIT Hamirpur",
       "Dr. Garima Bhatti, Rawal College, Faridabad",
       "Dr. Sameer Mahajan, CUP, Bathinda",
@@ -226,24 +239,24 @@ export const ACADEMIC_CONFERENCE_TRACKS: AcademicConferenceTrack[] = [
     ],
   },
   {
-    titleEn: "Vocational & Skill-Based Education",
+    titleEn: "Vocational & Skill-based Education",
     titleHi: "व्यावसायिक एवं कौशल आधारित शिक्षा",
     topics: ["Industrial Training", "Crafts and Traditional Skills", "Workforce Readiness and Certification"],
     details: "Industrial Training; Crafts and Traditional Skills; Workforce Readiness and Certification",
     coordinators: [
       "Prof. Ashok Sarial, Former VC, CSKHPPAU",
       "Prof. Surita Maini, SLIET, Longowal",
-      "Dr. Ashwani Rana, NIT Hamirpur",
+      "Dr. Somesh Kumar Sharma, NIT Hamirpur",
       "Dr. Charanjeev Gupta, SLIET, Longowal",
       "Mr. Avinash, SLIET, Longowal",
     ],
   },
   {
-    titleEn: "Indian Knowledge System (IKS)",
+    titleEn: "Indian Knowledge System",
     titleHi: "भारतीय ज्ञान प्रणाली",
     topics: [
       "Philosophy and Science in Bharat Traditions",
-      "Indian Linguistics, Art, Aesthetics, and Performing Arts",
+      "Indian Linguistics & Language Traditions and Art, Aesthetics, and Indian Performing Arts",
       "Education in Ancient Bharat: Gurukula to Nalanda",
       "Bharat Epistemology and Logic (Nyaya, Mimamsa, etc.)",
       "Vedic Literature, Puranas, and Oral Traditions",
@@ -251,7 +264,7 @@ export const ACADEMIC_CONFERENCE_TRACKS: AcademicConferenceTrack[] = [
     details:
       "Philosophy and Science in Bharat Traditions; Indian Linguistics & Language Traditions and Art, Aesthetics, and Indian Performing Arts; Education in Ancient Bharat: Gurukula to Nalanda; Bharat Epistemology and Logic (Nyaya, Mimamsa, etc.); Vedic Literature, Puranas, and Oral Traditions",
     coordinators: [
-      "Dr. Sant Ram, NIT Hamirpur",
+      "Dr. Hemat Vinayak, NIT Hamirpur",
       "Dr. Bala Lakhendra, BHU, Varanasi",
       "Dr. Parminder Singh, CUP, Bathinda",
       "Dr. Mohit Sharma, Chandigarh University",
@@ -270,7 +283,12 @@ export const ACADEMIC_CONFERENCE_TRACKS: AcademicConferenceTrack[] = [
     ],
     details:
       "National Security & Strategic Affairs; Defence Technologies, Cyber Security & AI; Disaster Management, Border Security & Internal Security",
-    coordinators: ["Dr. Ravi, NIT Hamirpur"],
+    coordinators: [
+      "Dr. Pawan Kumar Sharma, NIT Hamirpur",
+      "Dr. Varun Sharma, NIT Hamirpur",
+      "Dr. Vivek Sharma, NIT Hamirpur",
+      "Dr. Vikram Verma, NIT Hamirpur",
+    ],
   },
 ];
 

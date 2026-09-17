@@ -181,7 +181,7 @@ export const DEFAULT_ANNOUNCEMENT_BARS_EN: CmsAnnouncementBar[] = [
   {
     id: "default-bar-programmes",
     title: "Programmes & Conclaves",
-    message: "Explore 7 thematic conclaves, olympiads, exhibitions, and the Multi-Track Conference.",
+    message: "Explore 8 thematic conclaves, olympiads, exhibitions, and the Multi-Track Conference.",
     barType: "global",
     colorTheme: "primary",
     ctaLabel: "View programmes",

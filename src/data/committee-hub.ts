@@ -72,7 +72,7 @@ export const COMMITTEE_HUB_EDITIONS: CommitteeHubEdition[] = [
     committeeLink: committeePathForEdition(COMMITTEE_EDITION_6_0.edition),
     status: "upcoming",
     description:
-      "Organising committee for Shiksha, Prakriti aur Pragati — DHE with NIT Hamirpur, IIT Mandi, and CUHP Dharamshala. Conclaves, research tracks, olympiads, and whole-of-society programmes.",
+      "Organising committee for शिक्षा, प्रकृति और प्रगति — Education for Development and Harmony with Nature. DHE, a unit of Vidya Bharti Institute of Training and Research Trust, in collaboration with NIT Hamirpur, IIT Mandi, CUHP Dharamshala, and Association of Indian Universities.",
   },
   {
     ...COMMITTEE_EDITION_5_0,

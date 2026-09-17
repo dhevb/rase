@@ -27,6 +27,8 @@ import {
   TEAM_COMPOSITION,
   type ProjectExpoDivisionId,
 } from "@/data/student-projects-expo";
+import { SMK_6_PROJECT_EXPO_OFFICIAL } from "../academic-content-data";
+import ConclavePosterPreview from "../ConclavePosterPreview";
 
 const DIVISION_TABS: { id: ProjectExpoDivisionId; label: string }[] = [
   { id: "A", label: "Division A (VI–VIII)" },
@@ -45,7 +47,7 @@ export default function ProjectsPage() {
         title={PROJECT_EXPO_TITLE}
         subtitle={
           <p>
-            {PROJECT_EXPO_SUBTITLE} Aligned with{" "}
+            {PROJECT_EXPO_SUBTITLE} {SMK_6_PROJECT_EXPO_OFFICIAL.tagline}. Aligned with{" "}
             <span className="font-semibold">NEP 2020</span> and{" "}
             <span className="font-semibold">Viksit Bharat 2047</span>.
           </p>
@@ -70,6 +72,55 @@ export default function ProjectsPage() {
             <span className="font-semibold text-brand-navy">Co-Chairs:</span> Dr. Krishna Pandey,
             Kurukshetra University; Sh. Bikash Kumar, COO, SavantX Technology
           </p>
+          <p className="mt-2 text-sm text-gray-700 md:text-base">
+            <span className="font-semibold text-brand-navy">Poster dates:</span>{" "}
+            {SMK_6_PROJECT_EXPO_OFFICIAL.dates}
+          </p>
+          <p className="mt-1 text-sm text-gray-700 md:text-base">
+            <span className="font-semibold text-brand-navy">Time:</span> {SMK_6_PROJECT_EXPO_OFFICIAL.time}
+          </p>
+          <p className="mt-1 text-sm text-gray-700 md:text-base">
+            <span className="font-semibold text-brand-navy">Venue:</span> {SMK_6_PROJECT_EXPO_OFFICIAL.venue}
+          </p>
+          <p className="mt-2 text-sm leading-relaxed text-gray-700 md:text-base">
+            {SMK_6_PROJECT_EXPO_OFFICIAL.mentorshipNote}
+          </p>
+          <div>
+            <p className="mt-3 text-sm font-semibold text-brand-navy">Poster cohorts</p>
+            <ul className="mt-1 list-disc space-y-1 pl-5 text-sm text-gray-700">
+              {SMK_6_PROJECT_EXPO_OFFICIAL.cohorts.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <p className="mt-3 text-sm font-semibold text-brand-navy">Explore · Innovate · Solve</p>
+            <ul className="mt-1 list-disc space-y-1 pl-5 text-sm text-gray-700">
+              {SMK_6_PROJECT_EXPO_OFFICIAL.exploreThemes.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <p className="mt-3 text-sm font-semibold text-brand-navy">What students gain (poster)</p>
+            <ul className="mt-1 list-disc space-y-1 pl-5 text-sm text-gray-700">
+              {SMK_6_PROJECT_EXPO_OFFICIAL.studentGains.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <p className="mt-3 text-sm font-semibold text-brand-navy">Poster coordinators</p>
+            <ul className="mt-1 list-disc space-y-1 pl-5 text-sm text-gray-700">
+              {SMK_6_PROJECT_EXPO_OFFICIAL.coordinators.map((name) => (
+                <li key={name}>{name}</li>
+              ))}
+            </ul>
+          </div>
+          <ConclavePosterPreview
+            poster={SMK_6_PROJECT_EXPO_OFFICIAL.poster}
+            title="Project Expo 2026"
+          />
           <div className="mt-6 flex flex-wrap gap-3">
             <a
               href={PROJECT_EXPO_PDF}

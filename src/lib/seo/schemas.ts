@@ -30,7 +30,7 @@ export function buildRegistrationEventJsonLd() {
     ...EVENT_SCHEMA,
     "@type": "EducationEvent",
     description:
-      "Shiksha Mahakumbh 6.0 — national multidisciplinary education summit at NIT Hamirpur. Official registration for delegates, conclaves, olympiads, and research tracks.",
+      "Shiksha Mahakumbh 6.0 / Shiksha Mahakumbh 2026 at NIT Hamirpur, 9–11 October 2026. Theme: शिक्षा, प्रकृति और प्रगति — Education for Development and Harmony with Nature. Official registration for delegates, conclaves, olympiads, and research tracks.",
     offers: {
       "@type": "Offer",
       url: `${SITE_URL}/registration`,

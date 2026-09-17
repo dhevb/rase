@@ -25,7 +25,7 @@ export const INSTITUTIONAL_ABOUT_PAGES: Record<string, InstitutionalAboutPage> =
       "National Institute of Technology Hamirpur is the venue partner and local coordinating institution for Shiksha Mahakumbh 6.0 in Himachal Pradesh.",
     paragraphs: [
       "National Institute of Technology (NIT) Hamirpur is a premier engineering and technology institution in Himachal Pradesh. As the venue partner for Shiksha Mahakumbh 6.0, NIT Hamirpur provides the campus infrastructure, local coordination, and hospitality support for delegates attending the national education summit.",
-      "The summit theme Shiksha, Prakriti aur Pragati — Education for Development and Harmony with Nature — aligns with NIT Hamirpur's commitment to sustainable, research-driven, and community-engaged education in the Himalayan region.",
+      "The summit theme शिक्षा, प्रकृति और प्रगति — Education for Development and Harmony with Nature — aligns with NIT Hamirpur's commitment to sustainable, research-driven, and community-engaged education in the Himalayan region.",
       "Delegates travelling to NIT Hamirpur can reach the campus via Una Himachal railway station (~80 km), Chandigarh airport (~175 km), or road routes from Delhi, Chandigarh, and Jalandhar. Detailed travel guidance is available on the Contact page.",
     ],
     highlights: [

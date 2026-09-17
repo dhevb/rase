@@ -11,7 +11,7 @@ export const COMMITTEE_EDITION_6_0: CommitteeEditionData = {
   pageTitle: "Shiksha Mahakumbh 6.0 — NIT Hamirpur (2026)",
   venue: "NIT Hamirpur",
   dates: "9–11 October 2026",
-  theme: "Shiksha, Prakriti aur Pragati — Education for Development and Harmony with Nature",
+  theme: "शिक्षा, प्रकृति और प्रगति — Education for Development and Harmony with Nature",
   year: "2026",
   eventHref: "/departments/academic-council",
   sections: [
@@ -102,4 +102,4 @@ export const COMMITTEE_EDITION_6_0: CommitteeEditionData = {
 };
 
 export const COMMITTEE_EDITION_6_0_ORGANIZERS =
-  "Department of Holistic Education — a unit of Vidya Bharti Institute of Training and Research Trust, in collaboration with NIT Hamirpur, IIT Mandi, and CUHP Dharamshala.";
+  "Department of Holistic Education, A unit of Vidya Bharti Institute of Training and Research Trust in collaboration with NIT Hamirpur, IIT Mandi, CUHP, Dharamshala and Association of Indian Universities.";

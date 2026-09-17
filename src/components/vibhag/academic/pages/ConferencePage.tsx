@@ -8,10 +8,14 @@ import {
   ACGlassPanel,
   SectionCTA,
   ACFooterStatement,
-  REG_LINKS,
 } from "../AcademicCouncilUI";
-import { ACADEMIC_CONFERENCE_LEADERSHIP, ACADEMIC_PUBLICATION_NOTE } from "@/data/academic-council-tracks";
-import { CMT_SUBMISSION_URL, cmtSubmissionDateLabel } from "@/lib/registration/config";
+import {
+  ACADEMIC_BEST_PAPER_NOTE,
+  ACADEMIC_CONFERENCE_LEADERSHIP,
+  ACADEMIC_PAPER_SUBMISSION_WEBSITE,
+  ACADEMIC_PUBLICATION_NOTE,
+} from "@/data/academic-council-tracks";
+import { CMT_SUBMIT_PATH, CMT_SUBMISSION_URL, cmtSubmissionDateLabel } from "@/lib/registration/config";
 import { tracks } from "../tracks-data";
 
 export default function ConferencePage() {
@@ -64,12 +68,12 @@ export default function ConferencePage() {
       <ACSection title="Submission via Microsoft CMT">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           <ACCard>
-            <p className="mb-2 text-sm text-gray-500">Paper Length</p>
-            <p className="text-lg font-bold md:text-xl">5–6 pages (IEEE Format)</p>
+            <p className="mb-2 text-sm text-gray-500">Review</p>
+            <p className="text-lg font-bold md:text-xl">Abstract · double-blind peer review</p>
           </ACCard>
           <ACCard>
             <p className="mb-2 text-sm text-gray-500">Similarity Index</p>
-            <p className="text-lg font-bold md:text-xl">Below 15%</p>
+            <p className="text-lg font-bold md:text-xl">Within acceptable limits</p>
           </ACCard>
           <ACCard>
             <p className="mb-2 text-sm text-gray-500">Format</p>
@@ -103,15 +107,20 @@ export default function ConferencePage() {
         <div className="space-y-4">
           {tracks.map((track, index) => (
             <ACCard key={index}>
-              <h3 className="mb-3 text-lg font-bold text-brand-navy md:text-xl">
+              <h3 className="mb-1 text-lg font-bold text-brand-navy md:text-xl">
                 {index + 1}. {track.title}
               </h3>
-              <p className="mb-4 text-sm leading-relaxed text-gray-700 md:text-base">
-                {track.details}
+              <p className="mb-3 font-devanagari text-sm text-gray-600 md:text-base">
+                {track.titleHi}
               </p>
+              <ul className="mb-4 list-disc space-y-1 pl-5 text-sm leading-relaxed text-gray-700 md:text-base">
+                {track.topics.map((topic) => (
+                  <li key={topic}>{topic}</li>
+                ))}
+              </ul>
               <div className="space-y-1 text-sm text-gray-700 md:text-base">
                 <p className="font-semibold">Track Coordinators</p>
-                <ul className="list-disc space-y-1 pl-5">
+                <ul className="list-disc space-y-1 pl-5 break-words">
                   {track.coordinators.map((name, coordIndex) => (
                     <li key={`${track.title}-${coordIndex}`}>{name}</li>
                   ))}
@@ -140,7 +149,6 @@ export default function ConferencePage() {
         <ACGlassPanel className="border-brand-navy/10 bg-gradient-to-br from-brand-navy/5 to-white">
           <div className="space-y-3 text-base text-gray-700 md:text-lg">
             <p>{ACADEMIC_PUBLICATION_NOTE}</p>
-            <p>Peer-reviewed Open Access Journal (ISSN) options may apply for selected tracks.</p>
           </div>
         </ACGlassPanel>
       </ACSection>
@@ -150,15 +158,26 @@ export default function ConferencePage() {
           hover={false}
           className="border-brand-saffron/30 bg-gradient-to-r from-brand-saffron to-brand-saffron-dark text-center text-brand-navy"
         >
-          <p className="text-xl font-bold md:text-2xl">Track-wise Best Paper Award</p>
+          <p className="text-xl font-bold md:text-2xl">{ACADEMIC_BEST_PAPER_NOTE}</p>
         </ACCard>
       </ACSection>
 
       <ACSection title="Submission">
         <div className="space-y-2 text-base text-gray-700 md:text-lg">
-          <p>CMT Portal (Primary Submission)</p>
-          <p>Backup Email (if required)</p>
-          <p>Website: www.shikshamahakumbh.com</p>
+          <p>
+            Paper submission website: {ACADEMIC_PAPER_SUBMISSION_WEBSITE} — abstracts and
+            full-length papers are submitted through the{" "}
+            <a
+              href={CMT_SUBMISSION_URL}
+              className="font-semibold underline underline-offset-2"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Microsoft CMT portal
+            </a>
+            .
+          </p>
+          <p>Delegate registration for Shiksha Mahakumbh 6.0 is separate from paper submission.</p>
         </div>
       </ACSection>
 
@@ -169,8 +188,8 @@ export default function ConferencePage() {
 
       <SectionCTA
         title="Submit your research paper"
-        buttonText="Register & Submit"
-        href={REG_LINKS.general}
+        buttonText="Submit via CMT"
+        href={CMT_SUBMIT_PATH}
       />
     </ACPage>
   );

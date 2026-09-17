@@ -25,8 +25,8 @@ function ThemeBanner() {
       <p className="text-xs font-semibold uppercase tracking-wide text-brand-saffron-dark">
         Theme
       </p>
-      <p className="mt-2 text-lg font-bold text-brand-navy md:text-2xl">
-        &ldquo;Shiksha, Prakriti aur Pragati&rdquo;
+      <p className="mt-2 font-devanagari text-lg font-bold text-brand-navy md:text-2xl">
+        शिक्षा, प्रकृति और प्रगति
       </p>
       <p className="mt-2 text-sm text-slate-600 md:text-base">
         Education for Development and Harmony with Nature

@@ -168,6 +168,18 @@ export function smk6RegistrationEntryForType(type: RegistrationType): {
 
 export function conclaveFormByProgrammeTitle(title: string) {
   const normalized = title.toLowerCase();
+  if (normalized.includes("principal") && normalized.includes("teacher")) {
+    return SMK_6_EXTERNAL_REGISTRATIONS.conclaves.principalsTeachers;
+  }
+  if (normalized.includes("scientist")) {
+    return SMK_6_EXTERNAL_REGISTRATIONS.conclaves.scientistsResearch;
+  }
+  if (normalized.includes("startup") || normalized.includes("entrepreneur")) {
+    return SMK_6_EXTERNAL_REGISTRATIONS.conclaves.startupEntrepreneurs;
+  }
+  if (normalized.includes("talent")) {
+    return SMK_6_EXTERNAL_REGISTRATIONS.conclaves.talent;
+  }
   return (
     SMK_6_CONCLAVE_FORMS.find((form) => normalized.startsWith(form.title.toLowerCase())) ?? null
   );

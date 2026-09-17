@@ -18,7 +18,7 @@ export const COMMITTEE_EDITIONS: CommitteeEdition[] = [
     year: "2026",
     edition: "6.0",
     description:
-      "Upcoming edition at NIT Hamirpur — Shiksha, Prakriti aur Pragati with seven conclaves and fifteen research tracks.",
+      "Upcoming edition at NIT Hamirpur — शिक्षा, प्रकृति और प्रगति / Education for Development and Harmony with Nature.",
     link: "/departments/academic-council",
     committeeLink: committeePathForEdition("6.0"),
     onCommitteeSelect: "Shiksha Mahakumbh 6.0 Committee",

@@ -44,8 +44,8 @@ export const UPCOMING_EVENTS: UpcomingEventCard[] = [
     registrationHref: UPCOMING_EDITION.registrationHref,
     ctaLabel: "Register Now",
     description:
-      "Hybrid multi-track international conference at NIT Hamirpur — aligned with NEP 2020 and Bharat@2047.",
-    highlight: UPCOMING_EDITION.coreEssence,
+      "Shiksha Mahakumbh 2026 (6th Edition) at NIT Hamirpur — शिक्षा, प्रकृति और प्रगति / Education for Development and Harmony with Nature.",
+    highlight: UPCOMING_EDITION.theme,
   },
   {
     id: "smk-7-0",
@@ -108,6 +108,10 @@ export const UPCOMING_EVENTS_QUICK_LINKS = [
 
 export const UPCOMING_EVENTS_KEYWORDS = [
   "Shiksha Mahakumbh 6.0",
+  "Shiksha Mahakumbh 2026",
+  "शिक्षा महाकुंभ 2026",
+  "शिक्षा, प्रकृति और प्रगति",
+  "Education for Development and Harmony with Nature",
   "Shiksha Mahakumbh 7.0",
   "upcoming education summit India",
   "NIT Hamirpur conference 2026",
@@ -118,13 +122,22 @@ export const UPCOMING_EVENTS_KEYWORDS = [
 ] as const;
 
 export function upcomingEventsMetaDescription(): string {
-  return "About Shiksha Mahakumbh 6.0 at NIT Hamirpur, 9–11 October 2026 — programmes, conclaves, registration, organising committee, and brochure. Edition 7.0 venue is TBA (To Be Announced) and will be announced here.";
+  return "Shiksha Mahakumbh 6.0 / Shiksha Mahakumbh 2026 at NIT Hamirpur, 9–11 October 2026. Theme: शिक्षा, प्रकृति और प्रगति — Education for Development and Harmony with Nature. Programmes, conclaves, registration, organising committee, and brochure. Edition 7.0 venue is TBA.";
 }
 
 export const UPCOMING_EVENTS_FAQ = [
   {
     question: "When is Shiksha Mahakumbh 6.0?",
-    answer: "9–11 October 2026 at National Institute of Technology, Hamirpur, Himachal Pradesh, India.",
+    answer: "9–11 October 2026.",
+  },
+  {
+    question: "Where is Shiksha Mahakumbh 6.0?",
+    answer: "National Institute of Technology, Hamirpur, Himachal Pradesh.",
+  },
+  {
+    question: "What is the official theme of Shiksha Mahakumbh 6.0?",
+    answer:
+      "शिक्षा, प्रकृति और प्रगति — Education for Development and Harmony with Nature.",
   },
   {
     question: "How do I register for Shiksha Mahakumbh 6.0?",

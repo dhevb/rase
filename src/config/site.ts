@@ -66,6 +66,8 @@ export const EVENT_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "Event",
   name: `Shiksha Mahakumbh Abhiyan ${EVENT_EDITION}`,
+  description:
+    "Shiksha Mahakumbh 2026 (6th Edition) at National Institute of Technology Hamirpur, 9–11 October 2026. Theme: शिक्षा, प्रकृति और प्रगति — Education for Development and Harmony with Nature.",
   startDate: "2026-10-09",
   endDate: "2026-10-11",
   eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",

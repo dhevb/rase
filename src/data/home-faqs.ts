@@ -21,6 +21,15 @@ export const HOME_DEFAULT_FAQS: FaqItem[] = [
       "9–11 October 2026 at National Institute of Technology Hamirpur (NIT Hamirpur / NITH), Himachal Pradesh, India.",
   },
   {
+    question: "Where is Shiksha Mahakumbh 6.0?",
+    answer: "National Institute of Technology, Hamirpur, Himachal Pradesh.",
+  },
+  {
+    question: "What is the official theme of Shiksha Mahakumbh 6.0?",
+    answer:
+      "शिक्षा, प्रकृति और प्रगति — Education for Development and Harmony with Nature.",
+  },
+  {
     question: "How do I register for Shiksha Mahakumbh 6.0?",
     answer: `Use the unified registration portal at ${SITE_URL}/registration for delegates, conclaves, olympiads, awards, exhibitions, projects, and cultural programmes.`,
   },

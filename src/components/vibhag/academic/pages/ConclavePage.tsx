@@ -10,9 +10,10 @@ import {
   SectionCTA,
   REG_LINKS,
 } from "../AcademicCouncilUI";
-import { CONCLAVE_OVERALL_LEADERSHIP, conclaves } from "../academic-content-data";
+import { CONCLAVE_BEST_PRACTICES_NOTE, CONCLAVE_OVERALL_LEADERSHIP, conclaves } from "../academic-content-data";
 import { conclaveFormAnalyticsEvent, conclaveFormByProgrammeTitle } from "@/data/smk-6-external-registrations";
 import { Smk6ExternalFormButton } from "@/components/registration/Smk6ExternalRegistrationPanels";
+import ConclavePosterPreview from "../ConclavePosterPreview";
 
 export default function ConclavePage() {
   return (
@@ -26,7 +27,8 @@ export default function ConclavePage() {
             platforms bringing together leaders from academia, research,
             governance, industry, and society. These thematic conclaves aim to
             foster policy discussions, innovation exchange, and actionable
-            outcomes aligned with the vision of Viksit Bharat 2047.
+            outcomes aligned with the vision of Viksit Bharat 2047.{" "}
+            {CONCLAVE_BEST_PRACTICES_NOTE}
           </p>
         </ACGlassPanel>
       </ACSection>
@@ -34,11 +36,31 @@ export default function ConclavePage() {
       <ACSection title="Conclave Categories">
         <div className="space-y-4">
           {conclaves.map((conclave, index) => (
-            <ACCard key={index}>
+            <ACCard key={conclave.id}>
               <h3 className="mb-4 text-lg font-bold text-brand-navy md:text-xl">
                 {index + 1}. {conclave.icon} {conclave.title}
               </h3>
+              {"titleHi" in conclave && conclave.titleHi ? (
+                <p className="mb-3 font-devanagari text-sm text-gray-600 md:text-base">
+                  {conclave.titleHi}
+                </p>
+              ) : null}
               <div className="space-y-3 text-sm leading-relaxed text-gray-700 md:text-base">
+                {"date" in conclave && conclave.date ? (
+                  <p>
+                    <span className="font-semibold">Date:</span> {conclave.date}
+                  </p>
+                ) : null}
+                {"time" in conclave && conclave.time ? (
+                  <p>
+                    <span className="font-semibold">Time:</span> {conclave.time}
+                  </p>
+                ) : null}
+                {"venue" in conclave && conclave.venue ? (
+                  <p>
+                    <span className="font-semibold">Venue:</span> {conclave.venue}
+                  </p>
+                ) : null}
                 <p>
                   <span className="font-semibold">Participants:</span>{" "}
                   {conclave.participants}
@@ -52,10 +74,56 @@ export default function ConclavePage() {
                 <p>
                   <span className="font-semibold">Theme:</span> {conclave.theme}
                 </p>
-                <p>
-                  <span className="font-semibold">Coordinators:</span>{" "}
-                  {conclave.coordinators}
-                </p>
+                {"sessionChair" in conclave && conclave.sessionChair ? (
+                  <p>
+                    <span className="font-semibold">Session Chair:</span>{" "}
+                    {conclave.sessionChair}
+                  </p>
+                ) : null}
+                {"keynote" in conclave && conclave.keynote ? (
+                  <p>
+                    <span className="font-semibold">Keynote:</span> {conclave.keynote}
+                  </p>
+                ) : null}
+                <div>
+                  <p className="font-semibold">Coordinators:</p>
+                  <ul className="mt-1 list-disc space-y-1 pl-5 break-words">
+                    {conclave.coordinators.map((name) => (
+                      <li key={name}>{name}</li>
+                    ))}
+                  </ul>
+                </div>
+                {"contactCoordinators" in conclave && conclave.contactCoordinators ? (
+                  <div>
+                    <p className="font-semibold">Poster contact:</p>
+                    <ul className="mt-1 list-disc space-y-1 pl-5 break-words">
+                      {conclave.contactCoordinators.map((name) => (
+                        <li key={name}>{name}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+                {"organizingTeam" in conclave && conclave.organizingTeam ? (
+                  <p>
+                    <span className="font-semibold">Organizing team:</span>{" "}
+                    {conclave.organizingTeam}
+                  </p>
+                ) : null}
+                {"registrationWindow" in conclave && conclave.registrationWindow ? (
+                  <p>
+                    <span className="font-semibold">Registration window (poster):</span>{" "}
+                    {conclave.registrationWindow}
+                  </p>
+                ) : null}
+                {"sessionNote" in conclave && conclave.sessionNote ? (
+                  <p>{conclave.sessionNote}</p>
+                ) : null}
+                {"extraNotes" in conclave && conclave.extraNotes
+                  ? conclave.extraNotes.map((note) => <p key={note}>{note}</p>)
+                  : null}
+                {"poster" in conclave && conclave.poster ? (
+                  <ConclavePosterPreview poster={conclave.poster} title={conclave.title} />
+                ) : null}
                 {(() => {
                   const form = conclaveFormByProgrammeTitle(conclave.title);
                   if (!form) return null;
@@ -104,7 +172,6 @@ export default function ConclavePage() {
                 Conveners
               </h3>
               <ul className="list-disc space-y-2 pl-6 text-gray-700">
-                <li>Dr. Vipin Jain, CBLU Bhiwani</li>
                 <li>Registrar, NIT Hamirpur</li>
                 <li>Registrar, IIT Mandi</li>
                 <li>Registrar, Central University of Himachal Pradesh</li>

@@ -16,13 +16,14 @@ export type AcademicCouncilTabId =
   | "ProjectsPage"
   | "BestPracticesPage"
   | "PatrikaPage"
-  | "CulturalPage";
+  | "CulturalPage"
+  | "PanelDiscussionPage";
 
 export const ACADEMIC_COUNCIL_HERO = {
   eyebrow: "Shiksha Mahakumbh 6.0 · Meeting of the Minds · NIT Hamirpur",
   title: "Academic Council",
   subtitle:
-    "Multi-track international conference, university conference series, thematic conclaves, DHE Olympiads, exhibitions, student projects, best practices, Shodhankur, and excellence awards — 9–11 October 2026.",
+    "Multi-track international conference, university conference series, thematic conclaves, panel discussions, DHE Olympiads, exhibitions, student projects, best practices, Shodhankur, and excellence awards — 9–11 October 2026.",
   tagline:
     "The Academic Backbone of Shiksha Mahakumbh — Integrating Knowledge, Innovation, and Impact.",
 } as const;
@@ -31,7 +32,7 @@ export const ACADEMIC_COUNCIL_STATS = [
   { label: "Conference Tracks", value: "16", hint: "Hybrid multi-track research" },
   { label: "Thematic Conclaves", value: "8", hint: "Policy & leadership dialogues" },
   { label: "Olympiad Streams", value: "3", hint: "English · Maths · Technology" },
-  { label: "Programme Pillars", value: "11", hint: "Unified academic framework" },
+  { label: "Programme Pillars", value: "12", hint: "Unified academic framework" },
 ] as const;
 
 export const ACADEMIC_COUNCIL_EVENT = {
@@ -72,13 +73,13 @@ export const ACADEMIC_PROGRAMME_HUB: ProgrammeHubSection[] = [
       "High-impact dialogue platforms for vice-chancellors, educators, scientists, entrepreneurs, CSR leaders, media, meritorious students, and defence & security professionals.",
     accent: "navy",
     items: [
-      { titleEn: "Vice-Chancellor, Director, NEP Implementers Conclave", titleHi: "कुलपति / निदेशक, एनईपी कार्यान्वयनकर्ता अधिवेशन" },
-      { titleEn: "Principals & Outstanding Teachers Conclave", titleHi: "प्राचार्य एवं उत्कृष्ट शिक्षक अधिवेशन" },
+      { titleEn: "VCs & Directors Conclave", titleHi: "कुलपति एवं निदेशक अधिवेशन" },
+      { titleEn: "Principal and Outstanding Teacher Conclave", titleHi: "प्राचार्य एवं उत्कृष्ट शिक्षक अधिवेशन" },
       { titleEn: "Scientists & Research Scholars Conclave", titleHi: "वैज्ञानिक एवं शोधार्थी अधिवेशन" },
       { titleEn: "Startup Leaders / Entrepreneurs Conclave", titleHi: "स्टार्टअप लीडर्स / उद्यमी अधिवेशन" },
       { titleEn: "CSR & NGO Conclave", titleHi: "सीएसआर एवं एनजीओ अधिवेशन" },
       { titleEn: "Media Conclave", titleHi: "मीडिया अधिवेशन" },
-      { titleEn: "Talent Conclave (90%+ Achievers)", titleHi: "प्रतिभा अधिवेशन" },
+      { titleEn: "Talented Students Conclave", titleHi: "प्रतिभाशाली विद्यार्थी अधिवेशन" },
       { titleEn: "Defence and Security Conclave", titleHi: "रक्षा एवं सुरक्षा अधिवेशन" },
     ],
   },
@@ -242,12 +243,29 @@ export const ACADEMIC_PROGRAMME_HUB: ProgrammeHubSection[] = [
     footerNote:
       "Register through the official Student Projects Google Form. This programme is separate from Shodhankur. Download the full framework PDF on the Projects tab.",
   },
+  {
+    id: "panel-discussion",
+    tabId: "PanelDiscussionPage",
+    icon: "🗣️",
+    titleEn: "Panel Discussion",
+    titleHi: "पैनल परिचर्चा",
+    description:
+      "Three official Panel Discussion sessions at NIT Hamirpur, 9–11 October 2026, प्रातः 9:30 से 10:45 — आध्यात्मिक भारत, विज्ञानमय भारत, and सुरक्षित भारत.",
+    accent: "navy",
+    items: [
+      { titleEn: "आध्यात्मिक भारत, विकसित भारत — 9 October 2026", titleHi: "आध्यात्मिक भारत, विकसित भारत" },
+      { titleEn: "विज्ञानमय भारत - विकसित भारत — 10 October 2026", titleHi: "विज्ञानमय भारत - विकसित भारत" },
+      { titleEn: "सुरक्षित भारत - विकसित भारत — 11 October 2026", titleHi: "सुरक्षित भारत - विकसित भारत" },
+    ],
+    footerNote:
+      "Coordinator on the official posters: प्रो. अवनीश वर्मा +919416481652. The posters do not print a separate registration URL.",
+  },
 ];
 
 export const ACADEMIC_COUNCIL_SEO = {
   title: "Academic Council — Conference, Conclaves & Olympiads",
   description:
-    "Shiksha Mahakumbh 6.0 Academic Council at NIT Hamirpur (9–11 Oct 2026): 16-track international conference, 8 conclaves, DHE Olympiads, exhibitions, Shodhankur, best practices, student projects, and excellence awards. Peer-reviewed publication pathway.",
+    "Shiksha Mahakumbh 6.0 Academic Council at NIT Hamirpur (9–11 Oct 2026): 16-track international conference, 8 conclaves, panel discussions, DHE Olympiads, exhibitions, Shodhankur, best practices, student projects, and excellence awards. Peer-reviewed publication pathway.",
   keywords: [
     "Academic Council Shiksha Mahakumbh",
     "Shiksha Mahakumbh 6.0 conference",
@@ -259,6 +277,7 @@ export const ACADEMIC_COUNCIL_SEO = {
     "Department of Holistic Education",
     "Viksit Bharat 2047 education",
     "Indian Knowledge Systems conference",
+    "Panel Discussion Shiksha Mahakumbh 6.0",
     "international education conference India",
     "SCI Scopus Web of Science publication",
   ],

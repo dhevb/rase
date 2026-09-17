@@ -83,7 +83,7 @@ const HOMEPAGE_SECTIONS = {
     items: [
       {
         title: "Programmes @ Shiksha Mahakumbh 6.0",
-        body: "7 conclaves, olympiads, exhibitions, awards & more",
+        body: "8 conclaves, olympiads, exhibitions, awards & more",
         detail:
           "Explore the Academic Council schedule — policy conclaves, DHE Olympiads, best practices, student projects, and Bal Shodh Patrika at NIT Hamirpur.",
         url: "/departments/academic-council",
@@ -349,7 +349,7 @@ async function seedAnnouncementBar() {
     },
     {
       title: "Programmes & Conclaves",
-      message: "Explore 7 thematic conclaves, olympiads, exhibitions, and the Multi-Track Conference.",
+      message: "Explore 8 thematic conclaves, olympiads, exhibitions, and the Multi-Track Conference.",
       barType: "global",
       colorTheme: "primary",
       ctaLabel: "View programmes",

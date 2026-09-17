@@ -10,7 +10,11 @@ import {
 import { SMK_6_ANALYTICS_SOURCE } from "@/data/smk-6-edition-hub";
 
 function conclaveDescription(title: string): string | undefined {
-  const match = conclaves.find((item) => item.title.toLowerCase().startsWith(title.toLowerCase()));
+  const needle = title.toLowerCase();
+  const match = conclaves.find((item) => {
+    const name = item.title.toLowerCase();
+    return name === needle || name.includes(needle) || needle.includes(name.split(" conclave")[0]);
+  });
   return match?.focus;
 }
 

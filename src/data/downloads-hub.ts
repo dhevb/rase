@@ -7,6 +7,7 @@ import {
 import { COMMITTEE_EDITION_6_0 } from "@/data/committee-members/edition-6-0";
 import { getEditionByNumber, PAST_EDITIONS, UPCOMING_EDITION } from "@/data/past-editions";
 import { committeePathForEdition } from "@/lib/committee/edition-slugs";
+import { SMK_6_OFFICIAL_COVER } from "@/data/smk-6-edition-hub";
 import { CANONICAL_ROUTES } from "@/constants/canonical-routes";
 import { SITE_URL } from "@/config/site";
 
@@ -103,6 +104,7 @@ export function downloadsMetaDescription(): string {
 }
 
 export function editionBrochureImageSrc(edition: string): string {
+  if (edition === "6.0") return SMK_6_OFFICIAL_COVER.src;
   return getEditionByNumber(edition)?.imageSrc ?? DOWNLOADS_HERO_IMAGE;
 }
 

@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     default: "Shiksha Mahakumbh 6.0 — National Education Summit",
   },
   description:
-    "Shiksha Mahakumbh 6.0 will be held at National Institute of Technology Hamirpur (NIT Hamirpur / NITH), Himachal Pradesh, India, on 9–11 October 2026.",
+    "Shiksha Mahakumbh 6.0 will be held at National Institute of Technology Hamirpur (NIT Hamirpur / NITH), Himachal Pradesh, India, on 9–11 October 2026. Theme: शिक्षा, प्रकृति और प्रगति — Education for Development and Harmony with Nature.",
   manifest: "/manifest.webmanifest",
   icons: {
     icon: "/sLogo.png",

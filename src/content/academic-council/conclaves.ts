@@ -7,45 +7,54 @@ export type ConclaveCard = {
 
 export const academicCouncilConclaves: ConclaveCard[] = [
   {
-    title: "VC / Directors Conclave",
+    title: "VCs & Directors Conclave",
     theme: "Practical Innovation in Education System",
-    focus: "Policy transformation, autonomy, global benchmarks",
+    focus: "Systemic Policy Transformation, Institutional Autonomy, Global Benchmarks",
     output: "Vision Charter for Higher Education @2047",
   },
   {
-    title: "Principals & Teachers Conclave",
-    theme: "Transformative Ethical Learning",
-    focus: "School leadership, pedagogy, equity",
-    output: "Teaching Excellence Toolkit",
+    title: "Principal and Outstanding Teacher Conclave",
+    theme: "Innovative learning with Ethical Values",
+    focus:
+      "Holistic Development of Education; Village/City and industry partnership; Excellence in Academia",
+    output: "Model School Leadership & Teaching Excellence Toolkit",
   },
   {
-    title: "Scientists & Researchers Conclave",
+    title: "Scientists & Research Scholars Conclave",
     theme: "Lab to the Last Mile",
-    focus: "R&D, patents, interdisciplinary research",
-    output: "Research-to-Policy Guide",
+    focus: "Interdisciplinary R&D, Patent Ecosystem, Bharatiya Knowledge",
+    output: "Research-to-Policy Action Guide",
   },
   {
-    title: "Startup & Entrepreneurs Conclave",
-    theme: "Entrepreneurship for Employment",
-    focus: "Innovation, startups, incubation",
-    output: "Entrepreneurship Framework",
+    title: "Startup Leaders / Entrepreneurs Conclave",
+    theme: "Mitigation of Unemployment through Entrepreneurship",
+    focus: "Entrepreneurship Promotion through Education",
+    output: "Student Entrepreneurship Development Framework",
   },
   {
     title: "CSR & NGO Conclave",
-    theme: "Inclusive Education Responsibility",
-    focus: "Access, equity, social impact",
-    output: "Education Investment Charter",
+    theme: "Society of Knowledge, Obedience with Practical Responsibility",
+    focus: "Equitable Access, Girls' Education, Underserved Communities",
+    output: "Inclusive Education Investment Charter",
   },
   {
     title: "Media Conclave",
-    theme: "Power of Truth",
-    focus: "Responsible journalism, narratives",
-    output: "Media Ethics Code",
+    theme: "Visualize the World with the Power of Truth",
+    focus: "Responsible Storytelling, Fact-Based Discourse, Positive Narratives",
+    output: "Shiksha Media Ethics & Impact Code",
   },
   {
-    title: "Talent Conclave",
-    theme: "Nurturing Excellence",
-    focus: "Top students, mentorship",
-    output: "Talent Recognition Pathway",
+    title: "Talented Students Conclave",
+    theme: "Nurturing Excellence for Viksit Bharat",
+    focus:
+      "Academic Excellence; Sports & Physical Activities; Art & Culture; Digital Activity & Innovation; Social Service & Social Transformation",
+    output: "National Talent Recognition & Mentorship Pathway",
+  },
+  {
+    title: "Defence and Security Conclave",
+    theme: "Nation First: Strengthening Security through Innovation & Strategic Leadership",
+    focus:
+      "National Security, Defence Innovation, Cyber Security, Strategic Leadership & Indigenous Technologies",
+    output: "National Framework for Defence Awareness & Strategic Leadership",
   },
 ];

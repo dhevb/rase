@@ -15,7 +15,7 @@ import { academicCouncilProgrammeUrl } from "@/data/academic-council-hub";
 import { UNIVERSITY_CONFERENCES } from "@/data/university-conferences-series";
 import { COMMITTEE_EDITION_6_0 } from "@/data/committee-members/edition-6-0";
 import { committeePathForEdition } from "@/lib/committee/edition-slugs";
-import { conclaves, SMK_6_PROGRAMME_LEADERSHIP } from "@/components/vibhag/academic/academic-content-data";
+import { conclaves, SMK_6_PROGRAMME_LEADERSHIP, SMK_6_PROJECT_EXPO_OFFICIAL, SMK_6_SHODHANKUR_OFFICIAL, SMK_6_PANEL_DISCUSSIONS, SMK_6_PANEL_DISCUSSION_OFFICIAL } from "@/components/vibhag/academic/academic-content-data";
 import { CMT_SUBMIT_PATH } from "@/lib/registration/config";
 import type { CmsSpeakerCard } from "@/lib/cms/types";
 import type { RegistrationType } from "@/types/registration";
@@ -34,6 +34,58 @@ export const SMK_6_EVENT_THEME = {
   note:
     "Official event-wide theme of Shiksha Mahakumbh 6.0. Programme-specific themes (conclaves, exhibition, and cultural programme) remain listed with those programmes.",
 } as const;
+
+/** Official 2026 front-page artwork — keep aspect ratio; do not crop in UI. */
+export const SMK_6_OFFICIAL_COVER = {
+  src: "/branding/shiksha-mahakumbh-6-0-official-cover.png",
+  alt:
+    "Official Shiksha Mahakumbh 2026 (षष्ठम संस्करण / 6th Edition) front page — शिक्षा महाकुंभ 2026 at NIT Hamirpur, 9–11 October 2026. Theme: शिक्षा, प्रकृति और प्रगति / Education for Development and Harmony with Nature.",
+  width: 545,
+  height: 762,
+} as const;
+
+/**
+ * Organising line from the official 2026 front page.
+ * Roles are not invented beyond “Organizers … in collaboration with …”.
+ */
+export const SMK_6_ORGANISING_IDENTITY = {
+  heading: "Organizers",
+  statement:
+    "Department of Holistic Education, A unit of Vidya Bharti Institute of Training and Research Trust in collaboration with NIT Hamirpur, IIT Mandi, CUHP, Dharamshala and Association of Indian Universities.",
+  collaborators: [
+    "Department of Holistic Education (DHE)",
+    "Vidya Bharti Institute of Training and Research Trust",
+    "NIT Hamirpur",
+    "IIT Mandi",
+    "CUHP, Dharamshala",
+    "Association of Indian Universities",
+  ],
+} as const;
+
+/** Campus notes printed on the official 2026 front page. */
+export const SMK_6_FRONT_PAGE_CAMPUSES = [
+  {
+    id: "nit-hamirpur",
+    label: "NIT Hamirpur",
+    role: "Event venue",
+    text:
+      "National Institute of Technology Hamirpur (NIT Hamirpur), An Institute of National Importance, is one of Bharat’s leading institutions of higher technical education, located in the serene and picturesque landscape of Himachal Pradesh. Established in 1986 as a Regional Engineering College (REC), it was elevated to the status of a National Institute of Technology in 2002 and recognized as an Institute of National Importance by the Government of Bharat.",
+  },
+  {
+    id: "iit-mandi",
+    label: "IIT Mandi",
+    role: "Collaborating institution (front page)",
+    text:
+      "The Indian Institute of Technology Mandi is one among the eight new second generation of IITs. IIT Mandi is a research university now located in Kamand Valley, Mandi city in Mandi district of Himachal Pradesh. IIT Mandi’s campus (about 14 km from Mandi) is on the left bank of the Uhl River at Kamand and Salgi villages. There is great variation in the climatic conditions of Himachal due to extreme variation in elevation.",
+  },
+  {
+    id: "cuhp-dharamshala",
+    label: "CUHP, Dharamshala",
+    role: "Collaborating institution (front page)",
+    text:
+      "The Central University of Himachal Pradesh, Dharamshala is (CUHP, Dharamshala) established under the Central Universities Act 2009 (No. 25 of 2009) enacted by the Parliament. The University is funded and regulated by the University Grants Commission (UGC). The University became functional with the assumption of charge by the first Vice Chancellor on 20th January 2010.",
+  },
+] as const;
 
 export const SMK_6_OVERVIEW = {
   title: UPCOMING_EDITION.title,
@@ -58,7 +110,9 @@ export const SMK_6_HOMEPAGE_PREVIEW_IDS = [
 ] as const;
 
 export function smk6ProgrammeCards() {
-  return ACADEMIC_PROGRAMME_HUB.filter((section) => section.id !== "conclaves").map((section) => ({
+  return ACADEMIC_PROGRAMME_HUB.filter(
+    (section) => section.id !== "conclaves" && section.id !== "panel-discussion"
+  ).map((section) => ({
     id: section.id,
     title: section.titleEn,
     titleHi: section.titleHi,
@@ -67,6 +121,12 @@ export function smk6ProgrammeCards() {
     tabId: section.tabId,
     items: section.items.slice(0, 4).map((item) => item.titleEn),
     footerNote: section.footerNote,
+    poster:
+      section.id === "patrika"
+        ? SMK_6_SHODHANKUR_OFFICIAL.poster
+        : section.id === "projects"
+          ? SMK_6_PROJECT_EXPO_OFFICIAL.poster
+          : undefined,
   }));
 }
 
@@ -86,12 +146,14 @@ export function smk6HomepageProgrammeHighlights() {
 
 export function smk6ConclaveCards() {
   return conclaves.map((conclave) => ({
+    id: conclave.id,
     title: conclave.title,
     participants: conclave.participants,
     focus: conclave.focus,
     output: conclave.output,
     theme: conclave.theme,
     coordinators: conclave.coordinators,
+    poster: "poster" in conclave ? conclave.poster : undefined,
     href: academicCouncilProgrammeUrl("ConclavePage"),
   }));
 }
@@ -107,12 +169,14 @@ export function smk6ConferenceTracks() {
 
 export function smk6BrochureInitiatives() {
   const other = SMK_6_PROGRAMME_LEADERSHIP.otherProgrammes;
+  const panel = SMK_6_PROGRAMME_LEADERSHIP.panelDiscussion;
   return [
     {
       id: "panel",
       title: "Panel Discussion",
-      detail: SMK_6_PROGRAMME_LEADERSHIP.panelDiscussion.focus,
-      leadership: `Chair: ${SMK_6_PROGRAMME_LEADERSHIP.panelDiscussion.chair}`,
+      detail: `${panel.focus} ${SMK_6_PANEL_DISCUSSIONS.map((session) => `${session.title} (${session.date})`).join("; ")}.`,
+      leadership: `समन्वयक: ${SMK_6_PANEL_DISCUSSION_OFFICIAL.coordinator.nameHi} ${SMK_6_PANEL_DISCUSSION_OFFICIAL.coordinator.phone}`,
+      href: academicCouncilProgrammeUrl("PanelDiscussionPage"),
     },
     {
       id: "other",

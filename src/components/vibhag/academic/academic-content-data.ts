@@ -129,9 +129,10 @@ export const SMK_6_PROGRAMME_LEADERSHIP = {
     ],
   },
   panelDiscussion: {
-    chair: "Prof. Avnesh Verma, Kurukshetra University",
+    coordinator: "प्रो. अवनीश वर्मा +919416481652",
+    coordinatorEn: "Prof. Avnesh Verma",
     focus:
-      "An interactive forum for academics, policymakers, and industry leaders to deliberate on educational, technological, and societal issues.",
+      "Three official Panel Discussion sessions at NIT Hamirpur, 9–11 October 2026, प्रातः 9:30 से 10:45.",
   },
   awards: {
     chair: "Prof. Vishal Sharma, Punjab University, Chandigarh",
@@ -166,118 +167,415 @@ export const brochureExhibitionAreas = [
   "Community Development Models",
 ] as const;
 
+export const SMK_6_CONCLAVE_POSTER_SIZE = { width: 1500, height: 1875 } as const;
+
+export const SMK_6_SHODHANKUR_OFFICIAL = {
+  poster: {
+    src: "/images/programmes/smk-6-shodhankur.webp",
+    alt: "Shiksha Mahakumbh 6.0 Chhatra Shodh Patrika Shodhankur official poster",
+    ...SMK_6_CONCLAVE_POSTER_SIZE,
+  },
+  date: "10 October 2026",
+  time: "2:30 PM to 5:30 PM",
+  venue: "NIT Hamirpur, Himachal Pradesh",
+  sessionNote:
+    "Shodhankur will commence at 3:00 PM. Participants are requested to attend the Inaugural/Discourse Session scheduled at 11:00 AM as well.",
+  submissionDeadline: "30 September",
+  contact: "डॉ शिक्षा शर्मा – +91 98788 90303",
+  eligibility: "कक्षा IX–X एवं XI–XII के विद्यार्थी",
+  purpose: [
+    "Shodhankur विद्यार्थियों में Research Aptitude, Scientific Temperament, Creativity एवं Problem-Solving Skills विकसित करने की एक राष्ट्रीय पहल है।",
+    "यह विद्यार्थियों को अपने Research Ideas, Innovative Projects एवं Academic Articles को प्रस्तुत कर राष्ट्रीय स्तर पर पहचान बनाने का मंच प्रदान करता है।",
+  ],
+  specialNotes: [
+    "उपर्युक्त विषयों से संबंधित सफलतापूर्वक पूर्ण किए गए Innovative Projects पर आधारित Articles भी प्रस्तुत किए जा सकते हैं।",
+    "चयनित शोध पत्रों को कॉन्क्लेव में प्रस्तुत करने का अवसर मिल सकता है।",
+    "चयनित शोध पत्र शोधांकुर पत्रिका में प्रकाशित किए जाएंगे।",
+  ],
+} as const;
+
+export const SMK_6_PROJECT_EXPO_OFFICIAL = {
+  poster: {
+    src: "/images/programmes/smk-6-project-expo.webp",
+    alt: "Shiksha Mahakumbh 6.0 Project Expo 2026 official poster",
+    ...SMK_6_CONCLAVE_POSTER_SIZE,
+  },
+  dates: "9–10 October 2026",
+  time: "9:00 AM to 5:30 PM",
+  venue: "NIT Hamirpur, Himachal Pradesh",
+  tagline: "FROM IDEAS TO IMPACT — National Platform for Student Innovation & Research",
+  coordinators: [
+    "Dr. Ashwini Rana: +91 70186 54566",
+    "Mr. Bikash Kumar: +91 74910 14167",
+    "Dr. Gaurav, DST, Delhi: 90339 25400",
+    "Dr. Rahul: +91 97360 33342",
+  ],
+  mentorshipNote:
+    "Projects selected by experts may receive Mentoring & Training Support through PRISM / PAT @ CSIR-CSIO Chandigarh",
+  cohorts: [
+    "SCHOOL — Classes IX–XII · Team: 1–3 Students · Innovation • Creativity • Community Impact",
+    "UNDERGRADUATE — UG Students · Team: 1–3 Students · Prototype • Innovation • Solutions",
+    "PG / Ph.D. — PG & Research Scholars · Team: 1–3 Students · Research • Technology • Excellence",
+  ],
+  exploreThemes: [
+    "Agriculture & Horticulture",
+    "Climate Resilience & Disaster Risk Reduction",
+    "AI, Intelligent Systems & Robotics",
+    "Water Conservation • Renewable Energy • Environment",
+    "Rural Livelihoods • Indigenous Knowledge • Community Innovation",
+  ],
+  studentGains: [
+    "Opportunity to interact with Scientists & Experts",
+    "Exposure / Training opportunity at CSIR-CSIO Chandigarh",
+    "Certificates & Recognition",
+  ],
+} as const;
+
+export const SMK_6_PANEL_POSTER_SIZE = { width: 819, height: 1024 } as const;
+
+export const SMK_6_PANEL_DISCUSSION_OFFICIAL = {
+  programmeTitle: "Panel Discussion",
+  editionLine: "शिक्षा महाकुंभ 2026 · षष्ठम संस्करण",
+  venue: "NIT Hamirpur, Himachal Pradesh",
+  time: "प्रातः 9:30 से 10:45",
+  coordinator: {
+    nameHi: "प्रो. अवनीश वर्मा",
+    phone: "+919416481652",
+  },
+} as const;
+
+export const SMK_6_PANEL_DISCUSSIONS = [
+  {
+    id: "adhyatmik-bharat",
+    title: "आध्यात्मिक भारत, विकसित भारत",
+    date: "9 October 2026",
+    time: SMK_6_PANEL_DISCUSSION_OFFICIAL.time,
+    venue: SMK_6_PANEL_DISCUSSION_OFFICIAL.venue,
+    moderator: {
+      name: "Dr. Thakur SKR",
+      designation: "Sr. Scientist, ISRO",
+    },
+    panelists: [
+      { name: "Shri Banwir", designation: "Social Worker" },
+      { name: "Dr. Vir Singh Rangda", designation: "Social Worker" },
+      { name: "Prof. Laxmidhar Behera", designation: "Director, IIT Mandi" },
+      {
+        name: "Swami Tanmahimananda Ji Maharaj",
+        designation: "Secretary, Ramakrishna Mission, Shimla",
+      },
+      { name: "Dr. Archana Santosh Nanoty", designation: "Registrar, NIT Hamirpur" },
+    ],
+    poster: {
+      src: "/images/programmes/smk-6-panel-discussion-01-adhyatmik-bharat.webp",
+      alt: "Shiksha Mahakumbh 6.0 Panel Discussion official poster — आध्यात्मिक भारत, विकसित भारत, 9 October 2026, NIT Hamirpur",
+      ...SMK_6_PANEL_POSTER_SIZE,
+    },
+  },
+  {
+    id: "vigyanmay-bharat",
+    title: "विज्ञानमय भारत - विकसित भारत",
+    date: "10 October 2026",
+    time: SMK_6_PANEL_DISCUSSION_OFFICIAL.time,
+    venue: SMK_6_PANEL_DISCUSSION_OFFICIAL.venue,
+    moderator: {
+      name: "Prof. Avnesh Verma",
+      designation: "Kurukshetra University",
+    },
+    panelists: [
+      { name: "Dr. Sikander Kumar", designation: "MP (RS), Himachal Pradesh" },
+      { name: "Dr. Rajneesh Arora", designation: "Former VC, IKGPTU" },
+      { name: "Prof. Rajeev Ahuja", designation: "Director, IIT Ropar" },
+      { name: "Dr. Thakur SKR", designation: "Sr. Scientist, ISRO" },
+      { name: "Dr. Chaman Chandel", designation: "Sr. Scientist, DRDO" },
+    ],
+    poster: {
+      src: "/images/programmes/smk-6-panel-discussion-02-vigyanmay-bharat.webp",
+      alt: "Shiksha Mahakumbh 6.0 Panel Discussion official poster — विज्ञानमय भारत - विकसित भारत, 10 October 2026, NIT Hamirpur",
+      ...SMK_6_PANEL_POSTER_SIZE,
+    },
+  },
+  {
+    id: "surakshit-bharat",
+    title: "सुरक्षित भारत - विकसित भारत",
+    date: "11 October 2026",
+    time: SMK_6_PANEL_DISCUSSION_OFFICIAL.time,
+    venue: SMK_6_PANEL_DISCUSSION_OFFICIAL.venue,
+    moderator: {
+      name: "Dr. Thakur SKR",
+      designation: "Sr. Scientist, ISRO",
+    },
+    panelists: [
+      { name: "Dr. Indresh Kumar", designation: "Social Worker" },
+      {
+        name: "Major Anurag Singh Thakur",
+        designation: "MP (LS) and Former Union Minister",
+      },
+      { name: "Prof. (Dr.) K. G. Suresh", designation: "Director, India Habitat Centre" },
+      { name: "Adv. Ashwini Upadhay", designation: "PIL Man of Bharat" },
+      { name: "Ms. Sonal Goel, IAS", designation: "Secretary, Govt of Tripura" },
+    ],
+    poster: {
+      src: "/images/programmes/smk-6-panel-discussion-03-surakshit-bharat.webp",
+      alt: "Shiksha Mahakumbh 6.0 Panel Discussion official poster — सुरक्षित भारत - विकसित भारत, 11 October 2026, NIT Hamirpur",
+      ...SMK_6_PANEL_POSTER_SIZE,
+    },
+  },
+] as const;
+
+export const CONCLAVE_BEST_PRACTICES_NOTE =
+  "Along with submissions related to the respective Conclave themes, participants are also encouraged to submit write-ups on Best Practices, successful experiments, transformative initiatives, and inspiring success stories that have contributed to positive social change.";
+
 export const conclaves = [
   {
-    title: "VC / Directors Conclave",
+    id: "vcs-directors",
+    title: "VCs & Directors Conclave",
+    titleHi: "कुलपति एवं निदेशक अधिवेशन",
     icon: "🎓",
     participants:
-      "Vice-Chancellors, Directors, Academic Thinkers, NEP Implementers",
-    focus:
-      "Systemic policy transformation, institutional autonomy, global benchmarks",
-    output:
-      "Vision Charter for Higher Education @2047",
-    theme:
-      "Practical Innovation in Education System",
-    coordinators:
-      "Dr. Vipin Jain, CBLU, Bhiwani",
+      "Vice-Chancellors, Directors, Academic Thinkers, Academic Leader, NEP Implementers",
+    focus: "Systemic Policy Transformation, Institutional Autonomy, Global Benchmarks",
+    output: "Vision Charter for Higher Education @2047",
+    theme: "Practical Innovation in Education System",
+    coordinators: [
+      "Dr. Jatinder Garg, CUHP, Dharamshala",
+      "Dr. Samsher Singh, AB College, Pathankot",
+      "Sh. Sanjay Jamwal, NIT Hamirpur",
+      "Sh. Vipin Kumar, NIT Hamirpur",
+    ],
+    contactCoordinators: [
+      "Dr. Samsher Singh: +91 94632 31250",
+      "Dr. Jatinder Garg: +91 95019 56000",
+    ],
+    date: "9 October 2026",
+    time: "2:30 PM to 5:30 PM",
+    venue: "NIT Hamirpur, Himachal Pradesh",
+    sessionNote:
+      "The Conclave will commence at 3:00 PM. Participants are requested to attend the Inaugural/Discourse Session scheduled at 11:00 AM as well.",
+    poster: {
+      src: "/images/conclaves/smk-6-conclave-01-vcs-directors.webp",
+      alt: "Shiksha Mahakumbh 6.0 VCs & Directors Conclave official poster",
+      ...SMK_6_CONCLAVE_POSTER_SIZE,
+    },
   },
   {
-    title: "Principals & Outstanding Teachers Conclave",
+    id: "principal-outstanding-teacher",
+    title: "Principal and Outstanding Teacher Conclave",
+    titleHi: "प्राचार्य एवं उत्कृष्ट शिक्षक अधिवेशन",
     icon: "🏫",
-    participants:
-      "School Principals, Outstanding Teachers, DEOs, Education Officers",
+    participants: "Principals, Excellent Teachers and Distinguished Educationists.",
     focus:
-      "Foundational literacy, school leadership, rural-urban equity, pedagogy reforms",
-    output:
-      "Model School Leadership & Teaching Excellence Toolkit",
-    theme:
-      "Transformative Ethical Learning with Innovations",
-    coordinators:
-      "Dr. Raman Sharma, HPU, Shimla | Prof. Gaurav Tejpal, AGC Amritsar | Dr. Siddarath Chauhan, NIT Hamirpur | Dr. Kuldeep Kumar, NIT Hamirpur",
+      "Holistic Development of Education; Village/City and industry partnership; Excellence in Academia",
+    output: "Model School Leadership & Teaching Excellence Toolkit",
+    theme: "Innovative learning with Ethical Values",
+    coordinators: [
+      "Prof. Anju Batta Sehgal",
+      "Dr Kuldeep Sharma",
+      "Dr Raman Sharma",
+      "Dr. Babita, Retd. Principal",
+      "Prof Gaurav Tejpal, AGC Amritsar",
+      "Mr Gaurav Sharma, NIT Hamirpur",
+    ],
+    contactCoordinators: [
+      "Prof. Anju Batta Sehgal: +91 94184 87009",
+      "Dr Kuldeep Sharma: +91 94187 80275",
+      "Dr Raman Sharma: +91 88943 77363",
+    ],
+    date: "10 October 2026",
+    time: "2:30 PM to 5:30 PM",
+    venue: "Mini Auditorium, NIT Hamirpur, Himachal Pradesh",
+    sessionNote:
+      "The Conclave will commence at 2:00 PM. Participants are requested to attend the Inaugural/Discourse Session scheduled at 11:00 AM as well.",
+    keynote: "Adv. Ashwini Upadhyay, PIL Man of Bharat",
+    extraNotes: [
+      "Key attractions: Deliberations on Academic Excellence and Challenges; NEP: Implementation and outcomes; Innovative Teaching Strategies; Learning by Critical Thinking; Best Practices in Education.",
+      "Vision: Transforming education for future empowerment — to nurture integrity, responsibility, empathy and respect; to inspire curiosity, creativity and critical thinking.",
+    ],
+    poster: {
+      src: "/images/conclaves/smk-6-conclave-02-principal-outstanding-teacher.webp",
+      alt: "Shiksha Mahakumbh 6.0 Principal and Outstanding Teacher Conclave official poster",
+      ...SMK_6_CONCLAVE_POSTER_SIZE,
+    },
   },
   {
+    id: "scientists-research-scholars",
     title: "Scientists & Research Scholars Conclave",
+    titleHi: "वैज्ञानिक एवं शोधार्थी अधिवेशन",
     icon: "🔬",
     participants:
       "Scientists, Research Scholars, PhD Candidates, Innovators, R&D Professionals",
-    focus:
-      "Interdisciplinary R&D, patent ecosystem, Bharatiya knowledge",
-    output:
-      "Research-to-Policy Action Guide",
-    theme:
-      "Lab to the Last Mile",
-    coordinators:
-      "Dr. Pooja, CSIR-CSIO, Chandigarh | Dr. Chaman Chandel, DRDO, Chandigarh | Dr. Neeraj Marwaha, Sri Sai University, Palampur",
+    focus: "Interdisciplinary R&D, Patent Ecosystem, Bharatiya Knowledge",
+    output: "Research-to-Policy Action Guide",
+    theme: "Lab to the Last Mile",
+    coordinators: [
+      "Dr. Pooja, CSIR - CSIO, Chandigarh",
+      "Dr. Chaman Chandel, DRDO, Chandigarh",
+      "Dr. Neeraj Marwaha, Sri Sai University, Palampur",
+      "Dr. Varun, NIT Hamirpur",
+      "Dr. Tollari Ganesh, NIT Hamirpur",
+    ],
+    contactCoordinators: ["डॉ सुजीत ठाकुर: +91 9310339103"],
+    date: "9 October 2026",
+    time: "2:30 PM to 5:30 PM",
+    venue: "NIT Hamirpur, Himachal Pradesh",
+    sessionNote:
+      "The Conclave will commence at 3:00 PM. Participants are requested to attend the Inaugural/Discourse Session scheduled at 11:00 AM as well.",
+    extraNotes: ["RESEARCH • INNOVATE • IMPACT"],
+    poster: {
+      src: "/images/conclaves/smk-6-conclave-03-scientists-research-scholars.webp",
+      alt: "Shiksha Mahakumbh 6.0 Scientists & Research Scholars Conclave official poster",
+      ...SMK_6_CONCLAVE_POSTER_SIZE,
+    },
   },
   {
+    id: "startup-leaders-entrepreneurs",
     title: "Startup Leaders / Entrepreneurs Conclave",
+    titleHi: "स्टार्टअप लीडर्स / उद्यमी अधिवेशन",
     icon: "🚀",
     participants:
       "Startup Founders, Entrepreneurs, Business Leaders, Innovation Mentors",
-    focus:
-      "Entrepreneurship promotion through education",
-    output:
-      "Student Entrepreneurship Development Framework",
-    theme:
-      "Mitigation of Unemployment through Entrepreneurship",
-    coordinators:
-      "Dr. Mirgender Bedi, IKGPTU, Jalandhar | Er. Pankaj Kumar, NIT Hamirpur | Sh. Bikash Kumar, COO, SavantX Technologies",
+    focus: "Entrepreneurship Promotion through Education",
+    output: "Student Entrepreneurship Development Framework",
+    theme: "Mitigation of Unemployment through Entrepreneurship",
+    coordinators: [
+      "Prof Dipankar, IIT Mandi",
+      "Dr. M. S. Bedi",
+      "Dr. Sukatar Singh, Khalsa College Amritsar",
+      "Dr. Pamita Awasthi, NIT Hamirpur",
+      "Sh. Bikash Kumar, COO, SavantX Technologies",
+    ],
+    contactCoordinators: ["Dr. M. S. Bedi: +91 94780 98076"],
+    sessionChair:
+      "Prof. Manikant Paswan, Director, SLIET Punjab | Prof Dipankar, IIT Mandi",
+    date: "10 October 2026",
+    time: "2:30 PM to 5:30 PM",
+    venue: "NIT Hamirpur, Himachal Pradesh",
+    sessionNote:
+      "The Conclave will commence at 3:00 PM. Participants are requested to attend the Inaugural/Discourse Session scheduled at 11:00 AM as well.",
+    poster: {
+      src: "/images/conclaves/smk-6-conclave-04-startup-leaders-entrepreneurs.webp",
+      alt: "Shiksha Mahakumbh 6.0 Startup Leaders / Entrepreneurs Conclave official poster",
+      ...SMK_6_CONCLAVE_POSTER_SIZE,
+    },
   },
   {
+    id: "csr-ngo",
     title: "CSR & NGO Conclave",
+    titleHi: "सीएसआर एवं एनजीओ अधिवेशन",
     icon: "🤝",
     participants:
-      "CSR leaders, NGOs, philanthropic foundations, tribal education activists",
-    focus:
-      "Equitable access, girls’ education, underserved communities",
-    output:
-      "Inclusive Education Investment Charter",
-    theme:
-      "Society of Knowledge, Obedience with Practical Responsibility",
-    coordinators:
-      "Prof. Kulbhushan Chandel, HPU, Shimla | Dr. Suneel Dubey, IUNC | Dr. Somesh Kumar, NIT Hamirpur | Dr. Mrityunjay Singh, IIIT Una | Sh. Robin, Environment Activist | Sh. Sumit Gupta, Entrepreneur | Sh. Mandeep Tiwari, Entrepreneur",
+      "CSR Leaders, NGO Representatives, Philanthropic Foundations, Tribal Education Activists",
+    focus: "Equitable Access, Girls' Education, Underserved Communities",
+    output: "Inclusive Education Investment Charter",
+    theme: "Society of Knowledge, Obedience with Practical Responsibility",
+    coordinators: [
+      "Prof. Kulbhushan Chandel, HPU, Shimla",
+      "Dr. Suneel Dubey, IUNC",
+      "Dr. Mrityunjay Singh, IIIT Una",
+      "Sh. Robin, Environment Activist",
+      "Sh. Sumit Gupta, Entrepreneur",
+      "Sh. Mandeep Tiwari, Entrepreneur",
+      "Dr. Rinshu, NIT Hamirpur",
+      "Dr. Shampy Kamboj, NIT Hamirpur",
+    ],
+    contactCoordinators: ["डॉ. प्रवीण कुमार शर्मा: +91 62902 60756"],
+    date: "10 October 2026",
+    time: "2:30 PM to 5:30 PM",
+    venue: "NIT Hamirpur, Himachal Pradesh",
+    sessionNote:
+      "The Conclave will commence at 3:00 PM. Participants are requested to attend the Inaugural/Discourse Session scheduled at 11:00 AM as well.",
+    poster: {
+      src: "/images/conclaves/smk-6-conclave-05-csr-ngo.webp",
+      alt: "Shiksha Mahakumbh 6.0 CSR & NGO Conclave official poster",
+      ...SMK_6_CONCLAVE_POSTER_SIZE,
+    },
   },
   {
+    id: "media",
     title: "Media Conclave",
+    titleHi: "मीडिया अधिवेशन",
     icon: "📢",
     participants:
-      "Journalists, Edufluencers, Digital Content Creators, Fact-checkers",
-    focus:
-      "Responsible storytelling, fact-based discourse, positive narratives",
-    output:
-      "Shiksha Media Ethics & Impact Code",
-    theme:
-      "Visualize the World with the Power of Truth",
-    coordinators:
-      "Dr. Rakesh Kumar, NIT Hamirpur | Adv. Aarti Sharma, Member, DHE",
+      "Journalists, Edufluencers, Digital Content Creators, Fact-checkers, Media Professionals",
+    focus: "Responsible Storytelling, Fact-Based Discourse, Positive Narratives",
+    output: "Shiksha Media Ethics & Impact Code",
+    theme: "Visualize the World with the Power of Truth",
+    coordinators: [
+      "Prof. Bala Lakhendra, BHU",
+      "Adv. Aarti Sharma, Member, DHE",
+      "Dr. Amit Kansal, Independent Director, NHPC",
+      "Dr. Garima Bhatti, Rawal College, Faridabad",
+      "Dr. Rakesh Sharma, NIT Hamirpur",
+      "Dr. Amit Kaul, NIT Hamirpur",
+    ],
+    contactCoordinators: [
+      "प्रो बाला लखेंद्र: +91 79857 35729",
+      "अधिवक्ता आरती शर्मा: +91 85279 33391",
+    ],
+    keynote: "प्रो. (डॉ.) के.जी. सुरेश, निदेशक, इंडिया हैबिटेट सेंटर",
+    date: "10 October 2026",
+    time: "2:30 PM to 5:30 PM",
+    venue: "NIT Hamirpur, Himachal Pradesh",
+    sessionNote:
+      "The Conclave will commence at 3:00 PM. Participants are requested to attend the Inaugural/Discourse Session scheduled at 11:00 AM as well.",
+    poster: {
+      src: "/images/conclaves/smk-6-conclave-06-media.webp",
+      alt: "Shiksha Mahakumbh 6.0 Media Conclave official poster",
+      ...SMK_6_CONCLAVE_POSTER_SIZE,
+    },
   },
   {
-    title: "Talent Conclave (90%+ Achievers)",
+    id: "talented-students",
+    title: "Talented Students Conclave",
+    titleHi: "प्रतिभाशाली विद्यार्थी अधिवेशन",
     icon: "🌟",
     participants:
-      "Meritorious Students (90%+), Toppers, Academic Achievers",
+      "Class 9 to 12 students with more than 90% marks; State-level or above participation in sports, art & culture, or digital innovation; noteworthy social service and social transformation work",
     focus:
-      "Talent recognition, motivation, academic excellence",
-    output:
-      "National Talent Recognition & Mentorship Pathway",
-    theme:
-      "Nurturing Excellence for Viksit Bharat",
-    coordinators:
-      "Dr. Arvind Kumar, NIT Hamirpur | Dr. Shamsher Singh, AB College, Pathankot | Dr. Anju Sehgal, NSCBM Govt College, Hamirpur",
+      "Academic Excellence; Sports & Physical Activities; Art & Culture; Digital Activity & Innovation; Social Service & Social Transformation",
+    output: "National Talent Recognition & Mentorship Pathway",
+    theme: "Nurturing Excellence for Viksit Bharat",
+    coordinators: [
+      "Dr. Jyoti Khanna",
+      "Dr. Pradeep",
+    ],
+    contactCoordinators: [
+      "Dr. Jyoti Khanna: +91 95010 20568",
+      "Dr. Pradeep: +91 89981 05390",
+    ],
+    organizingTeam: "Divyanshu Garg | Devanshi Sharma | Hardik Singla",
+    keynote: "Sri K. Vasudeva Rao, President, Bhaktivedanta Institute, Alumni, IIT Kanpur",
+    registrationWindow: "15 September to 25 September",
+    date: "10 October 2026",
+    time: "2:30 PM to 5:30 PM",
+    venue: "NIT Hamirpur, Himachal Pradesh",
+    extraNotes: [
+      "All students are requested to register online to participate in Shiksha Mahakumbh. Submit your projects and achievements online.",
+      "Special: You can submit your suggestions or original solution to any problem for the creation of a developed India i.e. Sujalam, Sufalam, Malayaj Sheetalam by 2047 in 1800 to 2000 words. Selected research papers will be published in the Shodhankur Journal.",
+    ],
+    poster: {
+      src: "/images/conclaves/smk-6-conclave-07-talented-students.webp",
+      alt: "Shiksha Mahakumbh 6.0 Talented Students Conclave official poster",
+      ...SMK_6_CONCLAVE_POSTER_SIZE,
+    },
   },
   {
-    title: "Defence and Security",
+    id: "defence-security",
+    title: "Defence and Security Conclave",
+    titleHi: "रक्षा एवं सुरक्षा अधिवेशन",
     icon: "🛡️",
     participants:
       "Defence Personnel, Defence Scientists, Strategic Experts, NCC, Defence Industry & Security Professionals",
     focus:
       "National Security, Defence Innovation, Cyber Security, Strategic Leadership & Indigenous Technologies",
-    output:
-      "National Framework for Defence Awareness & Strategic Leadership",
+    output: "National Framework for Defence Awareness & Strategic Leadership",
     theme:
       "Nation First: Strengthening Security through Innovation & Strategic Leadership",
-    coordinators:
+    coordinators: [
       "Major General Suresh Kumar Khajuria (Retd.), President, Vidya Bharti, Punjab",
+      "Prof. Pawan Kumar Sharma, NIT Hamirpur",
+      "Dr. Vivek Sharma, NIT Hamirpur",
+      "Dr. Vinod Sharma, NIT Hamirpur",
+    ],
   },
 ];
 
@@ -444,11 +742,11 @@ export const participationSteps = [
 ];
 
 export const patrikaBenefits = [
-  "Publication in national-level Student Research Journal",
-  "Certificates for participants",
-  "Special recognition for outstanding research",
-  "Opportunity to present at Shiksha Mahakumbh 6.0",
-  "Academic exposure and mentorship opportunities",
+  "Research & Scientific Writing Skills",
+  "Expert Mentorship",
+  "Publication Opportunity",
+  "Awards & Recognition",
+  "Certificates & Research Exposure",
 ];
 
 export const patrikaSections = [
@@ -469,14 +767,12 @@ export const patrikaSections = [
 ];
 
 export const patrikaThemes = [
-  "🇮🇳 Viksit Bharat 2047",
-  "🌱 Environment & Sustainability",
-  "🤖 AI, Technology & Future Innovations",
-  "🚜 Agriculture & Rural Development",
-  "🏛️ Indian Knowledge Systems (IKS)",
-  "🧬 Science & Scientific Discoveries",
-  "💡 Social Issues & Solutions",
-  "🌍 Global Challenges & Local Solutions",
+  "Science & Innovation",
+  "Education, AI & Technology",
+  "Indian Knowledge Systems (IKS)",
+  "Environment & Sustainability",
+  "Innovation & Entrepreneurship",
+  "Viksit Bharat 2047",
 ];
 
 export const projectBenefits = [
