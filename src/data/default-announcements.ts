@@ -3,6 +3,7 @@ import { CANONICAL_ROUTES } from "@/constants/canonical-routes";
 import { CMT_SUBMISSION_URL } from "@/lib/registration/config";
 import { event } from "@/design/tokens";
 import { resolveNavHref } from "@/lib/security/safe-nav-url";
+import { officialScheduleAnnouncementCopy } from "@/data/smk-6-official-schedule";
 
 export type AnnouncementIconKey = "programmes" | "registration" | "research" | "notices";
 
@@ -25,7 +26,18 @@ export type ResolvedAnnouncementItem = {
   iconKey: AnnouncementIconKey;
 };
 
+const scheduleCopy = officialScheduleAnnouncementCopy();
+
 const DEFAULT_EN: Omit<ResolvedAnnouncementItem, "id">[] = [
+  {
+    title: scheduleCopy.title,
+    summary: "शिक्षा महाकुंभ 6.0 · 9–11 October 2026 · NIT Hamirpur",
+    detail: scheduleCopy.detail,
+    href: scheduleCopy.href,
+    external: false,
+    cta: scheduleCopy.cta,
+    iconKey: "programmes",
+  },
   {
     title: "AIST-2026 @ SLIET Longowal",
     summary: "AI in Science & Technology — 21–22 August 2026",
@@ -100,6 +112,15 @@ const DEFAULT_EN: Omit<ResolvedAnnouncementItem, "id">[] = [
 
 const DEFAULT_HI: Omit<ResolvedAnnouncementItem, "id">[] = [
   {
+    title: scheduleCopy.titleHi,
+    summary: "शिक्षा महाकुंभ 6.0 · 9–11 अक्टूबर 2026 · एनआईटी हमीरपुर",
+    detail: scheduleCopy.summaryHi,
+    href: scheduleCopy.href,
+    external: false,
+    cta: scheduleCopy.ctaHi,
+    iconKey: "programmes",
+  },
+  {
     title: "AIST-2026 — SLIET लौंगोवाल",
     summary: "कृत्रिम बुद्धिमत्ता — 21–22 अगस्त 2026",
     detail:
@@ -169,6 +190,16 @@ const DEFAULT_HI: Omit<ResolvedAnnouncementItem, "id">[] = [
 
 export const DEFAULT_ANNOUNCEMENT_BARS_EN: CmsAnnouncementBar[] = [
   {
+    id: "default-bar-schedule",
+    title: scheduleCopy.title,
+    message: "Shiksha Mahakumbh 6.0 official programme schedule is now available.",
+    barType: "global",
+    colorTheme: "primary",
+    ctaLabel: scheduleCopy.cta,
+    ctaUrl: scheduleCopy.href,
+    isDismissible: true,
+  },
+  {
     id: "default-bar-registration",
     title: "SMK 6.0 Registration",
     message: "Registration open — delegates, programme tracks, and project displays on one portal.",
@@ -202,6 +233,16 @@ export const DEFAULT_ANNOUNCEMENT_BARS_EN: CmsAnnouncementBar[] = [
 
 export const DEFAULT_ANNOUNCEMENT_BARS_HI: CmsAnnouncementBar[] = [
   {
+    id: "default-bar-schedule-hi",
+    title: scheduleCopy.titleHi,
+    message: scheduleCopy.summaryHi,
+    barType: "global",
+    colorTheme: "primary",
+    ctaLabel: scheduleCopy.ctaHi,
+    ctaUrl: scheduleCopy.href,
+    isDismissible: true,
+  },
+  {
     id: "default-bar-registration-hi",
     title: "SMK 6.0 पंजीकरण",
     message: "9–11 अक्टूबर 2026, एनआईटी हमीरपुर — पंजीकरण खुला।",
@@ -224,14 +265,13 @@ export const DEFAULT_ANNOUNCEMENT_BARS_HI: CmsAnnouncementBar[] = [
 ];
 
 export const FALLBACK_WELCOME_MODAL = {
-  title: "शिक्षा महाकुंभ अभियान",
+  title: scheduleCopy.title,
   subtitle: `${event.edition} Edition · ${event.venue}`,
-  message: `Join the national educational movement at ${event.venue} from 9–11 October 2026.`,
-  messageHi:
-    "9–11 अक्टूबर 2026 को एनआईटी हमीरपुर में राष्ट्रीय शैक्षिक आंदोलन से जुड़ें।",
-  ctaUrl: CANONICAL_ROUTES.registration,
-  ctaLabel: "Register now",
-  ctaLabelHi: "पंजीकरण करें",
+  message: `${scheduleCopy.summary} 9–11 October 2026 at NIT Hamirpur.`,
+  messageHi: scheduleCopy.summaryHi,
+  ctaUrl: scheduleCopy.href,
+  ctaLabel: scheduleCopy.cta,
+  ctaLabelHi: scheduleCopy.ctaHi,
 } as const;
 
 export function getFallbackWelcomeModal(locale: string) {
@@ -288,9 +328,18 @@ export function resolveAnnouncementItems(
   cmsItems: CmsAnnouncementItemInput[] | null | undefined,
   locale: string = "en"
 ): ResolvedAnnouncementItem[] {
+  const defaults = getDefaultAnnouncementItems(locale);
+  const scheduleDefault = defaults.find((item) => item.href === CANONICAL_ROUTES.schedule);
   const valid = filterCmsAnnouncementItems(cmsItems ?? []);
-  if (valid.length > 0) return valid.map(cmsItemToResolved);
-  return getDefaultAnnouncementItems(locale);
+  if (valid.length > 0) {
+    const resolved = valid.map(cmsItemToResolved);
+    const hasSchedule = resolved.some(
+      (item) => item.href === CANONICAL_ROUTES.schedule || /official schedule/i.test(item.title)
+    );
+    if (scheduleDefault && !hasSchedule) return [scheduleDefault, ...resolved];
+    return resolved;
+  }
+  return defaults;
 }
 
 export function getDefaultAnnouncementBars(locale: string = "en"): CmsAnnouncementBar[] {
@@ -301,8 +350,19 @@ export function resolveAnnouncementBars(
   bars: CmsAnnouncementBar[] | null | undefined,
   locale: string = "en"
 ): CmsAnnouncementBar[] {
-  if (bars && bars.length > 0) return bars;
-  return getDefaultAnnouncementBars(locale);
+  const defaults = getDefaultAnnouncementBars(locale);
+  const scheduleBar = defaults.find((bar) => String(bar.id).includes("schedule"));
+  if (bars && bars.length > 0) {
+    const hasSchedule = bars.some(
+      (bar) =>
+        String(bar.id ?? "").includes("schedule") ||
+        /official schedule/i.test(`${bar.title} ${bar.message}`) ||
+        bar.ctaUrl === CANONICAL_ROUTES.schedule
+    );
+    if (scheduleBar && !hasSchedule) return [scheduleBar, ...bars];
+    return bars;
+  }
+  return defaults;
 }
 
 export type TickerItem = {
@@ -329,6 +389,7 @@ export function pickWelcomeModalBar(
   return (
     list.find((b) => b.barType === "registration_alert") ??
     list.find((b) => b.barType === "emergency") ??
+    list.find((b) => b.id?.includes("schedule")) ??
     list.find((b) => b.id?.includes("programmes")) ??
     list.find(
       (b) => b.barType === "global" && !String(b.id ?? "").includes("registration")
@@ -345,6 +406,7 @@ export function barsForTicker(
   const list = resolveAnnouncementBars(bars, locale);
   const modalBar = pickWelcomeModalBar(list);
   if (!modalBar) return list;
+  if (String(modalBar.id ?? "").includes("schedule")) return list;
   return list.filter((b) => b.id !== modalBar.id);
 }
 

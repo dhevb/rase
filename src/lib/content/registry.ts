@@ -130,6 +130,16 @@ export const CONTENT_REGISTRY: ContentItem[] = [
     href: "/noticeboard",
   },
   {
+    slug: "official-schedule",
+    title: "Official Schedule — Shiksha Mahakumbh 6.0",
+    excerpt: "Main programme timetable for 9–11 October 2026 at NIT Hamirpur.",
+    category: "news",
+    tags: ["schedule", "SMK6", "NIT Hamirpur"],
+    publishedAt: "2026-09-17",
+    href: "/schedule",
+    featured: true,
+  },
+  {
     slug: "refund-policy",
     title: "Refund Policy",
     excerpt: "Registration fee refund terms for paid categories.",

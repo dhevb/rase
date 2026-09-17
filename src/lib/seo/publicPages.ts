@@ -166,6 +166,13 @@ export const PUBLIC_PAGE_META = {
     path: "/noticeboard",
     keywords: ["SMK notices", "announcements", "registration deadlines"],
   }),
+  schedule: createEventMetadata({
+    title: "Shiksha Mahakumbh 6.0 Official Schedule",
+    description:
+      "Official मुख्य कार्यक्रम सारणी for Shiksha Mahakumbh 6.0 at NIT Hamirpur, 9–11 October 2026.",
+    path: "/schedule",
+    keywords: ["SMK 6.0 schedule", "NIT Hamirpur programme", "शिक्षा महाकुंभ कार्यक्रम सारणी"],
+  }),
   videos: createPageMetadata({
     title: "Video Gallery",
     description:

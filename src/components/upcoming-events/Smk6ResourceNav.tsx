@@ -5,6 +5,7 @@ import Smk6TrackedLink, { Smk6AboutLink } from "@/components/upcoming-events/Smk
 import { ANALYTICS_EVENTS } from "@/lib/analytics/events";
 import { CANONICAL_ROUTES } from "@/constants/canonical-routes";
 import { ABOUT_6TH_EDITION_HREF, SMK_6_ANALYTICS_SOURCE } from "@/data/smk-6-edition-hub";
+import { SMK_6_SCHEDULE_HREF } from "@/data/smk-6-official-schedule";
 import { committeePathForEdition } from "@/lib/committee/edition-slugs";
 import { getBrochureDownloadUrl, getCommitteeBrochure } from "@/data/committee-brochures";
 
@@ -33,6 +34,13 @@ export default function Smk6ResourceNav({
       <Smk6AboutLink href={ABOUT_6TH_EDITION_HREF} className={aboutChipClass}>
         About 6th Edition
       </Smk6AboutLink>
+      <Smk6TrackedLink
+        href={SMK_6_SCHEDULE_HREF}
+        className={aboutChipClass}
+        eventName={ANALYTICS_EVENTS.scheduleOpened}
+      >
+        Official Schedule
+      </Smk6TrackedLink>
       {brochureHref ? (
         <BrochureDownloadLink href={brochureHref} plan={SMK_6_ANALYTICS_SOURCE} className={chipClass}>
           Edition 6.0 brochure

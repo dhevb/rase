@@ -53,6 +53,7 @@ export const programLinks: FooterLink[] = [
   { name: "My Registration", href: "/dashboard" },
   { name: "Support via Donation", href: "/donation" },
   { name: "Shiksha Mahakumbh 6.0", href: "/upcoming-events" },
+  { name: "Official Schedule", href: "/schedule" },
   { name: "Downloads", href: "/downloads" },
   { name: "Media Centre", href: "/media-center" },
   { name: "Workshops", href: "/workshops" },

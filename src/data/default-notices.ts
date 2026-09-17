@@ -14,6 +14,43 @@ import {
   SMK_6_PANEL_DISCUSSIONS,
   SMK_6_PANEL_DISCUSSION_OFFICIAL,
 } from "@/components/vibhag/academic/academic-content-data";
+import {
+  officialScheduleAnnouncementCopy,
+  SMK_6_SCHEDULE_DOWNLOAD_FILENAME,
+  SMK_6_SCHEDULE_DOWNLOAD_HREF,
+  SMK_6_SCHEDULE_DOWNLOAD_MIME,
+  SMK_6_SCHEDULE_META,
+  SMK_6_SCHEDULE_NOTICE_SLUG,
+  SMK_6_SCHEDULE_NOTICE_SLUG_HI,
+} from "@/data/smk-6-official-schedule";
+
+function buildOfficialScheduleNotice(locale: "en" | "hi"): CmsNotice {
+  const hi = locale === "hi";
+  const copy = officialScheduleAnnouncementCopy();
+  return {
+    id: hi ? "default-smk6-official-schedule-hi" : "default-smk6-official-schedule",
+    title: hi ? "आधिकारिक कार्यक्रम सारणी — शिक्षा महाकुंभ 6.0" : "Official Schedule — Shiksha Mahakumbh 6.0",
+    slug: hi ? SMK_6_SCHEDULE_NOTICE_SLUG_HI : SMK_6_SCHEDULE_NOTICE_SLUG,
+    description: hi
+      ? `${SMK_6_SCHEDULE_META.tableTitle} अब उपलब्ध है। ${SMK_6_SCHEDULE_META.datesLabel} · ${SMK_6_SCHEDULE_META.venue}. ${SMK_6_SCHEDULE_META.themeHi} — ${SMK_6_SCHEDULE_META.themeEn}. पूर्ण सारणी: ${copy.href}. आधिकारिक दस्तावेज़: ${SMK_6_SCHEDULE_DOWNLOAD_HREF}`
+      : `The complete official programme schedule for Shiksha Mahakumbh 6.0 at NIT Hamirpur is now available. ${SMK_6_SCHEDULE_META.datesLabel}. ${SMK_6_SCHEDULE_META.tableTitle}. Theme: ${SMK_6_SCHEDULE_META.themeHi} — ${SMK_6_SCHEDULE_META.themeEn}. View: ${copy.href}. Official document: ${SMK_6_SCHEDULE_DOWNLOAD_HREF}`,
+    priority: 13,
+    isPinned: true,
+    publishAt: "2026-09-17T00:00:00.000Z",
+    expireAt: null,
+    category: hi
+      ? { name: "कार्यक्रम", slug: "programmes" }
+      : { name: "Programmes", slug: "programmes" },
+    attachments: [
+      {
+        id: hi ? "att-smk6-official-schedule-hi" : "att-smk6-official-schedule",
+        fileName: SMK_6_SCHEDULE_DOWNLOAD_FILENAME,
+        fileUrl: SMK_6_SCHEDULE_DOWNLOAD_HREF,
+        mimeType: SMK_6_SCHEDULE_DOWNLOAD_MIME,
+      },
+    ],
+  };
+}
 
 const SMK6_CONCLAVE_DETAILS_HREF = academicCouncilProgrammeUrl("ConclavePage");
 
@@ -158,6 +195,7 @@ function buildSmk6ConclaveNotices(locale: "en" | "hi"): CmsNotice[] {
 
 /** Published fallback notices when CMS / database has none (English). */
 export const DEFAULT_NOTICES_EN: CmsNotice[] = [
+  buildOfficialScheduleNotice("en"),
   {
     id: "default-aist-2026-sliet",
     title: "AIST-2026 — National Conference on AI in Science & Technology (SLIET Longowal)",
@@ -331,6 +369,7 @@ export const DEFAULT_NOTICES_EN: CmsNotice[] = [
 
 /** Hindi fallback notices (used when locale is hi and DB is empty). */
 export const DEFAULT_NOTICES_HI: CmsNotice[] = [
+  buildOfficialScheduleNotice("hi"),
   {
     id: "default-aist-2026-sliet-hi",
     title: "AIST-2026 — कृत्रिम बुद्धिमत्ता सम्मेलन (SLIET लौंगोवाल)",
@@ -529,7 +568,8 @@ export function resolvePublicNotices(
       notice.slug.startsWith("smk-6-conclave-") ||
       notice.slug.startsWith("smk-6-shodhankur") ||
       notice.slug.startsWith("smk-6-project-expo") ||
-      notice.slug.startsWith("smk-6-panel-discussion")
+      notice.slug.startsWith("smk-6-panel-discussion") ||
+      notice.slug.startsWith("smk-6-official-schedule")
   );
   if (notices && notices.length > 0) {
     const slugs = new Set(notices.map((notice) => notice.slug));

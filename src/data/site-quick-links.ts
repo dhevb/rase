@@ -10,6 +10,7 @@ export type SiteQuickLink = {
 /** Site-wide programme shortcuts — shown before Related programmes & resources. */
 export const SITE_QUICK_LINKS: readonly SiteQuickLink[] = [
   { label: "Register for SMK 6.0", href: CANONICAL_ROUTES.registration, icon: "✅" },
+  { label: "Official Schedule", href: CANONICAL_ROUTES.schedule, icon: "🗓️" },
   { label: "Past Editions", href: CANONICAL_ROUTES.pastEvents, icon: "🗓️" },
   { label: "Abhiyan Photo Frame", href: "/abhiyaninphotoframe", icon: "📜" },
   {

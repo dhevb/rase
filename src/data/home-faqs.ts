@@ -16,6 +16,10 @@ export const HOME_DEFAULT_FAQS: FaqItem[] = [
       "A national–international multidisciplinary education movement aligned with NEP 2020 and Bharat@2047.",
   },
   {
+    question: "Where can I see the official Shiksha Mahakumbh 6.0 schedule?",
+    answer: `The official main programme schedule (मुख्य कार्यक्रम सारणी) is published at ${SITE_URL}/schedule.`,
+  },
+  {
     question: "When is Shiksha Mahakumbh 6.0?",
     answer:
       "9–11 October 2026 at National Institute of Technology Hamirpur (NIT Hamirpur / NITH), Himachal Pradesh, India.",

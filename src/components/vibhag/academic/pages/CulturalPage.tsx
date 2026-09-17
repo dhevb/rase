@@ -118,7 +118,17 @@ export default function CulturalPage() {
           <p className="mt-3 text-xl font-bold text-brand-navy md:text-2xl">
             9–11 October 2026 | NIT Hamirpur
           </p>
-          <p className="mt-2 text-sm text-slate-500">(Detailed schedule to be announced)</p>
+          <p className="mt-3 text-sm text-slate-700">
+            Official main programme: Cultural Event, 18:30 – 20:30 on October 9, 2026 and October 10, 2026.
+          </p>
+          <p className="mt-3">
+            <a
+              href="/schedule"
+              className="text-sm font-bold text-brand-navy underline decoration-brand-saffron/50 underline-offset-2"
+            >
+              View official programme schedule
+            </a>
+          </p>
         </ACGlassPanel>
       </ACSection>
 

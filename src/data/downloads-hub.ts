@@ -64,7 +64,7 @@ export const DOWNLOADS_QUICK_LINKS: ReadonlyArray<{
   icon: string;
   external?: boolean;
 }> = [
-  { label: "Organising Committees", href: CANONICAL_ROUTES.committees, icon: "👥" },
+  { label: "Official Schedule", href: CANONICAL_ROUTES.schedule, icon: "🗓️" },
   { label: "Past Editions", href: CANONICAL_ROUTES.pastEvents, icon: "🗓️" },
   { label: "Proceedings", href: "/proceedings", icon: "📚" },
   { label: "Media Centre", href: CANONICAL_ROUTES.mediaCenter, icon: "📺" },

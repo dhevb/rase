@@ -11,6 +11,7 @@ import {
   SMK_6_ORGANISING_IDENTITY,
   smk6HomepageProgrammeHighlights,
 } from "@/data/smk-6-edition-hub";
+import { officialScheduleAnnouncementCopy } from "@/data/smk-6-official-schedule";
 import {
   SMK_6_CONCLAVE_REGISTRATION_HREF,
   SMK_6_EXTERNAL_REGISTRATIONS,
@@ -19,6 +20,7 @@ import Smk6OfficialCover from "@/components/upcoming-events/Smk6OfficialCover";
 
 export default function Smk6HomepagePreview() {
   const highlights = smk6HomepageProgrammeHighlights();
+  const schedule = officialScheduleAnnouncementCopy();
 
   return (
     <section
@@ -34,6 +36,30 @@ export default function Smk6HomepagePreview() {
           title={`${UPCOMING_EDITION.title}`}
           description={`${UPCOMING_EDITION.dates} · ${UPCOMING_EDITION.venueFull}. ${SMK_6_EVENT_THEME.heading} — ${SMK_6_EVENT_THEME.english}. ${SMK_6_ORGANISING_IDENTITY.statement}`}
         />
+        <article className="mb-8 rounded-2xl border border-brand-saffron/30 bg-white p-5 shadow-sm md:p-6">
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-saffron-dark">
+            {schedule.title}
+          </p>
+          <h3 className="mt-2 font-devanagari text-lg font-bold text-brand-navy">शिक्षा महाकुंभ 6.0</h3>
+          <p className="mt-1 text-sm text-slate-600">9–11 October 2026 · NIT Hamirpur</p>
+          <div className="mt-4 flex flex-wrap gap-3">
+            <Smk6TrackedLink
+              href={schedule.href}
+              className="inline-flex min-h-[44px] items-center rounded-xl bg-brand-saffron px-4 py-2 text-sm font-bold text-brand-navy"
+              eventName={ANALYTICS_EVENTS.scheduleOpened}
+            >
+              View Complete Schedule
+            </Smk6TrackedLink>
+            <Smk6TrackedLink
+              href={schedule.downloadHref}
+              className="inline-flex min-h-[44px] items-center rounded-xl border border-brand-navy/20 px-4 py-2 text-sm font-bold text-brand-navy"
+              eventName={ANALYTICS_EVENTS.scheduleDownloaded}
+              external
+            >
+              Download Official Schedule
+            </Smk6TrackedLink>
+          </div>
+        </article>
         <div className="mb-8 max-w-sm">
           <Smk6OfficialCover />
         </div>

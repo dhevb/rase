@@ -46,6 +46,7 @@ export function categorizePath(path: string): PageCategory {
   if (
     p.startsWith("/events") ||
     p.startsWith("/upcoming") ||
+    p.startsWith("/schedule") ||
     p.startsWith("/past") ||
     p.startsWith("/workshops") ||
     p.startsWith("/summits") ||

@@ -16,6 +16,11 @@ import {
   EDITION_BROCHURES,
   getUpcomingBrochure,
 } from "@/data/downloads-hub";
+import {
+  officialScheduleAnnouncementCopy,
+  SMK_6_SCHEDULE_DOWNLOAD_HREF,
+  SMK_6_SCHEDULE_HREF,
+} from "@/data/smk-6-official-schedule";
 import type { CmsDownload } from "@/lib/cms/types";
 
 const TYPE_LABELS: Record<string, string> = {
@@ -172,6 +177,35 @@ export default function DownloadsShowcase({ initialDownloads }: Props) {
           >
             Register for SMK 6.0
           </Link>
+        </div>
+      </section>
+
+      <section
+        id="official-schedule-download"
+        className="mt-8 overflow-hidden rounded-2xl border border-brand-saffron/30 bg-white p-6 md:p-8"
+        aria-labelledby="official-schedule-download-heading"
+      >
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-brand-saffron-dark">
+          {officialScheduleAnnouncementCopy().title}
+        </p>
+        <h2 id="official-schedule-download-heading" className="mt-2 text-xl font-bold text-brand-navy md:text-2xl">
+          मुख्य कार्यक्रम सारणी
+        </h2>
+        <p className="mt-2 text-sm text-slate-600">9–11 October 2026 · NIT Hamirpur</p>
+        <div className="mt-5 flex flex-wrap gap-3">
+          <Link
+            href={SMK_6_SCHEDULE_HREF}
+            className="inline-flex min-h-[44px] items-center rounded-xl bg-brand-navy px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-navy-light"
+          >
+            View Schedule
+          </Link>
+          <BrochureDownloadLink
+            href={SMK_6_SCHEDULE_DOWNLOAD_HREF}
+            plan="downloads-official-schedule"
+            className="inline-flex min-h-[44px] items-center rounded-xl border border-brand-navy/20 bg-white px-6 py-2.5 text-sm font-semibold text-brand-navy transition hover:border-brand-saffron/40"
+          >
+            Download Official Schedule
+          </BrochureDownloadLink>
         </div>
       </section>
 

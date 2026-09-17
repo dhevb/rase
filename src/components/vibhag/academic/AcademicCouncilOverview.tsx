@@ -37,6 +37,23 @@ function OverviewPage({ onNavigate }: OverviewPageProps) {
       <ACPage>
         <AcademicProgrammeHub onNavigate={onNavigate} />
 
+        <ACSection title="Official Programme Schedule">
+          <ACGlassPanel>
+            <p className="text-base leading-relaxed text-gray-700 md:text-lg">
+              The official मुख्य कार्यक्रम सारणी for Shiksha Mahakumbh 6.0 (9–11 October 2026, NIT Hamirpur)
+              is the public timetable for Academic Council programmes on campus.
+            </p>
+            <p className="mt-4">
+              <a
+                href="/schedule"
+                className="text-sm font-bold text-brand-navy underline decoration-brand-saffron/50 underline-offset-2"
+              >
+                View official schedule
+              </a>
+            </p>
+          </ACGlassPanel>
+        </ACSection>
+
         <ACSection title="About the Academic Council">
           <ACGlassPanel>
             <p className="text-base leading-relaxed text-gray-700 md:text-lg md:leading-8">

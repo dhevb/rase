@@ -8,6 +8,7 @@ export const POPULAR_LINKS = [
   { path: CMT_SUBMIT_PATH, title: "Multi Track Conference" },
   { path: ROUTES.academicCouncil, title: "Academic Programme" },
   { path: ROUTES.upcomingEvents, title: "Upcoming Events" },
+  { path: ROUTES.schedule, title: "Official Schedule" },
   { path: "/noticeboard", title: "Notice Board" },
   { path: ROUTES.downloads, title: "Brochures" },
   { path: ROUTES.speakers, title: "Speakers" },
@@ -92,6 +93,7 @@ export const NAV_MENUS: Menu[] = [
     title: "Events",
     subMenu: [
       { path: ROUTES.upcomingEvents, title: "Shiksha Mahakumbh 6.0" },
+      { path: ROUTES.schedule, title: "Official Schedule" },
       { path: ROUTES.registration, title: "Register for SMK 6.0" },
       { path: "/noticeboard", title: "Notice Board" },
       { path: "/workshops", title: "Workshops" },

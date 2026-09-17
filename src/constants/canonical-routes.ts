@@ -9,6 +9,7 @@ export const CANONICAL_ROUTES = {
   introduction: "/introduction",
   pastEvents: "/past-events",
   upcomingEvents: "/upcoming-events",
+  schedule: "/schedule",
   contact: "/contact-us",
   bestWishes: "/best-wishes",
   committees: "/committees",

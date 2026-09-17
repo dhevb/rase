@@ -29,6 +29,7 @@ export const CONTENT_MAP: ContentMapEntry[] = [
   { path: "/press", title: "Press Releases", pillarId: "media", clusterId: "media-press" },
   { path: "/past-events", title: "Past Editions", pillarId: "conferences", clusterId: "conf-mahakumbh", priority: 2 },
   { path: "/upcoming-events", title: "Upcoming Events", pillarId: "conferences", clusterId: "conf-mahakumbh", priority: 2 },
+  { path: "/schedule", title: "Official Schedule", pillarId: "conferences", clusterId: "conf-mahakumbh", priority: 1 },
   { path: "/past_event/shiksha-mahakumbh-5.0", title: "SMK 5.0", pillarId: "conferences", clusterId: "conf-mahakumbh" },
   { path: "/past_event/shiksha-mahakumbh-4.0", title: "SMK 4.0", pillarId: "conferences", clusterId: "conf-mahakumbh" },
   { path: "/past_event/shiksha-mahakumbh-3.0", title: "SMK 3.0", pillarId: "conferences", clusterId: "conf-mahakumbh" },

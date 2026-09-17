@@ -44,7 +44,7 @@ function sitemapPriority(path: string): number {
   if (path === "") return 1;
   if (path === "registration") return 0.9;
   if (path === "faq") return 0.75;
-  if (path === "downloads" || path === "noticeboard") return 0.8;
+  if (path === "downloads" || path === "noticeboard" || path === "schedule") return 0.8;
   if (path.startsWith("departments/")) return 0.7;
   if (path.startsWith("committee/")) return 0.5;
   if (path.startsWith("press/")) return 0.4;
@@ -82,7 +82,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     url: path ? `${SITE_URL}/${path}` : SITE_URL,
     lastModified: resolveLastModified(path, cmsDates, fallbackDate),
     changeFrequency:
-      path === "" || path === "registration" || path === "noticeboard" || path === "downloads"
+      path === "" ||
+      path === "registration" ||
+      path === "noticeboard" ||
+      path === "downloads" ||
+      path === "schedule"
         ? "weekly"
         : "monthly",
     priority: sitemapPriority(path),

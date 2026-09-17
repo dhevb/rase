@@ -24,6 +24,12 @@ export const ANALYTICS_EVENTS = {
   smk6TalentConclaveRegistrationClicked: "smk6_talent_conclave_registration_clicked",
   smk6StudentProjectsRegistrationClicked: "smk6_student_projects_registration_clicked",
   smk6ShodhankurRegistrationClicked: "smk6_shodhankur_registration_clicked",
+  scheduleOpened: "schedule_opened",
+  scheduleDaySelected: "schedule_day_selected",
+  scheduleSessionExpanded: "schedule_session_expanded",
+  scheduleSearch: "schedule_search",
+  scheduleFilterUsed: "schedule_filter_used",
+  scheduleDownloaded: "schedule_downloaded",
 } as const;
 
 export type AnalyticsEventName =

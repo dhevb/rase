@@ -120,6 +120,7 @@ export const SITEMAP_CORE_PATHS: readonly string[] = [
   "introduction",
   "contact-us",
   "upcoming-events",
+  "schedule",
   "past-events",
   "speakers/directory",
   "gallery",
@@ -178,6 +179,7 @@ export function isRedirectShellPath(pathname: string): boolean {
 const CORE: InternalLinkSuggestion[] = [
   { href: "/registration", label: "Registration", reason: "curated", weight: 95 },
   { href: "/upcoming-events", label: "Upcoming Events", reason: "curated", weight: 90 },
+  { href: "/schedule", label: "Official Schedule", reason: "curated", weight: 89 },
   { href: "/past-events", label: "Past Editions", reason: "curated", weight: 88 },
   { href: "/gallery", label: "Gallery", reason: "curated", weight: 85 },
 ];
@@ -206,12 +208,20 @@ const CURATED_BY_PATH: Record<string, InternalLinkSuggestion[]> = {
     { href: "/media-center", label: "Media Centre", reason: "curated", weight: 80 },
   ],
   "/upcoming-events": [
+    { href: "/schedule", label: "Official Schedule", reason: "curated", weight: 96 },
     { href: "/registration", label: "Register for 6.0", reason: "curated", weight: 95 },
     { href: "/departments/academic-council", label: "Academic Council", reason: "curated", weight: 93 },
     { href: "/past-events", label: "Past Editions", reason: "curated", weight: 88 },
     { href: "/downloads", label: "Brochures", reason: "curated", weight: 85 },
     { href: "/committees", label: "Organising Committee", reason: "curated", weight: 82 },
     { href: "/contact-us", label: "Contact DHE", reason: "curated", weight: 80 },
+  ],
+  "/schedule": [
+    { href: "/upcoming-events", label: "About 6th Edition", reason: "curated", weight: 95 },
+    { href: "/departments/academic-council", label: "Academic Council", reason: "curated", weight: 93 },
+    { href: "/noticeboard", label: "Notice Board", reason: "curated", weight: 88 },
+    { href: "/downloads", label: "Downloads", reason: "curated", weight: 86 },
+    { href: "/registration", label: "Register for 6.0", reason: "curated", weight: 90 },
   ],
   "/past-events": [
     { href: "/upcoming-events", label: "Upcoming Events", reason: "curated", weight: 92 },
@@ -327,6 +337,7 @@ const CURATED_BY_PATH: Record<string, InternalLinkSuggestion[]> = {
     { href: "/departments/prabandhan", label: "Prabandhan (Logistics)", reason: "curated", weight: 82 },
   ],
   "/departments/academic-council": [
+    { href: "/schedule", label: "Official Schedule", reason: "curated", weight: 94 },
     { href: "/registration", label: "Register for SMK 6.0", reason: "curated", weight: 92 },
     { href: "/downloads", label: "Edition Brochures", reason: "curated", weight: 90 },
     { href: "/committees", label: "Organising Committee", reason: "curated", weight: 88 },

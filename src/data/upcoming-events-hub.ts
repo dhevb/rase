@@ -97,7 +97,7 @@ export const UPCOMING_EVENTS_BREADCRUMBS = [
 ] as const;
 
 export const UPCOMING_EVENTS_QUICK_LINKS = [
-  { label: "About 6th Edition", href: ABOUT_6TH_EDITION_HREF, icon: "📘" },
+  { label: "Official Schedule", href: CANONICAL_ROUTES.schedule, icon: "🗓️" },
   { label: "Register for 6.0", href: CANONICAL_ROUTES.registration, icon: "✅" },
   { label: "Edition Brochures", href: `${CANONICAL_ROUTES.downloads}#edition-brochures`, icon: "📄" },
   { label: "Organising Committee", href: committeePathForEdition("6.0"), icon: "👥" },
@@ -126,6 +126,10 @@ export function upcomingEventsMetaDescription(): string {
 }
 
 export const UPCOMING_EVENTS_FAQ = [
+  {
+    question: "Where is the official programme schedule?",
+    answer: `The official मुख्य कार्यक्रम सारणी for Shiksha Mahakumbh 6.0 is at ${SITE_URL}${CANONICAL_ROUTES.schedule}.`,
+  },
   {
     question: "When is Shiksha Mahakumbh 6.0?",
     answer: "9–11 October 2026.",

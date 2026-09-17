@@ -39,6 +39,7 @@ import ConclavePosterPreview from "@/components/vibhag/academic/ConclavePosterPr
 import { SMK_6_PANEL_DISCUSSIONS } from "@/components/vibhag/academic/academic-content-data";
 import { committeePathForEdition } from "@/lib/committee/edition-slugs";
 import Smk6OfficialCover from "@/components/upcoming-events/Smk6OfficialCover";
+import { SMK_6_SCHEDULE_DOWNLOAD_HREF, SMK_6_SCHEDULE_HREF } from "@/data/smk-6-official-schedule";
 
 const cardClass =
   "flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-4 shadow-sm md:p-5";
@@ -112,12 +113,26 @@ export default function Smk6EditionDetail({ speakers }: Props) {
               Register Now
             </Smk6TrackedLink>
             <Smk6TrackedLink
-              href={academicHref}
+              href={SMK_6_SCHEDULE_HREF}
               className="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-brand-navy px-6 py-3 text-sm font-bold text-white shadow-md transition hover:bg-brand-navy-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-saffron"
+              eventName={ANALYTICS_EVENTS.scheduleOpened}
+            >
+              View Official Schedule
+            </Smk6TrackedLink>
+            <Smk6TrackedLink
+              href={academicHref}
+              className="inline-flex min-h-[48px] items-center justify-center rounded-xl border border-brand-navy/20 bg-white px-6 py-3 text-sm font-bold text-brand-navy shadow-sm transition hover:border-brand-saffron focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-saffron"
               eventName={ANALYTICS_EVENTS.academicCouncilClicked}
             >
               Explore All Programmes
             </Smk6TrackedLink>
+            <BrochureDownloadLink
+              href={SMK_6_SCHEDULE_DOWNLOAD_HREF}
+              plan="smk-6-official-schedule"
+              className="inline-flex min-h-[48px] items-center justify-center rounded-xl border border-brand-navy/20 bg-white px-6 py-3 text-sm font-bold text-brand-navy transition hover:border-brand-saffron focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-saffron"
+            >
+              Download Official Schedule
+            </BrochureDownloadLink>
             <BrochureDownloadLink
               href={brochureHref}
               plan={SMK_6_ANALYTICS_SOURCE}

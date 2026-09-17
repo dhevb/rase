@@ -114,6 +114,11 @@ export const ACADEMIC_COUNCIL_FAQ = [
       "The multi-track international conference spans 16 thematic tracks — from fundamental sciences and engineering to education, health, culture, Indian Knowledge Systems, and defence and security. Each track has dedicated Track Coordinators listed on the Multi-Track Conference tab.",
   },
   {
+    question: "Where is the official Shiksha Mahakumbh 6.0 programme schedule?",
+    answer:
+      "The official मुख्य कार्यक्रम सारणी for 9–11 October 2026 at NIT Hamirpur is published at /schedule. Programme pages remain the detailed source for conclaves, conference tracks, exhibition, cultural event, projects, Shodhankur, and panel discussion.",
+  },
+  {
     question: "When are the Shiksha Mahakumbh 6.0 Panel Discussions?",
     answer:
       "Three official Panel Discussion sessions are scheduled at NIT Hamirpur, Himachal Pradesh, each प्रातः 9:30 से 10:45: आध्यात्मिक भारत, विकसित भारत (9 October 2026); विज्ञानमय भारत - विकसित भारत (10 October 2026); and सुरक्षित भारत - विकसित भारत (11 October 2026). Coordinator printed on the posters: प्रो. अवनीश वर्मा +919416481652. The posters do not print a separate registration URL.",

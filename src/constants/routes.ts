@@ -10,6 +10,7 @@ export const ROUTES = {
   introduction: CANONICAL_ROUTES.introduction,
   academicCouncil: CANONICAL_ROUTES.departments.academicCouncil,
   upcomingEvents: CANONICAL_ROUTES.upcomingEvents,
+  schedule: CANONICAL_ROUTES.schedule,
   pastEvents: CANONICAL_ROUTES.pastEvents,
   committees: CANONICAL_ROUTES.committees,
   mediaCenter: CANONICAL_ROUTES.mediaCenter,

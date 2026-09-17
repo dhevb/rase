@@ -132,6 +132,19 @@ export default function ExhibitionPage() {
           <p className="text-xl font-bold text-brand-navy md:text-2xl">
             9–11 October 2026 | NIT Hamirpur
           </p>
+          <p className="mt-3 text-sm text-slate-700">
+            Official main programme includes Opening of Exhibition (9 October, 11:00 – 11:30), Visiting of
+            Exhibition (10–11 October, 11:00 – 11:30), and High Tea & Exhibition Visit (9–10 October, 17:30 –
+            18:30).
+          </p>
+          <p className="mt-3">
+            <a
+              href="/schedule"
+              className="text-sm font-bold text-brand-navy underline decoration-brand-saffron/50 underline-offset-2"
+            >
+              View official programme schedule
+            </a>
+          </p>
         </ACGlassPanel>
       </ACSection>
 
