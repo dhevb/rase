@@ -232,7 +232,7 @@ export function useRegistrationSubmit() {
           ? error.message
           : "Registration failed. Please try again.";
       toast.error(
-        `${message} Need help? Contact us at /contact-us or email academics@shikshamahakumbh.com.`
+        `${message} Need help? Visit /contact-us#programme-contacts or email info@shikshamahakumbh.com.`
       );
     } finally {
       setLoading(false);

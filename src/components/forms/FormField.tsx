@@ -278,8 +278,8 @@ export function PaymentBlock({
             refund policy
           </Link>
           . Need help?{" "}
-          <Link href="/contact-us" className="font-semibold text-brand-navy underline">
-            Contact us
+          <Link href="/contact-us#programme-contacts" className="font-semibold text-brand-navy underline">
+            Contact the programme team
           </Link>
           .
         </p>

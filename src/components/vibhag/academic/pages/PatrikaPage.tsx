@@ -202,7 +202,7 @@ export default function PatrikaPage() {
       </ACSection>
 
       <ACSection title="Contact & Support">
-        <ACContactBlock />
+        <ACContactBlock programmeId="shodhankur" />
       </ACSection>
 
       <ACFooterStatement title="Igniting Young Researchers">

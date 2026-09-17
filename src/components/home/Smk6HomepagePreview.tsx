@@ -145,6 +145,10 @@ export default function Smk6HomepagePreview() {
           <Smk6ResourceNav labelledBy="smk6-home-card-resources" />
         </div>
         <p className="mt-4 text-center text-sm text-slate-600">
+          <Link href="/contact-us#programme-contacts" className="font-semibold text-brand-navy hover:underline">
+            Need help with a specific programme? Explore programme contacts
+          </Link>
+          {" · "}
           <Link href={CANONICAL_ROUTES.upcomingEvents} className="font-semibold text-brand-navy hover:underline">
             View all upcoming events →
           </Link>

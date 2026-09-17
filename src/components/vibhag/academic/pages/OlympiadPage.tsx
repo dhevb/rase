@@ -152,7 +152,7 @@ export default function OlympiadPage() {
       </ACSection>
 
       <ACSection title="Contact & Support">
-        <ACContactBlock />
+        <ACContactBlock programmeId="olympiad" />
       </ACSection>
 
       <ACFooterStatement title="Empowering Young Minds">

@@ -11,6 +11,7 @@ import {
   SectionCTA,
   ACFooterStatement,
   REG_LINKS,
+  ACContactBlock,
 } from "../AcademicCouncilUI";
 import { ProjectExpoDivisionBlock } from "../ProjectExpoThemeList";
 import {
@@ -305,6 +306,10 @@ export default function ProjectsPage() {
             );
           })}
         </div>
+      </ACSection>
+
+      <ACSection title="Need help?">
+        <ACContactBlock programmeId="student-projects" />
       </ACSection>
 
       <ACFooterStatement title="Innovate for Himachal, contribute to Viksit Bharat">

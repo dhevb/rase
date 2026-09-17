@@ -30,6 +30,7 @@ export const quickLinks: FooterLink[] = [
   { name: "Press Releases", href: "/press" },
   { name: "Merchandise", href: "/merchandise" },
   { name: "Contact Us", href: "/contact-us" },
+  { name: "Programme Contacts", href: "/contact-us#programme-contacts" },
 ];
 
 export const departmentLinks: FooterLink[] = [

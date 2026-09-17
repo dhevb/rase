@@ -23,6 +23,7 @@ import {
   ConclaveExternalSelector,
   Smk6ExternalFormButton,
 } from "@/components/registration/Smk6ExternalRegistrationPanels";
+import ProgrammeSupportPanel from "@/components/contact/ProgrammeSupportPanel";
 
 const BADGE_STYLES: Record<FeeBadgeTone, string> = {
   free: "bg-emerald-50 text-emerald-800 ring-emerald-200",
@@ -115,6 +116,12 @@ export default function CategoryStep({
             → External submission (on-site notice first)
           </span>
         </Link>
+        <div className="mt-3">
+          <ProgrammeSupportPanel
+            contactId="multi-track-conference"
+            title="Need help with Multi-Track Conference?"
+          />
+        </div>
       </section>
 
       <section aria-labelledby="reg-group-programme-tracks">
@@ -178,6 +185,9 @@ export default function CategoryStep({
               Register / Apply Now
             </Smk6ExternalFormButton>
           </div>
+          <div className="mt-4">
+            <ProgrammeSupportPanel contactId="shodhankur" title="Need help with Shodhankur?" />
+          </div>
         </OptionFrame>
       </section>
 
@@ -205,6 +215,9 @@ export default function CategoryStep({
             >
               Register / Apply Now
             </Smk6ExternalFormButton>
+          </div>
+          <div className="mt-4">
+            <ProgrammeSupportPanel contactId="student-projects" title="Need help with Student Projects?" />
           </div>
         </OptionFrame>
       </section>

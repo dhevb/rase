@@ -43,12 +43,18 @@ function OverviewPage({ onNavigate }: OverviewPageProps) {
               The official मुख्य कार्यक्रम सारणी for Shiksha Mahakumbh 6.0 (9–11 October 2026, NIT Hamirpur)
               is the public timetable for Academic Council programmes on campus.
             </p>
-            <p className="mt-4">
+            <p className="mt-4 flex flex-wrap gap-4">
               <a
                 href="/schedule"
                 className="text-sm font-bold text-brand-navy underline decoration-brand-saffron/50 underline-offset-2"
               >
                 View official schedule
+              </a>
+              <a
+                href="/contact-us#programme-contacts"
+                className="text-sm font-bold text-brand-navy underline decoration-brand-saffron/50 underline-offset-2"
+              >
+                Programme contacts
               </a>
             </p>
           </ACGlassPanel>

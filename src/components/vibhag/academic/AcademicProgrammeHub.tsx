@@ -1,11 +1,7 @@
 "use client";
 
-import {
-  ACADEMIC_COUNCIL_EVENT,
-  ACADEMIC_PROGRAMME_HUB,
-  type AcademicCouncilTabId,
-  type ProgrammeHubSection,
-} from "@/data/academic-council-content";
+import { ACADEMIC_COUNCIL_EVENT, ACADEMIC_PROGRAMME_HUB, type AcademicCouncilTabId, type ProgrammeHubSection } from "@/data/academic-council-content";
+import { SMK_6_PROGRAMME_CONTACTS_HREF, getOfficialContactById } from "@/data/smk-6-official-contacts";
 
 const accentStyles: Record<
   ProgrammeHubSection["accent"],
@@ -123,21 +119,45 @@ export default function AcademicProgrammeHub({ onNavigate }: AcademicProgrammeHu
         <div className="mt-8 rounded-2xl border border-brand-navy/10 bg-brand-surface-warm px-5 py-4 text-center md:px-8">
           <p className="text-sm font-semibold text-brand-navy">Academic enquiries</p>
           <p className="mt-2 text-sm text-slate-600">
-            Papers, Olympiads, awards &amp; submissions:{" "}
+            Multi-Track Conference, Conference, Shodhankur, and Student Projects:{" "}
             <a
-              href={`mailto:${ACADEMIC_COUNCIL_EVENT.contactEmail}`}
+              href={`mailto:${getOfficialContactById("multi-track-conference")?.email}`}
               className="font-medium text-brand-navy underline-offset-2 hover:underline"
             >
-              {ACADEMIC_COUNCIL_EVENT.contactEmail}
+              {getOfficialContactById("multi-track-conference")?.email}
             </a>
           </p>
           <p className="mt-1 text-sm text-slate-600">
-            General summit enquiries:{" "}
+            Conclaves:{" "}
             <a
-              href="mailto:info@shikshamahakumbh.com"
+              href={`mailto:${getOfficialContactById("conclaves")?.email}`}
               className="font-medium text-brand-navy underline-offset-2 hover:underline"
             >
-              info@shikshamahakumbh.com
+              {getOfficialContactById("conclaves")?.email}
+            </a>
+            {" · "}
+            VCs &amp; Directors, sponsorship, partnership:{" "}
+            <a
+              href={`mailto:${getOfficialContactById("sponsorship-partnership")?.email}`}
+              className="font-medium text-brand-navy underline-offset-2 hover:underline"
+            >
+              {getOfficialContactById("sponsorship-partnership")?.email}
+            </a>
+          </p>
+          <p className="mt-1 text-sm text-slate-600">
+            General enquiries:{" "}
+            <a
+              href={`mailto:${getOfficialContactById("general-enquiry")?.email}`}
+              className="font-medium text-brand-navy underline-offset-2 hover:underline"
+            >
+              {getOfficialContactById("general-enquiry")?.email}
+            </a>
+            {" · "}
+            <a
+              href={SMK_6_PROGRAMME_CONTACTS_HREF}
+              className="font-medium text-brand-navy underline-offset-2 hover:underline"
+            >
+              Programme contacts
             </a>
             {" · "}
             <a

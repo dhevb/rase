@@ -133,7 +133,7 @@ export default function CulturalPage() {
       </ACSection>
 
       <ACSection title="Contact & Participation">
-        <ACContactBlock />
+        <ACContactBlock programmeId="cultural" />
       </ACSection>
 
       <ACFooterStatement title="Where Culture Meets Consciousness">

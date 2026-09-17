@@ -9,11 +9,14 @@ import {
   ACFooterStatement,
   SectionCTA,
   REG_LINKS,
+  ACContactBlock,
 } from "../AcademicCouncilUI";
 import { CONCLAVE_BEST_PRACTICES_NOTE, CONCLAVE_OVERALL_LEADERSHIP, conclaves } from "../academic-content-data";
 import { conclaveFormAnalyticsEvent, conclaveFormByProgrammeTitle } from "@/data/smk-6-external-registrations";
 import { Smk6ExternalFormButton } from "@/components/registration/Smk6ExternalRegistrationPanels";
 import ConclavePosterPreview from "../ConclavePosterPreview";
+import ProgrammeSupportPanel from "@/components/contact/ProgrammeSupportPanel";
+import { getOfficialContactByAcademicConclaveId } from "@/data/smk-6-official-contacts";
 
 export default function ConclavePage() {
   return (
@@ -126,15 +129,23 @@ export default function ConclavePage() {
                 ) : null}
                 {(() => {
                   const form = conclaveFormByProgrammeTitle(conclave.title);
-                  if (!form) return null;
+                  const contact = getOfficialContactByAcademicConclaveId(conclave.id);
                   return (
-                    <div className="pt-2">
-                      <Smk6ExternalFormButton
-                        href={form.url}
-                        eventName={conclaveFormAnalyticsEvent(form.id)}
-                      >
-                        Register Now
-                      </Smk6ExternalFormButton>
+                    <div className="space-y-3 pt-2">
+                      {form ? (
+                        <Smk6ExternalFormButton
+                          href={form.url}
+                          eventName={conclaveFormAnalyticsEvent(form.id)}
+                        >
+                          Register Now
+                        </Smk6ExternalFormButton>
+                      ) : null}
+                      {contact ? (
+                        <ProgrammeSupportPanel
+                          contact={contact}
+                          title="Need help with this conclave?"
+                        />
+                      ) : null}
                     </div>
                   );
                 })()}
@@ -179,6 +190,10 @@ export default function ConclavePage() {
             </div>
           </div>
         </ACGlassPanel>
+      </ACSection>
+
+      <ACSection title="Need help?">
+        <ACContactBlock programmeId="conclaves" />
       </ACSection>
 
       <ACFooterStatement title="Driving Dialogue to Action">

@@ -8,6 +8,7 @@ import {
   ACGlassPanel,
   ACFooterStatement,
   SectionCTA,
+  ACContactBlock,
 } from "../AcademicCouncilUI";
 import {
   UNIVERSITY_CONFERENCES,
@@ -239,6 +240,10 @@ export default function UniversityConferencesPage() {
           </div>
         </ACSection>
       ) : null}
+
+      <ACSection title="Need help?">
+        <ACContactBlock programmeId="conference-series" />
+      </ACSection>
 
       <ACFooterStatement title="Academic umbrella of Shiksha Mahakumbh">
         Each conference in this series is independently organized at the host institution, with

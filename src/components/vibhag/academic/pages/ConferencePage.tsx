@@ -8,6 +8,7 @@ import {
   ACGlassPanel,
   SectionCTA,
   ACFooterStatement,
+  ACContactBlock,
 } from "../AcademicCouncilUI";
 import {
   ACADEMIC_BEST_PAPER_NOTE,
@@ -179,6 +180,10 @@ export default function ConferencePage() {
           </p>
           <p>Delegate registration for Shiksha Mahakumbh 6.0 is separate from paper submission.</p>
         </div>
+      </ACSection>
+
+      <ACSection title="Need help?">
+        <ACContactBlock programmeId="multi-track-conference" />
       </ACSection>
 
       <ACFooterStatement title="Advancing Research to Impact">

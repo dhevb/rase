@@ -30,6 +30,10 @@ export const ANALYTICS_EVENTS = {
   scheduleSearch: "schedule_search",
   scheduleFilterUsed: "schedule_filter_used",
   scheduleDownloaded: "schedule_downloaded",
+  programmeContactOpened: "programme_contact_opened",
+  programmeContactEmailClicked: "programme_contact_email_clicked",
+  programmeContactPhoneClicked: "programme_contact_phone_clicked",
+  programmeContactWhatsappClicked: "programme_contact_whatsapp_clicked",
 } as const;
 
 export type AnalyticsEventName =

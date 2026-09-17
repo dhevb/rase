@@ -17,7 +17,7 @@ export const CONTACT_PAGE_HERO = {
   eyebrow: "Get in Touch",
   title: "Contact Us",
   subtitle:
-    "Reach the organising team for registration support, partnerships, media enquiries, and programme information.",
+    "Find the official contact for each Shiksha Mahakumbh 6.0 programme, plus the organising secretariat, venue coordination, and message form.",
 } as const;
 
 export const CONTACT_BREADCRUMBS = [
@@ -27,6 +27,7 @@ export const CONTACT_BREADCRUMBS = [
 
 export const CONTACT_QUICK_LINKS = [
   { label: "Register for SMK 6.0", href: CANONICAL_ROUTES.registration, icon: "✅" },
+  { label: "Programme Contacts", href: `${CANONICAL_ROUTES.contact}#programme-contacts`, icon: "📞" },
   { label: "Sampark Vibhag", href: CANONICAL_ROUTES.departments.sampark, icon: "🤝" },
   { label: "Donate (80G)", href: CANONICAL_ROUTES.donation, icon: "💝" },
   { label: "Upcoming Events", href: CANONICAL_ROUTES.upcomingEvents, icon: "🗓️" },
@@ -52,17 +53,18 @@ export const CONTACT_KEYWORDS = [
   "DHE SAS Nagar",
   "education summit contact India",
   "SMK 2026 registration help",
+  "programme contacts Shiksha Mahakumbh",
   "Shiksha Mahakumbh partnership",
 ] as const;
 
 export function contactMetaDescription(): string {
-  return `Contact ${DHE_ORGANIZATION.abhiyan} — ${DHE_ORGANIZATION.name}, ${DHE_ORGANIZATION.address.formatted}. Email, phone, WhatsApp, and message form for registration and partnership enquiries.`;
+  return `Official Shiksha Mahakumbh 6.0 programme contacts — Multi-Track Conference, conclaves, Shodhankur, Student Projects, accommodation, and general enquiries. ${DHE_ORGANIZATION.name}, ${DHE_ORGANIZATION.address.formatted}.`;
 }
 
 export const CONTACT_FAQ = [
   {
     question: "How do I contact Shiksha Mahakumbh for registration help?",
-    answer: `Use the contact form on this page or email ${DHE_ORGANIZATION.emails[0]}. For delegate registration, you can also complete the form at ${SITE_URL}${CANONICAL_ROUTES.registration}.`,
+    answer: `Use the programme contact directory on this page. Papers, Multi-Track Conference, Shodhankur, and Student Projects: academics@shikshamahakumbh.com. Conclaves: conclaves@shikshamahakumbh.com. VCs & Directors Conclave, sponsorship, and academic partnership: director@shikshamahakumbh.com. General enquiries: info@shikshamahakumbh.com.`,
   },
   {
     question: "What is the Department of Holistic Education office address?",
@@ -70,7 +72,7 @@ export const CONTACT_FAQ = [
   },
   {
     question: "Who handles institutional partnerships?",
-    answer: `Institutional liaison is coordinated by the Sampark Vibhag (${SITE_URL}${CANONICAL_ROUTES.departments.sampark}) and the organising team listed on this page.`,
+    answer: `Sponsorship and academic partnership enquiries: director@shikshamahakumbh.com. Institutional liaison is also coordinated by the Sampark Vibhag (${SITE_URL}${CANONICAL_ROUTES.departments.sampark}).`,
   },
   {
     question: "How can I reach the team on WhatsApp?",

@@ -7,6 +7,7 @@ import {
   ACCard,
   ACGlassPanel,
   ACFooterStatement,
+  ACContactBlock,
 } from "../AcademicCouncilUI";
 import {
   SMK_6_PANEL_DISCUSSION_OFFICIAL,
@@ -85,6 +86,10 @@ export default function PanelDiscussionPage() {
             </ACCard>
           ))}
         </div>
+      </ACSection>
+
+      <ACSection title="Need help?">
+        <ACContactBlock programmeId="panel-discussion" />
       </ACSection>
 
       <ACFooterStatement title="Panel Discussion">

@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import { DHE_ORGANIZATION } from "@/config/organization";
 import { CANONICAL_ROUTES } from "@/constants/canonical-routes";
 import { phoneToWhatsAppHref } from "@/data/contact-hub";
+import ProgrammeContactDirectory from "@/components/contact/ProgrammeContactDirectory";
 
 const ContactUsForm = dynamic(() => import("@/components/contact/ContactUsForm"));
 const ContactMap = dynamic(() => import("@/components/contact/ContactMap"));
@@ -131,6 +132,10 @@ export default function ContactUs() {
         </section>
 
         <ContactVenueSection />
+
+        <div className="mb-12">
+          <ProgrammeContactDirectory />
+        </div>
 
         <div className="grid gap-10 lg:grid-cols-2">
           <ContactUsForm />

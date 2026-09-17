@@ -173,7 +173,7 @@ export default function AwardsPage() {
       </ACSection>
 
       <ACSection title="Contact">
-        <ACContactBlock />
+        <ACContactBlock programmeId="awards" />
       </ACSection>
 
       <ACFooterStatement title="Celebrating Excellence, Inspiring Innovation">

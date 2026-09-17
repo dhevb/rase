@@ -6,6 +6,7 @@ import {
   SMK_6_CONCLAVE_REGISTRATION_HREF,
   SMK_6_EXTERNAL_REGISTRATIONS,
 } from "@/data/smk-6-external-registrations";
+import ProgrammeSupportPanel from "@/components/contact/ProgrammeSupportPanel";
 import "./academic-council.css";
 
 export interface SectionCTAProps {
@@ -222,37 +223,9 @@ export const ACLeadershipBlock: React.FC<{ children: ReactNode }> = ({ children 
   </ACGlassPanel>
 );
 
-export const ACContactBlock: React.FC = () => (
-  <ACGlassPanel className="border-brand-navy/10 bg-gradient-to-br from-brand-navy/5 to-brand-surface-warm text-center">
-    <h2 className="mb-4 text-xl font-bold text-brand-navy md:text-2xl">Contact</h2>
-    <div className="space-y-2 text-sm text-gray-700 md:text-base">
-      <p>
-        Academic (papers, Olympiads, awards):{" "}
-        <a href="mailto:academics@shikshamahakumbh.com" className="font-medium text-brand-navy underline-offset-2 hover:underline">
-          academics@shikshamahakumbh.com
-        </a>
-      </p>
-      <p>
-        General enquiries:{" "}
-        <a href="mailto:info@shikshamahakumbh.com" className="font-medium text-brand-navy underline-offset-2 hover:underline">
-          info@shikshamahakumbh.com
-        </a>
-      </p>
-      <p>
-        WhatsApp:{" "}
-        <a
-          href="https://wa.me/917903431900"
-          className="font-medium text-brand-navy underline-offset-2 hover:underline"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          +91 79034 31900
-        </a>
-      </p>
-      <p>Website: www.shikshamahakumbh.com</p>
-    </div>
-  </ACGlassPanel>
-);
+export const ACContactBlock: React.FC<{ programmeId?: string }> = ({
+  programmeId = "general-enquiry",
+}) => <ProgrammeSupportPanel contactId={programmeId} title="Need help with this programme?" />;
 
 const ctaClassName =
   "inline-flex min-h-[44px] items-center justify-center rounded-xl bg-brand-saffron px-8 py-3.5 text-base font-bold text-brand-navy shadow-lg transition hover:bg-brand-saffron-dark hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy";

@@ -7,6 +7,8 @@ import {
   SMK_6_EXTERNAL_REGISTRATIONS,
   conclaveFormAnalyticsEvent,
 } from "@/data/smk-6-external-registrations";
+import ProgrammeSupportPanel from "@/components/contact/ProgrammeSupportPanel";
+import { getOfficialContactByConclaveFormId } from "@/data/smk-6-official-contacts";
 import { SMK_6_ANALYTICS_SOURCE } from "@/data/smk-6-edition-hub";
 
 function conclaveDescription(title: string): string | undefined {
@@ -81,6 +83,12 @@ export function ConclaveExternalSelector() {
                 >
                   Register Now
                 </Smk6ExternalFormButton>
+              </div>
+              <div className="mt-4">
+                <ProgrammeSupportPanel
+                  contact={getOfficialContactByConclaveFormId(form.id)}
+                  title="Need help with this conclave?"
+                />
               </div>
             </article>
           );

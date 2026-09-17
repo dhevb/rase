@@ -23,6 +23,7 @@ import {
   SMK_6_SCHEDULE_NOTICE_SLUG,
   SMK_6_SCHEDULE_NOTICE_SLUG_HI,
 } from "@/data/smk-6-official-schedule";
+import { SMK_6_PROGRAMME_CONTACTS_HREF } from "@/data/smk-6-official-contacts";
 
 function buildOfficialScheduleNotice(locale: "en" | "hi"): CmsNotice {
   const hi = locale === "hi";
@@ -266,7 +267,7 @@ export const DEFAULT_NOTICES_EN: CmsNotice[] = [
     title: `Registration Open — ${event.name}`,
     slug: "registration-open-smk-6",
     description:
-      `Unified registration is open for delegates, academic conclaves, exhibitions, project displays, and accommodation requests. DHE Olympiad exam dates are to be announced — apply via the registration hub when open. The summit runs 9–11 October 2026 at ${event.venue}, ${event.location}.`,
+      `Unified registration is open for delegates, academic conclaves, exhibitions, project displays, and accommodation requests. DHE Olympiad exam dates are to be announced — apply via the registration hub when open. For programme-specific help, see ${SMK_6_PROGRAMME_CONTACTS_HREF}. The summit runs 9–11 October 2026 at ${event.venue}, ${event.location}.`,
     priority: 9,
     isPinned: true,
     publishAt: "2026-05-01T00:00:00.000Z",
@@ -318,7 +319,8 @@ export const DEFAULT_NOTICES_EN: CmsNotice[] = [
     title: "Accommodation — Request via Registration",
     slug: "accommodation-smk-6",
     description:
-      "Delegates requiring campus or hotel accommodation should indicate preferences during registration. Allotment confirmations, check-in timings, and transport shuttles will be shared by the organising committee closer to the event dates.",
+      "Delegates requiring campus or hotel accommodation should indicate preferences during registration. Allotment confirmations, check-in timings, and transport shuttles will be shared closer to the event. Official contact: Wing Commander Sanjeev Sharma, DHE, +91 85660 60808. Programme contacts: " +
+      SMK_6_PROGRAMME_CONTACTS_HREF,
     priority: 5,
     isPinned: false,
     publishAt: "2026-06-01T00:00:00.000Z",
@@ -331,7 +333,8 @@ export const DEFAULT_NOTICES_EN: CmsNotice[] = [
     title: "Sponsorship & Institutional Partnership Window",
     slug: "sponsorship-partnership-2026",
     description:
-      "CSR, industry, media, and institutional partnership enquiries are invited for Shiksha Mahakumbh 6.0. Sponsors receive brand visibility across conclaves, exhibitions, and national outreach. Contact the organising secretariat or use the sponsorship section on the registration portal.",
+      "CSR, industry, media, and institutional partnership enquiries are invited for Shiksha Mahakumbh 6.0. Sponsors receive brand visibility across conclaves, exhibitions, and national outreach. Official contact: director@shikshamahakumbh.com. Programme contacts: " +
+      SMK_6_PROGRAMME_CONTACTS_HREF,
     priority: 4,
     isPinned: false,
     publishAt: "2026-06-01T00:00:00.000Z",

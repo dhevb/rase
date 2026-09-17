@@ -8,6 +8,8 @@ import { event } from "@/design/tokens";
 import { REGISTRATION_SUCCESS_LINKS } from "@/data/registration-hub";
 import { ROUTES } from "@/constants/routes";
 import { CtaButton } from "@/components/ui";
+import ProgrammeSupportPanel from "@/components/contact/ProgrammeSupportPanel";
+import { getOfficialContactByRegistrationType } from "@/data/smk-6-official-contacts";
 import { downloadSmk6Calendar, shareRegistrationSuccess } from "@/lib/registration/success-actions";
 import RegistrationReceipt, {
   type ReceiptData,
@@ -329,18 +331,10 @@ function SuccessInner() {
               <p className="text-slate-600">{event.venue}</p>
             </div>
             <div className="rounded-xl border bg-brand-surface p-4">
-              <h3 className="font-bold text-brand-navy">Support</h3>
-              <p className="mt-2 text-slate-600">
-                <a
-                  href="mailto:info@shikshamahakumbh.com"
-                  className="font-semibold text-brand-navy underline"
-                >
-                  info@shikshamahakumbh.com
-                </a>
-              </p>
-              <Link href={ROUTES.contact} className="mt-1 inline-block font-semibold text-brand-saffron">
-                Contact page →
-              </Link>
+              <ProgrammeSupportPanel
+                contact={getOfficialContactByRegistrationType(record?.registrationType)}
+                title="Registration support"
+              />
             </div>
           </section>
 

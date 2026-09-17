@@ -134,6 +134,7 @@ export const ACADEMIC_COUNCIL_FAQ = [
   },
   {
     question: "Who can I contact for academic enquiries?",
-    answer: `For papers, Olympiads, awards, and programme submissions: ${ACADEMIC_COUNCIL_EVENT.contactEmail}. For general summit enquiries: info@shikshamahakumbh.com. WhatsApp: ${ACADEMIC_COUNCIL_EVENT.contactPhone}.`,
+    answer:
+      "For papers, Multi-Track Conference, Shodhankur, and Student Projects: academics@shikshamahakumbh.com. For conclaves: conclaves@shikshamahakumbh.com. For VCs & Directors Conclave, sponsorship, and academic partnership: director@shikshamahakumbh.com. For general enquiries: info@shikshamahakumbh.com. Named coordinators and phones are listed on Contact Us → Programme contacts.",
   },
 ] as const;

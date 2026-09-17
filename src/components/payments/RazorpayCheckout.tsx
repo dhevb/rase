@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import Link from "next/link";
 import toast from "react-hot-toast";
 import {
   isRazorpayCheckoutReady,
@@ -402,7 +403,11 @@ export default function RazorpayCheckout({
           <p className="font-semibold">Payment ID saved: {pendingPayment.razorpay_payment_id}</p>
           <p className="mt-1">
             Your bank may have charged you. Tap <strong>Verify payment</strong> below — do not open
-            Razorpay again.
+            Razorpay again. If the status still does not update, contact{" "}
+            <Link href="/contact-us#programme-contacts" className="font-semibold underline">
+              the official programme team
+            </Link>{" "}
+            with this payment ID.
           </p>
         </div>
       ) : null}

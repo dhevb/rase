@@ -149,7 +149,7 @@ export default function ExhibitionPage() {
       </ACSection>
 
       <ACSection title="Participation & Enquiries">
-        <ACContactBlock />
+        <ACContactBlock programmeId="exhibition" />
       </ACSection>
 
       <ACFooterStatement title="A Confluence of Ideas & Innovation">

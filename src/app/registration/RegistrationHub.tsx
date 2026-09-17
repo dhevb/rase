@@ -14,7 +14,7 @@ import {
   GoogleFormRegistrationPanel,
 } from "@/components/registration/Smk6ExternalRegistrationPanels";
 import { loadMeta, saveMeta, switchRegistrationCategory, clearRegistrationMeta, clearDraft } from "@/lib/registration/draftStorage";
-import { RegistrationFlowProvider } from "@/components/registration/RegistrationFlowContext";
+import { RegistrationFlowProvider, useRegistrationFlow } from "@/components/registration/RegistrationFlowContext";
 import RegistrationHoneypot from "@/components/registration/RegistrationHoneypot";
 import { ANALYTICS_EVENTS, trackEvent } from "@/lib/analytics/events";
 import RegistrationTrustBar from "@/components/registration/RegistrationTrustBar";
@@ -26,7 +26,8 @@ import {
   isSmk6ConclaveSelectorType,
   isSmk6GoogleFormRegistrationType,
 } from "@/data/smk-6-external-registrations";
-import { useRegistrationFlow } from "@/components/registration/RegistrationFlowContext";
+import ProgrammeSupportPanel from "@/components/contact/ProgrammeSupportPanel";
+import { getOfficialContactByRegistrationType } from "@/data/smk-6-official-contacts";
 import { loadRazorpayCheckoutScript } from "@/lib/razorpay/load-checkout-script";
 
 const VALID_TYPES = [
@@ -321,6 +322,11 @@ function RegistrationHubInner() {
                 Change category
               </button>
             </div>
+
+            <ProgrammeSupportPanel
+              contact={getOfficialContactByRegistrationType(registrationType)}
+              title="Need help with this registration?"
+            />
 
             {step === 2 && showOnSiteForm && (
               <p className="text-sm text-slate-600">
