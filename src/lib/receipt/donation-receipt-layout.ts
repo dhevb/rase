@@ -1,4 +1,3 @@
-import { DONATION_80G } from "@/data/donation-hub";
 import { amountInWords } from "@/lib/receipt/amount-in-words";
 import type { DonationReceiptData } from "@/lib/receipt/donation-receipt";
 import { DONATION_RECEIPT_THEME } from "@/lib/receipt/donation-receipt-theme";
@@ -107,7 +106,7 @@ export function getDonationReceiptRows(data: DonationReceiptData): DonationRecei
 }
 
 export function buildDonationReceiptCertText(data: DonationReceiptData): string {
-  return `This is to certify that a sum of ₹${data.amount.toLocaleString("en-IN")} has been received from ${data.fullName} (PAN: ${data.panNumber}) as ${data.donationKind.toLowerCase()} towards ${data.orgLegalName} in support of ${data.programmeName}. Unique Registration No. under Section 80G: ${data.registration80G}. Valid for ${DONATION_80G.approvalPeriod}. This receipt is valid for income tax deduction purposes subject to applicable laws.`;
+  return `This is to certify that a sum of ₹${data.amount.toLocaleString("en-IN")} has been received from ${data.fullName} (PAN: ${data.panNumber}) as ${data.donationKind.toLowerCase()} towards ${data.orgLegalName} in support of ${data.programmeName}. This is an official receipt for the payment recorded above.`;
 }
 
 export const DONATION_RECEIPT_CSS = `
@@ -313,11 +312,11 @@ export function buildDonationReceiptBodyHtml(
     .join("");
 
   return `${buildDonationReceiptHeaderHtml(options.logos, options.origin)}
-<div class="title-wrap"><h1 class="title">Donation Receipt (80G)</h1></div>
+<div class="title-wrap"><h1 class="title">Donation Receipt</h1></div>
 <table class="details">${rows}</table>
 ${buildDonationReceiptThanksHtml()}
 <div class="cert">
-  <div class="cert-title">80G Tax Exemption — Section ${escapeHtml(data.section80G)} of ${escapeHtml(data.act80G)}</div>
+  <div class="cert-title">Official receipt</div>
   ${escapeHtml(buildDonationReceiptCertText(data))}
 </div>
 <p class="footer-note">This is a computer-generated receipt. No physical signature is required.</p>`;

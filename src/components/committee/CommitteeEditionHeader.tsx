@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import BrochureDownloadLink from "@/components/analytics/BrochureDownloadLink";
 import type { CommitteeEditionData } from "@/data/committee-members";
 import { countCommitteeMembers } from "@/data/committee-members";
@@ -18,6 +19,7 @@ export default function CommitteeEditionHeader({ edition }: CommitteeEditionHead
   const isEdition6 = edition.edition === "6.0";
 
   return (
+    <>
     <header className="mb-10 overflow-hidden rounded-2xl border border-brand-saffron/20 bg-gradient-to-br from-brand-navy via-brand-navy-light to-brand-navy text-white shadow-lg print:mb-4 print:rounded-none print:border-slate-300 print:shadow-none">
       <div className="p-5 md:p-7">
         <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-brand-saffron md:text-xs">
@@ -78,5 +80,22 @@ export default function CommitteeEditionHeader({ edition }: CommitteeEditionHead
         </div>
       </div>
     </header>
+    {edition.posterSrc ? (
+      <figure className="-mt-4 mb-10 overflow-hidden rounded-2xl border border-brand-saffron/20 bg-white shadow-md print:mt-4">
+        <Image
+          src={edition.posterSrc}
+          alt={edition.posterAlt ?? `${edition.pageTitle} organising committee`}
+          width={1600}
+          height={1200}
+          className="h-auto w-full"
+          sizes="(max-width: 1024px) 100vw, 960px"
+          priority={isEdition6}
+        />
+        <figcaption className="sr-only">
+          {edition.posterAlt ?? `${edition.pageTitle} organising committee`}
+        </figcaption>
+      </figure>
+    ) : null}
+    </>
   );
 }

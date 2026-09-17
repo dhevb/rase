@@ -188,7 +188,7 @@ export function renderDonationReceiptPdf(
   doc.setFontSize(13);
   doc.setFont("helvetica", "bold");
   doc.setTextColor(255, 255, 255);
-  doc.text("DONATION RECEIPT (80G)", pageWidth / 2, y + 18, { align: "center" });
+  doc.text("DONATION RECEIPT", pageWidth / 2, y + 18, { align: "center" });
   y += 38;
 
   let rowIndex = 0;
@@ -250,7 +250,7 @@ export function renderDonationReceiptPdf(
   doc.setFontSize(9);
   doc.setFont("helvetica", "bold");
   doc.setTextColor(...C.navy);
-  doc.text(`80G Tax Exemption — Section ${data.section80G} of ${data.act80G}`, left + 8, y + 8);
+  doc.text("Official receipt", left + 8, y + 8);
   y += 18;
 
   doc.setFont("helvetica", "normal");

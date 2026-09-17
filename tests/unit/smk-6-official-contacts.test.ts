@@ -44,6 +44,16 @@ describe("SMK 6.0 official contact directory", () => {
     assert.equal(getOfficialContactByAcademicConclaveId("defence-security")?.email, "conclaves@shikshamahakumbh.com");
   });
 
+  it("lists current Multi-Track, conclave, defence, and sponsorship coordinators", () => {
+    const multi = getOfficialContactById("multi-track-conference");
+    assert.equal(multi?.people[0]?.name, "Dr. Vipin Jain");
+    assert.equal(multi?.people[1]?.phone, "+91 99886 10629");
+    assert.equal(multi?.people[2]?.name, "Prof. Praveen Sharma");
+    assert.equal(getOfficialContactById("conclaves")?.people[0]?.name, "Dr. Praveen Kumar Sharma");
+    assert.equal(getOfficialContactById("conclave-defence")?.people[0]?.phone, "+91 82192 18715");
+    assert.equal(getOfficialContactById("sponsorship-partnership")?.people[0]?.name, "Dr. Jatinder Garg");
+  });
+
   it("does not invent emails for programmes absent from the official list", () => {
     const invented = SMK_6_OFFICIAL_CONTACTS.filter((item) =>
       ["olympiad", "awards", "exhibition", "cultural", "best-practices"].includes(item.id)

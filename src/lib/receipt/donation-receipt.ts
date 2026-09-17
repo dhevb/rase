@@ -26,9 +26,6 @@ export type DonationReceiptData = {
   transactionDate: string;
   orgLegalName: string;
   programmeName: string;
-  section80G: string;
-  act80G: string;
-  registration80G: string;
 };
 
 export function buildDonationReceiptData(input: {
@@ -66,9 +63,6 @@ export function buildDonationReceiptData(input: {
     paymentMode: hasRazorpay ? "Online — Razorpay" : "Online",
     transactionDate: date,
     orgLegalName: DONATION_80G.orgLegalName,
-    section80G: DONATION_80G.section,
-    act80G: DONATION_80G.act,
-    registration80G: DONATION_80G.registrationNumber,
     programmeName: DONATION_80G.programmeName,
   };
 }

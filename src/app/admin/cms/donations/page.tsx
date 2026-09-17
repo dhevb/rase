@@ -72,7 +72,7 @@ export default function AdminDonationsPage() {
     <div>
       <AdminPageHeader
         title="Donations"
-        description="80G donations and sponsorship payments — search, download receipts, resend email."
+        description="Donations and sponsorship payments — search, download receipts, resend email."
       />
 
       <AdminCard className="mb-4">

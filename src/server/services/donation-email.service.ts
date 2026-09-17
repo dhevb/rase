@@ -1,5 +1,5 @@
 import { queueEmail } from "@/server/services/email.service";
-import { DONATION_80G } from "@/data/donation-hub";
+import { DONATION_PUBLIC_NOTE } from "@/data/donation-hub";
 
 export async function sendDonationReceiptEmail(options: {
   donationId: string;
@@ -10,7 +10,7 @@ export async function sendDonationReceiptEmail(options: {
   receiptUrl: string;
   receiptPdf: Buffer;
 }) {
-  const subject = `Shiksha Mahakumbh — ${options.donationKind} Receipt (80G)`;
+  const subject = `Shiksha Mahakumbh — ${options.donationKind} Receipt`;
 
   const html = `<div style="font-family:Arial,sans-serif;line-height:1.6;color:#1e293b;max-width:560px">
     <p>Dear ${options.fullName},</p>
@@ -18,11 +18,10 @@ export async function sendDonationReceiptEmail(options: {
     <table style="border-collapse:collapse;margin:16px 0;width:100%">
       <tr><td style="padding:6px 0;font-weight:600">Donation ID</td><td>${options.donationId}</td></tr>
       <tr><td style="padding:6px 0;font-weight:600">Amount</td><td>₹${options.amount.toLocaleString("en-IN")}</td></tr>
-      <tr><td style="padding:6px 0;font-weight:600">80G Benefit</td><td>Eligible under Section ${DONATION_80G.section}</td></tr>
     </table>
-    <p>Your official 80G donation receipt is attached as PDF. You can also download or print it online:</p>
+    <p>Your official donation receipt is attached as PDF. You can also download or print it online:</p>
     <p><a href="${options.receiptUrl}" style="display:inline-block;background:#e8750a;color:#fff;padding:10px 18px;border-radius:8px;text-decoration:none;font-weight:bold">Download Receipt</a></p>
-    <p style="font-size:13px;color:#64748b;margin-top:20px">${DONATION_80G.note}</p>
+    <p style="font-size:13px;color:#64748b;margin-top:20px">${DONATION_PUBLIC_NOTE}</p>
     <p style="margin-top:24px">With gratitude,<br/><strong>Shiksha Mahakumbh Abhiyan Team</strong><br/>Department of Holistic Education</p>
   </div>`;
 

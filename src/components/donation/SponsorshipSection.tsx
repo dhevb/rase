@@ -10,6 +10,7 @@ import {
   type SponsorshipTierId,
 } from "@/data/sponsorship-hub";
 import { CANONICAL_ROUTES } from "@/constants/canonical-routes";
+import ProgrammeSupportPanel from "@/components/contact/ProgrammeSupportPanel";
 
 type Props = {
   selectedTierId: SponsorshipTierId | "custom";
@@ -225,6 +226,11 @@ export default function SponsorshipSection({ selectedTierId, onSelectTier }: Pro
           </div>
         </dl>
       </div>
+
+      <ProgrammeSupportPanel
+        contactId="sponsorship-partnership"
+        title="Need help with sponsorship or academic partnership?"
+      />
     </section>
   );
 }

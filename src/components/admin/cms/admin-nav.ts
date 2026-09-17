@@ -291,7 +291,7 @@ export const CMS_NAV: AdminNavItem[] = [
   {
     label: "Donations",
     href: "/admin/cms/donations",
-    description: "80G donations & sponsorships",
+    description: "Donations and sponsorships",
     group: "operations",
   },
   {

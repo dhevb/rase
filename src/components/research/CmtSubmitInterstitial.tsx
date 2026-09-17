@@ -6,7 +6,11 @@ import {
   cmtSubmissionDateLabel,
 } from "@/lib/registration/config";
 import { CtaButton } from "@/components/ui";
-import { ACADEMIC_PUBLICATION_NOTE } from "@/data/academic-council-tracks";
+import {
+  ACADEMIC_ACCEPTANCE_NOTIFICATION,
+  ACADEMIC_FINAL_MANUSCRIPT_DEADLINE,
+  ACADEMIC_PUBLICATION_NOTE,
+} from "@/data/academic-council-tracks";
 import { academicCouncilProgrammeUrl } from "@/data/academic-council-hub";
 import { REGISTRATION_DEADLINE } from "@/data/registration-hub";
 import ProgrammeSupportPanel from "@/components/contact/ProgrammeSupportPanel";
@@ -49,10 +53,10 @@ export default function CmtSubmitInterstitial() {
           <div className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
             <h3 className="text-sm font-bold text-brand-navy">Important dates</h3>
             <ul className="mt-2 list-disc space-y-1 pl-5">
-              <li>CMT submissions: {statusLabel}</li>
-              <li>Acceptance notification: 31 July 2026</li>
-              <li>Final manuscript deadline: 31 August 2026</li>
               <li>Conference registration deadline: {REGISTRATION_DEADLINE}</li>
+              <li>Acceptance notification: {ACADEMIC_ACCEPTANCE_NOTIFICATION}</li>
+              <li>Final manuscript deadline: {ACADEMIC_FINAL_MANUSCRIPT_DEADLINE}</li>
+              <li>CMT portal: {statusLabel}</li>
             </ul>
           </div>
 

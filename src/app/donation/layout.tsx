@@ -14,7 +14,7 @@ import { metadataFromCmsSeo } from "@/lib/seo/cms-metadata";
 export const revalidate = 300;
 
 const FALLBACK_META = {
-  title: "Donate & Sponsor — 80G Tax Benefit | Shiksha Mahakumbh",
+  title: "Donate & Sponsor | Shiksha Mahakumbh",
   description: donationMetaDescription(),
   path: DONATION_PATH,
   keywords: [...DONATION_KEYWORDS],

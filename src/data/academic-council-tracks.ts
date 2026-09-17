@@ -1,3 +1,5 @@
+import { REGISTRATION_DEADLINE } from "@/data/registration-hub";
+
 /** Canonical 16-track roster for Shiksha Mahakumbh 6.0 multi-track conference (official track sheet). */
 
 export type AcademicConferenceTrack = {
@@ -29,8 +31,12 @@ export const ACADEMIC_CONFERENCE_LEADERSHIP = {
   ],
 } as const;
 
+/** Extended with SMK 6.0 programme deadlines to 30 September 2026. */
+export const ACADEMIC_ACCEPTANCE_NOTIFICATION = REGISTRATION_DEADLINE;
+export const ACADEMIC_FINAL_MANUSCRIPT_DEADLINE = REGISTRATION_DEADLINE;
+
 export const ACADEMIC_PUBLICATION_NOTE =
-  "The papers accepted and presented at the conference will be published in a peer reviewed, open access journal with ISSN. The selected papers meeting the standard quality requirements will be considered for publication in Web of Science/Scopus indexed journals. The authors are invited to submit an abstract, which will undergo a double-blind peer reviewing process for its acceptance. Similarity index of the manuscript must be within acceptable limits.";
+  "Papers accepted and presented at the conference will be considered for publication in a peer-reviewed open-access journal with ISSN. Selected papers that meet the applicable quality standards may be considered for publication in Web of Science/Scopus-indexed journals. Authors submit an abstract, which undergoes double-blind peer review for acceptance. Manuscript similarity must remain within acceptable limits. Papers must be submitted through the Microsoft CMT portal using the official SMK 2026 link. Submission guidelines, templates, the copyright form, and the free submission process are available through that official CMT workflow.";
 
 export const ACADEMIC_BEST_PAPER_NOTE = "Track-wise one best paper award.";
 

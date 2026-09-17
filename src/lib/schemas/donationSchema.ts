@@ -16,7 +16,7 @@ export const donationFormSchema = z.object({
     .string()
     .trim()
     .transform((v) => v.toUpperCase())
-    .refine(isValidPan, "Valid PAN is mandatory for 80G receipt"),
+    .refine(isValidPan, "Valid PAN is required for the official receipt"),
   organization: z.string().trim().max(200).optional().or(z.literal("")),
   address: z.string().trim().max(500).optional().or(z.literal("")),
   amount: z.number().min(DONATION_MIN_AMOUNT, `Minimum donation is ₹${DONATION_MIN_AMOUNT}`),

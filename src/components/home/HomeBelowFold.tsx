@@ -25,7 +25,6 @@ const RegistrationTypesStrip = dynamic(() => import("./RegistrationTypesStrip"))
 const BrandShowcaseSection = dynamic(() => import("./BrandShowcaseSection"));
 const DiscoverStrip = dynamic(() => import("./DiscoverStrip"));
 const EventTracksSection = dynamic(() => import("./EventTracksSection"));
-const ProgrammesNoticesSection = dynamic(() => import("./ProgrammesNoticesSection"));
 
 type Props = {
   locale?: ContentLocale;
@@ -56,10 +55,6 @@ export default async function HomeBelowFold({ locale = "en", homeSections }: Pro
 
       <LazySection minHeight="22rem" rootMargin="0px 0px 250px 0px" idleFirst fallback={<SectionSkeleton lines={3} />}>
         <BrandShowcaseSection />
-      </LazySection>
-
-      <LazySection minHeight="20rem" rootMargin="0px 0px 200px 0px" idleFirst fallback={<SectionSkeleton lines={4} />}>
-        <ProgrammesNoticesSection />
       </LazySection>
 
       <LazySection minHeight="22rem" rootMargin="0px 0px 200px 0px" idleFirst fallback={<SectionSkeleton lines={3} />}>

@@ -185,15 +185,15 @@ export const VIBHAG_HUB_BY_SLUG: Record<string, VibhagHubConfig> = {
       imageAlt: "Vitt Vibhag — Shiksha Mahakumbh 6.0 finance and resource management team",
     },
     intro:
-      "The Vitt Vibhag oversees financial planning and resource mobilisation for the summit. For sponsorship, institutional support, or donation-related enquiries, contact the finance coordinators below or visit the donation page for secure 80G contributions.",
+      "The Vitt Vibhag oversees financial planning and resource mobilisation for the summit. For sponsorship, institutional support, or donation-related enquiries, contact the finance coordinators below or visit the donation page for secure contributions.",
     stats: [
       { label: "Finance leads", value: String(VITT_MEMBERS.length), hint: "Resource management" },
-      { label: "Donations", value: "80G", hint: "Tax-deductible support via Razorpay" },
+      { label: "Donations", value: "Razorpay", hint: "Secure support via the donation page" },
       { label: "Summit dates", value: "Oct 2026", hint: SMK_6_0_VENUE_DATES },
       { label: "Host", value: "NIT Hamirpur", hint: "Shiksha Mahakumbh 6.0" },
     ],
     quickLinks: [
-      { label: "Donate (80G)", href: CANONICAL_ROUTES.donation, icon: "💝" },
+      { label: "Donate", href: CANONICAL_ROUTES.donation, icon: "💝" },
       { label: "Register for SMK 6.0", href: CANONICAL_ROUTES.registration, icon: "✅" },
       { label: "Contact DHE", href: CANONICAL_ROUTES.contact, icon: "📞" },
       { label: "Academic Council", href: CANONICAL_ROUTES.departments.academicCouncil, icon: "🎓" },
@@ -203,7 +203,7 @@ export const VIBHAG_HUB_BY_SLUG: Record<string, VibhagHubConfig> = {
     keywords: [
       ...SHARED_KEYWORDS,
       "education summit sponsorship India",
-      "Shiksha Mahakumbh donation 80G",
+      "Shiksha Mahakumbh donation",
       "finance department DHE",
     ],
     memberCount: VITT_MEMBERS.length,

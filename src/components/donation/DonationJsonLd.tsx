@@ -7,6 +7,7 @@ import {
   DONATION_HERO_IMAGE,
   DONATION_PAGE_HERO,
   DONATION_PATH,
+  DONATION_PUBLIC_NOTE,
   DONATION_TIERS,
   donationMetaDescription,
   DONATION_FAQ,
@@ -48,7 +49,7 @@ export default function DonationJsonLd() {
       "@type": "NGO",
       name: DONATION_80G.orgLegalName,
       taxID: DONATION_80G.orgPan,
-      description: DONATION_80G.note,
+      description: DONATION_PUBLIC_NOTE,
     },
   };
 

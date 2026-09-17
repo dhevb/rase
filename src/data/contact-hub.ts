@@ -29,7 +29,7 @@ export const CONTACT_QUICK_LINKS = [
   { label: "Register for SMK 6.0", href: CANONICAL_ROUTES.registration, icon: "✅" },
   { label: "Programme Contacts", href: `${CANONICAL_ROUTES.contact}#programme-contacts`, icon: "📞" },
   { label: "Sampark Vibhag", href: CANONICAL_ROUTES.departments.sampark, icon: "🤝" },
-  { label: "Donate (80G)", href: CANONICAL_ROUTES.donation, icon: "💝" },
+  { label: "Donate", href: CANONICAL_ROUTES.donation, icon: "💝" },
   { label: "Upcoming Events", href: CANONICAL_ROUTES.upcomingEvents, icon: "🗓️" },
   { label: "Press Releases", href: CANONICAL_ROUTES.press, icon: "📰" },
   { label: "About the Abhiyan", href: CANONICAL_ROUTES.introduction, icon: "📜" },

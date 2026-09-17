@@ -15,10 +15,10 @@ import {
   DONATION_IMPACT_AREAS,
   DONATION_MIN_AMOUNT,
   DONATION_PAGE_HERO,
+  DONATION_PUBLIC_NOTE,
   DONATION_SECTION,
   DONATION_SUCCESS_LINKS,
   DONATION_TIERS,
-  donation80GAddressLine,
   type DonationTierId,
 } from "@/data/donation-hub";
 import {
@@ -149,7 +149,7 @@ export default function DonationShowcase() {
           emailSent: Boolean(data.emailSent),
         });
         if (data.emailSent) {
-          toast.success("Thank you! Your 80G receipt has been sent to your email.");
+          toast.success("Thank you! Your receipt has been sent to your email.");
         } else {
           toast.success("Donation confirmed. Download your receipt below.");
         }
@@ -213,7 +213,7 @@ export default function DonationShowcase() {
           <p className="mt-4 text-sm text-slate-600">
             {success.emailSent ? (
               <>
-                An 80G-eligible receipt has been emailed to <strong>{success.email}</strong>.
+                An official receipt has been emailed to <strong>{success.email}</strong>.
               </>
             ) : (
               <>
@@ -240,8 +240,7 @@ export default function DonationShowcase() {
             </a>
           </div>
           <p className="mt-6 text-xs text-slate-500">
-            Section {DONATION_80G.section} — Reg. {DONATION_80G.registrationNumber} (
-            {DONATION_80G.orgLegalName})
+            {DONATION_80G.orgLegalName}
           </p>
         </motion.div>
 
@@ -322,22 +321,22 @@ export default function DonationShowcase() {
             </li>
             <li className="flex items-start gap-2">
               <span aria-hidden>✓</span>
-              <span>Instant 80G receipt by email</span>
+              <span>Official receipt by email</span>
             </li>
             <li className="flex items-start gap-2">
               <span aria-hidden>✓</span>
-              <span>Download or print your tax receipt anytime</span>
+              <span>Download or print your receipt anytime</span>
             </li>
           </ul>
         </div>
         <div className="rounded-2xl border border-brand-blue/15 bg-brand-surface-warm p-6 md:p-8">
           <p className="text-xs font-bold uppercase tracking-widest text-brand-saffron">
-            Section {DONATION_80G.section} — Form 10AC Provisional Approval
+            Receiving organisation
           </p>
           <h2 className="mt-2 text-xl font-bold text-brand-navy md:text-2xl">
-            Tax-Deductible Donations
+            Support Shiksha Mahakumbh
           </h2>
-          <p className="mt-3 text-sm leading-relaxed text-slate-600">{DONATION_80G.note}</p>
+          <p className="mt-3 text-sm leading-relaxed text-slate-600">{DONATION_PUBLIC_NOTE}</p>
           <dl className="mt-4 space-y-2 text-sm text-slate-700">
             <div>
               <dt className="font-semibold text-brand-navy">Registered trust</dt>
@@ -347,33 +346,9 @@ export default function DonationShowcase() {
               <dt className="font-semibold text-brand-navy">Programme supported</dt>
               <dd>{DONATION_80G.programmeName}</dd>
             </div>
-            <div>
-              <dt className="font-semibold text-brand-navy">PAN</dt>
-              <dd>{DONATION_80G.orgPan}</dd>
-            </div>
-            <div>
-              <dt className="font-semibold text-brand-navy">80G unique registration no.</dt>
-              <dd>{DONATION_80G.registrationNumber}</dd>
-            </div>
-            <div>
-              <dt className="font-semibold text-brand-navy">Document ID</dt>
-              <dd>{DONATION_80G.documentId}</dd>
-            </div>
-            <div>
-              <dt className="font-semibold text-brand-navy">Approval date</dt>
-              <dd>{DONATION_80G.approvalDate}</dd>
-            </div>
-            <div>
-              <dt className="font-semibold text-brand-navy">Valid for</dt>
-              <dd>{DONATION_80G.approvalPeriod}</dd>
-            </div>
-            <div>
-              <dt className="font-semibold text-brand-navy">Registered address</dt>
-              <dd>{donation80GAddressLine()}</dd>
-            </div>
           </dl>
           <p className="mt-4 text-xs text-slate-500">
-            PAN is mandatory on the donation form for issuing a valid 80G receipt. See our{" "}
+            PAN is requested on the donation form for the official receipt. See our{" "}
             <Link href="/refund-policy" className="font-semibold text-brand-blue hover:underline">
               refund policy
             </Link>
@@ -490,10 +465,10 @@ export default function DonationShowcase() {
         <p className="mt-1 text-sm text-slate-600">
           {activeTierLabel ? (
             <>
-              Selected: <strong>{activeTierLabel}</strong> · Secure Razorpay · Instant 80G receipt
+              Selected: <strong>{activeTierLabel}</strong> · Secure Razorpay · Official receipt
             </>
           ) : (
-            "Secure payment via Razorpay · Instant 80G receipt to your email"
+            "Secure payment via Razorpay · Official receipt to your email"
           )}
         </p>
 
@@ -544,7 +519,7 @@ export default function DonationShowcase() {
           <label className="block md:col-span-2">
             <span className="text-sm font-semibold text-brand-navy">
               PAN Number *{" "}
-              <span className="font-normal text-slate-500">(mandatory for 80G receipt)</span>
+              <span className="font-normal text-slate-500">(for official receipt)</span>
             </span>
             <input
               type="text"

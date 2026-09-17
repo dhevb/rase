@@ -22,6 +22,9 @@ export type CommitteeEditionData = {
   theme: string;
   year: string;
   eventHref: string;
+  /** Optional official organising-committee poster for this edition. */
+  posterSrc?: string;
+  posterAlt?: string;
   sections: CommitteeSection[];
 };
 

@@ -370,7 +370,7 @@ const CURATED_BY_PATH: Record<string, InternalLinkSuggestion[]> = {
     { href: "/past-events", label: "Past Editions", reason: "curated", weight: 82 },
   ],
   "/departments/vitt": [
-    { href: "/donation", label: "Donate (80G)", reason: "curated", weight: 92 },
+    { href: "/donation", label: "Donate", reason: "curated", weight: 92 },
     { href: "/registration", label: "Register for SMK 6.0", reason: "curated", weight: 90 },
     { href: "/contact-us", label: "Contact DHE", reason: "curated", weight: 88 },
     { href: "/departments/academic-council", label: "Academic Council", reason: "curated", weight: 86 },
@@ -388,7 +388,7 @@ const CURATED_BY_PATH: Record<string, InternalLinkSuggestion[]> = {
   "/contact-us": [
     { href: "/registration", label: "Register for SMK 6.0", reason: "curated", weight: 95 },
     { href: "/departments/sampark", label: "Sampark Vibhag", reason: "curated", weight: 93 },
-    { href: "/donation", label: "Donate (80G)", reason: "curated", weight: 90 },
+    { href: "/donation", label: "Donate", reason: "curated", weight: 90 },
     { href: "/upcoming-events", label: "Upcoming Events", reason: "curated", weight: 88 },
     { href: "/press", label: "Press Releases", reason: "curated", weight: 85 },
     { href: "/introduction", label: "About the Abhiyan", reason: "curated", weight: 82 },

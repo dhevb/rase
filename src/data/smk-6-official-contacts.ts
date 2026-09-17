@@ -91,7 +91,11 @@ export const SMK_6_OFFICIAL_CONTACTS: readonly OfficialProgrammeContact[] = [
     id: "multi-track-conference",
     programmeName: "Multi-Track Conference",
     group: "academic",
-    people: [],
+    people: [
+      { name: "Dr. Vipin Jain", designation: "CBLU, Bhiwani", phone: "+91 98281 17678" },
+      { name: "Dr. Vikas Garg", designation: "CU Punjab, Bathinda", phone: "+91 99886 10629" },
+      { name: "Prof. Praveen Sharma", designation: "CU Jammu", phone: "+91 62902 60756" },
+    ],
     email: ACADEMICS_EMAIL,
     detailsUrl: academicCouncilProgrammeUrl("ConferencePage"),
     registrationUrl: CMT_SUBMIT_PATH,
@@ -150,7 +154,13 @@ export const SMK_6_OFFICIAL_CONTACTS: readonly OfficialProgrammeContact[] = [
     id: "conclaves",
     programmeName: "Conclaves",
     group: "conclave",
-    people: [],
+    people: [
+      {
+        name: "Dr. Praveen Kumar Sharma",
+        designation: "Plaksha University, Mohali",
+        phone: "+91 62902 60756",
+      },
+    ],
     email: CONCLAVES_EMAIL,
     detailsUrl: academicCouncilProgrammeUrl("ConclavePage"),
     registrationUrl: SMK_6_CONCLAVE_REGISTRATION_HREF,
@@ -261,11 +271,18 @@ export const SMK_6_OFFICIAL_CONTACTS: readonly OfficialProgrammeContact[] = [
     id: "conclave-defence",
     programmeName: "Defence and Security Conclave",
     group: "conclave",
-    people: [],
+    people: [
+      {
+        name: "Dr. Pawan Kumar Sharma",
+        designation: "NIT Hamirpur",
+        phone: "+91 82192 18715",
+      },
+    ],
     email: CONCLAVES_EMAIL,
+    phone: "+91 82192 18715",
     detailsUrl: academicCouncilProgrammeUrl("ConclavePage"),
     academicConclaveId: "defence-security",
-    helpText: "No separate phone is printed on the current public Defence and Security Conclave listing.",
+    helpText: "Official contact for the Defence and Security Conclave.",
     source: DIRECTORY_SOURCE,
   },
   {
@@ -305,10 +322,17 @@ export const SMK_6_OFFICIAL_CONTACTS: readonly OfficialProgrammeContact[] = [
     id: "sponsorship-partnership",
     programmeName: "Sponsorship & Academic Partnership",
     group: "partnership",
-    people: [],
+    people: [
+      {
+        name: "Dr. Jatinder Garg",
+        designation: "CUHP, Dharamshala",
+        phone: "+91 95019 56000",
+      },
+    ],
     email: DIRECTOR_EMAIL,
+    phone: "+91 95019 56000",
     detailsUrl: CANONICAL_ROUTES.departments.sampark,
-    helpText: "For sponsorship and academic partnership enquiries, including VCs & Directors’ Conclave coordination.",
+    helpText: "For sponsorship, academic partnership, and institutional collaboration enquiries.",
     source: DIRECTORY_SOURCE,
   },
   {

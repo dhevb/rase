@@ -45,8 +45,8 @@ function editionMatchesQuery(
   );
 }
 
-function editionImageSrc(edition: string) {
-  return getEditionByNumber(edition)?.imageSrc ?? COMMITTEES_HERO_IMAGE;
+function editionImageSrc(edition: (typeof COMMITTEE_HUB_EDITIONS)[number]) {
+  return edition.posterSrc ?? getEditionByNumber(edition.edition)?.imageSrc ?? COMMITTEES_HERO_IMAGE;
 }
 
 export default function CommitteesShowcase() {
@@ -240,7 +240,7 @@ export default function CommitteesShowcase() {
           {filtered.map((edition, index) => {
             const members = countCommitteeMembers(edition);
             const brochure = getCommitteeBrochure(edition.edition);
-            const imageSrc = editionImageSrc(edition.edition);
+            const imageSrc = editionImageSrc(edition);
 
             return (
               <motion.article
@@ -251,12 +251,12 @@ export default function CommitteesShowcase() {
                 transition={{ delay: index * 0.05 }}
                 className="group flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-md transition hover:-translate-y-0.5 hover:border-brand-saffron/40 hover:shadow-lg"
               >
-                <div className="relative h-36 bg-slate-100">
+                <div className={`relative bg-slate-100 ${edition.posterSrc ? "h-52 md:h-64" : "h-36"}`}>
                   <Image
                     src={imageSrc}
-                    alt={`${edition.pageTitle} — ${edition.venue}`}
+                    alt={edition.posterAlt ?? `${edition.pageTitle} — ${edition.venue}`}
                     fill
-                    className="object-cover"
+                    className={edition.posterSrc ? "object-contain p-2" : "object-cover"}
                     sizes="(max-width: 768px) 100vw, 50vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/40 to-transparent" />

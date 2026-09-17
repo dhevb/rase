@@ -11,8 +11,10 @@ import {
   ACContactBlock,
 } from "../AcademicCouncilUI";
 import {
+  ACADEMIC_ACCEPTANCE_NOTIFICATION,
   ACADEMIC_BEST_PAPER_NOTE,
   ACADEMIC_CONFERENCE_LEADERSHIP,
+  ACADEMIC_FINAL_MANUSCRIPT_DEADLINE,
   ACADEMIC_PAPER_SUBMISSION_WEBSITE,
   ACADEMIC_PUBLICATION_NOTE,
 } from "@/data/academic-council-tracks";
@@ -99,9 +101,9 @@ export default function ConferencePage() {
       <ACSection title="Important Dates">
         <div className="grid gap-3 md:grid-cols-2">
           <ACCard>CMT submissions: {cmtSubmissionDateLabel()}</ACCard>
-          <ACCard>Acceptance Notification: 31 July 2026</ACCard>
-          <ACCard>Final manuscript deadline: 31 August 2026</ACCard>
-          <ACCard>Registration Deadline: {REGISTRATION_DEADLINE}</ACCard>
+          <ACCard>Acceptance Notification: {ACADEMIC_ACCEPTANCE_NOTIFICATION}</ACCard>
+          <ACCard>Final manuscript deadline: {ACADEMIC_FINAL_MANUSCRIPT_DEADLINE}</ACCard>
+          <ACCard>Conference registration deadline: {REGISTRATION_DEADLINE}</ACCard>
         </div>
       </ACSection>
 

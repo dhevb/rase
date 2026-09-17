@@ -20,13 +20,13 @@ const VittVibhag: React.FC = () => {
       <div className="mt-8 rounded-2xl border border-brand-saffron/25 bg-brand-surface-warm p-6 text-center">
         <p className="text-sm font-semibold text-brand-navy">Support the Abhiyan</p>
         <p className="mt-2 text-sm text-slate-600">
-          Secure donations with instant 80G receipts via Razorpay.
+          Secure donations with official receipts via Razorpay.
         </p>
         <Link
           href={CANONICAL_ROUTES.donation}
           className="mt-4 inline-flex min-h-[44px] items-center rounded-xl bg-brand-navy px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-navy-light"
         >
-          Donate with 80G receipt
+          Donate now
         </Link>
       </div>
     </DepartmentPageShell>

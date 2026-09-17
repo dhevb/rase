@@ -6,7 +6,7 @@ export const DONATION_PATH = CANONICAL_ROUTES.donation;
 export const DONATION_HERO_IMAGE = "/branding/shiksha-mahakumbh-brand-hero.png";
 
 export const DONATION_HERO_IMAGE_ALT =
-  "Donate and sponsor Shiksha Mahakumbh Abhiyan — secure 80G-eligible contributions via Razorpay";
+  "Donate and sponsor Shiksha Mahakumbh Abhiyan — secure Razorpay contributions";
 
 export const DONATION_OG_IMAGE = `${SITE_URL}${DONATION_HERO_IMAGE}`;
 
@@ -41,8 +41,12 @@ export const DONATION_80G = {
     pinCode: "136118",
   },
   note:
-    "Donations are received by Vidya Bharti Institute of Training and Research Trust (PAN: AAETV1652K), provisionally approved under Section 80G of the Income Tax Act, 1961 (Unique Registration No. AAETV1652KF20241, valid for assessment years 2024-25 to 2026-27). Contributions support Shiksha Mahakumbh Abhiyan programmes organised by the Department of Holistic Education. Your official receipt will include donor PAN and payment details for tax filing.",
+    "Donations are received by Vidya Bharti Institute of Training and Research Trust in support of Shiksha Mahakumbh Abhiyan programmes organised by the Department of Holistic Education. After successful payment you will receive an official receipt by email, and you can download or print it from the confirmation screen.",
 } as const;
+
+/** Public-facing donation copy — no tax/80G claims. */
+export const DONATION_PUBLIC_NOTE =
+  "Donations are received by Vidya Bharti Institute of Training and Research Trust in support of Shiksha Mahakumbh Abhiyan programmes organised by the Department of Holistic Education. After successful payment you will receive an official receipt by email, and you can download or print it from the confirmation screen.";
 
 export function donation80GAddressLine(): string {
   const a = DONATION_80G.registeredAddress;
@@ -50,9 +54,9 @@ export function donation80GAddressLine(): string {
 }
 
 export const DONATION_HUB_STATS = [
-  { label: "Tax Benefit", value: "80G Eligible", hint: "Provisional approval — Form 10AC" },
   { label: "Secure Payment", value: "Razorpay", hint: "UPI, cards, net banking & wallets" },
-  { label: "Instant Receipt", value: "Email + PDF", hint: "Download or print after payment" },
+  { label: "Official Receipt", value: "Email + PDF", hint: "Download or print after payment" },
+  { label: "Purpose", value: "Abhiyan", hint: "Support Shiksha Mahakumbh programmes" },
 ] as const;
 
 export const DONATION_IMPACT_AREAS = [
@@ -91,7 +95,7 @@ export const DONATION_TIERS = [
     amount: 5_000,
     badge: "Community",
     description: "Power grassroots education outreach and student participation.",
-    highlights: ["Digital acknowledgement", "80G tax receipt", "Movement updates"],
+    highlights: ["Digital acknowledgement", "Official receipt", "Movement updates"],
   },
   {
     id: "patron" as const,
@@ -99,7 +103,7 @@ export const DONATION_TIERS = [
     amount: 25_000,
     badge: "Patron",
     description: "Support delegate access and regional education conclaves.",
-    highlights: ["Name on supporter wall", "80G tax receipt", "Event programme mention"],
+    highlights: ["Name on supporter wall", "Official receipt", "Event programme mention"],
   },
   {
     id: "champion" as const,
@@ -107,23 +111,23 @@ export const DONATION_TIERS = [
     amount: 50_000,
     badge: "Champion",
     description: "Accelerate research tracks and holistic learning programmes.",
-    highlights: ["Enhanced acknowledgement", "80G tax receipt", "Programme updates"],
+    highlights: ["Enhanced acknowledgement", "Official receipt", "Programme updates"],
   },
 ] as const;
 
 export const DONATION_MIN_AMOUNT = 100;
 
 export const DONATION_SECTION = {
-  title: "Make a Tax-Deductible Donation",
+  title: "Make a Donation",
   subtitle:
-    "Individual and institutional contributions eligible under Section 80G. Secure Razorpay payment, instant receipt by email, and download or print anytime.",
+    "Individual and institutional contributions via secure Razorpay payment, with an official receipt by email that you can download or print anytime.",
 } as const;
 
 export const DONATION_PAGE_HERO = {
-  eyebrow: "Support · 80G Tax Benefit · Global Movement",
+  eyebrow: "Support · Secure Giving · Global Movement",
   title: "Donate & Sponsor Shiksha Mahakumbh",
   subtitle:
-    "Two ways to support the Abhiyan — make an 80G-eligible donation for immediate tax benefit, or choose an institutional sponsorship package for SMK 6.0 branding and delegate benefits.",
+    "Two ways to support the Abhiyan — make a donation towards Shiksha Mahakumbh programmes, or choose an institutional sponsorship package for SMK 6.0 branding and delegate benefits.",
 } as const;
 
 /** @deprecated Use DONATION_PAGE_HERO — kept for home section compatibility */
@@ -152,18 +156,15 @@ export const DONATION_SUCCESS_LINKS = [
 
 export const DONATION_KEYWORDS = [
   "Shiksha Mahakumbh donation",
-  "education donation India 80G",
   "sponsor education summit India",
-  "tax deductible donation 80G",
   "Shiksha Mahakumbh sponsorship",
   "NEP 2020 education movement",
   "holistic education charity India",
   "Razorpay secure donation",
-  "Vidya Bharti Institute 80G",
 ] as const;
 
 export function donationMetaDescription(): string {
-  return `Support Shiksha Mahakumbh Abhiyan with secure Razorpay payments. Donations to Vidya Bharti Institute of Training and Research Trust are eligible under Section 80G (Reg. ${DONATION_80G.registrationNumber}). Instant receipt by email — PAN mandatory.`;
+  return "Support Shiksha Mahakumbh Abhiyan with secure Razorpay payments. Donations are received by Vidya Bharti Institute of Training and Research Trust. Instant official receipt by email.";
 }
 
 export const DONATION_FAQ = [
@@ -172,13 +173,8 @@ export const DONATION_FAQ = [
     answer: `Donations are received by ${DONATION_80G.orgLegalName} (PAN ${DONATION_80G.orgPan}) in support of ${DONATION_80G.programmeName} programmes.`,
   },
   {
-    question: "Is my donation eligible for Section 80G tax deduction?",
-    answer: `Yes. The trust holds provisional approval under Section 80G (${DONATION_80G.registrationNumber}), valid for ${DONATION_80G.approvalPeriod}. Approval dated ${DONATION_80G.approvalDate}.`,
-  },
-  {
-    question: "Why is PAN mandatory?",
-    answer:
-      "Indian income tax rules require the donor's PAN on the receipt for a valid Section 80G deduction claim.",
+    question: "Why is PAN requested?",
+    answer: "PAN is recorded on the official donation receipt issued after successful payment.",
   },
   {
     question: "What is the minimum donation amount?",
@@ -187,10 +183,10 @@ export const DONATION_FAQ = [
   {
     question: "What is the difference between donation and sponsorship?",
     answer:
-      "Donations are individual or institutional 80G contributions (from ₹100). Sponsorships are tiered SMK 6.0 partnership packages — from Banner (₹2 lakh) through Platinum (₹20 lakh) to Title Sponsor (₹1 crore) — with branding, delegate passes, exhibition space, and souvenir options as per the official sponsorship brochure.",
+      "Donations are individual or institutional contributions (from ₹100). Sponsorships are tiered SMK 6.0 partnership packages — from Banner (₹2 lakh) through Platinum (₹20 lakh) to Title Sponsor (₹1 crore) — with branding, delegate passes, exhibition space, and souvenir options as per the official sponsorship brochure.",
   },
   {
-    question: "How do I get my 80G receipt?",
+    question: "How do I get my receipt?",
     answer:
       "An email with your PDF receipt is sent immediately after successful payment. You can also download or print it from the confirmation screen.",
   },

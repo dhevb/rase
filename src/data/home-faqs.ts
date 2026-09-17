@@ -7,7 +7,7 @@ import {
   PROJECT_SCHOOL_STUDENT_FEE,
 } from "@/lib/registration/fees";
 
-const SUPPORT_EMAIL = DHE_ORGANIZATION.emails[1];
+const SUPPORT_EMAIL = DHE_ORGANIZATION.emails[0];
 
 export const HOME_DEFAULT_FAQS: FaqItem[] = [
   {

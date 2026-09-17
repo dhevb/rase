@@ -14,6 +14,9 @@ export const COMMITTEE_EDITION_6_0: CommitteeEditionData = {
   theme: "शिक्षा, प्रकृति और प्रगति — Education for Development and Harmony with Nature",
   year: "2026",
   eventHref: "/departments/academic-council",
+  posterSrc: "/images/committees/smk-6-organising-committee.png",
+  posterAlt:
+    "Official Shiksha Mahakumbh 6.0 organising committee chart — Chief Patron through Advisory Committee",
   sections: [
     {
       title: "Chief Patron",
@@ -56,14 +59,14 @@ export const COMMITTEE_EDITION_6_0: CommitteeEditionData = {
     {
       title: "Secretaries",
       members: [
-        m("Dr. Ravi", "NIT Hamirpur"),
+        m("Prof. Raman Parti", "NIT Hamirpur"),
         m("Dr. Jatinder Garg", "CoE, CUHP, Dharamshala"),
       ],
     },
     {
       title: "Joint Secretaries",
       members: [
-        m("Smt. Sonu Sharma", "President, DHE"),
+        m("Sonu Agnihotri Sharma", "President, DHE"),
         m("Dr. Krishna Pandey", "Kurukshetra University, Kurukshetra"),
       ],
     },
@@ -79,6 +82,7 @@ export const COMMITTEE_EDITION_6_0: CommitteeEditionData = {
         m("Sh. Dilaram Chauhan", "General Secretary, Vidya Bharti NZ"),
         m("Sh. Chander Has Gupta", "Secretary, Vidya Bharti NZ"),
         m("Prof. Binod Kumar Kanaujia", "Director, NIT Jalandhar"),
+        m("Prof. Brahmjit Singh", "Director, NIT Kurukshetra"),
         m("Prof. Suman Sharma", "CUHP, Dharamshala"),
         m("Prof. Pardeep Kumar", "Dean(A), CUHP, Dharamshala"),
         m("Dr. Vijay Sharma", "Registrar CUP, Bathinda"),
@@ -92,7 +96,7 @@ export const COMMITTEE_EDITION_6_0: CommitteeEditionData = {
         m("Prof. Sunil Dhingra", "Kurukshetra University, Kurukshetra"),
         m("Prof. Tarun Sharma", "NIPER Mohali"),
         m("Dr. Vijay Sharma", "NIT Srinagar"),
-        m("Dr. Kartar Chand Sounkh", "Padma Shree Awardee"),
+        m("Sh. Kartar Singh Sonkhle", "Padma Shree Awardee"),
         m("Sh. Ajay Trehan", "NIT Jalandhar"),
         m("Sh. Nek Ram Sharma", "Padma Shree Awardee"),
         m("Sh. Hariman Sharma", "Padma Shree Awardee"),

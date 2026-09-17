@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import HeroSection from "./HeroSection";
 import HomeSectionNav from "./HomeSectionNav";
+import ProgrammesNoticesSection from "./ProgrammesNoticesSection";
 import type { CmsPageData } from "@/lib/cms/types";
 import SectionSkeleton from "@/components/performance/SectionSkeleton";
 import AnnouncementsMarquee from "@/components/layout/AnnouncementsMarquee";
@@ -35,6 +36,7 @@ export default function HomePage({
       <main id="main-content">
         <HeroSection content={heroContent} />
         <AnnouncementsMarquee items={tickerItems} />
+        <ProgrammesNoticesSection />
         <HomeSectionNav />
 
         <Suspense

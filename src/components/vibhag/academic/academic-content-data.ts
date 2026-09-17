@@ -572,7 +572,7 @@ export const conclaves = [
       "Nation First: Strengthening Security through Innovation & Strategic Leadership",
     coordinators: [
       "Major General Suresh Kumar Khajuria (Retd.), President, Vidya Bharti, Punjab",
-      "Prof. Pawan Kumar Sharma, NIT Hamirpur",
+      "Dr. Pawan Kumar Sharma, NIT Hamirpur",
       "Dr. Vivek Sharma, NIT Hamirpur",
       "Dr. Vinod Sharma, NIT Hamirpur",
     ],
