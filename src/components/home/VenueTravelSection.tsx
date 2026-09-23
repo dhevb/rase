@@ -20,8 +20,9 @@ const DEFAULT_TRAVEL = [
   {
     title: "Stay",
     items: [
-      "Accommodation booking opens September 2026 — announced on site and by email",
-      "Hotels in Hamirpur & nearby towns",
+      "Registered participants: complete SMK 6.0 registration, then submit the official accommodation form",
+      "Deadline for event registration consideration: see registration page",
+      "Hotels in Hamirpur & nearby towns (participant arrangements)",
     ],
   },
 ];

@@ -101,14 +101,13 @@ const DEFAULT_EN: Omit<ResolvedAnnouncementItem, "id">[] = [
     iconKey: "programmes",
   },
   {
-    title: "Accommodation — September 2026",
-    summary: "Lodging details on the notice board",
-    detail:
-      "Accommodation booking opens in September 2026. Registration does not include lodging yet — official circulars and stay options will be published on the notice board.",
-    href: "/noticeboard",
+    title: "Registered Participant Accommodation — Important Update",
+    summary: `Complete registration by ${REGISTRATION_DEADLINE}, then apply for accommodation`,
+    detail: `Registered participants of Shiksha Mahakumbh 6.0 who require accommodation are requested to complete their event registration by ${REGISTRATION_DEADLINE} and submit the official Registered Participant Accommodation Form.`,
+    href: `${CANONICAL_ROUTES.registration}#registered-participant-accommodation`,
     external: false,
-    cta: "View notices",
-    iconKey: "notices",
+    cta: "Apply for Accommodation",
+    iconKey: "registration",
   },
   {
     title: "Multi-Track Conference — Submit Research",
@@ -181,6 +180,15 @@ const DEFAULT_HI: Omit<ResolvedAnnouncementItem, "id">[] = [
     external: false,
     cta: "कार्यक्रम देखें",
     iconKey: "programmes",
+  },
+  {
+    title: "पंजीकृत प्रतिभागी आवास — महत्वपूर्ण अद्यतन",
+    summary: `${REGISTRATION_DEADLINE} तक पंजीकरण पूर्ण करें, फिर आवास फॉर्म जमा करें`,
+    detail: `शिक्षा महाकुंभ 6.0 के पंजीकृत प्रतिभागियों से अनुरोध है कि आवास हेतु ${REGISTRATION_DEADLINE} तक कार्यक्रम पंजीकरण पूर्ण करें और आधिकारिक Registered Participant Accommodation Form जमा करें।`,
+    href: `${CANONICAL_ROUTES.registration}#registered-participant-accommodation`,
+    external: false,
+    cta: "आवास के लिए आवेदन करें",
+    iconKey: "registration",
   },
   {
     title: "बहु-ट्रैक सम्मेलन — सार-पत्र",

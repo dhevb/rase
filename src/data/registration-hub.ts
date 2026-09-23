@@ -4,6 +4,9 @@ import { CMT_SUBMIT_PATH } from "@/lib/registration/config";
 import { committeePathForEdition } from "@/lib/committee/edition-slugs";
 import { event } from "@/design/tokens";
 import type { RegistrationType } from "@/types/registration";
+import { REGISTRATION_DEADLINE } from "@/data/registration-deadline";
+
+export { REGISTRATION_DEADLINE } from "@/data/registration-deadline";
 
 export const REGISTRATION_PATH = CANONICAL_ROUTES.registration;
 
@@ -15,8 +18,6 @@ export const REGISTRATION_HERO_IMAGE_ALT =
 export const REGISTRATION_OG_IMAGE = `${SITE_URL}${REGISTRATION_HERO_IMAGE}`;
 
 export const REGISTRATION_CANONICAL_URL = `${SITE_URL}${REGISTRATION_PATH}`;
-
-export const REGISTRATION_DEADLINE = "30 September 2026";
 
 export const REGISTRATION_PAGE_HERO = {
   eyebrow: "Shiksha Mahakumbh 6.0 · NIT Hamirpur",
@@ -100,7 +101,7 @@ export const REGISTRATION_SEO_KEYWORDS = [
 ] as const;
 
 export function registrationMetaDescription(): string {
-  return `Official registration for ${event.name} at ${event.venue}, 9–11 October 2026. Multi Track Conference (CMT), Academic Council programme tracks, Shodhankur, Student Projects, thematic conclaves, and delegate registration. Accommodation opens September 2026. Deadline ${REGISTRATION_DEADLINE}.`;
+  return `Official registration for ${event.name} at ${event.venue}, 9–11 October 2026. Multi Track Conference (CMT), Academic Council programme tracks, Shodhankur, Student Projects, thematic conclaves, delegate registration, and Registered Participant Accommodation. Deadline ${REGISTRATION_DEADLINE}.`;
 }
 
 export const REGISTRATION_FAQ = [
@@ -120,7 +121,7 @@ export const REGISTRATION_FAQ = [
   {
     question: "What registration categories are available?",
     answer:
-      "Multi Track Conference (Microsoft CMT), Programme tracks (Academic Council), Shodhankur – छात्र शोध पत्रिका, Student Projects, Conclaves (official Google Forms, including Media Conclave), and Delegate Registration. Accommodation booking opens in September 2026.",
+      "Multi Track Conference (Microsoft CMT), Programme tracks (Academic Council), Shodhankur – छात्र शोध पत्रिका, Student Projects, Conclaves (official Google Forms, including Media Conclave), Delegate Registration, and Registered Participant Accommodation (official Google Form for registered participants).",
   },
   {
     question: "How do I submit a research paper?",
@@ -133,6 +134,10 @@ export const REGISTRATION_FAQ = [
   {
     question: "Which categories require payment?",
     answer:
-      "Delegate registration may require payment depending on category and fee. Conclave, Student Projects, and Shodhankur use official Google Forms. Research papers go through the on-site CMT notice, then Microsoft CMT. Accommodation is not open for booking yet — details in September.",
+      "Delegate registration may require payment depending on category and fee. Conclave, Student Projects, and Shodhankur use official Google Forms. Research papers go through the on-site CMT notice, then Microsoft CMT. Accommodation uses the official Registered Participant Accommodation Form after event registration.",
+  },
+  {
+    question: "How do I apply for accommodation?",
+    answer: `Registered participants who require accommodation should complete Shiksha Mahakumbh 6.0 registration by ${REGISTRATION_DEADLINE}, then submit the official Registered Participant Accommodation Form at ${SITE_URL}${REGISTRATION_PATH}#registered-participant-accommodation. Arrangements are subject to the official accommodation process.`,
   },
 ] as const;

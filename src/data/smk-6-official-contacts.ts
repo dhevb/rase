@@ -298,7 +298,8 @@ export const SMK_6_OFFICIAL_CONTACTS: readonly OfficialProgrammeContact[] = [
     ],
     phone: "+91 85660 60808",
     detailsUrl: CANONICAL_ROUTES.registration,
-    helpText: "For accommodation enquiries. On-site accommodation registration opens from September 2026.",
+    helpText:
+      "For accommodation enquiries. Registered participants should complete event registration by the applicable deadline, then submit the official Registered Participant Accommodation Form on the registration page.",
     registrationTypes: ["Accommodation"],
     source: DIRECTORY_SOURCE,
   },

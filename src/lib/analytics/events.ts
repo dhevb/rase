@@ -10,6 +10,7 @@ export const ANALYTICS_EVENTS = {
   paperSubmitted: "paper_submitted",
   volunteerApplied: "volunteer_applied",
   accommodationRequested: "accommodation_requested",
+  smk6AccommodationFormClicked: "smk6_accommodation_form_clicked",
   brochureDownload: "brochure_download",
   knowledgeHubView: "knowledge_hub_view",
   globalSearch: "global_search",

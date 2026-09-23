@@ -49,7 +49,7 @@ export const HOME_DEFAULT_FAQS: FaqItem[] = [
   {
     question: "Is accommodation available?",
     answer:
-      "Accommodation booking opens in September 2026. Lodging cannot be selected during registration yet — watch the notice board for official updates.",
+      "Accommodation arrangements are available for registered participants subject to the official event accommodation process. Complete your Shiksha Mahakumbh 6.0 registration by the applicable deadline, then submit the Registered Participant Accommodation Form on the registration page.",
   },
   {
     question: "I did not receive my confirmation email",

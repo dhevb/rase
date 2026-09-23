@@ -15,8 +15,16 @@ export default function RegistrationIntroBanner() {
           form with existing fees.
         </p>
         <p className="mt-2 rounded-lg border border-sky-200 bg-sky-50 px-3 py-2 text-sm text-slate-700">
-          <strong className="text-brand-navy">Accommodation:</strong> registration opens
-          from the beginning of September. Further details will be shared on this page.
+          <strong className="text-brand-navy">Registered Participant Accommodation:</strong>{" "}
+          complete your Shiksha Mahakumbh 6.0 registration by the applicable deadline, then
+          submit the official Registered Participant Accommodation Form. See the{" "}
+          <Link
+            href="#registered-participant-accommodation"
+            className="font-semibold text-brand-navy underline"
+          >
+            accommodation section
+          </Link>{" "}
+          on this page.
         </p>
         <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
           <Link

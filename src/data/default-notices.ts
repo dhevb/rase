@@ -281,7 +281,7 @@ export const DEFAULT_NOTICES_EN: CmsNotice[] = [
     title: `Registration Open — ${event.name}`,
     slug: "registration-open-smk-6",
     description:
-      `Unified registration is open for delegates, academic conclaves, exhibitions, project displays, and accommodation requests. DHE Olympiad exam dates are to be announced — apply via the registration hub when open. For programme-specific help, see ${SMK_6_PROGRAMME_CONTACTS_HREF}. The summit runs 9–11 October 2026 at ${event.venue}, ${event.location}.`,
+      `Unified registration is open for delegates, academic conclaves, exhibitions, project displays, and related programmes. Registered participants requiring accommodation should complete event registration by ${REGISTRATION_DEADLINE} and submit the official Registered Participant Accommodation Form on the registration page. For programme-specific help, see ${SMK_6_PROGRAMME_CONTACTS_HREF}. The summit runs 9–11 October 2026 at ${event.venue}, ${event.location}.`,
     priority: 9,
     isPinned: true,
     publishAt: "2026-05-01T00:00:00.000Z",
@@ -330,14 +330,14 @@ export const DEFAULT_NOTICES_EN: CmsNotice[] = [
   },
   {
     id: "default-accommodation",
-    title: "Accommodation — Request via Registration",
-    slug: "accommodation-smk-6",
+    title:
+      "Registered Participant Accommodation — Registration Deadline: 30 September 2026",
+    slug: "registered-participant-accommodation-smk-6",
     description:
-      "Delegates requiring campus or hotel accommodation should indicate preferences during registration. Allotment confirmations, check-in timings, and transport shuttles will be shared closer to the event. Official contact: Wing Commander Sanjeev Sharma, DHE, +91 85660 60808. Programme contacts: " +
-      SMK_6_PROGRAMME_CONTACTS_HREF,
-    priority: 5,
-    isPinned: false,
-    publishAt: "2026-06-01T00:00:00.000Z",
+      `Registered participants requiring accommodation are requested to complete their Shiksha Mahakumbh 6.0 registration by ${REGISTRATION_DEADLINE} and submit the official Registered Participant Accommodation Form (https://forms.gle/kXz4brFirg5uxqhn8). Accommodation arrangements are subject to the applicable event accommodation process and are not guaranteed unless confirmed officially. Event registration: ${REGISTRATION_PATH}. Official accommodation contact: Wing Commander Sanjeev Sharma, DHE, +91 85660 60808.`,
+    priority: 11,
+    isPinned: true,
+    publishAt: "2026-09-01T00:00:00.000Z",
     expireAt: null,
     category: { name: "Registration", slug: "registration" },
     attachments: [],
@@ -505,13 +505,13 @@ export const DEFAULT_NOTICES_HI: CmsNotice[] = [
   },
   {
     id: "default-accommodation-hi",
-    title: "आवास सुविधा — पंजीकरण के माध्यम से अनुरोध",
-    slug: "accommodation-hi",
+    title: "पंजीकृत प्रतिभागी आवास — पंजीकरण अंतिम तिथि: 30 सितंबर 2026",
+    slug: "registered-participant-accommodation-hi",
     description:
-      "पंजीकरण के दौरान आवास विकल्प चुनें; पुष्टि आयोजन समिति द्वारा साझा की जाएगी।",
-    priority: 5,
-    isPinned: false,
-    publishAt: "2026-06-01T00:00:00.000Z",
+      `आवास चाहने वाले पंजीकृत प्रतिभागियों से अनुरोध है कि शिक्षा महाकुंभ 6.0 का पंजीकरण ${REGISTRATION_DEADLINE} तक पूर्ण करें और आधिकारिक Registered Participant Accommodation Form (https://forms.gle/kXz4brFirg5uxqhn8) जमा करें। आवास आधिकारिक प्रक्रिया के अधीन है। पंजीकरण: ${REGISTRATION_PATH}। संपर्क: विंग कमांडर संजीव शर्मा, DHE, +91 85660 60808।`,
+    priority: 11,
+    isPinned: true,
+    publishAt: "2026-09-01T00:00:00.000Z",
     expireAt: null,
     category: { name: "पंजीकरण", slug: "registration" },
     attachments: [],

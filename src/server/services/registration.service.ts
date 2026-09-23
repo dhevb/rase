@@ -192,9 +192,9 @@ async function createTypeExtension(
 export async function saveRegistration(input: SaveRegistrationInput): Promise<SaveRegistrationResult> {
   if (input.registrationType === "Accommodation") {
     throw new ServiceError(
-      "Accommodation registration opens in September. Please complete your programme registration and check back later.",
+      "Use the official Registered Participant Accommodation Form on the registration page (Google Form). On-site accommodation category submission is closed.",
       400,
-      "ACCOMMODATION_CLOSED"
+      "ACCOMMODATION_USE_EXTERNAL_FORM"
     );
   }
 

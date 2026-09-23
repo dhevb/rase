@@ -105,7 +105,7 @@ export async function handleCreateOrder(request: NextRequest) {
         return NextResponse.json(
           {
             error:
-              "Accommodation registration opens in September. Please complete your programme registration and check back later.",
+              "Use the official Registered Participant Accommodation Form on the registration page (Google Form).",
           },
           { status: 400 }
         );

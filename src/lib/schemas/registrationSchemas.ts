@@ -82,7 +82,7 @@ export const accommodationSchema = z
       ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message:
-          "Accommodation registration opens in September. Please select No — details will be announced on this page.",
+          "Accommodation is applied via the official Registered Participant Accommodation Form after event registration. Please select No here and use the accommodation section on the registration page.",
         path: ["accommodationRequired"],
       });
     }

@@ -1,6 +1,7 @@
 import { CANONICAL_ROUTES } from "@/constants/canonical-routes";
 import type { RegistrationType } from "@/types/registration";
 import { ANALYTICS_EVENTS, type AnalyticsEventName } from "@/lib/analytics/events";
+import { REGISTRATION_DEADLINE } from "@/data/registration-deadline";
 
 /** Official Shiksha Mahakumbh 6.0 Google Forms — single source of truth. */
 export const SMK_6_EXTERNAL_REGISTRATIONS = {
@@ -46,7 +47,20 @@ export const SMK_6_EXTERNAL_REGISTRATIONS = {
     url: "https://forms.gle/VJvWjT9kDkxtniv48",
     analyticsEvent: "smk6_student_projects_registration_clicked",
   },
+  /** Official Registered Participant Accommodation Form (external Google Form). */
+  accommodation: {
+    title: "REGISTERED PARTICIPANT ACCOMMODATION FORM",
+    shortTitle: "Registered Participant Accommodation",
+    url: "https://forms.gle/kXz4brFirg5uxqhn8",
+    analyticsEvent: "smk6_accommodation_form_clicked",
+  },
 } as const;
+
+/** Canonical accommodation Google Form URL — reuse everywhere. */
+export const SMK_6_ACCOMMODATION_FORM_URL =
+  SMK_6_EXTERNAL_REGISTRATIONS.accommodation.url;
+
+export const SMK_6_ACCOMMODATION_REGISTRATION_HREF = `${CANONICAL_ROUTES.registration}#registered-participant-accommodation`;
 
 export type Smk6ConclaveFormId = keyof typeof SMK_6_EXTERNAL_REGISTRATIONS.conclaves;
 
@@ -128,6 +142,14 @@ export const SMK_6_PUBLIC_REGISTRATION_CARDS: Smk6PublicRegistrationCard[] = [
     href: `${CANONICAL_ROUTES.registration}#delegate-registration`,
     external: false,
     badge: "₹0–₹5100",
+  },
+  {
+    id: "accommodation",
+    label: "Registered Participant Accommodation",
+    hint: `Complete event registration by ${REGISTRATION_DEADLINE}, then apply via the official Google Form`,
+    href: SMK_6_ACCOMMODATION_REGISTRATION_HREF,
+    external: false,
+    badge: "External form",
   },
 ];
 

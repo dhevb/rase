@@ -122,15 +122,20 @@ const META: Record<RegistrationType, CategoryMeta> = {
     importantNotes: ["Schedule shared after curation"],
   },
   Accommodation: {
-    description: "Accommodation registration is not open yet.",
+    description:
+      "Accommodation arrangements are available for registered participants subject to the applicable event accommodation process.",
     instructions: [
-      "Accommodation registration will open from the beginning of September.",
-      "Further details will be shared on the registration page and by email.",
+      "Complete your Shiksha Mahakumbh 6.0 registration first.",
+      "Submit the official REGISTERED PARTICIPANT ACCOMMODATION FORM (Google Form).",
+      "Accommodation arrangements are processed according to the official event accommodation process.",
     ],
     eligibility: ["Registered SMK 6.0 participants"],
-    fee: "Opens September 2026",
-    documentsRequired: ["None at this time"],
-    importantNotes: ["Complete your programme registration first"],
+    fee: "Official Google Form — arrangements subject to process",
+    documentsRequired: ["As requested on the official form"],
+    importantNotes: [
+      "Complete event registration by the applicable deadline before applying for accommodation",
+      "Accommodation is not guaranteed unless confirmed under the official process",
+    ],
   },
 };
 
@@ -151,7 +156,7 @@ const FEE_BADGES: Record<RegistrationType, { label: string; tone: FeeBadgeTone }
   Projects: { label: "External form", tone: "external" },
   Shodhankur: { label: "External form", tone: "external" },
   "Cultural Program": { label: "Free", tone: "free" },
-  Accommodation: { label: "Opens Sep", tone: "free" },
+  Accommodation: { label: "External form", tone: "external" },
 };
 
 export function getCategoryFeeBadge(type: RegistrationType): {

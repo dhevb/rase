@@ -43,6 +43,17 @@ describe("SMK 6.0 official Google Form mapping", () => {
     );
   });
 
+  it("maps Registered Participant Accommodation to the official Google Form URL", () => {
+    assert.equal(
+      SMK_6_EXTERNAL_REGISTRATIONS.accommodation.url,
+      "https://forms.gle/kXz4brFirg5uxqhn8"
+    );
+    assert.equal(
+      SMK_6_EXTERNAL_REGISTRATIONS.accommodation.title,
+      "REGISTERED PARTICIPANT ACCOMMODATION FORM"
+    );
+  });
+
   it("keeps Shodhankur and Student Projects as separate destinations", () => {
     assert.notEqual(
       SMK_6_EXTERNAL_REGISTRATIONS.shodhankur.url,
@@ -62,7 +73,7 @@ describe("SMK 6.0 official Google Form mapping", () => {
     assert.equal(SMK_6_PROGRAMME_TRACKS_HREF, "/departments/academic-council");
   });
 
-  it("publishes the six public registration options in the required order", () => {
+  it("publishes the public registration options in the required order", () => {
     assert.deepEqual(
       SMK_6_PUBLIC_REGISTRATION_CARDS.map((card) => card.id),
       [
@@ -72,6 +83,7 @@ describe("SMK 6.0 official Google Form mapping", () => {
         "student-projects",
         "conclaves",
         "delegate",
+        "accommodation",
       ]
     );
   });

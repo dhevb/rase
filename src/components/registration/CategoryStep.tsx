@@ -91,6 +91,78 @@ export default function CategoryStep({
         Google Form directly. Applicable registrations close on {REGISTRATION_DEADLINE}.
       </p>
 
+      <section
+        id="registered-participant-accommodation"
+        className="scroll-mt-24"
+        aria-labelledby="reg-group-accommodation"
+      >
+        <div className="mb-3">
+          <h3 id="reg-group-accommodation" className="text-sm font-bold text-brand-navy">
+            Registered Participant Accommodation
+          </h3>
+          <p className="mt-0.5 text-xs text-slate-500">
+            For participants who have completed (or will complete) SMK 6.0 registration
+          </p>
+        </div>
+        <OptionFrame className="border-brand-saffron/35 bg-gradient-to-br from-brand-saffron/5 to-white">
+          <div className="flex flex-wrap items-start justify-between gap-2">
+            <span className="text-sm font-bold text-brand-navy">
+              {SMK_6_EXTERNAL_REGISTRATIONS.accommodation.shortTitle}
+            </span>
+            <Badge type="Accommodation" />
+          </div>
+          <p className="mt-2 text-sm leading-relaxed text-slate-700">
+            Accommodation arrangements are available for{" "}
+            <strong className="font-semibold text-brand-navy">registered participants</strong>{" "}
+            subject to the applicable event accommodation process. Complete your Shiksha
+            Mahakumbh 6.0 registration by{" "}
+            <strong className="font-semibold text-brand-navy">{REGISTRATION_DEADLINE}</strong>{" "}
+            to be considered for accommodation, then submit the official form.
+          </p>
+          <p className="mt-2 text-xs font-semibold uppercase tracking-wide text-brand-saffron-dark">
+            Important deadline: {REGISTRATION_DEADLINE}
+          </p>
+          <ol className="mt-3 list-decimal space-y-1.5 pl-5 text-sm text-slate-700">
+            <li>Complete Shiksha Mahakumbh 6.0 registration.</li>
+            <li>
+              Submit the{" "}
+              <span className="font-semibold">
+                {SMK_6_EXTERNAL_REGISTRATIONS.accommodation.title}
+              </span>
+              .
+            </li>
+            <li>
+              Accommodation arrangements are processed according to the official event
+              accommodation process.
+            </li>
+          </ol>
+          <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Link
+              href={`${CANONICAL_ROUTES.registration}?category=${encodeURIComponent("Delegate Registration")}`}
+              className="inline-flex min-h-[48px] items-center justify-center rounded-xl border-2 border-brand-navy/20 bg-white px-5 py-3 text-sm font-bold text-brand-navy transition hover:border-brand-saffron/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy"
+            >
+              Register for Shiksha Mahakumbh 6.0
+            </Link>
+            <Smk6ExternalFormButton
+              href={SMK_6_EXTERNAL_REGISTRATIONS.accommodation.url}
+              eventName={ANALYTICS_EVENTS.smk6AccommodationFormClicked}
+            >
+              Apply for Registered Participant Accommodation
+            </Smk6ExternalFormButton>
+          </div>
+          <p className="mt-3 text-xs text-slate-500">
+            Form label: {SMK_6_EXTERNAL_REGISTRATIONS.accommodation.title}. Opens in a new
+            tab. Accommodation is not guaranteed unless confirmed under the official process.
+          </p>
+          <div className="mt-4">
+            <ProgrammeSupportPanel
+              contactId="accommodation"
+              title="Accommodation support"
+            />
+          </div>
+        </OptionFrame>
+      </section>
+
       <section aria-labelledby="reg-group-research">
         <div className="mb-3">
           <h3 id="reg-group-research" className="text-sm font-bold text-brand-navy">

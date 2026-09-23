@@ -319,7 +319,10 @@ function SuccessInner() {
                 &quot;Shiksha Mahakumbh 6.0 — Registration Confirmed&quot;.
               </li>
               <li>Didn&apos;t get the email? Use <strong>Resend confirmation email</strong> above.</li>
-              <li>Accommodation registration opens in September — watch this page and your email.</li>
+              <li>
+                Need lodging? Submit the Registered Participant Accommodation Form from the
+                registration page after you are registered.
+              </li>
               <li>Download or print your receipt — both use the same official layout.</li>
             </ul>
           </section>
