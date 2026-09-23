@@ -8,9 +8,9 @@ export const PROJECT_COLLEGE_STUDENT_FEE = 500;
 /** University Level Project */
 export const PROJECT_UNIVERSITY_STUDENT_FEE = 500;
 
-/** @deprecated Standalone accommodation registration removed — lodging opens September 2026 */
+/** @deprecated On-site Accommodation category closed — use Registered Participant Accommodation Google Form */
 export const ACCOMMODATION_SINGLE_BED_FEE = 3000;
-/** @deprecated Standalone accommodation registration removed */
+/** @deprecated On-site Accommodation category closed — use Registered Participant Accommodation Google Form */
 export const ACCOMMODATION_DOUBLE_BED_FEE = 6000;
 
 export type ProjectStudentType =
