@@ -62,6 +62,9 @@ export const SMK_6_ACCOMMODATION_FORM_URL =
 
 export const SMK_6_ACCOMMODATION_REGISTRATION_HREF = `${CANONICAL_ROUTES.registration}#registered-participant-accommodation`;
 
+/** On-site Delegate Registration form, opened by the existing `category` query on the hub. */
+export const SMK_6_DELEGATE_REGISTRATION_HREF = `${CANONICAL_ROUTES.registration}?category=${encodeURIComponent("Delegate Registration")}`;
+
 export type Smk6ConclaveFormId = keyof typeof SMK_6_EXTERNAL_REGISTRATIONS.conclaves;
 
 export const SMK_6_CONCLAVE_FORMS = [
@@ -139,7 +142,7 @@ export const SMK_6_PUBLIC_REGISTRATION_CARDS: Smk6PublicRegistrationCard[] = [
     id: "delegate",
     label: "Delegate Registration",
     hint: "Faculty, researchers, and institutional delegates",
-    href: `${CANONICAL_ROUTES.registration}#delegate-registration`,
+    href: SMK_6_DELEGATE_REGISTRATION_HREF,
     external: false,
     badge: "₹0–₹5100",
   },
@@ -190,7 +193,7 @@ export function smk6RegistrationEntryForType(type: RegistrationType): {
     return { href: SMK_6_SHODHANKUR_REGISTRATION_HREF, external: true };
   }
   if (type === "Delegate Registration") {
-    return { href: `${CANONICAL_ROUTES.registration}#delegate-registration`, external: false };
+    return { href: SMK_6_DELEGATE_REGISTRATION_HREF, external: false };
   }
   return { href: CANONICAL_ROUTES.registration, external: false };
 }

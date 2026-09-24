@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import {
   SMK_6_CONCLAVE_FORMS,
   SMK_6_CONCLAVE_REGISTRATION_HREF,
+  SMK_6_DELEGATE_REGISTRATION_HREF,
   SMK_6_EXTERNAL_REGISTRATIONS,
   SMK_6_PROGRAMME_TRACKS_HREF,
   SMK_6_PUBLIC_REGISTRATION_CARDS,
@@ -65,6 +66,21 @@ describe("SMK 6.0 official Google Form mapping", () => {
     assert.equal(SMK_6_CONCLAVE_REGISTRATION_HREF, "/registration#conclave-registration");
     assert.deepEqual(smk6RegistrationEntryForType("Conclave"), {
       href: "/registration#conclave-registration",
+      external: false,
+    });
+  });
+
+  it("opens Delegate Registration on the existing on-site form", () => {
+    assert.equal(
+      SMK_6_DELEGATE_REGISTRATION_HREF,
+      "/registration?category=Delegate%20Registration"
+    );
+    assert.equal(
+      SMK_6_PUBLIC_REGISTRATION_CARDS.find((card) => card.id === "delegate")?.href,
+      SMK_6_DELEGATE_REGISTRATION_HREF
+    );
+    assert.deepEqual(smk6RegistrationEntryForType("Delegate Registration"), {
+      href: SMK_6_DELEGATE_REGISTRATION_HREF,
       external: false,
     });
   });

@@ -3,13 +3,13 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { RegistrationType } from "@/types/registration";
-import { CANONICAL_ROUTES } from "@/constants/canonical-routes";
 import {
   CMT_SUBMIT_PATH,
   isExternalRedirectType,
 } from "@/lib/registration/config";
 import { ANALYTICS_EVENTS, trackEvent } from "@/lib/analytics/events";
 import {
+  SMK_6_DELEGATE_REGISTRATION_HREF,
   SMK_6_EXTERNAL_REGISTRATIONS,
   SMK_6_PROGRAMME_TRACKS_HREF,
   isSmk6ConclaveSelectorType,
@@ -138,7 +138,7 @@ export default function CategoryStep({
           </ol>
           <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
             <Link
-              href={`${CANONICAL_ROUTES.registration}?category=${encodeURIComponent("Delegate Registration")}`}
+              href={SMK_6_DELEGATE_REGISTRATION_HREF}
               className="inline-flex min-h-[48px] items-center justify-center rounded-xl border-2 border-brand-navy/20 bg-white px-5 py-3 text-sm font-bold text-brand-navy transition hover:border-brand-saffron/40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy"
             >
               Register for Shiksha Mahakumbh 6.0
@@ -317,7 +317,7 @@ export default function CategoryStep({
           </p>
         </div>
         <Link
-          href={`${CANONICAL_ROUTES.registration}?category=${encodeURIComponent("Delegate Registration")}`}
+          href={SMK_6_DELEGATE_REGISTRATION_HREF}
           className="block w-full min-h-[44px] rounded-2xl border border-slate-200 bg-white p-4 text-left transition hover:border-brand-navy/30 hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-navy"
         >
           <div className="flex flex-wrap items-start justify-between gap-2">

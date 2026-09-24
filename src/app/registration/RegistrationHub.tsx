@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState, Suspense } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import RegistrationShell from "@/components/registration/RegistrationShell";
 import { RegistrationType } from "@/types/registration";
 import RegistrationProgress from "@/components/registration/RegistrationProgress";
@@ -149,7 +149,10 @@ function RegistrationHubInner() {
   const flow = useRegistrationFlow();
   const currentFee = flow?.currentFee ?? 0;
   const metaLoadedRef = useRef(false);
+  const appliedCategoryRef = useRef<string | null>(null);
   const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
 
   const showPaymentStep = usesMultiStepPaymentFlow(registrationType, currentFee);
   const showOnSiteForm = usesOnSiteForm(registrationType);
@@ -168,10 +171,11 @@ function RegistrationHubInner() {
   }, [flow, registrationType]);
 
   useEffect(() => {
-    if (metaLoadedRef.current) return;
-    metaLoadedRef.current = true;
     const requested = searchParams.get("category");
     if (isRegistrationType(requested) && !isExternalRedirectType(requested)) {
+      if (appliedCategoryRef.current === requested) return;
+      appliedCategoryRef.current = requested;
+      metaLoadedRef.current = true;
       if (isSmk6ConclaveSelectorType(requested) || isSmk6GoogleFormRegistrationType(requested)) {
         setStep(1);
         setDetailsSelected(false);
@@ -189,8 +193,12 @@ function RegistrationHubInner() {
       setDetailsSelected(true);
       switchRegistrationCategory(requested);
       setStep(2);
+      window.scrollTo(0, 0);
       return;
     }
+    appliedCategoryRef.current = null;
+    if (metaLoadedRef.current) return;
+    metaLoadedRef.current = true;
     const meta = loadMeta();
     if (meta?.registrationType && !isExternalRedirectType(meta.registrationType)) {
       if (
@@ -317,6 +325,9 @@ function RegistrationHubInner() {
                   setDetailsSelected(false);
                   setStep(1);
                   flow?.setCurrentFee(0);
+                  if (searchParams.get("category")) {
+                    router.replace(pathname, { scroll: false });
+                  }
                 }}
               >
                 Change category
