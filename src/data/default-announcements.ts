@@ -1,12 +1,17 @@
 import type { CmsAnnouncementBar } from "@/lib/cms/types";
 import { CANONICAL_ROUTES } from "@/constants/canonical-routes";
 import { CMT_SUBMISSION_URL } from "@/lib/registration/config";
-import { event } from "@/design/tokens";
 import { resolveNavHref } from "@/lib/security/safe-nav-url";
 import { officialScheduleAnnouncementCopy } from "@/data/smk-6-official-schedule";
+import {
+  officialPhotographsAnnouncementCopy,
+  officialPhotographsModalMessage,
+  SMK_6_OFFICIAL_PHOTOGRAPHS_BAR_ID,
+  SMK_6_OFFICIAL_PHOTOGRAPHS_BAR_ID_HI,
+} from "@/data/smk-6-official-photographs";
 import { REGISTRATION_DEADLINE } from "@/data/registration-hub";
 
-export type AnnouncementIconKey = "programmes" | "registration" | "research" | "notices";
+export type AnnouncementIconKey = "programmes" | "registration" | "research" | "notices" | "gallery";
 
 export type CmsAnnouncementItemInput = {
   title?: string;
@@ -28,6 +33,27 @@ export type ResolvedAnnouncementItem = {
 };
 
 const scheduleCopy = officialScheduleAnnouncementCopy();
+const photographsCopy = officialPhotographsAnnouncementCopy();
+
+const PHOTOGRAPHS_EN: Omit<ResolvedAnnouncementItem, "id"> = {
+  title: photographsCopy.title,
+  summary: photographsCopy.updateNote,
+  detail: `${photographsCopy.headline} ${photographsCopy.description} ${photographsCopy.updateNote} ${photographsCopy.footerNote}`,
+  href: photographsCopy.folderUrl,
+  external: true,
+  cta: photographsCopy.cta,
+  iconKey: "gallery",
+};
+
+const PHOTOGRAPHS_HI: Omit<ResolvedAnnouncementItem, "id"> = {
+  title: photographsCopy.titleHi,
+  summary: photographsCopy.updateNoteHi,
+  detail: `${photographsCopy.headlineHi} ${photographsCopy.descriptionHi} ${photographsCopy.updateNoteHi} ${photographsCopy.footerNoteHi}`,
+  href: photographsCopy.folderUrl,
+  external: true,
+  cta: photographsCopy.ctaHi,
+  iconKey: "gallery",
+};
 
 const DEADLINE_EXTENSION_EN: Omit<ResolvedAnnouncementItem, "id"> = {
   title: "Registration Deadline Extended",
@@ -50,6 +76,7 @@ const DEADLINE_EXTENSION_HI: Omit<ResolvedAnnouncementItem, "id"> = {
 };
 
 const DEFAULT_EN: Omit<ResolvedAnnouncementItem, "id">[] = [
+  PHOTOGRAPHS_EN,
   DEADLINE_EXTENSION_EN,
   {
     title: scheduleCopy.title,
@@ -132,6 +159,7 @@ const DEFAULT_EN: Omit<ResolvedAnnouncementItem, "id">[] = [
 ];
 
 const DEFAULT_HI: Omit<ResolvedAnnouncementItem, "id">[] = [
+  PHOTOGRAPHS_HI,
   DEADLINE_EXTENSION_HI,
   {
     title: scheduleCopy.titleHi,
@@ -212,6 +240,16 @@ const DEFAULT_HI: Omit<ResolvedAnnouncementItem, "id">[] = [
 
 export const DEFAULT_ANNOUNCEMENT_BARS_EN: CmsAnnouncementBar[] = [
   {
+    id: SMK_6_OFFICIAL_PHOTOGRAPHS_BAR_ID,
+    title: photographsCopy.title,
+    message: photographsCopy.ticker,
+    barType: "global",
+    colorTheme: "primary",
+    ctaLabel: photographsCopy.cta,
+    ctaUrl: photographsCopy.folderUrl,
+    isDismissible: true,
+  },
+  {
     id: "default-bar-schedule",
     title: scheduleCopy.title,
     message: "Shiksha Mahakumbh 6.0 official programme schedule is now available.",
@@ -255,6 +293,16 @@ export const DEFAULT_ANNOUNCEMENT_BARS_EN: CmsAnnouncementBar[] = [
 
 export const DEFAULT_ANNOUNCEMENT_BARS_HI: CmsAnnouncementBar[] = [
   {
+    id: SMK_6_OFFICIAL_PHOTOGRAPHS_BAR_ID_HI,
+    title: photographsCopy.titleHi,
+    message: photographsCopy.tickerHi,
+    barType: "global",
+    colorTheme: "primary",
+    ctaLabel: photographsCopy.ctaHi,
+    ctaUrl: photographsCopy.folderUrl,
+    isDismissible: true,
+  },
+  {
     id: "default-bar-schedule-hi",
     title: scheduleCopy.titleHi,
     message: scheduleCopy.summaryHi,
@@ -287,20 +335,21 @@ export const DEFAULT_ANNOUNCEMENT_BARS_HI: CmsAnnouncementBar[] = [
 ];
 
 export const FALLBACK_WELCOME_MODAL = {
-  title: scheduleCopy.title,
-  subtitle: `${event.edition} Edition · ${event.venue}`,
-  message: `${scheduleCopy.summary} 9–11 October 2026 at NIT Hamirpur.`,
-  messageHi: scheduleCopy.summaryHi,
-  ctaUrl: scheduleCopy.href,
-  ctaLabel: scheduleCopy.cta,
-  ctaLabelHi: scheduleCopy.ctaHi,
+  title: photographsCopy.title,
+  subtitle: photographsCopy.headline,
+  subtitleHi: photographsCopy.headlineHi,
+  message: officialPhotographsModalMessage("en"),
+  messageHi: officialPhotographsModalMessage("hi"),
+  ctaUrl: photographsCopy.folderUrl,
+  ctaLabel: photographsCopy.cta,
+  ctaLabelHi: photographsCopy.ctaHi,
 } as const;
 
 export function getFallbackWelcomeModal(locale: string) {
   const isHi = locale === "hi";
   return {
-    title: FALLBACK_WELCOME_MODAL.title,
-    subtitle: FALLBACK_WELCOME_MODAL.subtitle,
+    title: isHi ? photographsCopy.titleHi : FALLBACK_WELCOME_MODAL.title,
+    subtitle: isHi ? FALLBACK_WELCOME_MODAL.subtitleHi : FALLBACK_WELCOME_MODAL.subtitle,
     message: isHi ? FALLBACK_WELCOME_MODAL.messageHi : FALLBACK_WELCOME_MODAL.message,
     ctaUrl: FALLBACK_WELCOME_MODAL.ctaUrl,
     ctaLabel: isHi ? FALLBACK_WELCOME_MODAL.ctaLabelHi : FALLBACK_WELCOME_MODAL.ctaLabel,
@@ -321,7 +370,13 @@ function cmsItemToResolved(
   const summary = item.body!.trim();
   const detail = item.detail?.trim() || summary;
   const nav = resolveNavHref(item.url, CANONICAL_ROUTES.registration);
-  const iconKeys: AnnouncementIconKey[] = ["programmes", "registration", "research", "notices"];
+  const iconKeys: AnnouncementIconKey[] = [
+    "gallery",
+    "programmes",
+    "registration",
+    "research",
+    "notices",
+  ];
 
   return {
     id: `announcement-cms-${index}`,
@@ -353,6 +408,7 @@ export function resolveAnnouncementItems(
   const defaults = getDefaultAnnouncementItems(locale);
   const scheduleDefault = defaults.find((item) => item.href === CANONICAL_ROUTES.schedule);
   const deadlineDefault = defaults.find((item) => item.title === DEADLINE_EXTENSION_EN.title || item.title === DEADLINE_EXTENSION_HI.title);
+  const photographsDefault = defaults.find((item) => item.href === photographsCopy.folderUrl);
   const valid = filterCmsAnnouncementItems(cmsItems ?? []);
   if (valid.length > 0) {
     const resolved = valid.map(cmsItemToResolved);
@@ -360,9 +416,15 @@ export function resolveAnnouncementItems(
       (item) => item.href === CANONICAL_ROUTES.schedule || /official schedule/i.test(item.title)
     );
     const hasDeadline = resolved.some((item) => /registration deadline extended|पंजीकरण अंतिम तिथि बढ़ाई/i.test(item.title));
+    const hasPhotographs = resolved.some(
+      (item) =>
+        item.href === photographsCopy.folderUrl ||
+        /official event photographs|आधिकारिक कार्यक्रम छायाचित्र/i.test(item.title)
+    );
     const prefixed = [...resolved];
     if (scheduleDefault && !hasSchedule) prefixed.unshift(scheduleDefault);
     if (deadlineDefault && !hasDeadline) prefixed.unshift(deadlineDefault);
+    if (photographsDefault && !hasPhotographs) prefixed.unshift(photographsDefault);
     return prefixed;
   }
   return defaults;
@@ -379,6 +441,7 @@ export function resolveAnnouncementBars(
   const defaults = getDefaultAnnouncementBars(locale);
   const scheduleBar = defaults.find((bar) => String(bar.id).includes("schedule"));
   const deadlineBar = defaults.find((bar) => bar.barType === "deadline_reminder");
+  const photographsBar = defaults.find((bar) => String(bar.id).includes("photographs"));
   if (bars && bars.length > 0) {
     const hasSchedule = bars.some(
       (bar) =>
@@ -391,9 +454,16 @@ export function resolveAnnouncementBars(
         bar.barType === "deadline_reminder" ||
         /registration deadline extended|पंजीकरण अंतिम तिथि बढ़ाई/i.test(`${bar.title} ${bar.message}`)
     );
+    const hasPhotographs = bars.some(
+      (bar) =>
+        String(bar.id ?? "").includes("photographs") ||
+        bar.ctaUrl === photographsCopy.folderUrl ||
+        /official event photographs|आधिकारिक कार्यक्रम छायाचित्र/i.test(`${bar.title} ${bar.message}`)
+    );
     const prefixed = [...bars];
     if (scheduleBar && !hasSchedule) prefixed.unshift(scheduleBar);
     if (deadlineBar && !hasDeadline) prefixed.unshift(deadlineBar);
+    if (photographsBar && !hasPhotographs) prefixed.unshift(photographsBar);
     return prefixed;
   }
   return defaults;
@@ -421,6 +491,8 @@ export function pickWelcomeModalBar(
 ): CmsAnnouncementBar | null {
   const list = bars ?? [];
   return (
+    list.find((b) => String(b.id ?? "").includes("photographs")) ??
+    list.find((b) => b.ctaUrl === photographsCopy.folderUrl) ??
     list.find((b) => b.barType === "registration_alert") ??
     list.find((b) => b.barType === "emergency") ??
     list.find((b) => b.id?.includes("schedule")) ??
@@ -440,7 +512,8 @@ export function barsForTicker(
   const list = resolveAnnouncementBars(bars, locale);
   const modalBar = pickWelcomeModalBar(list);
   if (!modalBar) return list;
-  if (String(modalBar.id ?? "").includes("schedule")) return list;
+  const modalId = String(modalBar.id ?? "");
+  if (modalId.includes("schedule") || modalId.includes("photographs")) return list;
   return list.filter((b) => b.id !== modalBar.id);
 }
 

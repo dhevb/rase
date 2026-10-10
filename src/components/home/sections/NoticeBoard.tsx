@@ -2,12 +2,14 @@
 
 import Link from "next/link";
 import GlassCard from "@/components/ui/GlassCard";
-import { ConferenceIcon } from "@/components/icons/home";
+import { ConferenceIcon, GalleryIcon } from "@/components/icons/home";
+import { NavCtaLink } from "@/components/ui/NavCtaLink";
 import { useCms } from "@/lib/cms/context";
 import {
   formatNoticeDate,
   resolveWidgetNotices,
 } from "@/data/default-notices";
+import { SMK_6_OFFICIAL_PHOTOGRAPHS_FOLDER_URL } from "@/data/smk-6-official-photographs";
 
 function CategoryBadge({ name }: { name: string }) {
   return (
@@ -40,49 +42,67 @@ export default function NoticeBoard() {
               notice.description.length > 120
                 ? `${notice.description.slice(0, 117).trim()}…`
                 : notice.description;
+            const isPhotographs = notice.slug.startsWith("smk-6-official-event-photographs");
+            const photoAttachment = notice.attachments.find(
+              (att) => att.fileUrl === SMK_6_OFFICIAL_PHOTOGRAPHS_FOLDER_URL
+            );
+            const Icon = isPhotographs ? GalleryIcon : ConferenceIcon;
 
             return (
-              <Link key={notice.id} href={`/noticeboard#${notice.slug}`} className="block">
-                <div className="home-card-hover group cursor-pointer rounded-xl border border-gray-100 bg-white/80 p-4">
-                  <div className="flex items-start gap-3">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-white">
-                      <ConferenceIcon className="h-5 w-5" aria-hidden />
-                    </div>
-                    <div className="min-w-0 flex-grow">
-                      <div className="mb-1 flex flex-wrap items-center gap-2">
-                        {notice.isPinned && (
-                          <span className="text-[10px] font-bold uppercase text-amber-600">
-                            Pinned
-                          </span>
-                        )}
-                        {notice.category && <CategoryBadge name={notice.category.name} />}
-                        {published && (
-                          <time
-                            dateTime={notice.publishAt ?? undefined}
-                            className="text-[10px] font-medium text-slate-400"
-                          >
-                            {published}
-                          </time>
-                        )}
-                      </div>
-                      <h4 className="text-base font-semibold leading-snug text-gray-800 transition-colors group-hover:text-primary md:text-lg">
-                        {notice.title}
-                      </h4>
-                      {excerpt ? (
-                        <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-slate-600">
-                          {excerpt}
-                        </p>
-                      ) : null}
-                      {notice.attachments.length > 0 && (
-                        <p className="mt-1 text-xs text-slate-500">
-                          {notice.attachments.length} attachment
-                          {notice.attachments.length > 1 ? "s" : ""}
-                        </p>
+              <article
+                key={notice.id}
+                className="home-card-hover rounded-xl border border-gray-100 bg-white/80 p-4"
+              >
+                <div className="flex items-start gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                    <Icon className="h-5 w-5" aria-hidden />
+                  </div>
+                  <div className="min-w-0 flex-grow">
+                    <div className="mb-1 flex flex-wrap items-center gap-2">
+                      {notice.isPinned && (
+                        <span className="text-[10px] font-bold uppercase text-amber-600">
+                          Pinned
+                        </span>
+                      )}
+                      {notice.category && <CategoryBadge name={notice.category.name} />}
+                      {published && (
+                        <time
+                          dateTime={notice.publishAt ?? undefined}
+                          className="text-[10px] font-medium text-slate-400"
+                        >
+                          {published}
+                        </time>
                       )}
                     </div>
+                    <h4 className="text-base font-semibold leading-snug text-gray-800 md:text-lg">
+                      <Link
+                        href={`/noticeboard#${notice.slug}`}
+                        className="transition-colors hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                      >
+                        {notice.title}
+                      </Link>
+                    </h4>
+                    {excerpt ? (
+                      <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-slate-600">
+                        {excerpt}
+                      </p>
+                    ) : null}
+                    {photoAttachment ? (
+                      <NavCtaLink
+                        href={photoAttachment.fileUrl}
+                        className="mt-2 inline-flex min-h-[40px] items-center text-xs font-semibold text-primary underline underline-offset-2 hover:text-primary/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                      >
+                        {photoAttachment.fileName}
+                      </NavCtaLink>
+                    ) : notice.attachments.length > 0 ? (
+                      <p className="mt-1 text-xs text-slate-500">
+                        {notice.attachments.length} attachment
+                        {notice.attachments.length > 1 ? "s" : ""}
+                      </p>
+                    ) : null}
                   </div>
                 </div>
-              </Link>
+              </article>
             );
           })}
         </div>

@@ -7,7 +7,7 @@ export function isHomePath(pathname: string): boolean {
   return (locales as readonly string[]).includes(segments[0]!);
 }
 
-export const WELCOME_MODAL_SEEN_KEY = "smk_announcement_seen";
+export const WELCOME_MODAL_SEEN_KEY = "smk_announcement_seen_photos_6_0";
 export const WELCOME_MODAL_CLOSED_EVENT = "smk-welcome-modal-closed";
 
 export function notifyWelcomeModalClosed(): void {

@@ -25,6 +25,39 @@ import {
 } from "@/data/smk-6-official-schedule";
 import { SMK_6_PROGRAMME_CONTACTS_HREF } from "@/data/smk-6-official-contacts";
 import { REGISTRATION_DEADLINE, REGISTRATION_PATH } from "@/data/registration-hub";
+import {
+  officialPhotographsAnnouncementCopy,
+  officialPhotographsNoticeDescription,
+  SMK_6_OFFICIAL_PHOTOGRAPHS_FOLDER_URL,
+  SMK_6_OFFICIAL_PHOTOGRAPHS_NOTICE_SLUG,
+  SMK_6_OFFICIAL_PHOTOGRAPHS_NOTICE_SLUG_HI,
+} from "@/data/smk-6-official-photographs";
+
+function buildOfficialPhotographsNotice(locale: "en" | "hi"): CmsNotice {
+  const hi = locale === "hi";
+  const copy = officialPhotographsAnnouncementCopy();
+  return {
+    id: hi ? "default-smk6-official-photographs-hi" : "default-smk6-official-photographs",
+    title: hi ? copy.titleHi : copy.title,
+    slug: hi ? SMK_6_OFFICIAL_PHOTOGRAPHS_NOTICE_SLUG_HI : SMK_6_OFFICIAL_PHOTOGRAPHS_NOTICE_SLUG,
+    description: officialPhotographsNoticeDescription(locale),
+    priority: 15,
+    isPinned: true,
+    publishAt: "2026-10-10T00:00:00.000Z",
+    expireAt: null,
+    category: hi
+      ? { name: "कार्यक्रम", slug: "programmes" }
+      : { name: "Programmes", slug: "programmes" },
+    attachments: [
+      {
+        id: hi ? "att-smk6-official-photographs-hi" : "att-smk6-official-photographs",
+        fileName: hi ? copy.ctaHi : copy.cta,
+        fileUrl: SMK_6_OFFICIAL_PHOTOGRAPHS_FOLDER_URL,
+        mimeType: "text/html",
+      },
+    ],
+  };
+}
 
 function buildOfficialScheduleNotice(locale: "en" | "hi"): CmsNotice {
   const hi = locale === "hi";
@@ -197,6 +230,7 @@ function buildSmk6ConclaveNotices(locale: "en" | "hi"): CmsNotice[] {
 
 /** Published fallback notices when CMS / database has none (English). */
 export const DEFAULT_NOTICES_EN: CmsNotice[] = [
+  buildOfficialPhotographsNotice("en"),
   buildOfficialScheduleNotice("en"),
   {
     id: "default-aist-2026-sliet",
@@ -386,6 +420,7 @@ export const DEFAULT_NOTICES_EN: CmsNotice[] = [
 
 /** Hindi fallback notices (used when locale is hi and DB is empty). */
 export const DEFAULT_NOTICES_HI: CmsNotice[] = [
+  buildOfficialPhotographsNotice("hi"),
   buildOfficialScheduleNotice("hi"),
   {
     id: "default-aist-2026-sliet-hi",
@@ -599,7 +634,8 @@ export function resolvePublicNotices(
       notice.slug.startsWith("smk-6-shodhankur") ||
       notice.slug.startsWith("smk-6-project-expo") ||
       notice.slug.startsWith("smk-6-panel-discussion") ||
-      notice.slug.startsWith("smk-6-official-schedule")
+      notice.slug.startsWith("smk-6-official-schedule") ||
+      notice.slug.startsWith("smk-6-official-event-photographs")
   );
   if (notices && notices.length > 0) {
     const slugs = new Set(notices.map((notice) => notice.slug));
@@ -617,7 +653,12 @@ export function resolveWidgetNotices(
   limit = 5
 ): CmsNotice[] {
   if (widgetNotices && widgetNotices.length > 0) {
-    return sortNotices(widgetNotices).slice(0, limit);
+    const photos = getDefaultNotices(locale).filter((notice) =>
+      notice.slug.startsWith("smk-6-official-event-photographs")
+    );
+    const slugs = new Set(widgetNotices.map((notice) => notice.slug));
+    const missing = photos.filter((notice) => !slugs.has(notice.slug));
+    return sortNotices([...widgetNotices, ...missing]).slice(0, limit);
   }
   return resolvePublicNotices(allNotices, locale).slice(0, limit);
 }

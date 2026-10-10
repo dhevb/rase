@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import GlassCard from "@/components/ui/GlassCard";
 import { NavCtaLink } from "@/components/ui/NavCtaLink";
-import { ConferenceIcon, GlobeEducationIcon } from "@/components/icons/home";
+import { ConferenceIcon, GalleryIcon, GlobeEducationIcon } from "@/components/icons/home";
 import { useParams } from "next/navigation";
 import { useCms } from "@/lib/cms/context";
 import { getSection, sectionItems } from "@/lib/cms/utils";
@@ -22,6 +22,7 @@ const ICON_BY_KEY: Record<
   registration: GlobeEducationIcon,
   research: ConferenceIcon,
   notices: GlobeEducationIcon,
+  gallery: GalleryIcon,
 };
 
 export default function Announcement() {
